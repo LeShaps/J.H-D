@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace J.H_D
 {
@@ -77,15 +78,20 @@ namespace J.H_D
 
         public void DownloadRessource(string url, string path)
         {
+            Console.WriteLine(url);
+            Console.WriteLine(path);
             try
             {
                 using (WebClient wc = new WebClient())
                 {
                     wc.DownloadFile(url, path);
+                    if (File.Exists(path))
+                        Console.WriteLine("Le fichier à bien été téléchargé");
                 }
             }
             catch(Exception e)
             {
+                Console.WriteLine("Dans DonwloadRessources");
                 Console.WriteLine(e.Message);
                 return;
             }
@@ -117,6 +123,44 @@ namespace J.H_D
                 return (null);
             }
         }
+        
+        public void DownloadRessource_fromstream(string url, string filename)
+        {
+            Console.WriteLine(url);
+            try
+            {
+                var http = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                var response = http.GetResponse();
+                var stream = response.GetResponseStream();
+                var sr = new StreamReader(stream);
+
+                MemoryStream mem = new MemoryStream();
+                stream.CopyTo(mem);
+
+                byte[] imageData = mem.ToArray();
+                File.WriteAllBytes(filename, imageData);
+                stream.Close();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        public void DownloadRessource_fromSankakuComplex(string url, string path)
+        {
+            try
+            {
+                WebClient skweb = new WebClient();
+                skweb.Headers.Add("User-Agent: JH");
+
+                skweb.DownloadFile(url, path);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
         public string GetSakuraComplexResponse(string url)
         {
@@ -126,8 +170,9 @@ namespace J.H_D
                 var http = (HttpWebRequest)WebRequest.Create(new Uri(url));
 
                 http.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-                http.Headers.Add("Accept-Encoding:gzip, deflate, br");
                 http.Headers.Add("Accept-Language:fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3");
+                http.Headers.Add("login:" + File.ReadAllLines("Logers/sancomplexlogins.txt")[0]);
+                http.Headers.Add("password_hash:" + File.ReadAllLines("Logers/sancomplexlogins.txt")[1]);
                 http.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0";
                 http.Host = "capi-beta.sankakucomplex.com";
                 http.Method = "GET";

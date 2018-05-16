@@ -190,5 +190,48 @@ namespace J.H_D
             };
             return (animeinfos);
         }
+
+        public static EmbedBuilder build_skimageinfos(sk_image image)
+        {
+            EmbedBuilder skinfos_builder = new EmbedBuilder()
+            {
+                Title = image._name,
+                Color = Color.DarkMagenta,
+                Fields = new List<EmbedFieldBuilder>()
+                {
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Rating",
+                        Value = image._rating,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Have loli",
+                        Value = image._isLoli.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Author",
+                        Value = image._author,
+                        IsInline = true,
+                    },
+                    /*
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Tags",
+                        Value = image.make_tagsnamelist(image._tags),
+                        IsInline = false,
+                    }
+                    */
+                },
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Source : " + image._source,
+                },
+            };
+            return (skinfos_builder);
+        }
     }
 }

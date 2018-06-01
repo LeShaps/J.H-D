@@ -10,109 +10,14 @@ using System.Threading.Tasks;
 
 namespace J.H_D
 {
-    enum TagType
-    {
-        General,
-        Artist,
-        Copyright,
-        Character
-    }
-
-    public class Image_s
-    {
-        public string _file_url { protected set; get; }
-        public string _sample_url { protected set; get; }
-        public string _preview_url { protected set; get; }
-        public char _rating { protected set; get; }
-        public bool _isLoli { protected set; get; }
-        public string _source { protected set; get; }
-        public string _name { protected set; get; }
-    }
-
-    class Tag
-    {
-        public TagType _type { private set; get; }
-        public string _name { private set; get; }
-        public uint _id { private set; get; }
-    }
-
-    class sk_image : Image_s
-    {
-        public string _author { private set; get; }
-        public string _file_furl { private set; get; }
-        public List<Tag> _tags { private set; get; }
-
-        public sk_image() { }
-
-        public sk_image(string source)
-        {
-            _file_url = Program.getInfos("\"file_url\":\"//", source, '"');
-            _sample_url = Program.getInfos("\"sample_url\":\"//", source, '"');
-            _preview_url = Program.getInfos("\"preview_url\":\"//", source, '"');
-            _rating = Program.getInfos("\"rating\":\"", source, '"')[0];
-            if (Program.getInfos("\"has_children\":", source, ',') == "false")
-                _isLoli = false;
-            else
-                _isLoli = true;
-            _source = Program.getInfos("\"source\":\"", source, '"');
-            _author = Program.getInfos("\"author\":\"", source, '"');
-            make_taglist(Program.getInfos("\"tags\":[", source, ']'));
-            make_name(_file_url);
-        }
-
-        private void make_name(string url)
-        {
-            string[] fparsed = url.Split('.');
-            string extension = fparsed[fparsed.Length - 1];
-            string[] parsed_fname = fparsed[fparsed.Length - 2].Split('/');
-            string fileurl = parsed_fname[parsed_fname.Length - 1] + "." + extension;
-            string name = fileurl.Split('?')[0];
-
-            _file_furl = "https://" + url;
-            _name = name;
-        }
-
-        public string make_tagnamelist(List<Tag> tags)
-        {
-            return ("");
-        }
-        
-        private void make_taglist(string ttp)
-        {
-            List<Tag> tags = new List<Tag>();
-
-            _tags = tags;
-        }
-    }
-
-    class r34_image : Image_s
-    {
-        public string[] _tags { private set; get; }
-
-        public r34_image() { }
-
-        public r34_image(string source)
-        {
-            _file_url = Program.getInfos("file_url=\"", source, '"');
-            _sample_url = Program.getInfos("sample_url=\"", source, '"');
-            _preview_url = Program.getInfos("preview_url=\"", source, '"');
-            _rating = Program.getInfos("rating=\"", source, '"')[0];
-            if (Program.getInfos("has_children=\"", source, '"') == "false")
-                _isLoli = false;
-            else
-                _isLoli = true;
-            _source = Program.getInfos("source=\"", source, '"');
-            _tags = Program.getInfos("tags=\"", source, '"').Split(' ');
-        }
-    }
-
     class UnsafeModule : ModuleBase
     {
         Program p = Program.p;
         static r34_image lastr_image;
         static Dictionary<ulong, sk_image> lastsk_images = new Dictionary<ulong, sk_image>();
-
-
+        static Dictionary<ulong, dan_image> lastdan_images = new Dictionary<ulong, dan_image>();
+        static Dictionary<ulong, kon_image> lastkon_images = new Dictionary<ulong, kon_image>();
+        
         [Command("Protocol 34-D", RunMode=RunMode.Async), Alias("r34")]
         public async Task r34_image(params string[] Args)
         {
@@ -129,13 +34,147 @@ namespace J.H_D
             await Context.Channel.SendFileAsync("Ressources/NewrImage." + extention);
             File.Delete("Ressources/NewrImage." + extention);
         }
+        
+        private int GetmaxTags(string tags)
+        {
+                return (Convert.ToInt32(Program.getInfos("posts count=\"", p.callers.AskRequest("https://www.konachan.com/post.xml?limit=1" + tags), '"')));
+        }
+
+        [Command("Konachan", RunMode=RunMode.Async)]
+        public async Task AskKonachan(params string[] Args)
+        {
+            ulong userId = Context.User.Id;
+            int page = p.rand.Next(100000);
+            string baseurl = "https://konachan.com/post.xml?limit=1";
+            if (Args.Length > 1)
+            {
+                string asks = Program.makeArgs(Args).Replace(' ', '+');
+                page = p.rand.Next(GetmaxTags(asks));
+                baseurl += "&tags=" + asks;
+            }
+            baseurl += "&page=" + page;
+            string result = p.callers.AskRequest(baseurl);
+            if (result == null)
+            {
+                await ReplyAsync("Quelque chose s'est mal passé");
+                return;
+            }
+            if (lastkon_images.ContainsKey(userId))
+            {
+                lastkon_images[userId] = new kon_image(result);
+            }
+            else
+            {
+                lastkon_images.Add(userId, new kon_image(result));
+            }
+            Program.checkDir("Ressources");
+            p.callers.DownloadRessource(lastkon_images[userId]._file_url, "Ressources/" + lastkon_images[userId]._name);
+            await ReplyAsync(Speetch.Wait);
+            await Context.Channel.SendFileAsync("Ressources/" + lastkon_images[userId]._name);
+            File.Delete("Ressources/" + lastkon_images[userId]._name);
+        }
+
+        [Command("Danbooru", RunMode=RunMode.Async)]
+        public async Task Askdanbooru(params string[] Args)
+        {
+            ulong userId = Context.User.Id;
+            int page = p.rand.Next(10000);
+            string login = File.ReadAllLines("Logers/danboorulogins.txt")[0];
+            string mdp = File.ReadAllLines("Logers/danboorulogins.txt")[1];
+            string baseurl = "https://danbooru.donmai.us/posts.xml?limit=1&random=true";
+            if (Args.Length > 1)
+            {
+                string args = Program.makeArgs(Args).Replace(' ', '+');
+                baseurl += "&tags=" + args + "&page=1";
+            }
+            else
+            {
+                baseurl += "&page=" + page;
+            }
+            string requestresult = p.callers.AskwithCredentials(baseurl + "/posts/" + page + ".xml", login, mdp);
+            if (requestresult == null)
+            {
+                await ReplyAsync("Quelque chose s'est mal passé");
+            }
+            if (lastdan_images.ContainsKey(userId))
+            {
+                lastdan_images[userId] = new dan_image(requestresult);
+            }
+            else
+            {
+                lastdan_images.Add(userId, new dan_image(requestresult));
+            }
+            p.callers.DownloadRessource(lastdan_images[userId]._file_url, "Ressources/" + lastdan_images[userId]._name);
+            await ReplyAsync(Speetch.Wait);
+            await Context.Channel.SendFileAsync("Ressources/" + lastdan_images[userId]._name);
+            File.Delete("Ressources/" + lastdan_images[userId]._name);
+        }
+
+        [Command("Fav last danimage")]
+        public async Task fav_danimage(params string[] Args)
+        {
+            ulong userId = Context.User.Id;
+            foreach (KeyValuePair<ulong, dan_image> d in lastdan_images)
+            {
+                Console.WriteLine("Id : " + d.Key);
+            }
+
+            if (lastdan_images.ContainsKey(userId) == false)
+            {
+                await ReplyAsync("Vous n'avez pas encore demandé d'image venant de DanBooru cette section");
+            }
+            else
+            {
+                Program.checkDir("Users/" + userId.ToString() + "/Fav/DanBooruImages");
+                File.AppendAllText("Users/" + userId.ToString() + "/Fav/DanBooruImages/" + "favedimages.saved", lastdan_images[userId].ToString());
+                await ReplyAsync("Cette image à bien été ajoutée à vos favoris");
+            }
+        }
+
+        [Command("Fav last skimage")]
+        public async Task fav_skimage(params string[] Args)
+        {
+            ulong userId = Context.User.Id;
+            foreach (KeyValuePair<ulong, sk_image> d in lastsk_images)
+            {
+                Console.WriteLine("Id : " + d.Key);
+            }
+
+            if (lastsk_images.ContainsKey(userId) == false)
+            {
+                await ReplyAsync("Vous n'avez pas encore demandé d'image venant de Sankaku Complex cette section");
+            }
+            else
+            {
+                Program.checkDir("Users/" + userId.ToString() + "/Fav/SankakuComplexImages");
+                File.AppendAllText("Users/" + userId.ToString() + "/Fav/SankakuComplexImages/" + "favedimages.saved", lastsk_images[userId].ToString());
+                await ReplyAsync("Cette image à bien été ajoutée à vos favoris");
+            }
+        }
+
+        [Command("Fav last konimage")]
+        public async Task fav_koimage(params string[] Args)
+        {
+            ulong userId = Context.User.Id;
+
+            if (lastkon_images.ContainsKey(userId) == false)
+            {
+                await ReplyAsync("Vous n'avez pas encore demandé d'image venant de Konachan cette section");
+            }
+            else
+            {
+                Program.checkDir("Users/" + userId.ToString() + "/Fav/KonachanImages");
+                File.AppendAllText("Users/" + userId.ToString() + "/Fav/KonachanImages/" + "favedimages.saved", lastkon_images[userId].ToString());
+                await ReplyAsync("Cette image à été rajoutée à vos favoris");
+            }
+        }
 
         [Command("Sankaku Complex", RunMode=RunMode.Async)]
         public async Task sankaComplex(params string[] Args)
         {
             int page = p.rand.Next(1, 25);
             ulong userId = Context.User.Id;
-
+            
             string builder = p.callers.GetSakuraComplexResponse("https://capi-beta.sankakucomplex.com/post/index.json?page=" + page + "&limit=1");
             builder = builder.Replace("\\u0026", "&");
             if (lastsk_images != null)
@@ -150,8 +189,36 @@ namespace J.H_D
                 }
             }
             p.callers.DownloadRessource_fromSankakuComplex(lastsk_images[userId]._file_furl, "Ressources/" + lastsk_images[userId]._name);
+            await ReplyAsync(Speetch.Wait);
             await Context.Channel.SendFileAsync("Ressources/" + lastsk_images[userId]._name);
             File.Delete("Ressources/" + lastsk_images[userId]._name);
+        }
+
+        [Command("Get last danimage")]
+        public async Task get_daninfos(params string[] args)
+        {
+            ulong userId = Context.User.Id;
+            string pargs = Program.makeArgs(args);
+
+            if (args.Length < 1)
+            {
+                await ReplyAsync("Il faudrait que je sache ce que vous voulez..");
+                return;
+            }
+            if (lastdan_images.ContainsKey(userId) == false)
+            {
+                await ReplyAsync("Vous n'avez pas encore demadné d'image cette section");
+                return;
+            }
+            if (pargs == "infos")
+            {
+                await Context.Channel.SendMessageAsync("", false, Speetch.tembuild_dan(lastdan_images[userId]).Build());
+                return;
+            }
+            if (pargs == "infos with tags")
+            {
+                await Context.Channel.SendMessageAsync("", false, Speetch.tembuild_danwtag(lastdan_images[userId]).Build());
+            }
         }
 
         [Command("Get last skimage")]
@@ -162,6 +229,7 @@ namespace J.H_D
             if (Args.Length < 1)
             {
                 await ReplyAsync("Il faudrait que je sache ce que vous voulez..");
+                return;
             }
             if (lastsk_images.ContainsKey(userId) == false)
             {

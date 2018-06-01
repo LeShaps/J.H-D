@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net.Http;
 
 namespace J.H_D
 {
@@ -106,6 +107,28 @@ namespace J.H_D
                 }
             }
             await ReplyAsync("Voici des infos sur l'anime que vous recherchez :", false, Speetch.anime_builder(last_animes[UserId]).Build());
+        }
+
+        [Command("Ask via website")]
+        public async Task ask_ws()
+        {
+            HttpClient client = new HttpClient();
+            var infos = new Dictionary<string, string>
+            {
+                {"id", "JHD" }
+            };
+
+            FormUrlEncodedContent content = new FormUrlEncodedContent(infos);
+            try
+            {
+                var restream = await (await client.PostAsync("http://shaps.tech/gate/jhgate.php", content)).Content.ReadAsStringAsync();
+
+                Console.WriteLine(restream);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private bool Havenullstring(Anime anime)

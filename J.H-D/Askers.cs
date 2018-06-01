@@ -76,22 +76,29 @@ namespace J.H_D
             }
         }
 
+        public string AskwithCredentials(string url, string id, string pass)
+        {
+            WebClient wc = new WebClient
+            {
+                Encoding = Encoding.UTF8,
+                Credentials = new NetworkCredential(id, pass),
+            };
+            wc.Headers.Add("User-agent: JH");
+            string result = wc.DownloadString(url);
+            return (result);
+        }
+
         public void DownloadRessource(string url, string path)
         {
-            Console.WriteLine(url);
-            Console.WriteLine(path);
             try
             {
                 using (WebClient wc = new WebClient())
                 {
                     wc.DownloadFile(url, path);
-                    if (File.Exists(path))
-                        Console.WriteLine("Le fichier à bien été téléchargé");
                 }
             }
             catch(Exception e)
             {
-                Console.WriteLine("Dans DonwloadRessources");
                 Console.WriteLine(e.Message);
                 return;
             }

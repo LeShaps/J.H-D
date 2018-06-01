@@ -40,67 +40,58 @@ namespace J.H_D
     class ForumsModule : ModuleBase
     {
         Program p = Program.p;
-        static FcThread last_fcimage;
-
-        [Command("[Debug] Display last fcimage infos")]
-        public async Task displayInfos(params string[] Args)
-        {
-            Console.WriteLine(last_fcimage._chan);
-            Console.WriteLine(last_fcimage._fsize);
-            Console.WriteLine(last_fcimage._comm);
-            Console.WriteLine(last_fcimage._trId);
-            await ReplyAsync("done");
-        }
-
+        static Dictionary<ulong, FcThread> last_fcimage = new Dictionary<ulong, FcThread>();
+        
         [Command("Last fcimage context")]
         public async Task GiveContext(params string[] Args)
         {
-            if (last_fcimage == null)
+            ulong userId = Context.User.Id;
+            if (last_fcimage.ContainsKey(userId) == false)
             {
-                await ReplyAsync("Je n'ai pas encore envoyé d'image venant de 4chan..");
-                return;
-            }
-            else if (last_fcimage._comm == null)
-            {
-                await ReplyAsync("Désolé, mais je n'ai pas de contexte pour cette image..");
+                await ReplyAsync("Vous n'avez pas encore demandé d'image venant de 4chan..");
                 return;
             }
             EmbedBuilder embed = new EmbedBuilder()
             {
-                Title = last_fcimage._name,
+                Title = last_fcimage[userId]._name,
                 Fields = new List<EmbedFieldBuilder>()
                 {
                     new EmbedFieldBuilder()
                     {
                         Name = "Comment",
-                        Value = last_fcimage._comm,
+                        Value = last_fcimage[userId]._comm,
                         IsInline = false,
                     }
                 },
-                ImageUrl = "http://i.4cdn.org/" + last_fcimage._chan + "/" + last_fcimage._imagesInfos,
+                ImageUrl = "http://i.4cdn.org/" + last_fcimage[userId]._chan + "/" + last_fcimage[userId]._imagesInfos,
                 Color = Color.DarkGreen,
             };
             await ReplyAsync("Voilà un peu plus de contexte : ", false, embed.Build());
         }
 
+        [Command("What mean"), Alias("WTF")]
+        public async Task whatmean(params string[] Args)
+        {
+            string para = Program.makeArgs(Args);
+        }
+        
         [Command("4nsfw", RunMode = RunMode.Async)]
         public async Task Fchan_img(params string[] Args)
         {
+            ulong userId = Context.User.Id;
             try
             {
                 List<FcThread> ThreadList = new List<FcThread>();
-                string result;
-                string[] splitedResult = null;
                 string[] chansList = new string[] { "a", "c", "w", "m", "cgl", "cm", "f", "n", "jp", "v", "vg", "vp", "vr", "co", "g", "tv", "k", "o", "an", "tg", "sp", "asp", "sci", "his", "int", "out", "toy", "i", "po", "p", "ck",
                 "ic", "wg", "lit", "mu", "fa", "3", "gd", "diy", "wsg", "qst", "biz", "trv", "fit", "x", "adv", "lgbt", "mlp", "news", "wsr", "vip", "b", "r9k", "pol", "bant", "soc", "s4s", "s", "hc", "hm", "h", "u",
                 "d", "y", "t", "hr", "gif", "aco", "r"};
 
                 if (Args.Length < 1)
                 {
-                    string filepath = fchan_rand();
-                    await ReplyAsync("Cette image viens de " + last_fcimage._chan);
+                    string filepath = fchan_rand(userId);
+                    await ReplyAsync("Cette image viens de " + last_fcimage[userId]._chan);
                     await Context.Channel.SendFileAsync(filepath);
-                    File.Delete("Ressources/images4chan" + last_fcimage._chan + last_fcimage._imagesInfos);
+                    File.Delete("Ressources/images4chan" + last_fcimage[userId]._chan + last_fcimage[userId]._imagesInfos);
                     return;
                 }
                 if (Args[0] == "Help" || Args[0] == "help")
@@ -121,8 +112,8 @@ namespace J.H_D
                         await ReplyAsync(Speetch.FcUnknownChan);
                         return;
                     }
-                    string filepath = fchan_search(Args[0]);
-                    last_fcimage.setchan(Args[0]);
+                    string filepath = fchan_search(Args[0], userId);
+                    last_fcimage[userId].setchan(Args[0]);
                     await Context.Channel.SendFileAsync(filepath);
                     File.Delete(filepath);
                 }
@@ -134,7 +125,7 @@ namespace J.H_D
             }
         }
 
-        private string fchan_search(string chan)
+        private string fchan_search(string chan, ulong userId)
         {
             try
             {
@@ -155,22 +146,29 @@ namespace J.H_D
                     ThreadList.Add(currThread);
                 }
                 int randUse = p.rand.Next(ThreadList.Count - 1);
-                last_fcimage = ThreadList[randUse];
+                if (last_fcimage.ContainsKey(userId))
+                {
+                    last_fcimage[userId] = ThreadList[randUse];
+                }
+                else
+                {
+                    last_fcimage.Add(userId, ThreadList[randUse]);
+                }
                 if (!Directory.Exists("Ressources"))
                 {
                     Directory.CreateDirectory("Ressources");
                 }
-                p.callers.DownloadRessource("http://i.4cdn.org/" + chan + "/" + last_fcimage._imagesInfos, "Ressources/images4chan" + chan + last_fcimage._imagesInfos);
-                return ("Ressources/images4chan" + chan + last_fcimage._imagesInfos);
+                p.callers.DownloadRessource("http://i.4cdn.org/" + chan + "/" + last_fcimage[userId]._imagesInfos, "Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
+                return ("Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                return (fchan_search(chan));
+                return (fchan_search(chan, userId));
             }
         }
 
-        private string fchan_rand()
+        private string fchan_rand(ulong userId)
         {
             try
             {
@@ -193,19 +191,26 @@ namespace J.H_D
                     ThreadList.Add(currThread);
                 }
                 int randUse = p.rand.Next(ThreadList.Count - 1);
-                last_fcimage = ThreadList[randUse];
+                if (last_fcimage.ContainsKey(userId))
+                {
+                    last_fcimage[userId] = ThreadList[randUse];
+                }
+                else
+                {
+                    last_fcimage.Add(userId, ThreadList[randUse]);
+                }
                 if (!Directory.Exists("Ressources"))
                 {
                     Directory.CreateDirectory("Ressources");
                 }
-                p.callers.DownloadRessource("http://i.4cdn.org/" + chan + "/" + last_fcimage._imagesInfos, "Ressources/images4chan" + chan + last_fcimage._imagesInfos);
-                last_fcimage.setchan(chan);
-                return ("Ressources/images4chan" + chan + last_fcimage._imagesInfos);
+                p.callers.DownloadRessource("http://i.4cdn.org/" + chan + "/" + last_fcimage[userId]._imagesInfos, "Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
+                last_fcimage[userId].setchan(chan);
+                return ("Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
             }
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-                return (fchan_rand());
+                return (fchan_rand(userId));
             }
         }
     }

@@ -143,6 +143,23 @@ namespace J.H_D
             return (final);
         }
 
+        public static void checkDir(string path)
+        {
+            string[] list = path.Split('/');
+
+            for (int i = 0; i <= list.Length - 1; i++)
+            {
+                if (!Directory.Exists(list[i]))
+                {
+                    Directory.CreateDirectory(list[i]);
+                }
+                if(i + 1 < list.Length)
+                {
+                    list[i + 1] = list[i] + "/" + list[i + 1];
+                }
+            }
+        }
+
         private async Task HandleCommandAsync(SocketMessage arg)
         {
             var msg = arg as SocketUserMessage;

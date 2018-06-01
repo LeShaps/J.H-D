@@ -76,6 +76,8 @@ namespace J.H_D
 
         public static string NfMovie = "Je n'ai pas trouvé ce film, veuillez vérifier l'orthographe ou essayer avec un autre";
 
+        public static string Wait = "Vous recevrez ce que vous voulez dans quelques secondes";
+
         public static EmbedBuilder make_movieinfos(Movie movie)
         {
             Console.WriteLine(movie._name);
@@ -217,14 +219,12 @@ namespace J.H_D
                         Value = image._author,
                         IsInline = true,
                     },
-                    /*
                     new EmbedFieldBuilder()
                     {
                         Name = "Tags",
-                        Value = image.make_tagsnamelist(image._tags),
+                        Value = image.make_tagnamelist(),
                         IsInline = false,
-                    }
-                    */
+                    },
                 },
                 Footer = new EmbedFooterBuilder()
                 {
@@ -232,6 +232,187 @@ namespace J.H_D
                 },
             };
             return (skinfos_builder);
+        }
+
+        private static List<Tag> m_tagtypelist(List<Tag> tags, TagType wantedtype)
+        {
+            List<Tag> typeoftaglist = new List<Tag>();
+
+            foreach (Tag t in tags)
+            {
+                if (t._type == wantedtype)
+                    typeoftaglist.Add(t);
+            }
+            return (typeoftaglist);
+        }
+
+        private static string mtag_toline(List<Tag> tags)
+        {
+            string res = " ";
+
+            foreach (Tag t in tags)
+            {
+                res += t._name + Environment.NewLine;
+            }
+            return (res);
+        }
+
+        private static string mtag_tolist(List<Tag> tags)
+        {
+            string res = " ";
+
+            foreach(Tag t in tags)
+            {
+                res += t._name + ",";
+            }
+            if (res != " ")
+                res.Substring(0, res.Length - 2);
+            if (res.Length > 2000)
+            {
+                res.Substring(0, 1997);
+                res += "...";
+            }
+            return (res);
+        }
+
+        public static EmbedBuilder tembuild_danwtag(dan_image image)
+        {
+            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
+            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
+            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
+
+            if (original == " ")
+                original = "Original";
+            if (charac == " ")
+                charac = "OC";
+            if (author == " ")
+                author = image._author;
+
+            EmbedBuilder danbuilder = new EmbedBuilder()
+            {
+                Title = image._name,
+                Color = Color.DarkMagenta,
+                Description = "More infos about your last image",
+                Url = image._file_url,
+                Fields = new List<EmbedFieldBuilder>()
+                {
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Œuvre(s) originale(s)",
+                        Value = original,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Character(s)",
+                        Value = charac,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Artist(s)",
+                        Value = author,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Have loli",
+                        Value = image._isLoli.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Rating",
+                        Value = image._rating.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Is banned",
+                        Value = image._is_banned.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Tags",
+                        Value = image.make_tagnamelist(),
+                        IsInline = false,
+                    },
+                },
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Source : " + image._source,
+                },
+                ImageUrl = image._sample_url,
+            };
+            return (danbuilder);
+        }
+
+        public static EmbedBuilder tembuild_dan(dan_image image)
+        {
+            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
+            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
+            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
+
+            if (original == " ")
+                original = "Original";
+            if (charac == " ")
+                charac = "OC";
+            if (author == " ")
+                author = image._author;
+
+            EmbedBuilder danbuilder = new EmbedBuilder()
+            {
+                Title = image._name,
+                Color = Color.DarkMagenta,
+                Description = "More infos about your last image",
+                Url = image._file_url,
+                Fields = new List<EmbedFieldBuilder>()
+                {
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Œuvre(s) originale(s)",
+                        Value = original,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Character(s)",
+                        Value = charac,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Artist(s)",
+                        Value = author,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Have loli",
+                        Value = image._isLoli.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Rating",
+                        Value = image._rating.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Is banned",
+                        Value = image._is_banned.ToString(),
+                        IsInline = true,
+                    },
+                },
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Source : " + image._source,
+                },
+                ImageUrl = image._sample_url,
+            };
+            return (danbuilder);
         }
     }
 }

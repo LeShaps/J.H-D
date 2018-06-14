@@ -169,7 +169,7 @@ namespace J.H_D
             }
         }
 
-        [Command("Sankaku Complex", RunMode=RunMode.Async)]
+        // [Command("Sankaku Complex", RunMode=RunMode.Async)]
         public async Task sankaComplex(params string[] Args)
         {
             int page = p.rand.Next(1, 25);
@@ -212,12 +212,12 @@ namespace J.H_D
             }
             if (pargs == "infos")
             {
-                await Context.Channel.SendMessageAsync("", false, Speetch.konbuilderwtag(lastkon_images[userId]).Build());
+                await Context.Channel.SendMessageAsync("", false, Speetch.konbuilder(lastkon_images[userId], 0).Build());
                 return;
             }
             if (pargs == "infos with tags")
             {
-                await Context.Channel.SendMessageAsync("", false, Speetch.konbuilder(lastkon_images[userId]).Build());
+                await Context.Channel.SendMessageAsync("", false, Speetch.konbuilder(lastkon_images[userId], 1).Build());
             }
         }
 
@@ -239,12 +239,12 @@ namespace J.H_D
             }
             if (pargs == "infos")
             {
-                await Context.Channel.SendMessageAsync("", false, Speetch.tembuild_dan(lastdan_images[userId]).Build());
+                await Context.Channel.SendMessageAsync("", false, Speetch.danbuilder(lastdan_images[userId], 0).Build());
                 return;
             }
             if (pargs == "infos with tags")
             {
-                await Context.Channel.SendMessageAsync("", false, Speetch.tembuild_danwtag(lastdan_images[userId]).Build());
+                await Context.Channel.SendMessageAsync("", false, Speetch.danbuilder(lastdan_images[userId], 1).Build());
             }
         }
 
@@ -252,6 +252,7 @@ namespace J.H_D
         public async Task get_iminfos(params string[] Args)
         {
             ulong userId = Context.User.Id;
+            string fargs = Program.makeArgs(Args);
 
             if (Args.Length < 1)
             {
@@ -265,7 +266,12 @@ namespace J.H_D
             }
             if (Args[0] == "infos")
             {
-                await ReplyAsync("", false, Speetch.build_skimageinfos(lastsk_images[userId]).Build());
+                await ReplyAsync("", false, Speetch.skinfos_builder(lastsk_images[userId], 0).Build());
+                return;
+            }
+            if (fargs == "infos with tags")
+            {
+                await ReplyAsync("", false, Speetch.skinfos_builder(lastsk_images[userId], 1).Build());
                 return;
             }
         }
@@ -308,8 +314,10 @@ namespace J.H_D
             }
             else if (Args[0] == "tags")
             {
-                await ReplyAsync("Les tags de la derière image étaient : ");
-                await ReplyAsync(Program.makeArgs(lastr_image._tags));
+                /*To redone */
+
+                // await ReplyAsync("Les tags de la derière image étaient : ");
+                // await ReplyAsync(Program.makeArgs(lastr_image._tags));
             }
             else
                 await ReplyAsync("Je ne vois pas vraiment ce que vous voulez me demander");

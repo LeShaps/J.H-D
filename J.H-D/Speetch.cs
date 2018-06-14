@@ -193,47 +193,6 @@ namespace J.H_D
             return (animeinfos);
         }
 
-        public static EmbedBuilder build_skimageinfos(sk_image image)
-        {
-            EmbedBuilder skinfos_builder = new EmbedBuilder()
-            {
-                Title = image._name,
-                Color = Color.DarkMagenta,
-                Fields = new List<EmbedFieldBuilder>()
-                {
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Rating",
-                        Value = image._rating,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Have loli",
-                        Value = image._isLoli.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Author",
-                        Value = image._author,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Tags",
-                        Value = image.make_tagnamelist(),
-                        IsInline = false,
-                    },
-                },
-                Footer = new EmbedFooterBuilder()
-                {
-                    Text = "Source : " + image._source,
-                },
-            };
-            return (skinfos_builder);
-        }
-
         private static List<Tag> m_tagtypelist(List<Tag> tags, TagType wantedtype)
         {
             List<Tag> typeoftaglist = new List<Tag>();
@@ -275,8 +234,24 @@ namespace J.H_D
             return (res);
         }
 
-        public static EmbedBuilder tembuild_danwtag(dan_image image)
+        public static EmbedBuilder init_imagebuilder<T>(T imag, Imagetype type)
         {
+            var image = (Image_s)null;
+            switch(type)
+            {
+                case Imagetype.Image_s:
+                    image = imag as Image_s;
+                    break;
+                case Imagetype.Konachan:
+                    image = imag as kon_image;
+                    break;
+                case Imagetype.Danbooru:
+                    image = imag as dan_image;
+                    break;
+                case Imagetype.Sankaku:
+                    image = imag as sk_image;
+                    break;
+            }
             string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
             string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
             string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
@@ -287,8 +262,7 @@ namespace J.H_D
                 charac = "OC";
             if (author == " ")
                 author = image._author;
-
-            EmbedBuilder danbuilder = new EmbedBuilder()
+            EmbedBuilder imagebuilder = new EmbedBuilder()
             {
                 Title = image._name,
                 Color = Color.DarkMagenta,
@@ -323,223 +297,77 @@ namespace J.H_D
                     new EmbedFieldBuilder()
                     {
                         Name = "Rating",
-                        Value = image._rating.ToString(),
+                        Value = image._rating,
                         IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Is banned",
-                        Value = image._is_banned.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Tags",
-                        Value = image.make_tagnamelist(),
-                        IsInline = false,
-                    },
+                    }
                 },
-                Footer = new EmbedFooterBuilder()
-                {
-                    Text = "Source : " + image._source,
-                },
-                ImageUrl = image._sample_url,
             };
-            return (danbuilder);
+            return (imagebuilder);
+        }
+        
+        public static EmbedBuilder tagsbuilder<T>(T image, EmbedBuilder undone)
+        {
+            var oldbuild = image as Image_s;
+            undone.AddField("Tags", oldbuild.make_tagnamelist(), false);
+            return (undone);
         }
 
-        public static EmbedBuilder tembuild_dan(dan_image image)
+        public static EmbedBuilder footerbuild<T>(T image, EmbedBuilder undone)
         {
-            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
-            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
-            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
-
-            if (original == " ")
-                original = "Original";
-            if (charac == " ")
-                charac = "OC";
-            if (author == " ")
-                author = image._author;
-
-            EmbedBuilder danbuilder = new EmbedBuilder()
+            var buildhelper = image as Image_s;
+            undone.Footer = new EmbedFooterBuilder()
             {
-                Title = image._name,
-                Color = Color.DarkMagenta,
-                Description = "More infos about your last image",
-                Url = image._file_url,
-                Fields = new List<EmbedFieldBuilder>()
-                {
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Œuvre(s) originale(s)",
-                        Value = original,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Character(s)",
-                        Value = charac,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Artist(s)",
-                        Value = author,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Have loli",
-                        Value = image._isLoli.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Rating",
-                        Value = image._rating.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Is banned",
-                        Value = image._is_banned.ToString(),
-                        IsInline = true,
-                    },
-                },
-                Footer = new EmbedFooterBuilder()
-                {
-                    Text = "Source : " + image._source,
-                },
-                ImageUrl = image._sample_url,
+                Text = "Source : " + buildhelper._source,
             };
-            return (danbuilder);
+            undone.ImageUrl = buildhelper._sample_url;
+            return (undone);
         }
 
-        public static EmbedBuilder konbuilderwtag(kon_image image)
+        public static EmbedBuilder skinfos_builder(sk_image image, int mode)
         {
-            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
-            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
-            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
-
-            if (original == " ")
-                original = "Original";
-            if (charac == " ")
-                charac = "OC";
-            if (author == " ")
-                author = image._author;
-
-            EmbedBuilder konbuilder = new EmbedBuilder()
+            EmbedBuilder konbuilded = init_imagebuilder(image, Imagetype.Sankaku);
+            if (mode == 0)
             {
-                Title = image._name,
-                Color = Color.DarkMagenta,
-                Description = "More infos about your last image",
-                Url = image._file_url,
-                Fields = new List<EmbedFieldBuilder>()
-                {
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Œuvre(s) originale(s)",
-                        Value = original,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Character(s)",
-                        Value = charac,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Artist(s)",
-                        Value = author,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Have loli",
-                        Value = image._isLoli.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Rating",
-                        Value = image._rating.ToString(),
-                        IsInline = true,
-                    },
-                },
-                Footer = new EmbedFooterBuilder()
-                {
-                    Text = "Source : " + image._source,
-                },
-                ImageUrl = image._sample_url,
-            };
-            return (konbuilder);
+                konbuilded = footerbuild(image, konbuilded);
+                return (konbuilded);
+            }
+            else
+            {
+                konbuilded = tagsbuilder(image, konbuilded);
+                konbuilded = footerbuild(image, konbuilded);
+            }
+            return (konbuilded);
         }
 
-        public static EmbedBuilder konbuilder(kon_image image)
+        public static EmbedBuilder danbuilder(dan_image image, int mode)
         {
-            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
-            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
-            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
-
-            if (original == " ")
-                original = "Original";
-            if (charac == " ")
-                charac = "OC";
-            if (author == " ")
-                author = image._author;
-
-            EmbedBuilder konbuilder = new EmbedBuilder()
+            EmbedBuilder danbuild = init_imagebuilder(image, Imagetype.Danbooru);
+            danbuild.AddField("Is banned", image._is_banned, true);
+            if (mode == 0)
             {
-                Title = image._name,
-                Color = Color.DarkMagenta,
-                Description = "More infos about your last image",
-                Url = image._file_url,
-                Fields = new List<EmbedFieldBuilder>()
-                {
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Œuvre(s) originale(s)",
-                        Value = original,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Character(s)",
-                        Value = charac,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Artist(s)",
-                        Value = author,
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Have loli",
-                        Value = image._isLoli.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Rating",
-                        Value = image._rating.ToString(),
-                        IsInline = true,
-                    },
-                    new EmbedFieldBuilder()
-                    {
-                        Name = "Tags",
-                        Value = image.make_tagnamelist(),
-                        IsInline = false,
-                    },
-                },
-                Footer = new EmbedFooterBuilder()
-                {
-                    Text = "Source : " + image._source,
-                },
-                ImageUrl = image._sample_url,
-            };
+                danbuild = footerbuild(image, danbuild);
+                return (danbuild);
+            }
+            else
+            {
+                danbuild = tagsbuilder(image, danbuild);
+                danbuild = footerbuild(image, danbuild);
+            }
+            return (danbuild);
+        }
+
+        public static EmbedBuilder konbuilder(kon_image image, int mode)
+        {
+            EmbedBuilder konbuilder = init_imagebuilder(image, Imagetype.Konachan);
+            if (mode == 0)
+            {
+                konbuilder = footerbuild(image, konbuilder);
+            }
+            else
+            {
+                konbuilder = tagsbuilder(image, konbuilder);
+                konbuilder = footerbuild(image, konbuilder);
+            }
             return (konbuilder);
         }
     }

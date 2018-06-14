@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace J.H_D
 {
-    enum TagType
+    public enum TagType
     {
         General,
         Artist,
         Copyright,
         Character,
         Unknown
+    }
+
+    enum Imagetype
+    {
+        Image_s,
+        Konachan,
+        Danbooru,
+        Sankaku
     }
 
     public class Image_s
@@ -22,11 +30,15 @@ namespace J.H_D
         public string _preview_url { protected set; get; }
         public char _rating { protected set; get; }
         public bool _isLoli { protected set; get; }
+        public string _author { protected set; get; }
         public string _source { protected set; get; }
         public string _name { protected set; get; }
+        public List<Tag> _tags { protected set; get; }
+
+        public virtual string make_tagnamelist() { return (null); }
     }
 
-    class Tag
+    public class Tag
     {
         public TagType _type { private set; get; }
         public string _name { private set; get; }
@@ -72,11 +84,9 @@ namespace J.H_D
         }
     }
 
-    class kon_image : Image_s
+    partial class kon_image : Image_s
     {
         public string _jpegurl { private set; get; }
-        public string _author { private set; get; }
-        public List<Tag> _tags { private set; get; }
         public int _filesize { private set; get; }
 
         public kon_image() { }
@@ -128,7 +138,7 @@ namespace J.H_D
             _tags = taglist;
         }
 
-        public string make_tagnamelist()
+        public override string make_tagnamelist()
         {
             string[] tagnames = new string[_tags.Count];
             int i = 0;
@@ -157,12 +167,10 @@ namespace J.H_D
         }
     }
 
-    class dan_image : Image_s
+    partial class dan_image : Image_s
     {
         public uint _file_size { private set; get; }
         public bool _is_banned { private set; get; }
-        public string _author { private set; get; }
-        public List<Tag> _tags { private set; get; }
 
         public dan_image(string source)
         {
@@ -196,7 +204,7 @@ namespace J.H_D
             _name = name;
         }
 
-        public string make_tagnamelist()
+        public override string make_tagnamelist()
         {
             string[] tagnames = new string[_tags.Count];
             int i = 0;
@@ -268,11 +276,9 @@ namespace J.H_D
         }
     }
 
-    class sk_image : Image_s
+    partial class sk_image : Image_s
     {
-        public string _author { private set; get; }
         public string _file_furl { private set; get; }
-        public List<Tag> _tags { private set; get; }
 
         public sk_image() { }
 
@@ -304,7 +310,7 @@ namespace J.H_D
             _name = name;
         }
 
-        public string make_tagnamelist()
+        public override string make_tagnamelist()
         {
             string[] tagnames = new string[_tags.Count];
             int i = 0;
@@ -346,10 +352,8 @@ namespace J.H_D
         }
     }
 
-    class r34_image : Image_s
+    partial class r34_image : Image_s
     {
-        public string[] _tags { private set; get; }
-
         public r34_image() { }
 
         public r34_image(string source)
@@ -363,8 +367,7 @@ namespace J.H_D
             else
                 _isLoli = true;
             _source = Program.getInfos("source=\"", source, '"');
-            _tags = Program.getInfos("tags=\"", source, '"').Split(' ');
+            _tags = null;
         }
     }
-
 }

@@ -23,7 +23,7 @@ namespace J.H_D
         Sankaku
     }
 
-    public class Tag
+    public partial class Tag
     {
         public TagType _type { private set; get; }
         public string _name { private set; get; }

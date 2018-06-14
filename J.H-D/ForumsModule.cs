@@ -37,7 +37,7 @@ namespace J.H_D
         }
     }
 
-    class ForumsModule : ModuleBase
+    partial class ForumsModule : ModuleBase
     {
         Program p = Program.p;
         static Dictionary<ulong, FcThread> last_fcimage = new Dictionary<ulong, FcThread>();

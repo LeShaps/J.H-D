@@ -71,7 +71,7 @@ namespace J.H_D
         }
     }
 
-    class MovieModule : ModuleBase
+    partial class MovieModule : ModuleBase
     {
         Program p = Program.p;
         static Dictionary<ulong, Movie> lastfilms = new Dictionary<ulong, Movie>();

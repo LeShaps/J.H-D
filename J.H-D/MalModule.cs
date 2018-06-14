@@ -68,7 +68,7 @@ namespace J.H_D
         public Manga() { }
     }
 
-    class MalModule : ModuleBase
+    partial class MalModule : ModuleBase
     {
         Program p = Program.p;
         Dictionary<ulong, Anime> last_animes = new Dictionary<ulong, Anime>();

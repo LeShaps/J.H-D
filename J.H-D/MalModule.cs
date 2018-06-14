@@ -11,7 +11,7 @@ using System.Net.Http;
 
 namespace J.H_D
 {
-    class Anime
+    partial class Anime
     {
         public string _name { private set; get; }
         public uint _nb { private set; get; }
@@ -55,7 +55,7 @@ namespace J.H_D
         }
     }
 
-    class Manga
+    partial class Manga
     {
         public string _name { private set; get; }
         public string _volumes { private set; get; }

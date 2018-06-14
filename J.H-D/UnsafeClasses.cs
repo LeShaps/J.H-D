@@ -23,21 +23,6 @@ namespace J.H_D
         Sankaku
     }
 
-    public class Image_s
-    {
-        public string _file_url { protected set; get; }
-        public string _sample_url { protected set; get; }
-        public string _preview_url { protected set; get; }
-        public char _rating { protected set; get; }
-        public bool _isLoli { protected set; get; }
-        public string _author { protected set; get; }
-        public string _source { protected set; get; }
-        public string _name { protected set; get; }
-        public List<Tag> _tags { protected set; get; }
-
-        public virtual string make_tagnamelist() { return (null); }
-    }
-
     public class Tag
     {
         public TagType _type { private set; get; }
@@ -82,6 +67,21 @@ namespace J.H_D
                     break;
             }
         }
+    }
+
+    partial class Image_s
+    {
+        public string _file_url { protected set; get; }
+        public string _sample_url { protected set; get; }
+        public string _preview_url { protected set; get; }
+        public char _rating { protected set; get; }
+        public bool _isLoli { protected set; get; }
+        public string _author { protected set; get; }
+        public string _source { protected set; get; }
+        public string _name { protected set; get; }
+        public List<Tag> _tags { protected set; get; }
+
+        public virtual string make_tagnamelist() { return (null); }
     }
 
     partial class kon_image : Image_s

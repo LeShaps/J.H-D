@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace J.H_D
 {
-    class FcThread
+    partial class FcThread
     {
         public uint _trId { private set; get; }
         public string _comm { private set; get; }
@@ -113,18 +113,9 @@ namespace J.H_D
             }
         }
 
-        private async Task<string> fchan_search(string chan, ulong userId)
+        private async Task fchan_getter(string chan, string result, ulong userId, List<FcThread> ThreadList)
         {
-            List<FcThread> ThreadList = new List<FcThread>();
-            string result;
-            string[] splitedResult = null;
-            string[] chansList = new string[] { "a", "c", "w", "m", "cgl", "cm", "f", "n", "jp", "v", "vg", "vp", "vr", "co", "g", "tv", "k", "o", "an", "tg", "sp", "asp", "sci", "his", "int", "out", "toy", "i", "po", "p", "ck",
-                "ic", "wg", "lit", "mu", "fa", "3", "gd", "diy", "wsg", "qst", "biz", "trv", "fit", "x", "adv", "lgbt", "mlp", "news", "wsr", "vip", "b", "r9k", "pol", "bant", "soc", "s4s", "s", "hc", "hm", "h", "u",
-                "d", "y", "t", "hr", "gif", "aco", "r"};
-
-            result = await p.callers.SimpleAskAsync("http://a.4cdn.org/" + chan + "/catalog.json");
-            Console.WriteLine(result);
-            splitedResult = result.Split(new string[] { "},{" }, StringSplitOptions.None);
+            string[] splitedResult = result.Split(new string[] { "},{" }, StringSplitOptions.None);
             for (int i = 0; i < splitedResult.Length - 1; i++)
             {
                 FcThread currThread = new FcThread().fill_thread(splitedResult[i]);
@@ -146,6 +137,19 @@ namespace J.H_D
                 Directory.CreateDirectory("Ressources");
             }
             await p.callers.DownloadRessourceAsync("http://i.4cdn.org/" + chan + "/" + last_fcimage[userId]._imagesInfos, "Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
+        }
+
+        private async Task<string> fchan_search(string chan, ulong userId)
+        {
+            List<FcThread> ThreadList = new List<FcThread>();
+            string result;
+            string[] chansList = new string[] { "a", "c", "w", "m", "cgl", "cm", "f", "n", "jp", "v", "vg", "vp", "vr", "co", "g", "tv", "k", "o", "an", "tg", "sp", "asp", "sci", "his", "int", "out", "toy", "i", "po", "p", "ck",
+                "ic", "wg", "lit", "mu", "fa", "3", "gd", "diy", "wsg", "qst", "biz", "trv", "fit", "x", "adv", "lgbt", "mlp", "news", "wsr", "vip", "b", "r9k", "pol", "bant", "soc", "s4s", "s", "hc", "hm", "h", "u",
+                "d", "y", "t", "hr", "gif", "aco", "r"};
+
+            result = await p.callers.SimpleAskAsync("http://a.4cdn.org/" + chan + "/catalog.json");
+            Console.WriteLine(result);
+            await fchan_getter(chan, result, userId, ThreadList);
             return ("Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
         }
 
@@ -153,36 +157,13 @@ namespace J.H_D
         {
             List<FcThread> ThreadList = new List<FcThread>();
             string result;
-            string[] splitedResult = null;
             string[] chansList = new string[] { "a", "c", "w", "m", "cgl", "cm", "f", "n", "jp", "v", "vg", "vp", "vr", "co", "g", "tv", "k", "o", "an", "tg", "sp", "asp", "sci", "his", "int", "out", "toy", "i", "po", "p", "ck",
                 "ic", "wg", "lit", "mu", "fa", "3", "gd", "diy", "wsg", "qst", "biz", "trv", "fit", "x", "adv", "lgbt", "mlp", "news", "wsr", "vip", "b", "r9k", "pol", "bant", "soc", "s4s", "s", "hc", "hm", "h", "u",
                 "d", "y", "t", "hr", "gif", "aco", "r"};
 
             string chan = chansList[p.rand.Next(chansList.Length - 1)];
             result = p.callers.SimpleAsk("http://a.4cdn.org/" + chan + "/catalog.json");
-            splitedResult = result.Split(new string[] { "},{" }, StringSplitOptions.None);
-
-            for (int i = 0; i < splitedResult.Length - 1; i++)
-            {
-                FcThread currThread = new FcThread().fill_thread(splitedResult[i]);
-                if (currThread._imagesInfos == null || currThread._imagesInfos == "")
-                    continue;
-                ThreadList.Add(currThread);
-            }
-            int randUse = p.rand.Next(ThreadList.Count - 1);
-            if (last_fcimage.ContainsKey(userId))
-            {
-                last_fcimage[userId] = ThreadList[randUse];
-            }
-            else
-            {
-                last_fcimage.Add(userId, ThreadList[randUse]);
-            }
-            if (!Directory.Exists("Ressources"))
-            {
-                Directory.CreateDirectory("Ressources");
-            }
-            await p.callers.DownloadRessourceAsync("http://i.4cdn.org/" + chan + "/" + last_fcimage[userId]._imagesInfos, "Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
+            await fchan_getter(chan, result, userId, ThreadList);
             last_fcimage[userId].setchan(chan);
             return ("Ressources/images4chan" + chan + last_fcimage[userId]._imagesInfos);
         }

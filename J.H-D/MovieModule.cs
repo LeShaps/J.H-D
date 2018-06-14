@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace J.H_D
 {
-    class Movie
+    partial class Movie
     {
         public string _name { private set; get; }
         public string _posterpath { private set; get; }

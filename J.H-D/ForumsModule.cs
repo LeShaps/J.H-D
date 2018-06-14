@@ -9,36 +9,37 @@ using System.Threading.Tasks;
 
 namespace J.H_D
 {
-    partial class FcThread
-    {
-        public uint _trId { private set; get; }
-        public string _comm { private set; get; }
-        public string _imagesInfos { private set; get; }
-        public uint _fsize { private set; get; }
-        public string _chan { private set; get; }
-        public string _name { private set; get; }
-
-        public FcThread fill_thread(string source)
-        {
-            _trId = Convert.ToUInt32(Program.getInfos("\"no\":", source, ','));
-            _comm = Program.getInfos("\"com\":\"", source, ',');
-            _imagesInfos = Program.getInfos("\"tim\":", source, ',') + Program.getInfos("\"ext\":\"", source, '"');
-            _fsize = Convert.ToUInt32(Program.getInfos("\"fsize\":", source, ','));
-            _name = Program.getInfos("\"name\":\"", source, '"');
-
-            if (_comm != null)
-                _comm = Program.removeSymbols(_comm.Substring(0, _comm.Length - 1));
-            return (this);
-        }
-
-        public void setchan(string chan)
-        {
-            _chan = chan;
-        }
-    }
-
+    
     partial class ForumsModule : ModuleBase
     {
+        partial class FcThread
+        {
+            public uint _trId { private set; get; }
+            public string _comm { private set; get; }
+            public string _imagesInfos { private set; get; }
+            public uint _fsize { private set; get; }
+            public string _chan { private set; get; }
+            public string _name { private set; get; }
+
+            public FcThread fill_thread(string source)
+            {
+                _trId = Convert.ToUInt32(Program.getInfos("\"no\":", source, ','));
+                _comm = Program.getInfos("\"com\":\"", source, ',');
+                _imagesInfos = Program.getInfos("\"tim\":", source, ',') + Program.getInfos("\"ext\":\"", source, '"');
+                _fsize = Convert.ToUInt32(Program.getInfos("\"fsize\":", source, ','));
+                _name = Program.getInfos("\"name\":\"", source, '"');
+
+                if (_comm != null)
+                    _comm = Program.removeSymbols(_comm.Substring(0, _comm.Length - 1));
+                return (this);
+            }
+
+            public void setchan(string chan)
+            {
+                _chan = chan;
+            }
+        }
+
         Program p = Program.p;
         static Dictionary<ulong, FcThread> last_fcimage = new Dictionary<ulong, FcThread>();
         

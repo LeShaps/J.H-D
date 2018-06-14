@@ -78,7 +78,7 @@ namespace J.H_D
 
         public static string Wait = "Vous recevrez ce que vous voulez dans quelques secondes";
 
-        public static EmbedBuilder make_movieinfos(Movie movie)
+        public static EmbedBuilder make_movieinfos(MovieModule.Movie movie)
         {
             Console.WriteLine(movie._name);
             Console.WriteLine(movie._releaseDate);
@@ -113,7 +113,7 @@ namespace J.H_D
             return (infos);
         }
 
-        public static EmbedBuilder makemovie_moreinfo(Movie movie)
+        public static EmbedBuilder makemovie_moreinfo(MovieModule.Movie movie)
         {
             EmbedBuilder moreinfos = new EmbedBuilder()
             {
@@ -151,7 +151,7 @@ namespace J.H_D
             return (moreinfos);
         }
 
-        public static EmbedBuilder anime_builder(Anime anime)
+        public static EmbedBuilder anime_builder(MalModule.Anime anime)
         {
             EmbedBuilder animeinfos = new EmbedBuilder()
             {
@@ -193,11 +193,11 @@ namespace J.H_D
             return (animeinfos);
         }
 
-        private static List<Tag> m_tagtypelist(List<Tag> tags, TagType wantedtype)
+        private static List<UnsafeClasses.Tag> m_tagtypelist(List<UnsafeClasses.Tag> tags, TagType wantedtype)
         {
-            List<Tag> typeoftaglist = new List<Tag>();
+            List<UnsafeClasses.Tag> typeoftaglist = new List<UnsafeClasses.Tag>();
 
-            foreach (Tag t in tags)
+            foreach (UnsafeClasses.Tag t in tags)
             {
                 if (t._type == wantedtype)
                     typeoftaglist.Add(t);
@@ -205,22 +205,22 @@ namespace J.H_D
             return (typeoftaglist);
         }
 
-        private static string mtag_toline(List<Tag> tags)
+        private static string mtag_toline(List<UnsafeClasses.Tag> tags)
         {
             string res = " ";
 
-            foreach (Tag t in tags)
+            foreach (UnsafeClasses.Tag t in tags)
             {
                 res += t._name + Environment.NewLine;
             }
             return (res);
         }
 
-        private static string mtag_tolist(List<Tag> tags)
+        private static string mtag_tolist(List<UnsafeClasses.Tag> tags)
         {
             string res = " ";
 
-            foreach(Tag t in tags)
+            foreach(UnsafeClasses.Tag t in tags)
             {
                 res += t._name + ",";
             }
@@ -236,20 +236,20 @@ namespace J.H_D
 
         public static EmbedBuilder init_imagebuilder<T>(T imag, Imagetype type)
         {
-            var image = (Image_s)null;
+            var image = (UnsafeClasses.Image_s)null;
             switch(type)
             {
                 case Imagetype.Image_s:
-                    image = imag as Image_s;
+                    image = imag as UnsafeClasses.Image_s;
                     break;
                 case Imagetype.Konachan:
-                    image = imag as kon_image;
+                    image = imag as UnsafeClasses.kon_image;
                     break;
                 case Imagetype.Danbooru:
-                    image = imag as dan_image;
+                    image = imag as UnsafeClasses.kon_image;
                     break;
                 case Imagetype.Sankaku:
-                    image = imag as sk_image;
+                    image = imag as UnsafeClasses.sk_image;
                     break;
             }
             string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
@@ -307,14 +307,14 @@ namespace J.H_D
         
         public static EmbedBuilder tagsbuilder<T>(T image, EmbedBuilder undone)
         {
-            var oldbuild = image as Image_s;
+            var oldbuild = image as UnsafeClasses.Image_s;
             undone.AddField("Tags", oldbuild.make_tagnamelist(), false);
             return (undone);
         }
 
         public static EmbedBuilder footerbuild<T>(T image, EmbedBuilder undone)
         {
-            var buildhelper = image as Image_s;
+            var buildhelper = image as UnsafeClasses.Image_s;
             undone.Footer = new EmbedFooterBuilder()
             {
                 Text = "Source : " + buildhelper._source,
@@ -323,7 +323,7 @@ namespace J.H_D
             return (undone);
         }
 
-        public static EmbedBuilder skinfos_builder(UnsafeModule.sk_image image, int mode)
+        public static EmbedBuilder skinfos_builder(UnsafeClasses.sk_image image, int mode)
         {
             EmbedBuilder konbuilded = init_imagebuilder(image, Imagetype.Sankaku);
             if (mode == 0)
@@ -339,7 +339,7 @@ namespace J.H_D
             return (konbuilded);
         }
 
-        public static EmbedBuilder danbuilder(UnsafeModule.dan_image image, int mode)
+        public static EmbedBuilder danbuilder(UnsafeClasses.dan_image image, int mode)
         {
             EmbedBuilder danbuild = init_imagebuilder(image, Imagetype.Danbooru);
             danbuild.AddField("Is banned", image._is_banned, true);
@@ -356,7 +356,7 @@ namespace J.H_D
             return (danbuild);
         }
 
-        public static EmbedBuilder konbuilder(J.H_D.UnsafeModule.kon_image image, int mode)
+        public static EmbedBuilder konbuilder(UnsafeClasses.kon_image image, int mode)
         {
             EmbedBuilder konbuilder = init_imagebuilder(image, Imagetype.Konachan);
             if (mode == 0)

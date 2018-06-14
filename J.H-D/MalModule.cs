@@ -11,65 +11,65 @@ using System.Net.Http;
 
 namespace J.H_D
 {
-    partial class Anime
+    partial class MalModule : ModuleBase
     {
-        public string _name { private set; get; }
-        public uint _nb { private set; get; }
-        public string _rate { private set; get; }
-        public string _startDate { private set; get; }
-        public string _endDate { private set; get; }
-        public string _synopsis { private set; get; }
-        public string _image_link { private set; get; }
-        
-        public Anime() { }
-
-        public Anime(string name, uint nb, string rate, string startDate, string endDate, string synopsis, string image_link)
+        public partial class Anime
         {
-            _name = name ?? throw new ArgumentNullException(nameof(name));
-            _nb = nb;
-            _rate = rate ?? throw new ArgumentNullException(nameof(rate));
-            _startDate = startDate ?? throw new ArgumentNullException(nameof(startDate));
-            _endDate = endDate ?? throw new ArgumentNullException(nameof(endDate));
-            _synopsis = synopsis ?? throw new ArgumentNullException(nameof(synopsis));
-            _image_link = image_link ?? throw new ArgumentNullException(nameof(image_link));
-        }
+            public string _name { private set; get; }
+            public uint _nb { private set; get; }
+            public string _rate { private set; get; }
+            public string _startDate { private set; get; }
+            public string _endDate { private set; get; }
+            public string _synopsis { private set; get; }
+            public string _image_link { private set; get; }
 
-        public Anime(string xml)
-        {
-            _name = Program.getInfos("<title>", xml, '<');
-            _nb = Convert.ToUInt16(Program.getInfos("<episodes>", xml, '<'));
-            _rate = Program.getInfos("<score>", xml, '<');
-            _startDate = Program.getInfos("<start_date>", xml, '<');
-            _endDate = Program.getInfos("<end_date>", xml, '<');
-            _synopsis = Program.getInfos("<synopsis>", xml, '<');
-            _image_link = Program.getInfos("<image>", xml, '<');
+            public Anime() { }
 
-            if (_synopsis != null)
+            public Anime(string name, uint nb, string rate, string startDate, string endDate, string synopsis, string image_link)
             {
-                _synopsis = Program.removeSymbols(_synopsis);
-                if (_synopsis.Length > 1024)
+                _name = name ?? throw new ArgumentNullException(nameof(name));
+                _nb = nb;
+                _rate = rate ?? throw new ArgumentNullException(nameof(rate));
+                _startDate = startDate ?? throw new ArgumentNullException(nameof(startDate));
+                _endDate = endDate ?? throw new ArgumentNullException(nameof(endDate));
+                _synopsis = synopsis ?? throw new ArgumentNullException(nameof(synopsis));
+                _image_link = image_link ?? throw new ArgumentNullException(nameof(image_link));
+            }
+
+            public Anime(string xml)
+            {
+                _name = Program.getInfos("<title>", xml, '<');
+                _nb = Convert.ToUInt16(Program.getInfos("<episodes>", xml, '<'));
+                _rate = Program.getInfos("<score>", xml, '<');
+                _startDate = Program.getInfos("<start_date>", xml, '<');
+                _endDate = Program.getInfos("<end_date>", xml, '<');
+                _synopsis = Program.getInfos("<synopsis>", xml, '<');
+                _image_link = Program.getInfos("<image>", xml, '<');
+
+                if (_synopsis != null)
                 {
-                    _synopsis = _synopsis.Substring(0, 1021) + "...";
+                    _synopsis = Program.removeSymbols(_synopsis);
+                    if (_synopsis.Length > 1024)
+                    {
+                        _synopsis = _synopsis.Substring(0, 1021) + "...";
+                    }
                 }
             }
         }
-    }
 
-    partial class Manga
-    {
-        public string _name { private set; get; }
-        public string _volumes { private set; get; }
-        public string _chapters { private set; get; }
-        public string _rate { private set; get; }
-        public string _startDate { private set; get; }
-        public string _endDate { private set; get; }
-        public string _sysnopsis { private set; get; }
+        public partial class Manga
+        {
+            public string _name { private set; get; }
+            public string _volumes { private set; get; }
+            public string _chapters { private set; get; }
+            public string _rate { private set; get; }
+            public string _startDate { private set; get; }
+            public string _endDate { private set; get; }
+            public string _sysnopsis { private set; get; }
 
-        public Manga() { }
-    }
+            public Manga() { }
+        }
 
-    partial class MalModule : ModuleBase
-    {
         Program p = Program.p;
         Dictionary<ulong, Anime> last_animes = new Dictionary<ulong, Anime>();
         Dictionary<ulong, Manga> last_mangas = new Dictionary<ulong, Manga>();

@@ -8,73 +8,73 @@ using System.Threading.Tasks;
 
 namespace J.H_D
 {
-    partial class Movie
-    {
-        public string _name { private set; get; }
-        public string _posterpath { private set; get; }
-        public bool _adult { private set; get; }
-        public string _overview { private set; get; }
-        public string _releaseDate { private set; get; }
-        public string[] _genres { private set; get; }
-        public uint _id { private set; get; }
-        public string _originalTitle { private set; get; }
-        public string _originalLanguage { private set; get; }
-        public string _backdropPath { private set; get; }
-        public string _averageNote { private set; get; }
-        public uint _budget { private set; get; }
-        public uint _revenue { private set; get; }
-
-        public Movie() { }
-
-        public Movie(string source, string bonus)
-        {
-            _name = Program.getInfos("\"title\":\"", source, '"');
-            _posterpath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"poster_path\":\"\\", source, '"');
-            if (Program.getInfos("\"adult\":\"", source, ',') == "true")
-                _adult = true;
-            else
-                _adult = false;
-            _overview = Program.getInfos("\"overview\":\"", source, '"');
-            _releaseDate = Program.getInfos("\"release_date\":\"", source, '"');
-            _genres = Program.getInfos("\"genre_ids\":[", source, ']').Split(',');
-            _id = Convert.ToUInt32(Program.getInfos("\"id\":\"", source, ','));
-            _originalTitle = Program.getInfos("\"original_title\":\"", source, '"');
-            _originalLanguage = Program.getInfos("\"original_language\":\"", source, '"');
-            _backdropPath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"backdrop_path\":\"\\", source, '"');
-            _averageNote = Program.getInfos("\"vote_average\":", source, ',');
-            if (_overview == null)
-                _overview = Program.getInfos("\"overview\":\"", bonus, '"');
-            _budget = Convert.ToUInt32(Program.getInfos("\"budget\":", bonus, ','));
-            _revenue = Convert.ToUInt32(Program.getInfos("\"revenue\":", bonus, ','));
-        }
-
-        public Movie fill_movie(string source, string bonus)
-        {
-            _name = Program.getInfos("\"title\":\"", source, '"');
-            _posterpath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"poster_path\":\"", source, ',');
-            if (Program.getInfos("\"adult\":\"", source, ',') == "true")
-                _adult = true;
-            else
-                _adult = false;
-            _overview = Program.getInfos("\"overview\":\"", source, '"');
-            _releaseDate = Program.getInfos("\"release_date\":\"", source, '"');
-            _genres = Program.getInfos("\"genre_ids\":\"[", source, ']').Split(',');
-            _id = Convert.ToUInt32(Program.getInfos("\"id\":\"", source, ','));
-            _originalTitle = Program.getInfos("\"original_title\":\"", source, '"');
-            _originalLanguage = Program.getInfos("\"original_language\":\"", source, '"');
-            _backdropPath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"backdrop_path\":\"", source, ',');
-            _averageNote = Program.getInfos("\"vote_average\":", source, ',');
-            _budget = Convert.ToUInt32(Program.getInfos("\"budget\":", bonus, ','));
-            _revenue = Convert.ToUInt32(Program.getInfos("\"revenue\":", bonus, ','));
-
-            return (this);
-        }
-    }
-
     partial class MovieModule : ModuleBase
     {
         Program p = Program.p;
         static Dictionary<ulong, Movie> lastfilms = new Dictionary<ulong, Movie>();
+
+        public partial class Movie
+        {
+            public string _name { private set; get; }
+            public string _posterpath { private set; get; }
+            public bool _adult { private set; get; }
+            public string _overview { private set; get; }
+            public string _releaseDate { private set; get; }
+            public string[] _genres { private set; get; }
+            public uint _id { private set; get; }
+            public string _originalTitle { private set; get; }
+            public string _originalLanguage { private set; get; }
+            public string _backdropPath { private set; get; }
+            public string _averageNote { private set; get; }
+            public uint _budget { private set; get; }
+            public uint _revenue { private set; get; }
+
+            public Movie() { }
+
+            public Movie(string source, string bonus)
+            {
+                _name = Program.getInfos("\"title\":\"", source, '"');
+                _posterpath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"poster_path\":\"\\", source, '"');
+                if (Program.getInfos("\"adult\":\"", source, ',') == "true")
+                    _adult = true;
+                else
+                    _adult = false;
+                _overview = Program.getInfos("\"overview\":\"", source, '"');
+                _releaseDate = Program.getInfos("\"release_date\":\"", source, '"');
+                _genres = Program.getInfos("\"genre_ids\":[", source, ']').Split(',');
+                _id = Convert.ToUInt32(Program.getInfos("\"id\":\"", source, ','));
+                _originalTitle = Program.getInfos("\"original_title\":\"", source, '"');
+                _originalLanguage = Program.getInfos("\"original_language\":\"", source, '"');
+                _backdropPath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"backdrop_path\":\"\\", source, '"');
+                _averageNote = Program.getInfos("\"vote_average\":", source, ',');
+                if (_overview == null)
+                    _overview = Program.getInfos("\"overview\":\"", bonus, '"');
+                _budget = Convert.ToUInt32(Program.getInfos("\"budget\":", bonus, ','));
+                _revenue = Convert.ToUInt32(Program.getInfos("\"revenue\":", bonus, ','));
+            }
+
+            public Movie fill_movie(string source, string bonus)
+            {
+                _name = Program.getInfos("\"title\":\"", source, '"');
+                _posterpath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"poster_path\":\"", source, ',');
+                if (Program.getInfos("\"adult\":\"", source, ',') == "true")
+                    _adult = true;
+                else
+                    _adult = false;
+                _overview = Program.getInfos("\"overview\":\"", source, '"');
+                _releaseDate = Program.getInfos("\"release_date\":\"", source, '"');
+                _genres = Program.getInfos("\"genre_ids\":\"[", source, ']').Split(',');
+                _id = Convert.ToUInt32(Program.getInfos("\"id\":\"", source, ','));
+                _originalTitle = Program.getInfos("\"original_title\":\"", source, '"');
+                _originalLanguage = Program.getInfos("\"original_language\":\"", source, '"');
+                _backdropPath = "https://image.tmdb.org/t/p/w300" + Program.getInfos("\"backdrop_path\":\"", source, ',');
+                _averageNote = Program.getInfos("\"vote_average\":", source, ',');
+                _budget = Convert.ToUInt32(Program.getInfos("\"budget\":", bonus, ','));
+                _revenue = Convert.ToUInt32(Program.getInfos("\"revenue\":", bonus, ','));
+
+                return (this);
+            }
+        }
 
         [Command("Get last movie")]
         public async Task MoreInfos(params string[] Args)

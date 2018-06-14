@@ -21,7 +21,7 @@ namespace J.H_D
         [Command("Protocol 34-D", RunMode=RunMode.Async), Alias("r34")]
         public async Task r34_image(params string[] Args)
         {
-            string result = p.callers.AskRequest("http://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=1&id=" + p.rand.Next(100000));
+            string result = await p.callers.AskRequestAsync("http://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=1&id=" + p.rand.Next(100000));
             string extention;
 
             lastr_image = new r34_image(result);
@@ -30,14 +30,14 @@ namespace J.H_D
             {
                 Directory.CreateDirectory("Ressources");
             }
-            p.callers.DownloadRessource(lastr_image._file_url, "Ressources/NewrImage." + extention);
+            await p.callers.DownloadRessourceAsync(lastr_image._file_url, "Ressources/NewrImage." + extention);
             await Context.Channel.SendFileAsync("Ressources/NewrImage." + extention);
             File.Delete("Ressources/NewrImage." + extention);
         }
         
         private int GetmaxTags(string tags)
         {
-                return (Convert.ToInt32(Program.getInfos("posts count=\"", p.callers.AskRequest("https://www.konachan.com/post.xml?limit=1" + tags), '"')));
+                return (Convert.ToInt32(Program.getInfos("posts count=\"", p.callers.AskRequest("https://www.konachan.com/post.xml?limit=1&tags=" + tags), '"')));
         }
 
         [Command("Konachan", RunMode=RunMode.Async)]
@@ -46,14 +46,14 @@ namespace J.H_D
             ulong userId = Context.User.Id;
             int page = p.rand.Next(100000);
             string baseurl = "https://konachan.com/post.xml?limit=1";
-            if (Args.Length > 1)
+            if (Args.Length >= 1)
             {
                 string asks = Program.makeArgs(Args).Replace(' ', '+');
                 page = p.rand.Next(GetmaxTags(asks));
                 baseurl += "&tags=" + asks;
             }
             baseurl += "&page=" + page;
-            string result = p.callers.AskRequest(baseurl);
+            string result = await p.callers.AskRequestAsync(baseurl);
             if (result == null)
             {
                 await ReplyAsync("Quelque chose s'est mal passé");
@@ -68,7 +68,7 @@ namespace J.H_D
                 lastkon_images.Add(userId, new kon_image(result));
             }
             Program.checkDir("Ressources");
-            p.callers.DownloadRessource(lastkon_images[userId]._file_url, "Ressources/" + lastkon_images[userId]._name);
+            await p.callers.DownloadRessourceAsync(lastkon_images[userId]._file_url, "Ressources/" + lastkon_images[userId]._name);
             await ReplyAsync(Speetch.Wait);
             await Context.Channel.SendFileAsync("Ressources/" + lastkon_images[userId]._name);
             File.Delete("Ressources/" + lastkon_images[userId]._name);
@@ -91,7 +91,7 @@ namespace J.H_D
             {
                 baseurl += "&page=" + page;
             }
-            string requestresult = p.callers.AskwithCredentials(baseurl + "/posts/" + page + ".xml", login, mdp);
+            string requestresult = await p.callers.AskWithCredentialsAsync(baseurl + "/posts/" + page + ".xml", login, mdp);
             if (requestresult == null)
             {
                 await ReplyAsync("Quelque chose s'est mal passé");
@@ -104,7 +104,7 @@ namespace J.H_D
             {
                 lastdan_images.Add(userId, new dan_image(requestresult));
             }
-            p.callers.DownloadRessource(lastdan_images[userId]._file_url, "Ressources/" + lastdan_images[userId]._name);
+            await p.callers.DownloadRessourceAsync(lastdan_images[userId]._file_url, "Ressources/" + lastdan_images[userId]._name);
             await ReplyAsync(Speetch.Wait);
             await Context.Channel.SendFileAsync("Ressources/" + lastdan_images[userId]._name);
             File.Delete("Ressources/" + lastdan_images[userId]._name);
@@ -175,7 +175,7 @@ namespace J.H_D
             int page = p.rand.Next(1, 25);
             ulong userId = Context.User.Id;
             
-            string builder = p.callers.GetSakuraComplexResponse("https://capi-beta.sankakucomplex.com/post/index.json?page=" + page + "&limit=1");
+            string builder = await p.callers.AskWithCredentialsAsync("https://capi-beta.sankakucomplex.com/post/index.json?page=" + page + "&limit=1", "JH", "nooneknows");
             builder = builder.Replace("\\u0026", "&");
             if (lastsk_images != null)
             {
@@ -188,10 +188,37 @@ namespace J.H_D
                     lastsk_images.Add(userId, new sk_image(builder));
                 }
             }
-            p.callers.DownloadRessource_fromSankakuComplex(lastsk_images[userId]._file_furl, "Ressources/" + lastsk_images[userId]._name);
+            await p.callers.DownloadRessourceAsync(lastsk_images[userId]._file_furl, "Ressources/" + lastsk_images[userId]._name);
             await ReplyAsync(Speetch.Wait);
             await Context.Channel.SendFileAsync("Ressources/" + lastsk_images[userId]._name);
             File.Delete("Ressources/" + lastsk_images[userId]._name);
+        }
+
+        [Command("Get last konimage")]
+        public async Task get_koninfos(params string[] args)
+        {
+            ulong userId = Context.User.Id;
+            string pargs = Program.makeArgs(args);
+
+            if (args.Length < 1)
+            {
+                await ReplyAsync("Il faudrait que je sache ce que vous voulez..");
+                return;
+            }
+            if (lastkon_images.ContainsKey(userId) == false)
+            {
+                await ReplyAsync("Vous n'avez pas encore demadné d'image cette section");
+                return;
+            }
+            if (pargs == "infos")
+            {
+                await Context.Channel.SendMessageAsync("", false, Speetch.konbuilderwtag(lastkon_images[userId]).Build());
+                return;
+            }
+            if (pargs == "infos with tags")
+            {
+                await Context.Channel.SendMessageAsync("", false, Speetch.konbuilder(lastkon_images[userId]).Build());
+            }
         }
 
         [Command("Get last danimage")]

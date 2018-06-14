@@ -80,6 +80,7 @@ namespace J.H_D
             await commands.AddModuleAsync<UnsafeModule>();
             await commands.AddModuleAsync<ForumsModule>();
             await commands.AddModuleAsync<MovieModule>();
+            await commands.AddModuleAsync<TempModule>();
             
             client.MessageReceived += HandleCommandAsync;
 

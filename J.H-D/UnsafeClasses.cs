@@ -128,6 +128,19 @@ namespace J.H_D
             _tags = taglist;
         }
 
+        public string make_tagnamelist()
+        {
+            string[] tagnames = new string[_tags.Count];
+            int i = 0;
+
+            for (; i < _tags.Count - 2; i++)
+            {
+                tagnames[i] = _tags[i]._name + ",";
+            }
+            tagnames[i] = _tags[i]._name;
+            return (Program.makeArgs(tagnames));
+        }
+
         public override string ToString()
         {
             string tofile = "{" + _file_url + "|" + _sample_url + "|" + _preview_url + "|" + _jpegurl + "|" +  _rating + "|" + _isLoli.ToString() + "|" + _source + "|" +

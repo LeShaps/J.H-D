@@ -59,6 +59,57 @@ namespace J.H_D
             return (webresponse);
         }
 
+        public Task<string> AskwithEncodingAsync(string url, Encoding enc)
+        {
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Encoding = enc;
+                    return (wc.DownloadStringTaskAsync(url));
+                }
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine(e.Message);
+                return (null);
+            }
+        }
+
+        public string AskwithEncoding(string url, Encoding enc)
+        {
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Encoding = enc;
+                    return (wc.DownloadString(url));
+                }
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine(e.Message);
+                return (null);
+            }
+        }
+
+        public async Task<string> SimpleAskAsync(string url)
+        {
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    wc.Encoding = Encoding.UTF8;
+                    return (await wc.DownloadStringTaskAsync(url));
+                }
+            }
+            catch(WebException e)
+            {
+                Console.WriteLine(e.Message);
+                return (null);
+            }
+        }
+
         public string SimpleAsk(string url)
         {
             try
@@ -76,6 +127,18 @@ namespace J.H_D
             }
         }
 
+        public async Task<string> AskWithCredentialsAsync(string url, string id, string pass)
+        {
+            WebClient wc = new WebClient()
+            {
+                Encoding = Encoding.UTF8,
+                Credentials = new NetworkCredential(id, pass),
+            };
+            wc.Headers.Add("User-agent: JH");
+            string result = await wc.DownloadStringTaskAsync(url);
+            return (result);
+        }
+
         public string AskwithCredentials(string url, string id, string pass)
         {
             WebClient wc = new WebClient
@@ -86,6 +149,22 @@ namespace J.H_D
             wc.Headers.Add("User-agent: JH");
             string result = wc.DownloadString(url);
             return (result);
+        }
+
+        public async Task DownloadRessourceAsync(string url, string path)
+        {
+            try
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    await wc.DownloadFileTaskAsync(url, path);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
         }
 
         public void DownloadRessource(string url, string path)
@@ -101,6 +180,33 @@ namespace J.H_D
             {
                 Console.WriteLine(e.Message);
                 return;
+            }
+        }
+
+        public async Task<string> AskRequestAsync(string url)
+        {
+            try
+            {
+                string webresponse = null;
+
+                var http = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                http.Accept = "application/json";
+                http.Method = "POST";
+
+                Stream sendstream = await http.GetRequestStreamAsync();
+                sendstream.Close();
+
+                var response = await http.GetResponseAsync();
+                var stream = response.GetResponseStream();
+                var sr = new StreamReader(stream);
+
+                webresponse = await sr.ReadToEndAsync();
+                return (webresponse);
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine(e.Message);
+                return (null);
             }
         }
 
@@ -130,7 +236,30 @@ namespace J.H_D
                 return (null);
             }
         }
-        
+
+        public async Task DownloadRessource_fromstreamAsync(string url, string filename)
+        {
+            Console.WriteLine(url);
+            try
+            {
+                var http = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                var response = await http.GetResponseAsync();
+                var stream = response.GetResponseStream();
+                var sr = new StreamReader(stream);
+
+                MemoryStream mem = new MemoryStream();
+                await stream.CopyToAsync(mem);
+
+                byte[] imageData = mem.ToArray();
+                File.WriteAllBytes(filename, imageData);
+                stream.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
         public void DownloadRessource_fromstream(string url, string filename)
         {
             Console.WriteLine(url);
@@ -151,50 +280,6 @@ namespace J.H_D
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
-            }
-        }
-
-        public void DownloadRessource_fromSankakuComplex(string url, string path)
-        {
-            try
-            {
-                WebClient skweb = new WebClient();
-                skweb.Headers.Add("User-Agent: JH");
-
-                skweb.DownloadFile(url, path);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
-
-        public string GetSakuraComplexResponse(string url)
-        {
-            try
-            {
-                string final = null;
-                var http = (HttpWebRequest)WebRequest.Create(new Uri(url));
-
-                http.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-                http.Headers.Add("Accept-Language:fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3");
-                http.Headers.Add("login:" + File.ReadAllLines("Logers/sancomplexlogins.txt")[0]);
-                http.Headers.Add("password_hash:" + File.ReadAllLines("Logers/sancomplexlogins.txt")[1]);
-                http.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:62.0) Gecko/20100101 Firefox/62.0";
-                http.Host = "capi-beta.sankakucomplex.com";
-                http.Method = "GET";
-
-                var response = http.GetResponse();
-                var stream = response.GetResponseStream();
-                var sr = new StreamReader(stream);
-
-                final = sr.ReadToEnd();
-                return final;
-            }
-            catch (WebException e)
-            {
-                Console.WriteLine(e.Message);
-                return (null);
             }
         }
 

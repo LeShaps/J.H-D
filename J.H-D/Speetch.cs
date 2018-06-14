@@ -49,7 +49,7 @@ namespace J.H_D
                         new EmbedFieldBuilder()
                         {
                             Name = "__**Other**__",
-                            Value = ("biz - Business & Finnance" + Environment.NewLine + "trv - Travel" + Environment.NewLine + "fit - Fitness" + Environment.NewLine + "x - Paranormal" + Environment.NewLine + "adv - Advice" + Environment.NewLine
+                            Value = ("biz - Business & Finance" + Environment.NewLine + "trv - Travel" + Environment.NewLine + "fit - Fitness" + Environment.NewLine + "x - Paranormal" + Environment.NewLine + "adv - Advice" + Environment.NewLine
                             + "lgbt - LGBT" + Environment.NewLine + "mlp - Pony" + Environment.NewLine + "news - Current News" + Environment.NewLine + "wsr - Worksafe Requests" + Environment.NewLine + "vip - Very Important Posts"),
                             IsInline = true,
                         },
@@ -63,7 +63,7 @@ namespace J.H_D
                         new EmbedFieldBuilder()
                         {
                             Name = "__**Adult**__",
-                            Value = ("s - Sexy Beautifull Women" + Environment.NewLine + "hc - Hardcore" + Environment.NewLine + "hm - Handsome Men" + Environment.NewLine + "h - Hentai" + "e - Ecchi" + Environment.NewLine +
+                            Value = ("s - Sexy Beautiful Women" + Environment.NewLine + "hc - Hardcore" + Environment.NewLine + "hm - Handsome Men" + Environment.NewLine + "h - Hentai" + Environment.NewLine + "e - Ecchi" + Environment.NewLine +
                             "u - yuri" + Environment.NewLine + "d - Hentai/Alternative" + Environment.NewLine + "y - Yaoi" + Environment.NewLine + "t - Torrents" + Environment.NewLine + "hr - High Resolution" + Environment.NewLine +
                             "gif - Adult GIF" + Environment.NewLine + "aco - Adult Cartoons" + Environment.NewLine + "r - Adult Request"),
                             IsInline = true,
@@ -413,6 +413,134 @@ namespace J.H_D
                 ImageUrl = image._sample_url,
             };
             return (danbuilder);
+        }
+
+        public static EmbedBuilder konbuilderwtag(kon_image image)
+        {
+            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
+            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
+            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
+
+            if (original == " ")
+                original = "Original";
+            if (charac == " ")
+                charac = "OC";
+            if (author == " ")
+                author = image._author;
+
+            EmbedBuilder konbuilder = new EmbedBuilder()
+            {
+                Title = image._name,
+                Color = Color.DarkMagenta,
+                Description = "More infos about your last image",
+                Url = image._file_url,
+                Fields = new List<EmbedFieldBuilder>()
+                {
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Œuvre(s) originale(s)",
+                        Value = original,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Character(s)",
+                        Value = charac,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Artist(s)",
+                        Value = author,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Have loli",
+                        Value = image._isLoli.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Rating",
+                        Value = image._rating.ToString(),
+                        IsInline = true,
+                    },
+                },
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Source : " + image._source,
+                },
+                ImageUrl = image._sample_url,
+            };
+            return (konbuilder);
+        }
+
+        public static EmbedBuilder konbuilder(kon_image image)
+        {
+            string original = mtag_toline(m_tagtypelist(image._tags, TagType.Copyright));
+            string charac = mtag_toline(m_tagtypelist(image._tags, TagType.Character));
+            string author = mtag_toline(m_tagtypelist(image._tags, TagType.Artist));
+
+            if (original == " ")
+                original = "Original";
+            if (charac == " ")
+                charac = "OC";
+            if (author == " ")
+                author = image._author;
+
+            EmbedBuilder konbuilder = new EmbedBuilder()
+            {
+                Title = image._name,
+                Color = Color.DarkMagenta,
+                Description = "More infos about your last image",
+                Url = image._file_url,
+                Fields = new List<EmbedFieldBuilder>()
+                {
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Œuvre(s) originale(s)",
+                        Value = original,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Character(s)",
+                        Value = charac,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Artist(s)",
+                        Value = author,
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Have loli",
+                        Value = image._isLoli.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Rating",
+                        Value = image._rating.ToString(),
+                        IsInline = true,
+                    },
+                    new EmbedFieldBuilder()
+                    {
+                        Name = "Tags",
+                        Value = image.make_tagnamelist(),
+                        IsInline = false,
+                    },
+                },
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Source : " + image._source,
+                },
+                ImageUrl = image._sample_url,
+            };
+            return (konbuilder);
         }
     }
 }

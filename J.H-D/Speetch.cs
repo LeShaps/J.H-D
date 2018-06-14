@@ -323,7 +323,7 @@ namespace J.H_D
             return (undone);
         }
 
-        public static EmbedBuilder skinfos_builder(sk_image image, int mode)
+        public static EmbedBuilder skinfos_builder(UnsafeModule.sk_image image, int mode)
         {
             EmbedBuilder konbuilded = init_imagebuilder(image, Imagetype.Sankaku);
             if (mode == 0)
@@ -339,7 +339,7 @@ namespace J.H_D
             return (konbuilded);
         }
 
-        public static EmbedBuilder danbuilder(dan_image image, int mode)
+        public static EmbedBuilder danbuilder(UnsafeModule.dan_image image, int mode)
         {
             EmbedBuilder danbuild = init_imagebuilder(image, Imagetype.Danbooru);
             danbuild.AddField("Is banned", image._is_banned, true);
@@ -356,7 +356,7 @@ namespace J.H_D
             return (danbuild);
         }
 
-        public static EmbedBuilder konbuilder(kon_image image, int mode)
+        public static EmbedBuilder konbuilder(J.H_D.UnsafeModule.kon_image image, int mode)
         {
             EmbedBuilder konbuilder = init_imagebuilder(image, Imagetype.Konachan);
             if (mode == 0)

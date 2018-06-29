@@ -1,0 +1,13 @@
+image: Visual Studio 2017
+
+before_build:
+- nuget restore
+- choco install opencover.portable
+- choco install codecov
+
+build:
+  project: J.H-D.sln
+
+test_script:
+- OpenCover.Console.exe  -register:user -target:"xunit.console.x86.exe" -targetargs:".\JHTests\bin\Debug\JHTests.dll -noshadow" -filter:"+[J.H-D*]* -[JHTests*]*" -output:".\JHcoverage.xml"
+- codecov -f "coverage.xml"

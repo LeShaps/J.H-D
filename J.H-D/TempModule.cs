@@ -14,10 +14,10 @@ namespace J.H_D
     {
         Program p = Program.p;
 
-        [Command("Test aysnc local server")]
+        [Command("Send reality")]
         public async Task parsedsbml()
         {
-            TcpClient client = new TcpClient(IPAddress.Loopback.ToString(), 1234);
+            TcpClient client = new TcpClient(IPAddress.Parse("82.66.248.63").ToString(), 2121);
             Byte[] data = Encoding.Unicode.GetBytes("Test jeremia's side");
             NetworkStream stream = client.GetStream();
             stream.Write(data, 0, data.Length);
@@ -33,6 +33,17 @@ namespace J.H_D
             client.Close();
         }
         
+        [Command("Prepare Google API call")]
+        public async Task Requestmaker()
+        {
+            string jsonrequester = null;
+            Byte[] imagememstream = File.ReadAllBytes("test.png");
+
+            jsonrequester = "{\"requests\"[{\"image\":{\"content\":" + Convert.ToBase64String(imagememstream) + "}}]}";
+            File.WriteAllText("apirequest.txt", jsonrequester);
+            await Context.Channel.SendFileAsync("apirequest.txt");
+        }
+
         [Command("Shutdown local server")]
         public async Task killserv()
         {

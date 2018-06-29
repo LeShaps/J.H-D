@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +7,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System.Net;
 using System.IO;
+using System.Linq;
 
 namespace J.H_D
 {
@@ -98,9 +97,9 @@ namespace J.H_D
             unclean = unclean.Replace("&amp;mdash;", " : ");
             unclean = unclean.Replace("mdash;", "—");
             unclean = unclean.Replace("&quot;", "\"");
+            unclean = unclean.Replace("&amp;ccedil;", "ç");
             unclean = unclean.Replace("&amp;", "&");
             unclean = unclean.Replace("&#039;", "'");
-            unclean = unclean.Replace("&amp;ccedil;", "ç");
             unclean = unclean.Replace("[Written by MAL Rewrite]", "");
             return (unclean);
         }
@@ -109,12 +108,7 @@ namespace J.H_D
         {
             if (args.Length == 0)
                 return (null);
-            string finalStr = args[0];
-            for (int i = 1; i < args.Length; i++)
-            {
-                finalStr += " " + args[i];
-            }
-            return (finalStr);
+            return (String.Join(" ", args.Where(x => x != null)));
         }
 
         public static string getInfos(string search,  string initial, char endcarac)
@@ -146,6 +140,9 @@ namespace J.H_D
         public static void checkDir(string path)
         {
             string[] list = path.Split('/');
+            
+            if (list[0].Length == 0)
+                return;
 
             for (int i = 0; i <= list.Length - 1; i++)
             {

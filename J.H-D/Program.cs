@@ -50,7 +50,8 @@ namespace J.H_D
             AnimeManga,
             Forum,
             Vn,
-            Movie
+            Movie,
+            Booru
         }
 
         public Program()

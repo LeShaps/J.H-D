@@ -19,6 +19,8 @@ namespace J.H_D.Modules
         [Command("Konachan", RunMode = RunMode.Async), Priority(-1)]
         public async Task SearchKonachan(params string[] Args)
         {
+            await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
+
             var result = await BooruMinion.GetBooruImage(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
 
             await ProccessResult(result);
@@ -27,6 +29,8 @@ namespace J.H_D.Modules
         [Command("Konachan with infos", RunMode = RunMode.Async)]
         public async Task SearchWithBonus(params string[] Args)
         {
+            await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
+
             var result = await BooruMinion.GetBooruImage(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
 
             await ProccessInfosResult(result, BooruMinion.BooruType.Konachan);

@@ -16,7 +16,7 @@ namespace J.H_D.Minions.Infos
             public string Overview;
             public string ReleaseDate;
             // public DateTime ReleaseDate;
-            public string[] Genres;
+            public List<string> Genres;
             public uint Id;
             public string OriginalTitle;
             public string OriginalLanguage;
@@ -24,8 +24,24 @@ namespace J.H_D.Minions.Infos
             public string AverageNote;
             public uint Budget;
             public uint Revenue;
+            public List<string> ProductionCompanies;
+            public string Runtime;
 
             public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
+        }
+
+        public class TVSeries
+        {
+            public string BackdropPath;
+            public int EpisodeRunTime;
+            public string Started;
+            public List<string> Genres;
+            public bool InProduction;
+            public string HomePage;
+            public string SeasonNumber;
+            public string EpisodeNumber;
+            public List<string> Compagnies;
+            public string VoteAverage;
         }
     }
 }

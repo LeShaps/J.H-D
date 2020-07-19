@@ -92,7 +92,7 @@ namespace J.H_D.Minions.Websites
             dynamic InitialJson;
             using (HttpClient hc = new HttpClient())
             {
-                InitialJson = JsonConvert.DeserializeObject(await (await hc.GetAsync("https://a.4cdn.org/" + UsableBoard.Title + "/catalog.json")).Content.ReadAsStringAsync());
+                InitialJson = JsonConvert.DeserializeObject(await (await hc.GetAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json")).Content.ReadAsStringAsync());
             }
 
             foreach(dynamic item in (JArray)InitialJson)

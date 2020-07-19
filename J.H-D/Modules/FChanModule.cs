@@ -18,6 +18,8 @@ namespace J.H_D.Modules
         [Command("FChan available boards"), Alias("4chan boards")]
         public async Task DisplayFchanBoards()
         {
+            await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
+
             List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChans();
             await ReplyAsync("", false, BoardInfosBuilder(Boards));
         }
@@ -25,6 +27,8 @@ namespace J.H_D.Modules
         [Command("Fchan board info"), Alias("4chan board info")]
         public async Task GetBoardInfos(params string[] Args)
         {
+            await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
+
             var result = await FChanMinion.GetBoardInfo(Args);
 
             switch (result.Error)

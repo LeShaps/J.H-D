@@ -111,9 +111,11 @@
     <Compile Include="Minions\NSFW\Response.cs" />
     <Compile Include="Minions\Websites\Error.cs" />
     <Compile Include="Minions\Websites\FChanMinion.cs" />
+    <Compile Include="Minions\Websites\Inspirobot.cs" />
     <Compile Include="Minions\Websites\Response.cs" />
     <Compile Include="Modules\BooruModule.cs" />
     <Compile Include="Modules\CommunicationModule.cs" />
+    <Compile Include="Modules\ExperimentalModule.cs" />
     <Compile Include="Modules\FChanModule.cs" />
     <Compile Include="Modules\MovieModule.cs" />
     <Compile Include="Program.cs" />

@@ -15,5 +15,11 @@ namespace J.H_D.Minions.Websites
             Nsfw,
             None
         }
+
+        public enum InspirationnalError
+        {
+            None,
+            Communication
+        }
     }
 }

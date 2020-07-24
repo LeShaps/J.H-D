@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Infos
+namespace J.H_D.Minions.Responses
 {
     public static partial class Response
     {
@@ -42,6 +42,15 @@ namespace J.H_D.Minions.Infos
             public string EpisodeNumber;
             public List<string> Compagnies;
             public string VoteAverage;
+        }
+
+        public class UrbanDefinition
+        {
+            public string Word;
+            public string Definition;
+            public string Link;
+            public string Author;
+            public string Exemples;
         }
     }
 }

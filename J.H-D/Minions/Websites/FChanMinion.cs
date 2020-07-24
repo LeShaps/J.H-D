@@ -14,7 +14,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Websites
+namespace J.H_D.Minions.Responses
 {
     public class FChanMinion
     {

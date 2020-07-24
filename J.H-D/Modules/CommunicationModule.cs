@@ -1,6 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using J.H_D.Minions.Websites;
 using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,9 @@ using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using J.H_D.Minions;
+using System.Net.WebSockets;
+using J.H_D.Minions.Responses;
 
 namespace J.H_D.Modules
 {
@@ -47,7 +49,7 @@ namespace J.H_D.Modules
 
             if (cleanArgs == "clean") Natural = true;
 
-            var Result = await InspirobotMinion.FeelInspiration();
+            var Result = await Minions.Responses.InspirobotMinion.FeelInspiration();
 
             switch (Result.Error)
             {
@@ -65,8 +67,46 @@ namespace J.H_D.Modules
                         File.Delete(file);
                     }
                     break;
-
             }
+        }
+
+        [Command("Define")]
+        public async Task FindDefinition(params string[] Args)
+        {
+            string FinalArgs = Utilities.MakeQueryArgs(Args);
+
+            var Result = await UrbanDictionaryMinion.SearchForWord(FinalArgs);
+
+            switch (Result.Error)
+            {
+                case Minions.Responses.Error.Urban.WordNotFound:
+                    await ReplyAsync("Sorry, even internet can't help you on this one");
+                    break;
+
+                case Minions.Responses.Error.Urban.None:
+                    await ReplyAsync("", false, BuildDefinition(Result.Answer));
+                    break;
+            }
+        }
+
+        private Embed BuildDefinition(Minions.Responses.Response.UrbanDefinition InfosBuilder)
+        {
+            string TransformDefinition = InfosBuilder.Definition.Replace("[", "").Replace("]", "");
+
+            EmbedBuilder builder = new EmbedBuilder()
+            {
+                Color = Color.Blue,
+                Url = InfosBuilder.Link,
+                Title = InfosBuilder.Word,
+                Description = TransformDefinition
+            };
+
+            builder.Footer = new EmbedFooterBuilder()
+            {
+                Text = $"Definition by {InfosBuilder.Author}",
+            };
+
+            return builder.Build();
         }
 
         private async Task<string> PureImage(string Url)

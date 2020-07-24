@@ -105,6 +105,7 @@
     <Compile Include="Minions\Infos\Error.cs" />
     <Compile Include="Minions\Infos\MovieMinion.cs" />
     <Compile Include="Minions\Infos\Response.cs" />
+    <Compile Include="Minions\Infos\UrbanDictionaryMinion.cs" />
     <Compile Include="Minions\MinionRequest.cs" />
     <Compile Include="Minions\NSFW\BooruMinion.cs" />
     <Compile Include="Minions\NSFW\Error.cs" />

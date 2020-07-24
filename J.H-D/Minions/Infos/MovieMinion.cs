@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Infos
+namespace J.H_D.Minions.Responses
 {
     public static class MovieMinion
     {

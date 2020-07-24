@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Infos
+namespace J.H_D.Minions.Responses
 {
     public static partial class Error
     {
@@ -13,6 +13,12 @@ namespace J.H_D.Minions.Infos
             None,
             NotFound,
             Help,
+        }
+
+        public enum Urban
+        {
+            WordNotFound,
+            None
         }
     }
 }

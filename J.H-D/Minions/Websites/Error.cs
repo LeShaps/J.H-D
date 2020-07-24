@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Websites
+namespace J.H_D.Minions.Responses
 {
     public static partial class Error
     {

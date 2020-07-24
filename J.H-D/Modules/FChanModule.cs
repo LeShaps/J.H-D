@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 using J.H_D.Minions;
-using J.H_D.Minions.Websites;
+using J.H_D.Minions.Responses;
 using J.H_D.Tools;
 using System;
 using System.Collections.Generic;

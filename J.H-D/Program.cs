@@ -27,6 +27,7 @@ namespace J.H_D
         public static Program p;
         public System.Random rand;
         public string TmDbKey;
+        public string RapidAPIKey;
         private bool DebugMode;
 
         private static bool isTimerValid;
@@ -171,6 +172,7 @@ namespace J.H_D
         private async Task InitServices(dynamic json)
         {
             TmDbKey = json.MvKey;
+            RapidAPIKey = json.RapidAPIKey;
         }
 
         public async Task DoAction(IUser u, ulong serverId, Module m)

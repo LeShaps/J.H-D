@@ -27,7 +27,7 @@ namespace J.H_D.Minions.Responses
                 result = JsonConvert.DeserializeObject(await (await hc.GetAsync($"{DefineAdress}{search}")).Content.ReadAsStringAsync());
             }
 
-            if (result["list"] == null)
+            if (result["list"].Count == 0)
                 return new FeatureRequest<Response.UrbanDefinition, Error.Urban>(null, Error.Urban.WordNotFound);
 
             JArray Results = result["list"];

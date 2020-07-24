@@ -92,13 +92,23 @@ namespace J.H_D.Modules
         private Embed BuildDefinition(Minions.Responses.Response.UrbanDefinition InfosBuilder)
         {
             string TransformDefinition = InfosBuilder.Definition.Replace("[", "").Replace("]", "");
+            string TransformExemple = InfosBuilder.Exemples.Replace("[", "").Replace("]", "");
 
             EmbedBuilder builder = new EmbedBuilder()
             {
                 Color = Color.Blue,
                 Url = InfosBuilder.Link,
                 Title = InfosBuilder.Word,
-                Description = TransformDefinition
+                Description = TransformDefinition,
+                Fields = new List<EmbedFieldBuilder>()
+                {
+                    new EmbedFieldBuilder()
+                    {
+                       Name = "Exemples",
+                       Value = TransformExemple
+                    },
+                }
+
             };
 
             builder.Footer = new EmbedFooterBuilder()

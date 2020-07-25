@@ -104,6 +104,7 @@
     <Compile Include="Db\Db.cs" />
     <Compile Include="Minions\Infos\Error.cs" />
     <Compile Include="Minions\Infos\MovieMinion.cs" />
+    <Compile Include="Minions\Infos\MusicMinion.cs" />
     <Compile Include="Minions\Infos\Response.cs" />
     <Compile Include="Minions\Infos\UrbanDictionaryMinion.cs" />
     <Compile Include="Minions\MinionRequest.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Modules\ExperimentalModule.cs" />
     <Compile Include="Modules\FChanModule.cs" />
     <Compile Include="Modules\MovieModule.cs" />
+    <Compile Include="Modules\MusicModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Utilities.cs" />

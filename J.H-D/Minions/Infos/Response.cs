@@ -52,5 +52,23 @@ namespace J.H_D.Minions.Responses
             public string Author;
             public string Exemples;
         }
+
+        public enum AreaType
+        {
+            City,
+            Building,
+            Street
+        }
+
+        public class MusicArtist
+        {
+            public string Name;
+            public string MBID;
+            public string LastUrl;
+            public string ImageUrl;
+            public List<string> Genres;
+            public string Bio;
+            public bool OnTour;
+        }
     }
 }

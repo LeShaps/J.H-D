@@ -28,6 +28,7 @@ namespace J.H_D
         public System.Random rand;
         public string TmDbKey;
         public string RapidAPIKey;
+        public string LastFMKey;
         public HttpClient Asker;
 
         private bool DebugMode;
@@ -178,6 +179,7 @@ namespace J.H_D
         {
             TmDbKey = json.MvKey;
             RapidAPIKey = json.RapidAPIKey;
+            LastFMKey = json.LastFMAPIKey;
         }
 
         public async Task DoAction(IUser u, ulong serverId, Module m)

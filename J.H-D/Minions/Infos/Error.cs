@@ -20,5 +20,13 @@ namespace J.H_D.Minions.Responses
             WordNotFound,
             None
         }
+
+        public enum Brainz
+        {
+            ArtistNotFound,
+            TitleNotFound,
+            ConnectionError,
+            None
+        }
     }
 }

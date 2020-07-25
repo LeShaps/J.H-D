@@ -13,11 +13,7 @@ namespace J.H_D.Minions.Responses
         {
             string Ressource = null;
 
-            using (HttpClient hc = new HttpClient())
-            {
-                Ressource = await hc.GetAsync("https://inspirobot.me/api?generate=true").Result.Content.ReadAsStringAsync();
-            }
-
+            Ressource = await Program.p.Asker.GetStringAsync("https://inspirobot.me/api?generate=true");
             if (Ressource == null)
                 return new FeatureRequest<string, Error.InspirationnalError>(null, Error.InspirationnalError.Communication);
             return new FeatureRequest<string, Error.InspirationnalError>(Ressource, Error.InspirationnalError.None);

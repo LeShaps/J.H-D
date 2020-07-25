@@ -28,6 +28,8 @@ namespace J.H_D
         public System.Random rand;
         public string TmDbKey;
         public string RapidAPIKey;
+        public HttpClient Asker;
+
         private bool DebugMode;
 
         private static bool isTimerValid;
@@ -129,6 +131,8 @@ namespace J.H_D
                 else
                     KitsuAuth = null;
 
+                Asker = new HttpClient();
+
                 await InitServices(json);
             }
             await Log(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules..."));
@@ -137,6 +141,7 @@ namespace J.H_D
             await commands.AddModuleAsync<CommunicationModule>(null);
             await commands.AddModuleAsync<FChanModule>(null);
             await commands.AddModuleAsync<BooruModule>(null);
+            await commands.AddModuleAsync<MusicModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += Disconnected;

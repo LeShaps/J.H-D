@@ -36,10 +36,8 @@ namespace J.H_D.Minions.Responses
             List<Response.FBoard> AvailbleBoards = new List<Response.FBoard>();
 
             dynamic Json;
-            using (HttpClient hc = new HttpClient())
-            {
-                Json = JsonConvert.DeserializeObject(await (await hc.GetAsync("https://a.4cdn.org/boards.json")).Content.ReadAsStringAsync());
-            }
+            Json = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync("https://a.4cdn.org/boards.json"));
+
             if (Json == null)
                 return null;
 
@@ -90,10 +88,8 @@ namespace J.H_D.Minions.Responses
 
             board = UsableBoard.Title;
             dynamic InitialJson;
-            using (HttpClient hc = new HttpClient())
-            {
-                InitialJson = JsonConvert.DeserializeObject(await (await hc.GetAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json")).Content.ReadAsStringAsync());
-            }
+
+            InitialJson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json"));
 
             foreach(dynamic item in (JArray)InitialJson)
             {

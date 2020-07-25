@@ -7,6 +7,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
@@ -45,10 +46,8 @@ namespace J.H_D.Minions.Responses
                 return (new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.Help));
 
             dynamic Json;
-            using (HttpClient hc = new HttpClient())
-            {
-                Json = JsonConvert.DeserializeObject(await (await hc.GetAsync($"https://api.themoviedb.org/3/search/movie?api_key={Program.p.TmDbKey}&language=en-US&query={RequestName}&page=1&include_adult=false")).Content.ReadAsStringAsync());
-            }
+            Json = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{Program.p.TmDbKey}&language=en-US&query={RequestName}&page=1"));
+
             if (Json["total_results"] == "0")
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
             JArray Results = (JArray)Json["results"];
@@ -80,17 +79,16 @@ namespace J.H_D.Minions.Responses
                 Moviejson = JsonConvert.DeserializeObject(await (await client.GetAsync($"https://api.themoviedb.org/3/search/movie?api_key={Program.p.TmDbKey}&language=en-US&query={RequestName}")).Content.ReadAsStringAsync());
             }
 
+            Moviejson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{Program.p.TmDbKey}&lanuage=en-US&query={RequestName}"));
+
             if (Moviejson["total_results"] == "0")
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
 
             JArray Results = (JArray)Moviejson["results"];
             dynamic MovieResults = Results[0];
             dynamic DetailsJson;
-            
-            using (HttpClient client = new HttpClient())
-            {
-                DetailsJson = JsonConvert.DeserializeObject(await (await client.GetAsync($"https://api.themoviedb.org/3/movie/{MovieResults.id}?api_key={Program.p.TmDbKey}&language=en-US")).Content.ReadAsStringAsync());
-            }
+
+            DetailsJson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"https://api.themoviedb.org/3/movie/{MovieResults.id}?api_key={Program.p.TmDbKey}&language=en-US"));
 
             return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie()
             {

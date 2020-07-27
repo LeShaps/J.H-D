@@ -1,6 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using J.H_D.Minions;
 using System.Net.WebSockets;
-using J.H_D.Minions.Responses;
+
+using J.H_D.Tools;
+using J.H_D.Data;
+using J.H_D.Minions.Websites;
+using J.H_D.Minions.Infos;
 
 namespace J.H_D.Modules
 {
@@ -49,7 +52,7 @@ namespace J.H_D.Modules
 
             if (cleanArgs == "clean") Natural = true;
 
-            var Result = await Minions.Responses.InspirobotMinion.FeelInspiration();
+            var Result = await InspirobotMinion.FeelInspiration();
 
             switch (Result.Error)
             {
@@ -79,17 +82,17 @@ namespace J.H_D.Modules
 
             switch (Result.Error)
             {
-                case Minions.Responses.Error.Urban.WordNotFound:
+                case Error.Urban.WordNotFound:
                     await ReplyAsync("Sorry, even internet can't help you on this one");
                     break;
 
-                case Minions.Responses.Error.Urban.None:
+                case Error.Urban.None:
                     await ReplyAsync("", false, BuildDefinition(Result.Answer));
                     break;
             }
         }
 
-        private Embed BuildDefinition(Minions.Responses.Response.UrbanDefinition InfosBuilder)
+        private Embed BuildDefinition(Response.UrbanDefinition InfosBuilder)
         {
             string TransformDefinition = InfosBuilder.Definition.Replace("[", "").Replace("]", "");
             string TransformExemple = InfosBuilder.Exemples.Replace("[", "").Replace("]", "");

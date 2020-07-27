@@ -12,6 +12,8 @@ using System.Data.Odbc;
 using Discord.Rest;
 using System.Diagnostics.Contracts;
 
+using J.H_D.Data;
+
 namespace J.H_D.Minions.NSFW
 {
     public static class BooruMinion

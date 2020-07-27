@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Text.RegularExpressions;
 using Discord.Commands;
+using System.Reflection;
+using Microsoft.SqlServer.Server;
+using J.H_D.Data;
 
 namespace J.H_D.Tools
 {
@@ -55,13 +58,25 @@ namespace J.H_D.Tools
         /// </summary>
         /// <param name="OriginalString">The string to test</param>
         /// <returns>A Discord-friendly message</returns>
-        public static string DiscordFriendly(string OriginalString)
+        public static string DiscordFriendly(string OriginalString, bool Embed = false)
         {
-            if (OriginalString.Length > 2000)
+            if (!Embed)
             {
-                string resultString = OriginalString.Substring(1997);
-                resultString += "...";
-                return resultString;
+                if (OriginalString.Length > 2000)
+                {
+                    string resultString = OriginalString.Substring(0, 1997);
+                    resultString += "...";
+                    return resultString;
+                }
+            }
+            else
+            {
+                if (OriginalString.Length > 2048)
+                {
+                    string resultstring = OriginalString.Substring(0, 2045);
+                    resultstring += "...";
+                    return resultstring;
+                }
             }
             return OriginalString;
         }
@@ -158,6 +173,51 @@ namespace J.H_D.Tools
             htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
 
             return htmlString;
+        }
+
+
+        /// <summary>
+        /// Return all the values asked in the list from the EmbedableAttribute of an object
+        /// </summary>
+        /// <typeparam name="T">The class of the EmbedableData object</typeparam>
+        /// <param name="EmbedableData">The embedableData object</param>
+        /// <param name="NeededValues">A list of values of tags you want</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetEmbedAttributesValues<T>(T EmbedableData, List<string> NeededValues)
+        {
+            Dictionary<string, string> FoundValues = new Dictionary<string, string>();
+
+            FieldInfo[] Fields = EmbedableData.GetType().GetFields();
+
+            foreach (var Field in Fields)
+            {
+                if (NeededValues.Contains(Field.GetCustomAttribute<EmbedableAttribute>().Name))
+                {
+                    FoundValues.Add(Field.GetCustomAttribute<EmbedableAttribute>().Name, Field.GetValue(EmbedableData).ToString());
+                }
+            }
+
+            return FoundValues;
+        }
+
+        /// <summary>
+        /// Return the value asked from the Embedable data attribute
+        /// </summary>
+        /// <typeparam name="T">The class of the EmbedableData object</typeparam>
+        /// <param name="EmbedableData">The embedableData object</param>
+        /// <param name="NeededValue">The name of the Embedable Attribute field you want</param>
+        /// <returns></returns>
+        public static string GetEmbedAttributeValue<T>(T EmbedableData, string NeededValue)
+        {
+            FieldInfo[] Fields = EmbedableData.GetType().GetFields();
+
+            foreach (var Field in Fields)
+            {
+                if (NeededValue == Field.GetCustomAttribute<EmbedableAttribute>().Name)
+                    return Field.GetValue(EmbedableData).ToString();
+            }
+
+            return null;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.NSFW
+namespace J.H_D.Data
 {
     public static partial class Error
     {

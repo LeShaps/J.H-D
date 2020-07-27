@@ -101,6 +101,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\EmbedableAttribute.cs" />
     <Compile Include="Db\Db.cs" />
     <Compile Include="Minions\Infos\Error.cs" />
     <Compile Include="Minions\Infos\MovieMinion.cs" />
@@ -110,7 +111,6 @@
     <Compile Include="Minions\MinionRequest.cs" />
     <Compile Include="Minions\NSFW\BooruMinion.cs" />
     <Compile Include="Minions\NSFW\Error.cs" />
-    <Compile Include="Minions\NSFW\Response.cs" />
     <Compile Include="Minions\Websites\Error.cs" />
     <Compile Include="Minions\Websites\FChanMinion.cs" />
     <Compile Include="Minions\Websites\Inspirobot.cs" />

@@ -1,9 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
 using Discord.Rest;
-using J.H_D.Minions;
-using J.H_D.Minions.NSFW;
-using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +8,11 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Data;
+using J.H_D.Minions;
+using J.H_D.Minions.NSFW;
+using J.H_D.Tools;
 
 namespace J.H_D.Modules
 {

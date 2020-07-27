@@ -1,5 +1,4 @@
 ﻿using Discord;
-using J.H_D.Tools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
@@ -14,7 +13,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Responses
+using J.H_D.Tools;
+using J.H_D.Data;
+
+namespace J.H_D.Minions.Infos
 {
     public static class MovieMinion
     {

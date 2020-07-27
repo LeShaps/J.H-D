@@ -1,8 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using J.H_D.Minions.Infos;
-using J.H_D.Minions.Responses;
-using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,6 +7,10 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Minions.Infos;
+using J.H_D.Tools;
+using J.H_D.Data;
 
 namespace J.H_D.Modules
 {
@@ -24,19 +25,19 @@ namespace J.H_D.Modules
 
             switch (Result.Error)
             {
-                case Minions.Responses.Error.Brainz.ArtistNotFound:
+                case Error.Brainz.ArtistNotFound:
                     await ReplyAsync("That must be too underground for me, sorry");
                     break;
 
-                case Minions.Responses.Error.Brainz.TitleNotFound:
+                case Error.Brainz.TitleNotFound:
                     await ReplyAsync("Hey, the refrain isn't always the title, y'know?");
                     break;
 
-                case Minions.Responses.Error.Brainz.ConnectionError:
+                case Error.Brainz.ConnectionError:
                     await ReplyAsync("A connection error has happened, please retry later");
                     break;
 
-                case Minions.Responses.Error.Brainz.None:
+                case Error.Brainz.None:
                     await ReplyAsync("", false, MakeArtistEmbed(Result.Answer));
                     break;
             }

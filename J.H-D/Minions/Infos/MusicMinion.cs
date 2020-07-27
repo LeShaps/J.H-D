@@ -5,10 +5,11 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using J.H_D.Minions.Responses;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RethinkDb.Driver.Model;
+
+using J.H_D.Data;
 
 namespace J.H_D.Minions.Infos
 {

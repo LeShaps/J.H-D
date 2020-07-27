@@ -1,8 +1,6 @@
-﻿using J.H_D.Tools;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Ast;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +12,10 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Responses
+using J.H_D.Data;
+using J.H_D.Tools;
+
+namespace J.H_D.Minions.Websites
 {
     public class FChanMinion
     {

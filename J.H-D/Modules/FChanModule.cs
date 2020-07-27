@@ -1,8 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using J.H_D.Minions;
-using J.H_D.Minions.Responses;
-using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +7,12 @@ using System.Runtime.InteropServices;
 using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Data;
+using J.H_D.Minions.Websites;
+using J.H_D.Minions;
+using J.H_D.Tools;
+
 
 namespace J.H_D.Modules
 {

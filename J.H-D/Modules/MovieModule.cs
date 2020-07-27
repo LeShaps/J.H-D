@@ -1,8 +1,5 @@
 ﻿using Discord;
 using Discord.Commands;
-using J.H_D.Minions.Responses;
-using J.H_D.Tools;
-using RethinkDb.Driver.Ast;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,6 +8,10 @@ using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Tools;
+using J.H_D.Data;
+using J.H_D.Minions.Infos;
 
 namespace J.H_D.Modules
 {
@@ -24,18 +25,18 @@ namespace J.H_D.Modules
             // Availlability check
             await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
             // Owner only settings
-            var result = await Minions.Responses.MovieMinion.SearchMovie(Args);
+            var result = await MovieMinion.SearchMovie(Args);
             switch (result.Error)
             {
-                case Minions.Responses.Error.Movie.Help:
+                case Error.Movie.Help:
                     await ReplyAsync("That's not how that work");
                     break;
 
-                case Minions.Responses.Error.Movie.NotFound:
+                case Error.Movie.NotFound:
                     await ReplyAsync("I don't know what you're looking for, but it's definitively not here");
                     break;
 
-                case Minions.Responses.Error.Movie.None:
+                case Error.Movie.None:
                     await ReplyAsync("", false, CreateEmbedSimple(result.Answer, Context.Guild.Id));
                     break;
 
@@ -49,19 +50,19 @@ namespace J.H_D.Modules
         {
             await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
 
-            var result = await Minions.Responses.MovieMinion.BonusInfos(MovieMinion.SearchType.Serie, Args);
+            var result = await MovieMinion.BonusInfos(MovieMinion.SearchType.Serie, Args);
 
             switch (result.Error)
             {
-                case Minions.Responses.Error.Movie.Help:
+                case Error.Movie.Help:
                     await ReplyAsync("That's not how that work");
                     break;
 
-                case Minions.Responses.Error.Movie.NotFound:
+                case Error.Movie.NotFound:
                     await ReplyAsync("I don't know what you're looking for, but it's definitively not here");
                     break;
 
-                case Minions.Responses.Error.Movie.None:
+                case Error.Movie.None:
                     await ReplyAsync("", false, CreateBonusEmbed(result.Answer));
                     break;
             }

@@ -5,7 +5,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J.H_D.Minions.Responses
+using J.H_D.Data;
+
+namespace J.H_D.Minions.Websites
 {
     class InspirobotMinion
     {

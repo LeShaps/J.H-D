@@ -219,5 +219,20 @@ namespace J.H_D.Tools
 
             return null;
         }
+
+        /// <summary>
+        /// Get memory stream from an Url
+        /// </summary>
+        /// <param name="Url">The url to get fetch the data from</param>
+        /// <returns>A MemoryStream with the url data</returns>
+        public static Stream GetStreamFromUrl(string Url)
+        {
+            byte[] ImageData = null;
+
+            using (var wc = new WebClient())
+                ImageData = wc.DownloadData(Url);
+
+            return new MemoryStream(ImageData);
+        }
     }
 }

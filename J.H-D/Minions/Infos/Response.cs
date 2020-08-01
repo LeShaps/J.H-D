@@ -48,10 +48,14 @@ namespace J.H_D.Data
 
         public class TVSeries
         {
+            [Embedable("Name")]
+            public string SeriesName;
+            [Embedable("Id", false)]
+            public string SeriesId;
             [Embedable("BackPoster", false, true)]
             public string BackdropPath;
             [Embedable("EpisodeLenght")]
-            public int EpisodeRunTime;
+            public string EpisodeRunTime;
             [Embedable("Start Date")]
             public string Started;
             [Embedable("Genres")]
@@ -68,6 +72,36 @@ namespace J.H_D.Data
             public List<string> Compagnies;
             [Embedable("Note")]
             public string VoteAverage;
+            [Embedable("Synopsis")]
+            public string Overview;
+            [Embedable("Seasons", false, false)]
+            public List<TVSeason> Seasons;
+
+            [Embedable("RessourceLink", false, false)]
+            public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
+        }
+
+        public class TVSeason
+        {
+            [Embedable("OriginalSeriesName")]
+            public string FirstSeriesName;
+            [Embedable("OriginalSeriesId", false)]
+            public string FirstSeriesId;
+            [Embedable("Number of Episode")]
+            public string EpisodeNumber;
+            [Embedable("SeasonID", false)]
+            public string Id;
+            [Embedable("Synopsis")]
+            public string Overview;
+            [Embedable("Poster", false, true)]
+            public string PosterPath;
+            [Embedable("Season Number")]
+            public string SNumber;
+            [Embedable("Season Name")]
+            public string SName;
+
+            [Embedable("RessourceLink", false, false)]
+            public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
         }
 
         public class UrbanDefinition

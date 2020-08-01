@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 
 using J.H_D.Tools;
 using J.H_D.Data;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace J.H_D.Minions.Infos
 {
@@ -66,6 +67,55 @@ namespace J.H_D.Minions.Infos
                 OriginalLanguage = FinalData.original_language,
                 BackdropPath = FinalData.backdrop_path,
                 AverageNote = FinalData.vote_average,
+            }, Error.Movie.None);
+        }
+
+        public static async Task<FeatureRequest<Response.TVSeries, Error.Movie>> GetSeriesGeneralInfos(SearchType searchType, string[] Args)
+        {
+            string RequestName = Utilities.MakeQueryArgs(Args);
+            if (RequestName.Length == 0)
+                return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.Help);
+
+            dynamic SeriesInfos = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[searchType]}{Program.p.TmDbKey}&language=en-US&query={RequestName}&page=1"));
+            if (SeriesInfos["total_results"] == "0")
+                return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.NotFound);
+
+            JArray Results = (JArray)SeriesInfos["results"];
+            dynamic SerieResult = Results[0];
+
+            dynamic DetailsJson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"https://api.themoviedb.org/3/tv/{SerieResult.id}?api_key={Program.p.TmDbKey}&language=en-US"));
+
+            List<Response.TVSeason> Seasons = new List<Response.TVSeason>();
+            
+            foreach (dynamic season in DetailsJson.seasons)
+            {
+                Seasons.Add(new Response.TVSeason()
+                {
+                    EpisodeNumber = season.episode_count,
+                    Id = season.id,
+                    SName = season.name,
+                    Overview = season.overview,
+                    PosterPath = season.poster_path,
+                    SNumber = season.season_number
+                });
+            }
+
+            return new FeatureRequest<Response.TVSeries, Error.Movie>(new Response.TVSeries()
+            {
+                BackdropPath = DetailsJson.backdrop_path,
+                EpisodeNumber = DetailsJson.number_of_episodes,
+                Started = DetailsJson.first_air_date,
+                InProduction = (string)DetailsJson.status == "Ended" ? true : false,
+                HomePage = DetailsJson.homepage,
+                SeasonNumber = DetailsJson.number_of_seasons,
+                EpisodeRunTime = DetailsJson.episode_run_time[0],
+                Genres = GetNames(DetailsJson.genres),
+                Compagnies = GetNames(DetailsJson.production_compagnies),
+                VoteAverage = DetailsJson.vote_average,
+                SeriesName = DetailsJson.name,
+                SeriesId = DetailsJson.id,
+                Overview = DetailsJson.overview,
+                Seasons = Seasons
             }, Error.Movie.None);
         }
 

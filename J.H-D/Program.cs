@@ -2,6 +2,7 @@
 using Discord.Commands;
 using Discord.Rest;
 using Discord.WebSocket;
+using J.H_D.Data;
 using J.H_D.Modules;
 using Newtonsoft.Json;
 using RethinkDb.Driver.Ast;
@@ -40,6 +41,8 @@ namespace J.H_D
         public string WebsiteUpload { get; private set; }
         public string WebsiteUrl { private set; get; }
         public bool SendStats { private set; get; }
+
+        public Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed;
 
         // Starting Time
         public DateTime StartingTime;
@@ -104,6 +107,8 @@ namespace J.H_D
             await db.InitAsync();
             rand = new System.Random();
 
+            SendedSeriesEmbed = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
+
             Tools.Utilities.CheckDir("Saves");
             Tools.Utilities.CheckDir("Saves/Download");
             Tools.Utilities.CheckDir("Saves/Profiles");
@@ -148,6 +153,8 @@ namespace J.H_D
             client.Disconnected += Disconnected;
             client.GuildAvailable += GuildJoin;
             client.JoinedGuild += GuildJoin;
+            client.ReactionAdded += ReactionAdd;
+
             commands.CommandExecuted += CommandExectute;
 
             await client.LoginAsync(TokenType.Bot, botToken);
@@ -170,10 +177,41 @@ namespace J.H_D
             await Task.Delay(-1);
         }
 
+        private async Task ReactionAdd(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
+        {
+            if (Reaction.User.Value.IsBot) return;
+
+            if (SendedSeriesEmbed.ContainsKey(Message.Id))
+            {
+                var Used = SendedSeriesEmbed[Message.Id];
+                MovieModule Changer = new MovieModule();
+
+                IUserMessage Mess = await Message.DownloadAsync();
+
+                switch (Reaction.Emote.Name)
+                {
+                    case "▶️":
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, Used.Item1 + 1);
+                        break;
+                    case "◀️":
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, Used.Item1 - 1);
+                        break;
+                    case "⏩":
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, int.Parse(Used.Item2.SeasonNumber) - 1);
+                        break;
+                    case "⏪":
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, -1);
+                        break;
+                }
+            }
+        }
+
         private async Task GuildJoin(SocketGuild arg)
         {
             await db.InitGuild(arg);
         }
+
+        
 
         private async Task InitServices(dynamic json)
         {
@@ -200,17 +238,31 @@ namespace J.H_D
             if (arg.Author.Id == client.CurrentUser.Id || arg.Author.IsBot) return;
             var msg = arg as SocketUserMessage;
             if (msg == null) return;
+            bool DM = (arg.Channel as ITextChannel) == null ? true : false;
+            string prefix;
 
             int pos = 0;
-            string prefix = db.Prefixs[(arg.Channel as ITextChannel).GuildId];
-            if (msg.HasMentionPrefix(client.CurrentUser, ref pos) || (prefix != "" && msg.HasStringPrefix(prefix, ref pos)))
+            if (!DM)
             {
-                var context = new SocketCommandContext(client, msg);
-                if (!((IGuildUser)await context.Channel.GetUserAsync(client.CurrentUser.Id)).GetPermissions((IGuildChannel)context.Channel).EmbedLinks)
+                prefix = db.Prefixs[(arg.Channel as ITextChannel).GuildId];
+                if (msg.HasMentionPrefix(client.CurrentUser, ref pos) || (prefix != "" && msg.HasStringPrefix(prefix, ref pos)))
                 {
-                    // Make error if have not the rights to Embed links
+                    var context = new SocketCommandContext(client, msg);
+                    if (!((IGuildUser)await context.Channel.GetUserAsync(client.CurrentUser.Id)).GetPermissions((IGuildChannel)context.Channel).EmbedLinks)
+                    {
+                        // Make error if have not the rights to Embed links
+                    }
+                    await commands.ExecuteAsync(context, pos, null);
                 }
-                await commands.ExecuteAsync(context, pos, null);
+            }
+            else
+            {
+                prefix = "jh"; //To change later to match the user configuration
+                if (msg.HasMentionPrefix(client.CurrentUser, ref pos) || prefix != "" && msg.HasStringPrefix(prefix, ref pos))
+                {
+                    var Context = new SocketCommandContext(client, msg);
+                    await commands.ExecuteAsync(Context, pos, null);
+                }
             }
         }
 

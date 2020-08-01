@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using J.H_D.Tools;
 using J.H_D.Data;
 using J.H_D.Minions.Infos;
+using System.Security.Cryptography;
 
 namespace J.H_D.Modules
 {
@@ -23,7 +24,7 @@ namespace J.H_D.Modules
         public async Task GetMovie(params string[] Args)
         {
             // Availlability check
-            await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
+            // await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
             // Owner only settings
             var result = await MovieMinion.SearchMovie(Args);
             switch (result.Error)
@@ -37,11 +38,34 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Movie.None:
-                    await ReplyAsync("", false, CreateEmbedSimple(result.Answer, Context.Guild.Id));
+                    await ReplyAsync("", false, CreateEmbedSimple(result.Answer));
                     break;
 
                 default:
                     throw new NotImplementedException();
+            }
+        }
+
+        [Command("Get series")]
+        public async Task GetSeriesInfos(params string[] Args)
+        {
+            var result = await MovieMinion.GetSeriesGeneralInfos(MovieMinion.SearchType.Serie, Args);
+
+            switch (result.Error)
+            {
+                case Error.Movie.Help:
+                    await ReplyAsync("That's not how it works");
+                    break;
+
+                case Error.Movie.NotFound:
+                    await ReplyAsync("I don't know what you're looking for, but it's definitively not here");
+                    break;
+
+                case Error.Movie.None:
+                    var Message = await ReplyAsync("", false, CreateSeriesEmbed(result.Answer));
+                    p.SendedSeriesEmbed.Add(Message.Id, new Tuple<int, Response.TVSeries>(-1, result.Answer));
+                    await Message.AddReactionsAsync(new[] { new Emoji("⏪"), new Emoji("◀️"), new Emoji("▶️"), new Emoji("⏩") });
+                    break;
             }
         }
 
@@ -107,7 +131,50 @@ namespace J.H_D.Modules
             return embed.Build();
         }
 
-        private Embed CreateEmbedSimple(Response.Movie res, ulong guildId)
+        private Embed CreateSeriesEmbed(Response.TVSeries Response)
+        {
+            string CorrectedUrl = Response.SeriesName.Replace(' ', '-').Replace('\'', '-');
+            EmbedBuilder embed = new EmbedBuilder()
+            {
+                Title = Response.SeriesName,
+                Url = $"https://themoviedb.org/tv/{Response.SeriesId}-{CorrectedUrl}",
+                Color = Color.DarkRed,
+                ImageUrl = $"{Response.RessourcePath}{Response.BackdropPath}",
+                Description = Response.Overview
+            };
+            embed.AddField("Release date", Response.Started, true);
+            embed.AddField("Average note", Response.VoteAverage, true);
+
+            return embed.Build();
+        }
+
+        private Embed CreateSeasonEmbed(Response.TVSeason Season)
+        {
+            EmbedBuilder build = new EmbedBuilder()
+            {
+                Title = Season.SName,
+                Description = Season.Overview,
+                ImageUrl = $"{Season.RessourcePath}{Season.PosterPath}",
+                Color = Color.DarkRed,
+            };
+
+            build.Fields.Add(new EmbedFieldBuilder()
+            {
+                Name = "Number of Episodes",
+                Value = Season.EpisodeNumber,
+                IsInline = true
+            });
+            build.Fields.Add(new EmbedFieldBuilder()
+            {
+                Name = "Season",
+                Value = Season.SNumber,
+                IsInline = true
+            });
+
+            return build.Build();
+        }
+
+        private Embed CreateEmbedSimple(Response.Movie res)
         {
             string CorrectedUrl = res.OriginalTitle.Replace(' ', '-').Replace('\'', '-');
             EmbedBuilder embed = new EmbedBuilder()
@@ -122,6 +189,19 @@ namespace J.H_D.Modules
             embed.AddField("Average note", res.AverageNote + "/10", true);
 
             return embed.Build();
+        }
+
+        public async Task<Tuple<int, Response.TVSeries>> UpdateSeriesEmbed(IUserMessage message, Tuple<int, Response.TVSeries> Data, int NewPosition)
+        {
+            if (NewPosition < -1 || NewPosition >= int.Parse(Data.Item2.SeasonNumber))
+                return Data;
+
+            await message.ModifyAsync(x =>
+            x.Embed = NewPosition == -1 ?
+            CreateSeriesEmbed(Data.Item2) : 
+            CreateSeasonEmbed(Data.Item2.Seasons[NewPosition]));
+
+            return new Tuple<int, Response.TVSeries>(NewPosition, Data.Item2);
         }
     }
 }

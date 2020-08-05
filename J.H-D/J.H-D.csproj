@@ -99,11 +99,16 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="websocket-sharp, Version=1.0.1.0, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebSocketSharp-netstandard.1.0.1\lib\net45\websocket-sharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\EmbedableAttribute.cs" />
+    <Compile Include="Data\Globals.cs" />
     <Compile Include="Db\Db.cs" />
     <Compile Include="Minions\Infos\Error.cs" />
+    <Compile Include="Minions\Infos\KitsuMinion.cs" />
     <Compile Include="Minions\Infos\MovieMinion.cs" />
     <Compile Include="Minions\Infos\MusicMinion.cs" />
     <Compile Include="Minions\Infos\Response.cs" />
@@ -113,8 +118,10 @@
     <Compile Include="Minions\NSFW\Error.cs" />
     <Compile Include="Minions\Websites\Error.cs" />
     <Compile Include="Minions\Websites\FChanMinion.cs" />
+    <Compile Include="Minions\Websites\GeneratorMinion.cs" />
     <Compile Include="Minions\Websites\Inspirobot.cs" />
     <Compile Include="Minions\Websites\Response.cs" />
+    <Compile Include="Modules\AnimeMangaModule.cs" />
     <Compile Include="Modules\BooruModule.cs" />
     <Compile Include="Modules\CommunicationModule.cs" />
     <Compile Include="Modules\ExperimentalModule.cs" />

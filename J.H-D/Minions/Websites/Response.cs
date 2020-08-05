@@ -39,5 +39,10 @@ namespace J.H_D.Data
             [Embedable("Channel")]
             public string Chan;
         }
+
+        public class Complete 
+        {
+            public string Content;
+        }
     }
 }

@@ -4,18 +4,20 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using J.H_D.Minions;
-using System.Net.WebSockets;
+using System.Net;
 
 using J.H_D.Tools;
 using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
+using Generate = J.H_D.Data.Response.Complete;
+using System.Runtime.CompilerServices;
+using System.Net.Configuration;
+using System.Security.Policy;
 
 namespace J.H_D.Modules
 {
@@ -31,10 +33,9 @@ namespace J.H_D.Modules
         }
 
         [Command("Rotate")]
-        public async Task RotateThenRespond(params string[] Args)
+        public async Task RotateThenRespond([Remainder]string Args)
         {
-            string Ask = Utilities.MakeArgs(Args);
-            await ReplyAsync(Utilities.RotateString(Ask));
+            await ReplyAsync(Utilities.RotateString(Args));
         }
 
         [Command("Clarify")]
@@ -88,6 +89,53 @@ namespace J.H_D.Modules
 
                 case Error.Urban.None:
                     await ReplyAsync("", false, BuildDefinition(Result.Answer));
+                    break;
+            }
+        }
+
+        [Command("Generate", RunMode = RunMode.Async)]
+        public async Task Generate([Remainder]string sentence)
+        {
+            string Content = sentence;
+            string OldContent = Content;
+
+            var msg = await StartWait(sentence);
+            var Response = await GeneratorMinion.Complete(sentence, msg, MessageUpdater);
+
+            switch (Response.Error)
+            {
+                case Error.Complete.Help:
+                    await ReplyAsync("Please enter a phrase to use as base");
+                    break;
+
+                case Error.Complete.Connection:
+                    await ReplyAsync("Can't connect to textsynth");
+                    break;
+
+                case Error.Complete.None:
+                    await msg.ModifyAsync(x => x.Embed = CreateTextEmbed(Response.Answer.Content));
+                    Program.p.GeneratedText.Add(msg.Id, sentence);
+                    await msg.AddReactionAsync(new Emoji("🔄"));
+                    break;
+            }
+        }
+
+        public async Task ReRollText(IUserMessage Message, string Sentence)
+        {
+            var Response = await GeneratorMinion.Complete(Sentence, Message, MessageUpdater);
+
+            switch (Response.Error)
+            {
+                case Error.Complete.Help:
+                    await ReplyAsync("No way dat's possible!");
+                    break;
+
+                case Error.Complete.Connection:
+                    await ReplyAsync("Can't connect to textsynth");
+                    break;
+
+                case Error.Complete.None:
+                    await Message.ModifyAsync(x => x.Embed = CreateTextEmbed(Response.Answer.Content));
                     break;
             }
         }
@@ -151,6 +199,52 @@ namespace J.H_D.Modules
             };
 
             return builder.Build();
+        }
+
+        private async Task<IUserMessage> StartWait(string sentence)
+        {
+            return await ReplyAsync("", false, new EmbedBuilder()
+            {
+                Color = Color.DarkBlue,
+                Description = sentence,
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Please wait for embed updating"
+                },
+            }.Build());
+        }
+
+        private Embed CreateTextEmbed(string Content)
+        {
+            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
+            Content = Content.Replace("( ", "(").Replace(" )", ")");
+
+            return new EmbedBuilder()
+            {
+                Color = Color.DarkBlue,
+                Description = Content,
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Powered by https://bellard.org/textsynth/"
+                },
+            }.Build();
+        }
+
+        public async Task MessageUpdater(IUserMessage msg, string Content)
+        {
+            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
+            Content = Content.Replace("( ", "(").Replace(" )", ")");
+            string url = (msg.Embeds.ElementAt(0) as Embed).Url;
+            await msg.ModifyAsync(x => x.Embed = new EmbedBuilder()
+            {
+                Description = Content,
+                Color = Color.DarkBlue,
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Please wait for embed updating"
+                },
+                Url = url
+            }.Build());
         }
     }
 }

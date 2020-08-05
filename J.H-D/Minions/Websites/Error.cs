@@ -21,5 +21,12 @@ namespace J.H_D.Data
             None,
             Communication
         }
+
+        public enum Complete
+        {
+            Help,
+            Connection,
+            None
+        }
     }
 }

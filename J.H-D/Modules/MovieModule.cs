@@ -13,6 +13,7 @@ using J.H_D.Tools;
 using J.H_D.Data;
 using J.H_D.Minions.Infos;
 using System.Security.Cryptography;
+using System.Linq.Expressions;
 
 namespace J.H_D.Modules
 {
@@ -170,7 +171,7 @@ namespace J.H_D.Modules
                 Value = Season.SNumber,
                 IsInline = true
             });
-
+            
             return build.Build();
         }
 

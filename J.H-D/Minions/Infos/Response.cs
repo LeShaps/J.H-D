@@ -142,5 +142,43 @@ namespace J.H_D.Data
             [Embedable("Active")]
             public bool OnTour;
         }
+
+        public class Anime
+        {
+            [Embedable("Anime ID", false, false)]
+            public string Id;
+            [Embedable("Synopsis")]
+            public string Synopsis;
+            [Embedable("English Title")]
+            public string Title;
+            [Embedable("Latin Title")]
+            public string LATitle;
+            [Embedable("Japanese Title")]
+            public string OriginalTitle;
+            [Embedable("Average Rating")]
+            public string Rating;
+            [Embedable("Start Date")]
+            public string StartDate;
+            [Embedable("End Date")]
+            public string EndDate;
+            [Embedable("Age Rating")]
+            public string AgeRating;
+            [Embedable("Age Reasons")]
+            public string Guideline;
+            [Embedable("Status")]
+            public string Status;
+            [Embedable("Poster", false, true)]
+            public string PosterImage;
+            [Embedable("Cover", false, true)]
+            public string CoverImage;
+            [Embedable("Episode Count")]
+            public string EpisodeCount;
+            [Embedable("Episode Lenght")]
+            public string EpLength;
+            [Embedable("Total Watchtime")]
+            public string HumanReadableWatchtime;
+            [Embedable("Video Url", false, true)]
+            public string VideoUrl;
+        }
     }
 }

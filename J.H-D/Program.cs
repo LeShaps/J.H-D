@@ -30,7 +30,9 @@ namespace J.H_D
         public string TmDbKey;
         public string RapidAPIKey;
         public string LastFMKey;
+
         public HttpClient Asker;
+        public HttpClient KitsuClient;
 
         private bool DebugMode;
 
@@ -43,6 +45,7 @@ namespace J.H_D
         public bool SendStats { private set; get; }
 
         public Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed;
+        public Dictionary<ulong, string> GeneratedText;
 
         // Starting Time
         public DateTime StartingTime;
@@ -108,6 +111,7 @@ namespace J.H_D
             rand = new System.Random();
 
             SendedSeriesEmbed = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
+            GeneratedText = new Dictionary<ulong, string>();
 
             Tools.Utilities.CheckDir("Saves");
             Tools.Utilities.CheckDir("Saves/Download");
@@ -148,6 +152,7 @@ namespace J.H_D
             await commands.AddModuleAsync<FChanModule>(null);
             await commands.AddModuleAsync<BooruModule>(null);
             await commands.AddModuleAsync<MusicModule>(null);
+            await commands.AddModuleAsync<AnimeMangaModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += Disconnected;
@@ -204,6 +209,17 @@ namespace J.H_D
                         break;
                 }
             }
+            if (GeneratedText.ContainsKey(Message.Id))
+            {
+                IUserMessage Mess = await Message.DownloadAsync();
+
+                switch (Reaction.Emote.Name)
+                {
+                    case "🔄":
+                        await new CommunicationModule().ReRollText(Mess, GeneratedText[Message.Id]);
+                        break;
+                }
+            }
         }
 
         private async Task GuildJoin(SocketGuild arg)
@@ -218,6 +234,18 @@ namespace J.H_D
             TmDbKey = json.MvKey;
             RapidAPIKey = json.RapidAPIKey;
             LastFMKey = json.LastFMAPIKey;
+
+            string token = null;
+            if (KitsuAuth != null)
+            {
+                var msg = new HttpRequestMessage(HttpMethod.Post, "https://kitsu.io/api/oauth/token");
+                msg.Content = new FormUrlEncodedContent(KitsuAuth);
+                dynamic j = JsonConvert.DeserializeObject(await (await Asker.SendAsync(msg)).Content.ReadAsStringAsync());
+                token = j.access_token;
+            }
+            KitsuClient = new HttpClient();
+
+            KitsuClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
 
         public async Task DoAction(IUser u, ulong serverId, Module m)

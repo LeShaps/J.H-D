@@ -234,5 +234,12 @@ namespace J.H_D.Tools
 
             return new MemoryStream(ImageData);
         }
+
+        public static string StandardUppercase(string ToUpper)
+        {
+            string end = char.ToUpper(ToUpper[0]) + String.Join("", ToUpper.Skip(1)).ToLower();
+
+            return end;
+        }
     }
 }

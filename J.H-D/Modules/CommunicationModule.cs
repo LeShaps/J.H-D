@@ -16,7 +16,6 @@ using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
 using Generate = J.H_D.Data.Response.Complete;
 using System.Runtime.CompilerServices;
-using System.Net.Configuration;
 using System.Security.Policy;
 
 namespace J.H_D.Modules

@@ -82,6 +82,7 @@ namespace J.H_D
             }
             catch(FileNotFoundException)
             {
+                
                 throw;
             }
             catch(Exception)
@@ -153,6 +154,7 @@ namespace J.H_D
             await commands.AddModuleAsync<BooruModule>(null);
             await commands.AddModuleAsync<MusicModule>(null);
             await commands.AddModuleAsync<AnimeMangaModule>(null);
+            await commands.AddModuleAsync<ExperimentalModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += Disconnected;
@@ -182,10 +184,8 @@ namespace J.H_D
             await Task.Delay(-1);
         }
 
-        private async Task ReactionAdd(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
+        private async Task CheckSeriesAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
         {
-            if (Reaction.User.Value.IsBot) return;
-
             if (SendedSeriesEmbed.ContainsKey(Message.Id))
             {
                 var Used = SendedSeriesEmbed[Message.Id];
@@ -209,6 +209,10 @@ namespace J.H_D
                         break;
                 }
             }
+        }
+
+        private async Task CheckGeneratedTextAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
+        {
             if (GeneratedText.ContainsKey(Message.Id))
             {
                 IUserMessage Mess = await Message.DownloadAsync();
@@ -220,6 +224,14 @@ namespace J.H_D
                         break;
                 }
             }
+        }
+
+        private async Task ReactionAdd(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
+        {
+            if (Reaction.User.Value.IsBot) return;
+
+            await CheckSeriesAsync(Message, Channel, Reaction);
+            await CheckGeneratedTextAsync(Message, Channel, Reaction);
         }
 
         private async Task GuildJoin(SocketGuild arg)

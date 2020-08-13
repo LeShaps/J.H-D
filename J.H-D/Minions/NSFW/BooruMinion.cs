@@ -69,7 +69,7 @@ namespace J.H_D.Minions.NSFW
             if (options.AllowNSFW == false)
                 options.SearchQuery.Append("Safe");
 
-            SearchResult Result = await BooruSearch.GetRandomImageAsync(options.SearchQuery);
+            SearchResult Result = await BooruSearch.GetRandomPostAsync(options.SearchQuery);
 
             if (Result.fileUrl == null)
                 return new FeatureRequest<SearchResult, Error.Booru>(Result, Error.Booru.NotFound);

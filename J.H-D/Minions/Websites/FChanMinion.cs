@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using J.H_D.Tools;
 using J.H_D.Data;
 
+using FBoard = J.H_D.Data.Response.FBoard;
+using FThread = J.H_D.Data.Response.FThread;
+
 namespace J.H_D.Minions.Websites
 {
     public class FChanMinion
@@ -24,7 +27,7 @@ namespace J.H_D.Minions.Websites
             public bool AllowNsfw;
         }
 
-        public static async Task<List<Response.FBoard>> UpdateAvailableChans(bool AllowNsfw = true)
+        public static async Task<List<Response.FBoard>> UpdateAvailableChansAsync(bool AllowNsfw = true)
         {
             List<Response.FBoard> AvailbleBoards = new List<Response.FBoard>();
 
@@ -51,11 +54,11 @@ namespace J.H_D.Minions.Websites
             return AvailbleBoards;
         }
 
-        public static async Task<FeatureRequest<Response.FThread, Error.FChan>> GetRandomThreadFrom(string board, RequestOptions Options)
+        public static async Task<FeatureRequest<FThread?, Error.FChan>> GetRandomThreadFromAsync(string board, RequestOptions Options)
         {
-            List<Response.FBoard> Boards = await UpdateAvailableChans();
-            Response.FBoard UsableBoard = null;
-            List<Response.FThread> ThreadsList = new List<Response.FThread>();
+            List<FBoard> Boards = await UpdateAvailableChansAsync();
+            FBoard UsableBoard = new FBoard();
+            List<FThread> ThreadsList = new List<FThread>();
 
             if (board != null)
             {
@@ -63,10 +66,10 @@ namespace J.H_D.Minions.Websites
                 {
                     UsableBoard = Boards.Where(x => x.Name == board || x.Title == board).First();
                     if (Options.AllowNsfw == false && UsableBoard.Nsfw == true)
-                        return new FeatureRequest<Response.FThread, Error.FChan>(null, Error.FChan.Nsfw);
+                        return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Nsfw);
                 }
                 else
-                    return new FeatureRequest<Response.FThread, Error.FChan>(null, Error.FChan.Unavailable);
+                    return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
             }
             else
             {
@@ -88,7 +91,7 @@ namespace J.H_D.Minions.Websites
             {
                 foreach (dynamic Thread in (JArray)item.threads)
                 {
-                    ThreadsList.Add(new Response.FThread()
+                    ThreadsList.Add(new FThread()
                     {
                         Filename = Thread.filename,
                         Extension = Thread.ext,
@@ -105,40 +108,40 @@ namespace J.H_D.Minions.Websites
 
             if (Options.RequestType == RequestType.Image)
             {
-                List<Response.FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
+                List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
 
-                return new FeatureRequest<Response.FThread, Error.FChan>(
+                return new FeatureRequest<FThread?, Error.FChan>(
                     ImageThreads[Program.p.rand.Next(ImageThreads.Count - 1)],
                     Error.FChan.None);
             }
             else
-            { 
-                return new FeatureRequest<Response.FThread, Error.FChan>(
+            {
+                return new FeatureRequest<FThread?, Error.FChan>(
                     ThreadsList[Program.p.rand.Next(ThreadsList.Count)],
                     Error.FChan.None);
             }
         }
 
-        public static async Task<FeatureRequest<Response.FBoard, Error.FChan>> GetBoardInfo(string[] board)
+        public static async Task<FeatureRequest<FBoard?, Error.FChan>> GetBoardInfoAsync(string[] board)
         {
             if (board.Length == 0)
-                return new FeatureRequest<Response.FBoard, Error.FChan>(null, Error.FChan.Unavailable);
+                return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
             string BoardName = Utilities.MakeArgs(board);
-            List<Response.FBoard> Boards = await UpdateAvailableChans();
+            List<FBoard> Boards = await UpdateAvailableChansAsync();
 
-            foreach (Response.FBoard Board in Boards)
+            foreach (FBoard Board in Boards)
             {
                 if (BoardName == Board.Title || BoardName == Board.Name)
-                    return new FeatureRequest<Response.FBoard, Error.FChan>(Board, Error.FChan.None);
+                    return new FeatureRequest<FBoard?, Error.FChan>(Board, Error.FChan.None);
             }
-            return new FeatureRequest<Response.FBoard, Error.FChan>(null, Error.FChan.Unavailable);
+            return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
         }
 
-        private static void AddResponseThreads(dynamic First, ref List<Response.FThread> ThreadList, string chan)
+        private static void AddResponseThreads(dynamic First, ref List<FThread> ThreadList, string chan)
         {
             foreach (dynamic response in (JArray)First.last_replies)
             {
-                ThreadList.Add(new Response.FThread
+                ThreadList.Add(new FThread
                 {
                     Filename = response.filename,
                     Extension = response.ext,

@@ -19,7 +19,7 @@ namespace J.H_D.Modules
         {
             await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
 
-            List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChans();
+            List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChansAsync();
             await ReplyAsync("", false, BoardInfosBuilder(Boards));
         }
 
@@ -28,7 +28,7 @@ namespace J.H_D.Modules
         {
             await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
 
-            var result = await FChanMinion.GetBoardInfo(Args);
+            var result = await FChanMinion.GetBoardInfoAsync(Args);
 
             switch (result.Error)
             {
@@ -61,7 +61,7 @@ namespace J.H_D.Modules
             if (Args.Length >= 1)
             {
                 string OneArg = Utilities.MakeArgs(Args);
-                result = await FChanMinion.GetRandomThreadFrom(OneArg, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions()
                 {
                     MandatoryWord = null,
                     AllowNsfw = chan.IsNsfw,
@@ -69,7 +69,7 @@ namespace J.H_D.Modules
                 });
             }
             else
-                result = await FChanMinion.GetRandomThreadFrom(null, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions()
                 {
                     MandatoryWord = null,
                     AllowNsfw = chan.IsNsfw,
@@ -108,7 +108,7 @@ namespace J.H_D.Modules
             if (Args.Length >= 1)
             {
                 string OneArg = Utilities.MakeArgs(Args);
-                result = await FChanMinion.GetRandomThreadFrom(OneArg, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions()
                 {
                     RequestType = FChanMinion.RequestType.Thread,
                     MandatoryWord = null,
@@ -116,7 +116,7 @@ namespace J.H_D.Modules
                 });
             }
             else
-                result = await FChanMinion.GetRandomThreadFrom(null, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions()
                 {
                     RequestType = FChanMinion.RequestType.Thread,
                     MandatoryWord = null,

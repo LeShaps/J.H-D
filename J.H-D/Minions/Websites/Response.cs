@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace J.H_D.Data
+﻿namespace J.H_D.Data
 {
     public static partial class Response
     {
-        public class FBoard
+        public struct FBoard
         {
             [Embedable("Full Name")]
             public string Name;
@@ -22,7 +16,7 @@ namespace J.H_D.Data
             public bool Nsfw;
         }
 
-        public class FThread
+        public struct FThread
         {
             [Embedable("FileName")]
             public string Filename;

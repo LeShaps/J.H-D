@@ -99,7 +99,7 @@ namespace J.H_D.Data
             public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
         }
 
-        public class UrbanDefinition
+        public struct UrbanDefinition
         {
             [Embedable("Word")]
             public string Word;
@@ -120,7 +120,7 @@ namespace J.H_D.Data
             Street
         }
 
-        public class MusicArtist
+        public struct MusicArtist
         {
             [Embedable("Artist Name")]
             public string Name;
@@ -138,7 +138,7 @@ namespace J.H_D.Data
             public bool OnTour;
         }
 
-        public class Anime
+        public struct Anime
         {
             [Embedable("Anime ID", false, false)]
             public string Id;

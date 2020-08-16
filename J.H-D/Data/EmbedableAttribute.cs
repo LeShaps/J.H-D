@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace J.H_D.Data
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 using J.H_D.Data;
 
@@ -11,7 +6,7 @@ namespace J.H_D.Minions.Websites
 {
     class InspirobotMinion
     {
-        public static async Task<FeatureRequest<string, Error.InspirationnalError>> FeelInspiration()
+        public static async Task<FeatureRequest<string, Error.InspirationnalError>> FeelInspirationAsync()
         {
             string Ressource = null;
 

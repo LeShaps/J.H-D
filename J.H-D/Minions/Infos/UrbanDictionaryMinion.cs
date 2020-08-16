@@ -1,13 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 using J.H_D.Data;
+
+using UrbanDefinition = J.H_D.Data.Response.UrbanDefinition;
 
 namespace J.H_D.Minions.Infos
 {
@@ -16,10 +14,10 @@ namespace J.H_D.Minions.Infos
         private static string RapidAPIHost = "mashape-community-urban-dictionary.p.rapidapi.com";
         private static string DefineAdress = "https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=";
 
-        public static async Task<FeatureRequest<Response.UrbanDefinition, Error.Urban>> SearchForWord(string search)
+        public static async Task<FeatureRequest<UrbanDefinition?, Error.Urban>> SearchForWordAsync(string search)
         {
             dynamic result;
-            Response.UrbanDefinition Defintion;
+            UrbanDefinition? Defintion;
 
             using (HttpClient hc = new HttpClient())
             {
@@ -30,11 +28,11 @@ namespace J.H_D.Minions.Infos
             }
 
             if (result["list"].Count == 0)
-                return new FeatureRequest<Response.UrbanDefinition, Error.Urban>(null, Error.Urban.WordNotFound);
+                return new FeatureRequest<UrbanDefinition?, Error.Urban>(null, Error.Urban.WordNotFound);
 
             JArray Results = result["list"];
             dynamic Usable = Results[0];
-            Defintion = new Response.UrbanDefinition()
+            Defintion = new UrbanDefinition
             {
                 Author = Usable.author,
                 Definition = Usable.definition,
@@ -43,7 +41,7 @@ namespace J.H_D.Minions.Infos
                 Exemples = Usable.example
             };
 
-            return new FeatureRequest<Response.UrbanDefinition, Error.Urban>(Defintion, Error.Urban.None);
+            return new FeatureRequest<UrbanDefinition?, Error.Urban>(Defintion, Error.Urban.None);
         }
     }
 }

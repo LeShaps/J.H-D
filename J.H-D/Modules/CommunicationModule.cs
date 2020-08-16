@@ -45,7 +45,7 @@ namespace J.H_D.Modules
 
             if (cleanArgs == "clean") { Natural = true; }
 
-            var Result = await InspirobotMinion.FeelInspiration();
+            var Result = await InspirobotMinion.FeelInspirationAsync();
 
             switch (Result.Error)
             {

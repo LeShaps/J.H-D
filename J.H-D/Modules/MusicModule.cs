@@ -16,7 +16,7 @@ namespace J.H_D.Modules
         {
             string Artist = Utilities.MakeQueryArgs(Args);
 
-            var Result = await MusicMinion.LookForArtist(Artist);
+            var Result = await MusicMinion.LookForArtistAsync(Artist);
 
             switch (Result.Error)
             {

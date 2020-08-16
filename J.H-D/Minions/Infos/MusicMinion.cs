@@ -1,32 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Model;
 
 using J.H_D.Data;
+
+using MusicArtist = J.H_D.Data.Response.MusicArtist;
+using System.Globalization;
 
 namespace J.H_D.Minions.Infos
 {
     class MusicMinion
     {
-        private static readonly string RootUrl = "http://ws.audioscrobbler.com/2.0/";
+        private const string RootUrl = "http://ws.audioscrobbler.com/2.0/";
 
-        public static async Task<FeatureRequest<Response.MusicArtist, Error.Brainz>> LookForArtist(string GroupName)
+        public static async Task<FeatureRequest<MusicArtist?, Error.Brainz>> LookForArtistAsync(string GroupName)
         {
-            Response.MusicArtist Artist = null;
+            MusicArtist? Artist = null;
             
             dynamic Json;
             Json = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{RootUrl}?method=artist.getinfo&artist={GroupName}&api_key={Program.p.LastFMKey}&format=json"));
 
             dynamic ArtistInfos = Json.artist;
 
-            Artist = new Response.MusicArtist()
+            Artist = new MusicArtist
             {
                 Name = ArtistInfos.name,
                 MBID = ArtistInfos.mbid,
@@ -36,7 +32,7 @@ namespace J.H_D.Minions.Infos
                 Bio = ArtistInfos.bio.summary
             };
 
-            return new FeatureRequest<Response.MusicArtist, Error.Brainz>(Artist, Error.Brainz.None);
+            return new FeatureRequest<MusicArtist?, Error.Brainz>(Artist, Error.Brainz.None);
         }
 
         private static List<string> GetTags(dynamic TagsSection)
@@ -46,7 +42,7 @@ namespace J.H_D.Minions.Infos
             foreach (dynamic tag in TagsSection.tag)
             {
                 string ChangedTag = (string)tag.name;
-                ChangedTag = char.ToUpper(ChangedTag[0]) + ChangedTag.Substring(1);
+                ChangedTag = char.ToUpper(ChangedTag[0], CultureInfo.InvariantCulture) + ChangedTag.Substring(1);
                 Tags.Add(ChangedTag);
             }
 

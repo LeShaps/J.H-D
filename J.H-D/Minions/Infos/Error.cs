@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace J.H_D.Data
+﻿namespace J.H_D.Data
 {
     public static partial class Error
     {

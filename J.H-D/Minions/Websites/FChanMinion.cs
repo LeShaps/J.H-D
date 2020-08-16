@@ -146,7 +146,7 @@ namespace J.H_D.Minions.Websites
         {
             foreach (dynamic response in (JArray)First.last_replies)
             {
-                ThreadList.Add(new Response.FThread()
+                ThreadList.Add(new Response.FThread
                 {
                     Filename = response.filename,
                     Extension = response.ext,

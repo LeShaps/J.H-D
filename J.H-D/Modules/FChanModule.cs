@@ -190,10 +190,10 @@ namespace J.H_D.Modules
             {
                 emb.Color = Color.DarkOrange;
                 string WarningPhrase = null;
-                if (Board.Nsfw)
-                    WarningPhrase += "- This board contains NSFW content" + Environment.NewLine;
-                if (Board.Spoilers)
-                    WarningPhrase += "- This board can contains Spoilers";
+                if (Board.Nsfw) {
+                    WarningPhrase += "- This board contains NSFW content" + Environment.NewLine; }
+                if (Board.Spoilers) {
+                    WarningPhrase += "- This board can contains Spoilers"; }
                 emb.AddField("Warning", WarningPhrase);
             }
 

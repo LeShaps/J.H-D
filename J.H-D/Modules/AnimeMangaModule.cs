@@ -38,13 +38,13 @@ namespace J.H_D.Modules
 
         private Embed BuildAnimeEmbed(Anime Result)
         {
-            EmbedBuilder embed = new EmbedBuilder()
+            EmbedBuilder embed = new EmbedBuilder
             {
                 Color = Color.Blue,
                 Title = $"{Result.Title} ({Result.LATitle})",
                 Description = $"{Utilities.GetPlainTextFromHtml(Result.Synopsis)}",
                 ImageUrl = Result.PosterImage,
-                Fields = new List<EmbedFieldBuilder>()
+                Fields = new List<EmbedFieldBuilder>
                 {
                     new EmbedFieldBuilder()
                     {

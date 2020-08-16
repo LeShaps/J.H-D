@@ -93,7 +93,7 @@ namespace J.H_D
         }
 
         public async Task MainAsync()
-            => await MainAsync(null, 0);
+            => await MainAsync(null, 0).ConfigureAwait(false);
 
         public async Task MainAsync(string botToken, ulong inamiId)
         {
@@ -154,6 +154,7 @@ namespace J.H_D
             await commands.AddModuleAsync<BooruModule>(null);
             await commands.AddModuleAsync<MusicModule>(null);
             await commands.AddModuleAsync<AnimeMangaModule>(null);
+            await commands.AddModuleAsync<ExperimentalModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += Disconnected;
@@ -324,12 +325,12 @@ namespace J.H_D
 
         private async Task AddError(string name)
         {
-            await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("errors", name) });
+            await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("errors", name) }).ConfigureAwait(false);
         }
 
         private async Task AddCommandServs(ulong name)
         {
-            await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("commandServs", name.ToString()) });
+            await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("commandServs", name.ToString()) }).ConfigureAwait(false);
         }
 
         public async Task UpdateElement(Tuple<string, string>[] elems)

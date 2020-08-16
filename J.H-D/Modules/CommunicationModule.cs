@@ -50,7 +50,7 @@ namespace J.H_D.Modules
             bool Natural = false;
 
 
-            if (cleanArgs == "clean") Natural = true;
+            if (cleanArgs == "clean") { Natural = true; }
 
             var Result = await InspirobotMinion.FeelInspiration();
 
@@ -234,7 +234,7 @@ namespace J.H_D.Modules
             Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
             Content = Content.Replace("( ", "(").Replace(" )", ")");
             string url = (msg.Embeds.ElementAt(0) as Embed).Url;
-            await msg.ModifyAsync(x => x.Embed = new EmbedBuilder()
+            await msg.ModifyAsync(x => x.Embed = new EmbedBuilder
             {
                 Description = Content,
                 Color = Color.DarkBlue,

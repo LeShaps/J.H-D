@@ -77,8 +77,8 @@ namespace J.H_D.Minions.Infos
                 return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.Help);
 
             dynamic SeriesInfos = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[searchType]}{Program.p.TmDbKey}&language=en-US&query={RequestName}&page=1"));
-            if (SeriesInfos["total_results"] == "0")
-                return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.NotFound);
+            if (SeriesInfos["total_results"] == "0") {
+                return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.NotFound); }
 
             JArray Results = (JArray)SeriesInfos["results"];
             dynamic SerieResult = Results[0];

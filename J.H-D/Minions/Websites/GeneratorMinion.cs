@@ -49,7 +49,7 @@ namespace J.H_D.Minions.Websites
                 {
                     OldContent = Content;
                     await Updater(msg, OldContent);
-                    await Task.Delay(2000);
+                    await Task.Delay(2000).ConfigureAwait(false);
                 }
             });
 

@@ -1,12 +1,8 @@
 ﻿using Discord;
 using Discord.Commands;
-using Discord.Rest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 
 using J.H_D.Data;
@@ -23,7 +19,7 @@ namespace J.H_D.Modules
         {
             await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
 
-            var result = await BooruMinion.GetBooruImage(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
+            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
 
             await ProccessResult(result);
         }
@@ -33,7 +29,7 @@ namespace J.H_D.Modules
         {
             await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
 
-            var result = await BooruMinion.GetBooruImage(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
+            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
 
             await ProccessInfosResult(result, BooruMinion.BooruType.Konachan);
         }
@@ -141,10 +137,14 @@ namespace J.H_D.Modules
             string GeneralTags = null;
             string Characters = null;
 
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Artist)) { Artist += CleanTag(Tag.name) + Environment.NewLine; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Copyright)) { Parodies += CleanTag(Tag.name) + Environment.NewLine; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Character)) { Characters += CleanTag(Tag.name, true) + Environment.NewLine; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Trivia)) { GeneralTags += CleanTag(Tag.name) + Environment.NewLine; }
+            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Artist))
+                { Artist += CleanTag(Tag.name) + Environment.NewLine; }
+            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Copyright))
+                { Parodies += CleanTag(Tag.name) + Environment.NewLine; }
+            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Character))
+                { Characters += CleanTag(Tag.name, true) + Environment.NewLine; }
+            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Trivia))
+                { GeneralTags += CleanTag(Tag.name) + Environment.NewLine; }
 
             emb.AddField(new EmbedFieldBuilder()
             {

@@ -1,11 +1,6 @@
 ﻿using Discord;
 using Discord.Commands;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
 using System.Threading.Tasks;
 
 using J.H_D.Minions.Infos;

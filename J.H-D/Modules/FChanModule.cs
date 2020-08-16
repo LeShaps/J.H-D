@@ -2,16 +2,12 @@
 using Discord.Commands;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Authentication.ExtendedProtection;
-using System.Text;
 using System.Threading.Tasks;
 
-using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions;
 using J.H_D.Tools;
+using J.H_D.Data;
 
 
 namespace J.H_D.Modules
@@ -191,9 +187,11 @@ namespace J.H_D.Modules
                 emb.Color = Color.DarkOrange;
                 string WarningPhrase = null;
                 if (Board.Nsfw) {
-                    WarningPhrase += "- This board contains NSFW content" + Environment.NewLine; }
+                    WarningPhrase += "- This board contains NSFW content" + Environment.NewLine;
+                }
                 if (Board.Spoilers) {
-                    WarningPhrase += "- This board can contains Spoilers"; }
+                    WarningPhrase += "- This board can contains Spoilers"; 
+                }
                 emb.AddField("Warning", WarningPhrase);
             }
 

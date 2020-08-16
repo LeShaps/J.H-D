@@ -1,15 +1,13 @@
-﻿using Discord.Commands;
-using System;
+﻿using Discord;
+using Discord.Commands;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using J.H_D.Minions.Infos;
-using J.H_D.Data;
-using Anime = J.H_D.Data.Response.Anime;
-using Discord;
 using J.H_D.Tools;
+using J.H_D.Data;
+
+using Anime = J.H_D.Data.Response.Anime;
 
 namespace J.H_D.Modules
 {

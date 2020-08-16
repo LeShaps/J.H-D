@@ -1,19 +1,12 @@
 ﻿using Discord;
 using Discord.Commands;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Net.Mime;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
+using J.H_D.Minions.Infos;
 using J.H_D.Tools;
 using J.H_D.Data;
-using J.H_D.Minions.Infos;
-using System.Security.Cryptography;
-using System.Linq.Expressions;
 
 namespace J.H_D.Modules
 {

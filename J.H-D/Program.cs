@@ -1,23 +1,16 @@
 ﻿using Discord;
 using Discord.Commands;
-using Discord.Rest;
 using Discord.WebSocket;
-using J.H_D.Data;
-using J.H_D.Modules;
 using Newtonsoft.Json;
-using RethinkDb.Driver.Ast;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml.XPath;
+
+using J.H_D.Modules;
+using J.H_D.Data;
 
 namespace J.H_D
 {
@@ -144,7 +137,7 @@ namespace J.H_D
 
                 Asker = new HttpClient();
 
-                await InitServices(json);
+                await InitServicesAsync(json);
             }
             await Log(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules..."));
 
@@ -241,7 +234,7 @@ namespace J.H_D
 
         
 
-        private async Task InitServices(dynamic json)
+        private async Task InitServicesAsync(dynamic json)
         {
             TmDbKey = json.MvKey;
             RapidAPIKey = json.RapidAPIKey;

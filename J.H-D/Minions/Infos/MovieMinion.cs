@@ -1,21 +1,12 @@
-﻿using Discord;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Model;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 
 using J.H_D.Tools;
 using J.H_D.Data;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace J.H_D.Minions.Infos
 {
@@ -171,10 +162,10 @@ namespace J.H_D.Minions.Infos
         private static List<string> GetNames(dynamic DynamicArray)
         {
             List<string> results = new List<string>();
-            if (DynamicArray == null) return null;
+            if (DynamicArray == null) {
+                return null; }
 
-            foreach (dynamic d in DynamicArray)
-            {
+            foreach (dynamic d in DynamicArray) {
                 results.Add((string)d.name);
             }
 

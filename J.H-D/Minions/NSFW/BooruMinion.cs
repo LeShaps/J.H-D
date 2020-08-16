@@ -1,16 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using BooruSharp.Booru;
+using BooruSharp.Search.Post;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using BooruSharp;
-using BooruSharp.Booru;
-using BooruSharp.Search.Post;
-using System.Data.Odbc;
-using Discord.Rest;
-using System.Diagnostics.Contracts;
 
 using J.H_D.Data;
 
@@ -51,7 +44,7 @@ namespace J.H_D.Minions.NSFW
         {
             public BooruType Booru;
             public string[] SearchQuery;
-            public bool AllowNSFW;
+            public bool AllowNSFW { private set; get; }
 
             public BooruOptions(BooruType Website, string[] Search, bool Allow)
             {
@@ -61,7 +54,7 @@ namespace J.H_D.Minions.NSFW
             }
         }
 
-        public static async Task<FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru>> GetBooruImage(BooruOptions options)
+        public static async Task<FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru>> GetBooruImageAsync(BooruOptions options)
         {
             Type Booru = WebsiteEndpoints[options.Booru];
             var BooruSearch = (ABooru)Activator.CreateInstance(Booru);

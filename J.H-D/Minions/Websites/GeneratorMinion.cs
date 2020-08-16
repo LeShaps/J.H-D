@@ -1,12 +1,10 @@
 ﻿using Discord;
-using J.H_D.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using WebSocketSharp;
+
+using J.H_D.Data;
+
 using Complete = J.H_D.Data.Response.Complete;
 
 namespace J.H_D.Minions.Websites

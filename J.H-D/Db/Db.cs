@@ -1,10 +1,7 @@
 ﻿using Discord;
 using RethinkDb.Driver;
 using RethinkDb.Driver.Net;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace J.H_D.Db
@@ -17,7 +14,7 @@ namespace J.H_D.Db
         private Connection conn;
         private string DbName;
 
-        private static readonly string defaultAvailability = "1111111111111111";
+        private const string defaultAvailability = "1111111111111111";
 
         public Dictionary<ulong, string> Languages { private set; get; }
         public Dictionary<ulong, string> Prefixs { private set; get; }

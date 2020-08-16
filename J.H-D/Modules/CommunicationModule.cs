@@ -1,12 +1,8 @@
 ﻿using Discord;
 using Discord.Commands;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 
@@ -14,9 +10,6 @@ using J.H_D.Tools;
 using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
-using Generate = J.H_D.Data.Response.Complete;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
 
 namespace J.H_D.Modules
 {

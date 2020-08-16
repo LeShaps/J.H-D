@@ -1,17 +1,13 @@
 ﻿using Discord;
-using RethinkDb.Driver.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
 using System.Text.RegularExpressions;
 using Discord.Commands;
 using System.Reflection;
-using Microsoft.SqlServer.Server;
+
 using J.H_D.Data;
 
 namespace J.H_D.Tools
@@ -110,12 +106,8 @@ namespace J.H_D.Tools
             Rotated += "0ƖᄅƐㄣϛ9ㄥ86";
 
             string newString = "";
-            foreach (char c in OriginalString)
-            {
-                if (Normal.Contains(c))
-                    newString += Rotated[Normal.IndexOf(c)];
-                else
-                    newString += c;
+            foreach (char c in OriginalString) {
+                newString += Normal.Contains(c) ? Rotated[Normal.IndexOf(c)] : c;
             }
 
             return newString;

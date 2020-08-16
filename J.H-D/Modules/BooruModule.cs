@@ -31,7 +31,7 @@ namespace J.H_D.Modules
 
             var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
 
-            await ProccessInfosResult(result, BooruMinion.BooruType.Konachan);
+            await ProccessInfosResultAsync(result, BooruMinion.BooruType.Konachan);
         }
 
         private async Task ProccessResult(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result)
@@ -49,12 +49,15 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Booru.None:
-                    await ReplyAsync("", false, BuildImageEmbed(Result.Answer));
+                    await ReplyAsync("", false, BuildImageEmbed(Result.Answer)).ConfigureAwait(false);
+                    break;
+
+                default:
                     break;
             }
         }
 
-        private async Task ProccessInfosResult(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result, BooruMinion.BooruType Website)
+        private async Task ProccessInfosResultAsync(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result, BooruMinion.BooruType Website)
         {
             if (!Utilities.IsChannelNSFW(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
             {
@@ -69,7 +72,10 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Booru.None:
-                    await ReplyAsync("", false, await BuildImageInfosEmbed(Result.Answer, Website));
+                    await ReplyAsync("", false, await BuildImageInfosEmbedAsync(Result.Answer, Website));
+                    break;
+
+                default:
                     break;
             }
         }
@@ -105,7 +111,7 @@ namespace J.H_D.Modules
             return emb.Build();
         }
 
-        private async Task<Embed> BuildImageInfosEmbed(BooruSharp.Search.Post.SearchResult Result, BooruMinion.BooruType Website)
+        private async Task<Embed> BuildImageInfosEmbedAsync(BooruSharp.Search.Post.SearchResult Result, BooruMinion.BooruType Website)
         {
             EmbedBuilder emb = new EmbedBuilder()
             {
@@ -127,6 +133,9 @@ namespace J.H_D.Modules
                 case BooruSharp.Search.Post.Rating.Explicit:
                     emb.Color = Color.Purple;
                     break;
+
+                default:
+                    break;
             }
 
             var TagResults = await BooruMinion.GetTags(Website, Result.tags);
@@ -138,13 +147,13 @@ namespace J.H_D.Modules
             string Characters = null;
 
             foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Artist))
-                { Artist += CleanTag(Tag.name) + Environment.NewLine; }
+                { Artist += $"{CleanTag(Tag.name)}{Environment.NewLine}"; }
             foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Copyright))
-                { Parodies += CleanTag(Tag.name) + Environment.NewLine; }
+                { Parodies += $"{CleanTag(Tag.name)}{Environment.NewLine}"; }
             foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Character))
-                { Characters += CleanTag(Tag.name, true) + Environment.NewLine; }
+                { Characters += $"{CleanTag(Tag.name, true)}{Environment.NewLine}"; }
             foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Trivia))
-                { GeneralTags += CleanTag(Tag.name) + Environment.NewLine; }
+                { GeneralTags += $"{CleanTag(Tag.name)}{Environment.NewLine}"; }
 
             emb.AddField(new EmbedFieldBuilder()
             {

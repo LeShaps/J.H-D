@@ -54,7 +54,7 @@ namespace J.H_D.Minions.NSFW
             }
         }
 
-        public static async Task<FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru>> GetBooruImageAsync(BooruOptions options)
+        public static async Task<FeatureRequest<SearchResult, Error.Booru>> GetBooruImageAsync(BooruOptions options)
         {
             Type Booru = WebsiteEndpoints[options.Booru];
             var BooruSearch = (ABooru)Activator.CreateInstance(Booru);

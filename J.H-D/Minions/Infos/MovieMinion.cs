@@ -163,7 +163,7 @@ namespace J.H_D.Minions.Infos
         {
             List<string> results = new List<string>();
             if (DynamicArray == null) {
-                return null; }
+                return new List<string>(); }
 
             foreach (dynamic d in DynamicArray) {
                 results.Add((string)d.name);

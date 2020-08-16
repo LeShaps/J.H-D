@@ -29,7 +29,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Anime.None:
-                    await ReplyAsync("", false, BuildAnimeEmbed(Response.Answer));
+                    await ReplyAsync("", false, BuildAnimeEmbed((Anime)Response.Answer));
                     break;
             }
         }

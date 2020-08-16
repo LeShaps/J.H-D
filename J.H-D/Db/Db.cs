@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace J.H_D.Db
 {
-    public partial class Db
+    public class Db
     {
-        private RethinkDB R;
-        public RethinkDB GetR() => R;
+        public RethinkDB R1 { get; }
 
         private Connection conn;
         private string DbName;
@@ -23,7 +22,7 @@ namespace J.H_D.Db
 
         public Db()
         {
-            R = RethinkDB.R;
+            R1 = RethinkDB.R;
             Languages = new Dictionary<ulong, string>();
             Prefixs = new Dictionary<ulong, string>();
             Availlability = new Dictionary<ulong, string>();
@@ -31,30 +30,30 @@ namespace J.H_D.Db
         }
 
         public async Task InitAsync()
-            => await InitAsync("jhdatabase");
+            => await InitAsync("jhdatabase").ConfigureAwait(false);
 
         public async Task InitAsync(string dbName)
         {
             DbName = dbName;
-            conn = await R.Connection().ConnectAsync();
-            if (!await R.DbList().Contains(DbName).RunAsync<bool>(conn))
-                R.DbCreate(DbName).Run(conn);
-            if (!await R.Db(dbName).TableList().Contains("Guilds").RunAsync<bool>(conn))
-                R.Db(dbName).TableCreate("Guilds").Run(conn);
+            conn = await R1.Connection().ConnectAsync();
+            if (!await R1.DbList().Contains(DbName).RunAsync<bool>(conn))
+                R1.DbCreate(DbName).Run(conn);
+            if (!await R1.Db(dbName).TableList().Contains("Guilds").RunAsync<bool>(conn))
+                R1.Db(dbName).TableCreate("Guilds").Run(conn);
         }
 
         public async Task InitGuild(IGuild guild)
         {
             string guildIdStr = guild.Id.ToString();
-            if (await R.Db(DbName).Table("Guilds").GetAll(guildIdStr).Count().Eq(0).RunAsync<bool>(conn))
+            if (await R1.Db(DbName).Table("Guilds").GetAll(guildIdStr).Count().Eq(0).RunAsync<bool>(conn))
             {
-                await R.Db(DbName).Table("Guilds").Insert(R.HashMap("id", guildIdStr)
+                await R1.Db(DbName).Table("Guilds").Insert(R1.HashMap("id", guildIdStr)
                     .With("Prefix", ".jh")
                     .With("Language", "en")
                     .With("Availability", defaultAvailability)
                     ).RunAsync(conn);
             }
-            dynamic json = await R.Db(DbName).Table("Guilds").Get(guildIdStr).RunAsync(conn);
+            dynamic json = await R1.Db(DbName).Table("Guilds").Get(guildIdStr).RunAsync(conn);
             Languages.Add(guild.Id, (string)json.Languages);
             Prefixs.Add(guild.Id, (string)json.Prefix);
             string availability = (string)json.Availability;

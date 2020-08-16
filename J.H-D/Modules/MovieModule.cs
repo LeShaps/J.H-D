@@ -15,7 +15,7 @@ namespace J.H_D.Modules
         Program p = Program.p;
 
         [Command("Get movie"), Priority(-1)]
-        public async Task GetMovie(params string[] Args)
+        public async Task GetMovieAsync(params string[] Args)
         {
             // Availlability check
             // await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
@@ -41,7 +41,7 @@ namespace J.H_D.Modules
         }
 
         [Command("Get series")]
-        public async Task GetSeriesInfos(params string[] Args)
+        public async Task GetSeriesInfosAsync(params string[] Args)
         {
             var result = await MovieMinion.GetSeriesGeneralInfos(MovieMinion.SearchType.Serie, Args);
 
@@ -64,7 +64,7 @@ namespace J.H_D.Modules
         }
 
         [Command("Get movie infos"), Alias("Get movie info")]
-        public async Task GetMovieInfos(params string[] Args)
+        public async Task GetMovieInfosAsync(params string[] Args)
         {
             await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
 
@@ -89,19 +89,19 @@ namespace J.H_D.Modules
         private Embed CreateBonusEmbed(Response.Movie res)
         {
             string CorrectedUrl = res.OriginalTitle.Replace(' ', '-').Replace('\'', '-');
-            string Budget = res.Budget.ToString("N0", new NumberFormatInfo()
+            string Budget = res.Budget.ToString("N0", new NumberFormatInfo
             {
                 NumberGroupSizes = new[] {3},
                 NumberGroupSeparator = " "
             });
 
-            string Revenue = res.Revenue.ToString("N0", new NumberFormatInfo()
+            string Revenue = res.Revenue.ToString("N0", new NumberFormatInfo
             {
                 NumberGroupSizes = new[] { 3 },
                 NumberGroupSeparator = " "
             });
 
-            EmbedBuilder embed = new EmbedBuilder()
+            EmbedBuilder embed = new EmbedBuilder
             {
                 Title = $"More infos about {res.Name.Replace(":", "h")}",
                 Url = $"https://themoviedb.org/movie/{res.Id}-{CorrectedUrl}",
@@ -116,7 +116,7 @@ namespace J.H_D.Modules
             embed.AddField("Budget", $"{Budget}$", false);
             embed.AddField("Revenue", $"{Revenue}$", true);
 
-            embed.Footer = new EmbedFooterBuilder()
+            embed.Footer = new EmbedFooterBuilder
             {
                Text = $"Average note : {res.AverageNote}",
                IconUrl = "https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"
@@ -128,7 +128,7 @@ namespace J.H_D.Modules
         private Embed CreateSeriesEmbed(Response.TVSeries Response)
         {
             string CorrectedUrl = Response.SeriesName.Replace(' ', '-').Replace('\'', '-');
-            EmbedBuilder embed = new EmbedBuilder()
+            EmbedBuilder embed = new EmbedBuilder
             {
                 Title = Response.SeriesName,
                 Url = $"https://themoviedb.org/tv/{Response.SeriesId}-{CorrectedUrl}",
@@ -144,7 +144,7 @@ namespace J.H_D.Modules
 
         private Embed CreateSeasonEmbed(Response.TVSeason Season)
         {
-            EmbedBuilder build = new EmbedBuilder()
+            EmbedBuilder build = new EmbedBuilder
             {
                 Title = Season.SName,
                 Description = Season.Overview,
@@ -152,13 +152,13 @@ namespace J.H_D.Modules
                 Color = Color.DarkRed,
             };
 
-            build.Fields.Add(new EmbedFieldBuilder()
+            build.Fields.Add(new EmbedFieldBuilder
             {
                 Name = "Number of Episodes",
                 Value = Season.EpisodeNumber,
                 IsInline = true
             });
-            build.Fields.Add(new EmbedFieldBuilder()
+            build.Fields.Add(new EmbedFieldBuilder
             {
                 Name = "Season",
                 Value = Season.SNumber,
@@ -171,7 +171,7 @@ namespace J.H_D.Modules
         private Embed CreateEmbedSimple(Response.Movie res)
         {
             string CorrectedUrl = res.OriginalTitle.Replace(' ', '-').Replace('\'', '-');
-            EmbedBuilder embed = new EmbedBuilder()
+            EmbedBuilder embed = new EmbedBuilder
             {
                 Title = res.Name,
                 Url = $"https://www.themoviedb.org/movie/{res.Id}-{CorrectedUrl}",
@@ -185,14 +185,14 @@ namespace J.H_D.Modules
             return embed.Build();
         }
 
-        public async Task<Tuple<int, Response.TVSeries>> UpdateSeriesEmbed(IUserMessage message, Tuple<int, Response.TVSeries> Data, int NewPosition)
+        public async Task<Tuple<int, Response.TVSeries>> UpdateSeriesEmbedAsync(IUserMessage message, Tuple<int, Response.TVSeries> Data, int NewPosition)
         {
             if (NewPosition < -1 || NewPosition >= int.Parse(Data.Item2.SeasonNumber))
                 return Data;
 
             await message.ModifyAsync(x =>
             x.Embed = NewPosition == -1 ?
-            CreateSeriesEmbed(Data.Item2) : 
+            CreateSeriesEmbed(Data.Item2) :
             CreateSeasonEmbed(Data.Item2.Seasons[NewPosition]));
 
             return new Tuple<int, Response.TVSeries>(NewPosition, Data.Item2);

@@ -71,7 +71,7 @@ namespace J.H_D.Modules
         {
             string FinalArgs = Utilities.MakeQueryArgs(Args);
 
-            var Result = await UrbanDictionaryMinion.SearchForWord(FinalArgs);
+            var Result = await UrbanDictionaryMinion.SearchForWordAsync(FinalArgs);
 
             switch (Result.Error)
             {
@@ -80,7 +80,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Urban.None:
-                    await ReplyAsync("", false, BuildDefinition(Result.Answer));
+                    await ReplyAsync("", false, BuildDefinition((Response.UrbanDefinition)Result.Answer));
                     break;
             }
         }

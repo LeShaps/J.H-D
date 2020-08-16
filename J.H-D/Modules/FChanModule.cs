@@ -41,7 +41,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.FChan.None:
-                    await ReplyAsync("", false, BoardInfos(result.Answer));
+                    await ReplyAsync("", false, BoardInfos((Response.FBoard)result.Answer));
                     break;
 
                 default:
@@ -55,13 +55,13 @@ namespace J.H_D.Modules
             // For later, to make more easy-to-use command
             string AskArgs = null;
 
-            var result = new FeatureRequest<Response.FThread, Error.FChan>();
+            var result = new FeatureRequest<Response.FThread?, Error.FChan>();
             ITextChannel chan = (ITextChannel)Context.Channel;
 
             if (Args.Length >= 1)
             {
                 string OneArg = Utilities.MakeArgs(Args);
-                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions
                 {
                     MandatoryWord = null,
                     AllowNsfw = chan.IsNsfw,
@@ -69,7 +69,7 @@ namespace J.H_D.Modules
                 });
             }
             else
-                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions
                 {
                     MandatoryWord = null,
                     AllowNsfw = chan.IsNsfw,
@@ -83,7 +83,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.FChan.None:
-                    await ReplyAsync("", false, ThreadImageBuild(result.Answer));
+                    await ReplyAsync("", false, ThreadImageBuild((Response.FThread)result.Answer));
                     break;
 
                 case Error.FChan.Nsfw:
@@ -103,7 +103,7 @@ namespace J.H_D.Modules
 
             ITextChannel chan = (ITextChannel)Context.Channel;
 
-            var result = new FeatureRequest<Response.FThread, Error.FChan>();
+            var result = new FeatureRequest<Response.FThread?, Error.FChan>();
 
             if (Args.Length >= 1)
             {
@@ -130,7 +130,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.FChan.None:
-                    await ReplyAsync("", false, ThreadInfosEmbed(result.Answer));
+                    await ReplyAsync("", false, ThreadInfosEmbed((Response.FThread)result.Answer));
                     break;
 
                 case Error.FChan.Nsfw:

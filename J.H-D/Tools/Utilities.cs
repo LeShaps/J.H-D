@@ -155,7 +155,9 @@ namespace J.H_D.Tools
         /// <returns>The plain text of the HTML string</returns>
         public static string GetPlainTextFromHtml(string htmlString)
         {
-            if (htmlString == null) return null;
+            if (htmlString == null) {
+                return null;
+            }
 
             string htmlTagPattern = "<.*?>";
             var regexCss = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);

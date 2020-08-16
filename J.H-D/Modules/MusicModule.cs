@@ -33,7 +33,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Brainz.None:
-                    await ReplyAsync("", false, MakeArtistEmbed(Result.Answer));
+                    await ReplyAsync("", false, MakeArtistEmbed((Response.MusicArtist)Result.Answer));
                     break;
             }
         }

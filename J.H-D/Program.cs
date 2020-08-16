@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 using J.H_D.Modules;
 using J.H_D.Data;
+using System.Security.Cryptography;
+using System.Globalization;
 
 namespace J.H_D
 {
@@ -23,6 +25,8 @@ namespace J.H_D
         public string TmDbKey;
         public string RapidAPIKey;
         public string LastFMKey;
+
+        private const int RefreshDelay = 300000;
 
         public HttpClient Asker;
         public HttpClient KitsuClient;
@@ -92,10 +96,11 @@ namespace J.H_D
         {
             _ = Task.Run(async () =>
             {
-                await Task.Delay(300000);
+                await Task.Delay(RefreshDelay);
                 if (isTimerValid)
                     Environment.Exit(1);
             });
+
             p = this;
 
             await Log(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D"));
@@ -103,7 +108,7 @@ namespace J.H_D
             db = new Db.Db();
             await db.InitAsync();
             rand = new System.Random();
-
+            
             SendedSeriesEmbed = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
             GeneratedText = new Dictionary<ulong, string>();
 
@@ -189,16 +194,16 @@ namespace J.H_D
                 switch (Reaction.Emote.Name)
                 {
                     case "▶️":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, Used.Item1 + 1);
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, Used.Item1 + 1);
                         break;
                     case "◀️":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, Used.Item1 - 1);
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, Used.Item1 - 1);
                         break;
                     case "⏩":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, int.Parse(Used.Item2.SeasonNumber) - 1);
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, int.Parse(Used.Item2.SeasonNumber) - 1);
                         break;
                     case "⏪":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbed(Mess, Used, -1);
+                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, -1);
                         break;
                 }
             }
@@ -256,13 +261,13 @@ namespace J.H_D
         public async Task DoAction(IUser u, ulong serverId, Module m)
         {
             if (!u.IsBot && SendStats)
-                await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) });
+                await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
         }
 
         private Task Disconnected(Exception e)
         {
             Tools.Utilities.CheckDir("Saves/Logs");
-            File.WriteAllText("Saves/Logs/" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".errorlog", "Bot disconnected. Exception:\n" + e.ToString());
+            File.WriteAllText("Saves/Logs/" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".errorlog", "Bot disconnected. Exception:\n" + e.ToString());
             return Task.CompletedTask;
         }
 
@@ -303,8 +308,6 @@ namespace J.H_D
         {
             if (result.IsSuccess)
             {
-                DateTime dt = DateTime.UtcNow;
-                var msg = context.Message;
                 if (cmd.IsSpecified)
                     throw new NotImplementedException();
                 if (SendStats)
@@ -328,7 +331,6 @@ namespace J.H_D
 
         public async Task UpdateElement(Tuple<string, string>[] elems)
         {
-            HttpClient client = new HttpClient();
             Dictionary<string, string> Values = new Dictionary<string, string>
             {
                 {"token", WebsiteStatsToken },
@@ -344,7 +346,7 @@ namespace J.H_D
 
             try
             {
-                await client.SendAsync(msg);
+                await Asker.SendAsync(msg);
             }
             catch (HttpRequestException) { }
             catch (TaskCanceledException) { }

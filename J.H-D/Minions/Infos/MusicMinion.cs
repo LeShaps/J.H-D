@@ -19,10 +19,10 @@ namespace J.H_D.Minions.Infos
             MusicArtist? Artist = null;
             
             dynamic Json;
-            Json = JsonConvert.DeserializeObject(await Program.GetP().Asker.GetStringAsync($"{RootUrl}?method=artist.getinfo&artist={GroupName}&api_key={Program.GetP().LastFMKey}&format=json"));
+            Json = JsonConvert.DeserializeObject(await JHConfig.Asker.GetStringAsync($"{RootUrl}?method=artist.getinfo&artist={GroupName}&api_key={JHConfig.LastFMKey}&format=json"));
 
             dynamic ArtistInfos = Json.artist;
-
+            
             Artist = new MusicArtist
             {
                 Name = ArtistInfos.name,

@@ -18,7 +18,7 @@ namespace J.H_D.Minions.Infos
             if (SearchName.Length == 0)
                 return new FeatureRequest<Anime?, Error.Anime>(null, Error.Anime.Help);
 
-            dynamic json = JsonConvert.DeserializeObject(await Program.GetP().KitsuClient.GetStringAsync($"https://kitsu.io/api/edge/anime?page[limit]=1&filter[text]=" + SearchName));
+            dynamic json = JsonConvert.DeserializeObject(await JHConfig.KitsuClient.GetStringAsync($"https://kitsu.io/api/edge/anime?page[limit]=1&filter[text]=" + SearchName));
 
 
             if (json == null)

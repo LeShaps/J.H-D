@@ -13,15 +13,13 @@ namespace J.H_D.Modules
 {
     class MovieModule : ModuleBase
     {
-        readonly Program p = Program.GetP();
-
         [Command("Get movie"), Priority(-1)]
         public async Task GetMovieAsync(params string[] Args)
         {
             if (Context.Channel as ITextChannel is null)
-                await p.DoActionAsync(Context.User, 0, Program.Module.Movie);
+                await Program.DoActionAsync(Context.User, 0, Module.Movie);
             else
-                await p.DoActionAsync(Context.User, Context.Channel.Id, Program.Module.Movie);
+                await Program.DoActionAsync(Context.User, Context.Channel.Id, Module.Movie);
 
             var result = await MovieMinion.SearchMovieAsync(Args);
             switch (result.Error)
@@ -60,7 +58,7 @@ namespace J.H_D.Modules
 
                 case Error.Movie.None:
                     var Message = await ReplyAsync("", false, CreateSeriesEmbed(result.Answer));
-                    p.SendedSeriesEmbed.Add(Message.Id, new Tuple<int, Response.TVSeries>(-1, result.Answer));
+                    JHConfig.SendedSeriesEmbed.Add(Message.Id, new Tuple<int, Response.TVSeries>(-1, result.Answer));
                     await Message.AddReactionsAsync(new[] { new Emoji("⏪"), new Emoji("◀️"), new Emoji("▶️"), new Emoji("⏩") });
                     break;
 
@@ -72,7 +70,7 @@ namespace J.H_D.Modules
         [Command("Get movie infos"), Alias("Get movie info")]
         public async Task GetMovieInfosAsync(params string[] Args)
         {
-            await p.DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Movie);
+            await Program.DoActionAsync(Context.User, Context.Guild.Id, Module.Movie);
 
             var result = await MovieMinion.BonusInfosAsync(MovieMinion.SearchType.Serie, Args);
 

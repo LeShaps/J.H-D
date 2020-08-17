@@ -106,7 +106,7 @@ namespace J.H_D.Modules
 
                 case Error.Complete.None:
                     await msg.ModifyAsync(x => x.Embed = CreateTextEmbed(Response.Answer.Content));
-                    Program.GetP().GeneratedText.Add(msg.Id, sentence);
+                    JHConfig.GeneratedText.Add(msg.Id, sentence);
                     await msg.AddReactionAsync(new Emoji("🔄"));
                     break;
 
@@ -241,8 +241,14 @@ namespace J.H_D.Modules
 
         public async Task MessageUpdaterAsync(IUserMessage msg, string Content)
         {
-            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
-            Content = Content.Replace("( ", "(").Replace(" )", ")");
+            Content = Content.Replace(" .", ".", StringComparison.OrdinalIgnoreCase)
+                .Replace("\" ", "\"", StringComparison.OrdinalIgnoreCase).
+                Replace("' ", "'", StringComparison.OrdinalIgnoreCase).
+                Replace(" '", "'", StringComparison.OrdinalIgnoreCase).
+                Replace(" ,", ",", StringComparison.OrdinalIgnoreCase).
+                Replace("( ", "(", StringComparison.OrdinalIgnoreCase).
+                Replace(" )", ")", StringComparison.OrdinalIgnoreCase);
+
             string url = (msg.Embeds.ElementAt(0) as Embed).Url;
             await msg.ModifyAsync(x => x.Embed = new EmbedBuilder
             {

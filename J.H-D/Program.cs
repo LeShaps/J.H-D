@@ -19,49 +19,22 @@ namespace J.H_D
     {
         public readonly DiscordSocketClient client;
         private readonly CommandService commands = new CommandService();
-        private static Program p;
-        public System.Random rand;
-        public string TmDbKey;
-        public string RapidAPIKey;
-        public string LastFMKey;
 
         private const int RefreshDelay = 300_000;
         private const int RefreshSendDelay = 6_000_000;
-
-        public HttpClient Asker;
-        public HttpClient KitsuClient;
 
         private bool DebugMode;
 
         private static bool isTimerValid;
 
         // Website stats
-        private Uri WebsiteStats;
-        private string WebsiteStatsToken;
-        public string WebsiteUpload { get; private set; }
-        public Uri WebsiteUrl { private set; get; }
-        public bool SendStats { private set; get; }
-
-        public Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed;
-        public Dictionary<ulong, string> GeneratedText;
+        public static bool SendStats { private set; get; }
 
         // Starting Time
         public DateTime StartingTime;
 
         // Db
         public Db.Db db;
-
-        public Dictionary<string, string> KitsuAuth;
-
-        public enum Module
-        {
-            AnimeManga,
-            Forum,
-            Vn,
-            Movie,
-            Booru,
-            Communication
-        }
 
         public Program()
         {
@@ -103,16 +76,10 @@ namespace J.H_D
                     Environment.Exit(1);
             });
 
-            p = this;
-
             await LogAsync(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D")).ConfigureAwait(false);
 
             db = new Db.Db();
             await db.InitAsync();
-            rand = new System.Random();
-            
-            SendedSeriesEmbed = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
-            GeneratedText = new Dictionary<ulong, string>();
 
             Tools.Utilities.CheckDir("Saves");
             Tools.Utilities.CheckDir("Saves/Download");
@@ -129,22 +96,9 @@ namespace J.H_D
                 botToken = DebugMode ? json.developpmentToken : json.botToken;
                 // Complete informations about the owner
 
-                WebsiteStats = new Uri((string)json.WebsiteStats);
-                WebsiteStatsToken = (string)json.WebsiteStatsToken;
-
-                KitsuAuth = (json.kitsuCredentials.kitsuMail != null && json.kitsuCredentials.kitsuPass != null) ?
-                    new Dictionary<string, string>
-                    {
-                        {"grant_type", "password" },
-                        {"username", (string)json.kitsuCredentials.KitsuMail },
-                        {"password", (string)json.kitsuCredentails.KitsuKey }
-                    } : null;
-
-                Asker = new HttpClient();
-                isTimerValid = true;
-
-                await InitServicesAsync(json);
+                isTimerValid = false;
             }
+
             await LogAsync(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules...")).ConfigureAwait(false);
 
             await commands.AddModuleAsync<MovieModule>(null);
@@ -159,11 +113,11 @@ namespace J.H_D
             client.GuildAvailable += GuildJoinAsync;
             client.JoinedGuild += GuildJoinAsync;
             client.ReactionAdded += ReactionAddAsync;
+            client.Disconnected += DisconnectionAsync;
 
             commands.CommandExecuted += CommandExectuteAsync;
 
             await client.LoginAsync(TokenType.Bot, botToken);
-            StartingTime = DateTime.Now;
             await client.StartAsync();
 
             if (SendStats)
@@ -182,35 +136,39 @@ namespace J.H_D
             await Task.Delay(-1).ConfigureAwait(false);
         }
 
-        public static Program GetP() { return p; }
+        private async Task DisconnectionAsync(Exception arg)
+        {
+            await LogAsync(new LogMessage(LogSeverity.Critical, "Program", arg.Message, null));
+            throw new NotImplementedException();
+        }
 
         private async Task CheckSeriesAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
         {
-            if (SendedSeriesEmbed.ContainsKey(Message.Id))
+            if (JHConfig.SendedSeriesEmbed.ContainsKey(Message.Id))
             {
-                var Used = SendedSeriesEmbed[Message.Id];
+                var Used = JHConfig.SendedSeriesEmbed[Message.Id];
                 MovieModule Changer = new MovieModule();
 
                 IUserMessage Mess = await Message.DownloadAsync();
 
                 if (Channel as ITextChannel is null)
-                    await p.DoActionAsync(Mess.Author, 0, Module.Movie).ConfigureAwait(false);
+                    await DoActionAsync(Mess.Author, 0, Module.Movie).ConfigureAwait(false);
                 else
-                    await p.DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Movie).ConfigureAwait(false);
+                    await DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Movie).ConfigureAwait(false);
 
                 switch (Reaction.Emote.Name)
                 {
                     case "▶️":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, Used.Item1 + 1);
+                        JHConfig.SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, Used.Item1 + 1);
                         break;
                     case "◀️":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, Used.Item1 - 1);
+                        JHConfig.SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, Used.Item1 - 1);
                         break;
                     case "⏩":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, int.Parse(Used.Item2.SeasonNumber) - 1);
+                        JHConfig.SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, int.Parse(Used.Item2.SeasonNumber) - 1);
                         break;
                     case "⏪":
-                        SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, -1);
+                        JHConfig.SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, -1);
                         break;
 
                     default:
@@ -222,19 +180,19 @@ namespace J.H_D
 
         private async Task CheckGeneratedTextAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
         {
-            if (GeneratedText.ContainsKey(Message.Id))
+            if (JHConfig.GeneratedText.ContainsKey(Message.Id))
             {
                 IUserMessage Mess = await Message.DownloadAsync();
 
                 if (Channel as ITextChannel is null)
-                    await p.DoActionAsync(Mess.Author, 0, Module.Communication).ConfigureAwait(false);
+                    await DoActionAsync(Mess.Author, 0, Module.Communication).ConfigureAwait(false);
                 else
-                    await p.DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Communication).ConfigureAwait(false);
+                    await DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Communication).ConfigureAwait(false);
 
                 switch (Reaction.Emote.Name)
                 {
                     case "🔄":
-                        await new CommunicationModule().ReRollTextAsync(Mess, GeneratedText[Message.Id]);
+                        await new CommunicationModule().ReRollTextAsync(Mess, JHConfig.GeneratedText[Message.Id]);
                         break;
 
                     case "▶️":
@@ -263,26 +221,7 @@ namespace J.H_D
             await db.InitGuildAsync(arg);
         }
 
-        private async Task InitServicesAsync(dynamic json)
-        {
-            TmDbKey = json.MvKey;
-            RapidAPIKey = json.RapidAPIKey;
-            LastFMKey = json.LastFMAPIKey;
-
-            string token = null;
-            if (KitsuAuth != null)
-            {
-                var msg = new HttpRequestMessage(HttpMethod.Post, "https://kitsu.io/api/oauth/token");
-                msg.Content = new FormUrlEncodedContent(KitsuAuth);
-                dynamic j = JsonConvert.DeserializeObject(await (await Asker.SendAsync(msg)).Content.ReadAsStringAsync());
-                token = j.access_token;
-            }
-            KitsuClient = new HttpClient();
-
-            KitsuClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        }
-
-        public async Task DoActionAsync(IUser u, ulong serverId, Module m)
+        public static async Task DoActionAsync(IUser u, ulong serverId, Module m)
         {
             if (!u.IsBot && SendStats)
                 await UpdateElementAsync(new [] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
@@ -355,11 +294,11 @@ namespace J.H_D
             await UpdateElementAsync(new [] { new Tuple<string, string>("commandServs", name.ToString(CultureInfo.InvariantCulture)) }).ConfigureAwait(false);
         }
 
-        public async Task UpdateElementAsync(Tuple<string, string>[] elems)
+        public static async Task UpdateElementAsync(Tuple<string, string>[] elems)
         {
             Dictionary<string, string> Values = new Dictionary<string, string>
             {
-                {"token", WebsiteStatsToken },
+                {"token", JHConfig.WebsiteStatsToken },
                 {"action", "add" },
                 {"name", "Jeremia" }
             };
@@ -367,17 +306,10 @@ namespace J.H_D
             {
                 Values.Add(elem.Item1, elem.Item2);
             }
-            HttpRequestMessage msg = new HttpRequestMessage(HttpMethod.Post, WebsiteStats);
+            HttpRequestMessage msg = new HttpRequestMessage(HttpMethod.Post, JHConfig.WebsiteStats);
             msg.Content = new FormUrlEncodedContent(Values);
 
-            try
-            {
-                await Asker.SendAsync(msg);
-            }
-            catch (Exception e) when (e is HttpRequestException || e is TaskCanceledException)
-            {
-                    await AddErrorAsync(e.Message).ConfigureAwait(false);
-            }
+            await JHConfig.Asker.SendAsync(msg);
         }
 
         private Task LogAsync(LogMessage msg)

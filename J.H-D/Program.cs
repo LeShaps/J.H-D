@@ -26,7 +26,8 @@ namespace J.H_D
         public string RapidAPIKey;
         public string LastFMKey;
 
-        private const int RefreshDelay = 300000;
+        private const int RefreshDelay = 300_000;
+        private const int RefreshSendDelay = 6_000_000;
 
         public HttpClient Asker;
         public HttpClient KitsuClient;
@@ -128,17 +129,13 @@ namespace J.H_D
                 botToken = json.botToken;
                 // Complete informations about the owner
 
-                if (json.kitsuCredentials.kitsuMail != null && json.kitsuCredentials.kitsuPass != null)
-                {
-                    KitsuAuth = new Dictionary<string, string>()
+                KitsuAuth = (json.kitsuCredentials.kitsuMail != null && json.kitsuCredentials.kitsuPass != null) ?
+                    new Dictionary<string, string>
                     {
                         {"grant_type", "password" },
                         {"username", (string)json.kitsuCredentials.KitsuMail },
                         {"password", (string)json.kitsuCredentails.KitsuKey }
-                    };
-                }
-                else
-                    KitsuAuth = null;
+                    } : null;
 
                 Asker = new HttpClient();
 
@@ -155,7 +152,7 @@ namespace J.H_D
             await commands.AddModuleAsync<ExperimentalModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
-            client.Disconnected += Disconnected;
+            client.Disconnected += DisconnectedAsync;
             client.GuildAvailable += GuildJoin;
             client.JoinedGuild += GuildJoin;
             client.ReactionAdded += ReactionAdd;
@@ -172,14 +169,14 @@ namespace J.H_D
                 {
                     for (; ; )
                     {
-                        await Task.Delay(6000000);
+                        await Task.Delay(RefreshSendDelay).ConfigureAwait(false);
                         if (client.ConnectionState == ConnectionState.Connected)
                             throw new NotImplementedException();
                             // Update bot Status
                     }
                 });
             }
-            await Task.Delay(-1);
+            await Task.Delay(-1).ConfigureAwait(false);
         }
 
         private async Task CheckSeriesAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
@@ -218,7 +215,7 @@ namespace J.H_D
                 switch (Reaction.Emote.Name)
                 {
                     case "🔄":
-                        await new CommunicationModule().ReRollText(Mess, GeneratedText[Message.Id]);
+                        await new CommunicationModule().ReRollTextAsync(Mess, GeneratedText[Message.Id]);
                         break;
                 }
             }
@@ -228,13 +225,13 @@ namespace J.H_D
         {
             if (Reaction.User.Value.IsBot) return;
 
-            await CheckSeriesAsync(Message, Channel, Reaction);
-            await CheckGeneratedTextAsync(Message, Channel, Reaction);
+            await CheckSeriesAsync(Message, Channel, Reaction).ConfigureAwait(false);
+            await CheckGeneratedTextAsync(Message, Channel, Reaction).ConfigureAwait(false);
         }
 
         private async Task GuildJoin(SocketGuild arg)
         {
-            await db.InitGuild(arg);
+            await db.InitGuildAsync(arg);
         }
 
         
@@ -264,10 +261,10 @@ namespace J.H_D
                 await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
         }
 
-        private Task Disconnected(Exception e)
+        private Task DisconnectedAsync(Exception e)
         {
             Tools.Utilities.CheckDir("Saves/Logs");
-            File.WriteAllText("Saves/Logs/" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".errorlog", "Bot disconnected. Exception:\n" + e.ToString());
+            File.WriteAllText("Saves/Logs/" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture) + ".errorlog", "Bot disconnected. Exception:\n" + e);
             return Task.CompletedTask;
         }
 

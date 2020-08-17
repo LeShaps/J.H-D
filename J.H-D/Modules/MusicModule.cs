@@ -42,21 +42,21 @@ namespace J.H_D.Modules
         {
             string NoPromoDescription = Artist.Bio.Substring(0, Artist.Bio.IndexOf("<a"));
             NoPromoDescription = Utilities.DiscordFriendly(NoPromoDescription);
-            EmbedBuilder builder = new EmbedBuilder()
+            EmbedBuilder builder = new EmbedBuilder
             {
                 Title = Artist.Name,
                 Url = Artist.LastUrl,
                 Description = NoPromoDescription,
             };
 
-            builder.AddField(new EmbedFieldBuilder()
+            builder.AddField(new EmbedFieldBuilder
             {
                 Name = "Genres",
                 Value = String.Join(Environment.NewLine, Artist.Genres.ToArray()),
                 IsInline = true
             });
 
-            builder.AddField(new EmbedFieldBuilder()
+            builder.AddField(new EmbedFieldBuilder
             {
                 Name = "On Tour",
                 Value = Artist.OnTour ? "Yes" : "Nope",

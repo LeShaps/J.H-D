@@ -25,19 +25,19 @@ namespace J.H_D.Modules
         }
 
         [Command("Rotate")]
-        public async Task RotateThenRespond([Remainder]string Args)
+        public async Task RotateThenRespondAsync([Remainder]string Args)
         {
             await ReplyAsync(Utilities.RotateString(Args));
         }
 
         [Command("Clarify")]
-        public async Task ClarifyThenRespond(params string[] Args)
+        public async Task ClarifyThenRespondAsync(params string[] Args)
         {
             await ReplyAsync(Utilities.GetPlainTextFromHtml(Utilities.MakeArgs(Args)));
         }
 
         [Command("Motive"), Alias("Inspire")]
-        public async Task Motive(params string[] Args)
+        public async Task MotiveAsync(params string[] Args)
         {
             string cleanArgs = Utilities.MakeArgs(Args).ToLower();
             bool Natural = false;
@@ -58,7 +58,7 @@ namespace J.H_D.Modules
                         await ReplyAsync("", false, BuildInspirobotEmbed(Result.Answer));
                     else
                     {
-                        string file = await PureImage(Result.Answer);
+                        string file = await PureImageAsync(Result.Answer);
                         await Context.Channel.SendFileAsync(file);
                         File.Delete(file);
                     }
@@ -67,7 +67,7 @@ namespace J.H_D.Modules
         }
 
         [Command("Define")]
-        public async Task FindDefinition(params string[] Args)
+        public async Task FindDefinitionAsync(params string[] Args)
         {
             string FinalArgs = Utilities.MakeQueryArgs(Args);
 
@@ -86,13 +86,13 @@ namespace J.H_D.Modules
         }
 
         [Command("Generate", RunMode = RunMode.Async)]
-        public async Task Generate([Remainder]string sentence)
+        public async Task GenerateAsync([Remainder]string sentence)
         {
             string Content = sentence;
             string OldContent = Content;
 
-            var msg = await StartWait(sentence);
-            var Response = await GeneratorMinion.Complete(sentence, msg, MessageUpdater);
+            var msg = await StartWaitAsync(sentence);
+            var Response = await GeneratorMinion.Complete(sentence, msg, MessageUpdaterAsync);
 
             switch (Response.Error)
             {
@@ -112,9 +112,9 @@ namespace J.H_D.Modules
             }
         }
 
-        public async Task ReRollText(IUserMessage Message, string Sentence)
+        public async Task ReRollTextAsync(IUserMessage Message, string Sentence)
         {
-            var Response = await GeneratorMinion.Complete(Sentence, Message, MessageUpdater);
+            var Response = await GeneratorMinion.Complete(Sentence, Message, MessageUpdaterAsync);
 
             switch (Response.Error)
             {
@@ -162,7 +162,7 @@ namespace J.H_D.Modules
             return builder.Build();
         }
 
-        private async Task<string> PureImage(string Url)
+        private async Task<string> PureImageAsync(string Url)
         {
             Utilities.CheckDir("Ressources/Inspiration");
             string FileName = Url.Split('/')[Url.Split('/').Length - 1];
@@ -193,7 +193,7 @@ namespace J.H_D.Modules
             return builder.Build();
         }
 
-        private async Task<IUserMessage> StartWait(string sentence)
+        private async Task<IUserMessage> StartWaitAsync(string sentence)
         {
             return await ReplyAsync("", false, new EmbedBuilder()
             {
@@ -222,7 +222,7 @@ namespace J.H_D.Modules
             }.Build();
         }
 
-        public async Task MessageUpdater(IUserMessage msg, string Content)
+        public async Task MessageUpdaterAsync(IUserMessage msg, string Content)
         {
             Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
             Content = Content.Replace("( ", "(").Replace(" )", ")");

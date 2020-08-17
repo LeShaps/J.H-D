@@ -42,7 +42,7 @@ namespace J.H_D.Db
                 R1.Db(dbName).TableCreate("Guilds").Run(conn);
         }
 
-        public async Task InitGuild(IGuild guild)
+        public async Task InitGuildAsync(IGuild guild)
         {
             string guildIdStr = guild.Id.ToString();
             if (await R1.Db(DbName).Table("Guilds").GetAll(guildIdStr).Count().Eq(0).RunAsync<bool>(conn))

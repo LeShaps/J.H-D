@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using J.H_D.Tools;
 using J.H_D.Data;
+using System.Globalization;
 
 namespace J.H_D.Minions.Infos
 {
@@ -23,10 +24,10 @@ namespace J.H_D.Minions.Infos
         {
             if (s1 == null)
                 return false;
-            return s1.Contains(s2);
+            return s1.Contains(s2, StringComparison.OrdinalIgnoreCase);
         }
 
-        private static readonly Dictionary<SearchType, string> EndpointList = new Dictionary<SearchType, string>()
+        private static readonly Dictionary<SearchType, string> EndpointList = new Dictionary<SearchType, string>
         {
             {SearchType.Movie, "https://api.themoviedb.org/3/search/movie?api_key=" },
             {SearchType.Serie, "https://api.themoviedb.org/3/search/tv?api_key=" },
@@ -46,7 +47,7 @@ namespace J.H_D.Minions.Infos
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
             JArray Results = (JArray)Json["results"];
             dynamic FinalData = Results[0];
-            return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie()
+            return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie
             {
                 Name = FinalData.original_title,
                 PosterPath = FinalData.poster_path,
@@ -91,7 +92,7 @@ namespace J.H_D.Minions.Infos
                 });
             }
 
-            return new FeatureRequest<Response.TVSeries, Error.Movie>(new Response.TVSeries()
+            return new FeatureRequest<Response.TVSeries, Error.Movie>(new Response.TVSeries
             {
                 BackdropPath = DetailsJson.backdrop_path,
                 EpisodeNumber = DetailsJson.number_of_episodes,
@@ -117,10 +118,6 @@ namespace J.H_D.Minions.Infos
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.Help);
             
             dynamic Moviejson;
-            using (HttpClient client = new HttpClient())
-            {
-                Moviejson = JsonConvert.DeserializeObject(await (await client.GetAsync($"https://api.themoviedb.org/3/search/movie?api_key={Program.p.TmDbKey}&language=en-US&query={RequestName}")).Content.ReadAsStringAsync());
-            }
 
             Moviejson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{Program.p.TmDbKey}&lanuage=en-US&query={RequestName}"));
 
@@ -133,7 +130,7 @@ namespace J.H_D.Minions.Infos
 
             DetailsJson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"https://api.themoviedb.org/3/movie/{MovieResults.id}?api_key={Program.p.TmDbKey}&language=en-US"));
 
-            return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie()
+            return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie
             {
                 Name = DetailsJson.original_title,
                 PosterPath = DetailsJson.poster_path,
@@ -156,7 +153,7 @@ namespace J.H_D.Minions.Infos
         private static string GetRuntime(int minutes)
         {
             TimeSpan span = TimeSpan.FromMinutes(minutes);
-            return span.ToString(@"hh\:mm");
+            return span.ToString(@"hh\:mm", CultureInfo.InvariantCulture);
         }
 
         private static List<string> GetNames(dynamic DynamicArray)

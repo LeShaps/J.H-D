@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using J.H_D.Data;
+using System.Collections.Immutable;
 
 namespace J.H_D.Minions.NSFW
 {
@@ -26,7 +27,7 @@ namespace J.H_D.Minions.NSFW
             Yandere
         }
 
-        public static readonly Dictionary<BooruType, Type> WebsiteEndpoints = new Dictionary<BooruType, Type>
+        public static readonly ImmutableDictionary<BooruType, Type> WebsiteEndpoints = new Dictionary<BooruType, Type>
         {
             {BooruType.Danbooru, typeof(DanbooruDonmai) },
             {BooruType.E621, typeof(E621) },
@@ -37,20 +38,23 @@ namespace J.H_D.Minions.NSFW
             {BooruType.R34, typeof(Rule34) },
             {BooruType.SankakuComplex, typeof(SankakuComplex) },
             {BooruType.Yandere, typeof(Yandere) }
-        };
+        }.ToImmutableDictionary();
 
-
-        public class BooruOptions
+        public struct BooruOptions
         {
-            public BooruType Booru;
-            public string[] SearchQuery;
-            public bool AllowNSFW { private set; get; }
+            private BooruType booru;
+            private string[] searchQuery;
+            private bool allowNSFW;
+
+            public bool AllowNSFW { get => allowNSFW; private set => allowNSFW = value; }
+            public BooruType Booru { get => booru; set => booru = value; }
+            public string[] SearchQuery { get => searchQuery; set => searchQuery = value; }
 
             public BooruOptions(BooruType Website, string[] Search, bool Allow)
             {
-                Booru = Website;
-                SearchQuery = Search;
-                AllowNSFW = Allow;
+                booru = Website;
+                searchQuery = Search;
+                allowNSFW = Allow;
             }
         }
 
@@ -79,7 +83,7 @@ namespace J.H_D.Minions.NSFW
             return new FeatureRequest<BooruSharp.Search.Tag.SearchResult, Error.Booru>(TagResult, Error.Booru.None);
         }
 
-        public static async Task<FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>> GetTags(BooruType Booru, string[] Tags, 
+        public static async Task<FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>> GetTagsAsync(BooruType Booru, string[] Tags, 
             BooruSharp.Search.Tag.TagType OnlyType = BooruSharp.Search.Tag.TagType.Metadata)
         {
             Type BType = WebsiteEndpoints[Booru];

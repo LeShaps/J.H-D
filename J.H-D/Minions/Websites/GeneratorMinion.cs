@@ -54,7 +54,7 @@ namespace J.H_D.Minions.Websites
             if (SendError == true)
                 return new FeatureRequest<Complete, Error.Complete>(null, Error.Complete.Connection);
 
-            return new FeatureRequest<Complete, Error.Complete>(new Complete()
+            return new FeatureRequest<Complete, Error.Complete>(new Complete
             {
                 Content = OldContent
             }, Error.Complete.None);

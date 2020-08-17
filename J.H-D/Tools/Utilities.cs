@@ -9,10 +9,11 @@ using Discord.Commands;
 using System.Reflection;
 
 using J.H_D.Data;
+using System.Globalization;
 
 namespace J.H_D.Tools
 {
-    class Utilities
+    static class Utilities
     {
         /// <summary>
         /// Check if a directory exist, if it doesn't, create it
@@ -159,7 +160,7 @@ namespace J.H_D.Tools
                 return null;
             }
 
-            string htmlTagPattern = "<.*?>";
+            const string htmlTagPattern = "<.*?>";
             var regexCss = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
             htmlString = regexCss.Replace(htmlString, string.Empty);
@@ -231,7 +232,7 @@ namespace J.H_D.Tools
 
         public static string StandardUppercase(string ToUpper)
         {
-            string end = char.ToUpper(ToUpper[0]) + String.Join("", ToUpper.Skip(1)).ToLower();
+            string end = char.ToUpper(ToUpper[0], CultureInfo.InvariantCulture) + String.Join("", ToUpper.Skip(1), CultureInfo.InvariantCulture).ToLower();
 
             return end;
         }

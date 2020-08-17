@@ -143,7 +143,7 @@ namespace J.H_D.Modules
                     throw new NotSupportedException();
             }
 
-            var TagResults = await BooruMinion.GetTagsAsync(Website, Result.tags);
+            var TagResults = await BooruMinion.GetTagsAsync(Website, Result.tags, BooruSharp.Search.Tag.TagType.Metadata);
             List<BooruSharp.Search.Tag.SearchResult> FoundTags = TagResults.Answer;
 
             string Artist = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Artist);

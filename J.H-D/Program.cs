@@ -281,7 +281,7 @@ namespace J.H_D
         public async Task DoActionAsync(IUser u, ulong serverId, Module m)
         {
             if (!u.IsBot && SendStats)
-                await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
+                await UpdateElementAsync(new [] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
         }
 
         private Task DisconnectedAsync(Exception e)
@@ -332,23 +332,23 @@ namespace J.H_D
                     throw new NotSupportedException();
                 if (SendStats)
                 {
-                    await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
+                    await UpdateElementAsync(new [] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
                     await AddErrorAsync("Ok").ConfigureAwait(false);
                     await AddCommandServsAsync(context.Guild.Id).ConfigureAwait(false);
                     if (DebugMode)
-                        await LogAsync(new LogMessage(LogSeverity.Debug, "ElementUpdated", null, null));
+                        await LogAsync(new LogMessage(LogSeverity.Debug, "ElementUpdated", null, null)).ConfigureAwait(false);
                 }
             }
         }
 
         private async Task AddErrorAsync(string name)
         {
-            await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("errors", name) }).ConfigureAwait(false);
+            await UpdateElementAsync(new[] { new Tuple<string, string>("errors", name) }).ConfigureAwait(false);
         }
 
         private async Task AddCommandServsAsync(ulong name)
         {
-            await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("commandServs", name.ToString(CultureInfo.InvariantCulture)) }).ConfigureAwait(false);
+            await UpdateElementAsync(new [] { new Tuple<string, string>("commandServs", name.ToString(CultureInfo.InvariantCulture)) }).ConfigureAwait(false);
         }
 
         public async Task UpdateElementAsync(Tuple<string, string>[] elems)

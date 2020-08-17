@@ -238,7 +238,10 @@ namespace J.H_D.Tools
 
         public static string StandardUppercase(string ToUp)
         {
-            return char.ToUpperInvariant(ToUp[0]) + String.Join("", ToUp.Skip(1)).ToLowerInvariant();
+            char UppedChar = char.ToUpperInvariant(ToUp[0]);
+            string Lowered = ToUp.Skip(1).ToString().ToLowerInvariant();
+
+            return $"{UppedChar}{Lowered}";
         }
     }
 }

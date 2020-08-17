@@ -66,12 +66,21 @@ namespace J.H_D.Minions.NSFW
         {
             Type Booru = WebsiteEndpoints[options.Booru];
             var BooruSearch = (ABooru)Activator.CreateInstance(Booru);
+            SearchResult Result = new SearchResult();
 
             if (!options.AllowNsfw) {
                 options.SearchQuery.Append("Safe");
             }
 
-            SearchResult Result = await BooruSearch.GetRandomPostAsync(options.SearchQuery);
+            try
+            {
+                Result = await BooruSearch.GetRandomPostAsync(options.SearchQuery);
+            }
+            catch(Exception e)
+            {
+                Console.Error.Write(e.Message);
+                return new FeatureRequest<SearchResult, Error.Booru>(Result, Error.Booru.NotFound);
+            }
 
             if (Result.fileUrl == null) {
                 return new FeatureRequest<SearchResult, Error.Booru>(Result, Error.Booru.NotFound);
@@ -90,8 +99,10 @@ namespace J.H_D.Minions.NSFW
         }
 
         public static async Task<FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>> GetTagsAsync(BooruType Booru, string[] Tags, 
-            BooruSharp.Search.Tag.TagType OnlyType = BooruSharp.Search.Tag.TagType.Metadata)
+            BooruSharp.Search.Tag.TagType OnlyType)
         {
+            bool StandardList = OnlyType == BooruSharp.Search.Tag.TagType.Metadata;
+
             Type BType = WebsiteEndpoints[Booru];
             var BooruWebsite = (ABooru)Activator.CreateInstance(BType);
 
@@ -100,14 +111,11 @@ namespace J.H_D.Minions.NSFW
                 FoundTags.Add(await BooruWebsite.GetTagAsync(Tag));
             }
 
-            if (OnlyType != BooruSharp.Search.Tag.TagType.Metadata)
-            {
-                return new FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>(
+            return StandardList ?
+                new FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>(FoundTags, Error.Booru.None) :
+                new FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>(
                     FoundTags.Where(x => x.type == OnlyType).ToList(),
                     Error.Booru.None);
-            } else {
-                return new FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>(FoundTags, Error.Booru.None);
-            }
         }
     }
 }

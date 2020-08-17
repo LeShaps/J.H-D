@@ -36,10 +36,10 @@ namespace J.H_D
         private static bool isTimerValid;
 
         // Website stats
-        private string WebsiteStats;
+        private Uri WebsiteStats;
         private string WebsiteStatsToken;
         public string WebsiteUpload { get; private set; }
-        public string WebsiteUrl { private set; get; }
+        public Uri WebsiteUrl { private set; get; }
         public bool SendStats { private set; get; }
 
         public Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed;
@@ -126,11 +126,11 @@ namespace J.H_D
                 if (json.botToken == null || json.ownerId == null || json.ownerStr == null)
                     throw new FileNotFoundException("Missing informations in Credentials.json, please complete mandatory informations before continue");
                 DebugMode = json.developpmentToken != null;
-                if (DebugMode)
-                    botToken = json.developpmentToken;
-                else
-                    botToken = json.botToken;
+                botToken = DebugMode ? json.developpmentToken : json.botToken;
                 // Complete informations about the owner
+
+                WebsiteStats = new Uri((string)json.WebsiteStats);
+                WebsiteStatsToken = (string)json.WebsiteStatsToken;
 
                 KitsuAuth = (json.kitsuCredentials.kitsuMail != null && json.kitsuCredentials.kitsuPass != null) ?
                     new Dictionary<string, string>
@@ -227,9 +227,9 @@ namespace J.H_D
                 IUserMessage Mess = await Message.DownloadAsync();
 
                 if (Channel as ITextChannel is null)
-                    await p.DoActionAsync(Mess.Author, 0, Module.Communication);
+                    await p.DoActionAsync(Mess.Author, 0, Module.Communication).ConfigureAwait(false);
                 else
-                    await p.DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Communication);
+                    await p.DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Communication).ConfigureAwait(false);
 
                 switch (Reaction.Emote.Name)
                 {
@@ -335,6 +335,8 @@ namespace J.H_D
                     await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
                     await AddErrorAsync("Ok").ConfigureAwait(false);
                     await AddCommandServsAsync(context.Guild.Id).ConfigureAwait(false);
+                    if (DebugMode)
+                        await LogAsync(new LogMessage(LogSeverity.Debug, "ElementUpdated", null, null));
                 }
             }
         }

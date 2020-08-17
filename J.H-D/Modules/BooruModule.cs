@@ -190,9 +190,10 @@ namespace J.H_D.Modules
         {
             string TagsString = null;
 
-            if (tagType == BooruSharp.Search.Tag.TagType.Character)
-            foreach (var tag in TagsList.Where(x => x.type == tagType)) {
-                TagsString = $"{TagsString}{CleanTag(tag.name, tagType == BooruSharp.Search.Tag.TagType.Character)}{Environment.NewLine}";
+            if (tagType == BooruSharp.Search.Tag.TagType.Character) {
+                foreach (var tag in TagsList.Where(x => x.type == tagType)) {
+                    TagsString = $"{TagsString}{CleanTag(tag.name, tagType == BooruSharp.Search.Tag.TagType.Character)}{Environment.NewLine}";
+                }
             }
 
             return TagsString;

@@ -1,44 +1,44 @@
 ﻿using Discord;
 using Discord.Commands;
-using Discord.Rest;
-using J.H_D.Minions;
-using J.H_D.Minions.NSFW;
-using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Data;
+using J.H_D.Minions;
+using J.H_D.Minions.NSFW;
+using J.H_D.Tools;
+using System.Globalization;
+using BooruSharp.Search.Tag;
 
 namespace J.H_D.Modules
 {
     class BooruModule : ModuleBase
     {
         [Command("Konachan", RunMode = RunMode.Async), Priority(-1)]
-        public async Task SearchKonachan(params string[] Args)
+        public async Task SearchKonachanAsync(params string[] Args)
         {
-            await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
+            await Program.GetP().DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Booru);
 
-            var result = await BooruMinion.GetBooruImage(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
+            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNsfw(Context)));
 
-            await ProccessResult(result);
+            await ProccessResultAsync(result).ConfigureAwait(false);
         }
 
         [Command("Konachan with infos", RunMode = RunMode.Async)]
-        public async Task SearchWithBonus(params string[] Args)
+        public async Task SearchWithBonusAsync(params string[] Args)
         {
-            await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
+            await Program.GetP().DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Booru);
 
-            var result = await BooruMinion.GetBooruImage(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
+            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNsfw(Context)));
 
-            await ProccessInfosResult(result, BooruMinion.BooruType.Konachan);
+            await ProccessInfosResultAsync(result, BooruMinion.BooruType.Konachan).ConfigureAwait(false);
         }
 
-        private async Task ProccessResult(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result)
+        private async Task ProccessResultAsync(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result)
         {
-            if (!Utilities.IsChannelNSFW(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
+            if (!Utilities.IsChannelNsfw(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
             {
                 await ReplyAsync("No safe image was found with theses parameters, please try on an NSFW channel or with others");
                 return;
@@ -51,14 +51,17 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Booru.None:
-                    await ReplyAsync("", false, BuildImageEmbed(Result.Answer));
+                    await ReplyAsync("", false, BuildImageEmbed(Result.Answer)).ConfigureAwait(false);
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
         }
 
-        private async Task ProccessInfosResult(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result, BooruMinion.BooruType Website)
+        private async Task ProccessInfosResultAsync(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result, BooruMinion.BooruType Website)
         {
-            if (!Utilities.IsChannelNSFW(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
+            if (!Utilities.IsChannelNsfw(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
             {
                 await ReplyAsync("No safe image was found with theses parameters, please try on an NSFW channel or with others");
                 return;
@@ -71,14 +74,17 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Booru.None:
-                    await ReplyAsync("", false, await BuildImageInfosEmbed(Result.Answer, Website));
+                    await ReplyAsync("", false, await BuildImageInfosEmbedAsync(Result.Answer, Website).ConfigureAwait(false));
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
         }
 
         private Embed BuildImageEmbed(BooruSharp.Search.Post.SearchResult Result)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = "Sauce",
                 Url = Result.source,
@@ -98,18 +104,21 @@ namespace J.H_D.Modules
                 case BooruSharp.Search.Post.Rating.Explicit:
                     emb.Color = Color.Purple;
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
             
-            emb.Footer = new EmbedFooterBuilder()
+            emb.Footer = new EmbedFooterBuilder
             {
                 Text = $"Posted the {Result.creation}"
             };
             return emb.Build();
         }
 
-        private async Task<Embed> BuildImageInfosEmbed(BooruSharp.Search.Post.SearchResult Result, BooruMinion.BooruType Website)
+        private async Task<Embed> BuildImageInfosEmbedAsync(BooruSharp.Search.Post.SearchResult Result, BooruMinion.BooruType Website)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = "Sauce",
                 Url = Result.source,
@@ -129,66 +138,77 @@ namespace J.H_D.Modules
                 case BooruSharp.Search.Post.Rating.Explicit:
                     emb.Color = Color.Purple;
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
 
-            var TagResults = await BooruMinion.GetTags(Website, Result.tags);
+            var TagResults = await BooruMinion.GetTagsAsync(Website, Result.tags, BooruSharp.Search.Tag.TagType.Metadata);
             List<BooruSharp.Search.Tag.SearchResult> FoundTags = TagResults.Answer;
 
-            string Artist = null;
-            string Parodies = null;
-            string GeneralTags = null;
-            string Characters = null;
+            string Artist = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Artist);
+            string Parodies = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Copyright);
+            string GeneralTags = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Trivia);
+            string Characters = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Character);
 
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Artist)) { Artist += CleanTag(Tag.name) + Environment.NewLine; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Copyright)) { Parodies += CleanTag(Tag.name) + Environment.NewLine; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Character)) { Characters += CleanTag(Tag.name, true) + Environment.NewLine; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Trivia)) { GeneralTags += CleanTag(Tag.name) + Environment.NewLine; }
-
-            emb.AddField(new EmbedFieldBuilder()
+            emb.AddField(new EmbedFieldBuilder
             {
                 IsInline = true,
                 Name = "Artist",
-                Value = Artist == null ? "Not found" : Artist
+                Value = Artist ?? "Not found"
             });
 
-            emb.AddField(new EmbedFieldBuilder()
+            emb.AddField(new EmbedFieldBuilder
             {
                 IsInline = true,
                 Name = "Parodies",
-                Value = Parodies == null ? "Original" : Parodies
+                Value = Parodies ?? "Original"
             });
 
-            emb.AddField(new EmbedFieldBuilder()
+            emb.AddField(new EmbedFieldBuilder
             {
                 IsInline = true,
                 Name = "Characters",
-                Value = Characters == null ? "Original" : Characters
+                Value = Characters ?? "Original"
             });
 
-            emb.AddField(new EmbedFieldBuilder()
+            emb.AddField(new EmbedFieldBuilder
             {
                 IsInline = true,
                 Name = "Tags",
-                Value = GeneralTags == null ? "" : GeneralTags
+                Value = GeneralTags ?? ""
             });
 
-            emb.Footer = new EmbedFooterBuilder()
+            emb.Footer = new EmbedFooterBuilder
             {
                 Text = $"Posted the {Result.creation}"
             };
             return emb.Build();
         }
 
+        private string BuildTagsString(List<BooruSharp.Search.Tag.SearchResult> TagsList, BooruSharp.Search.Tag.TagType tagType)
+        {
+            string TagsString = null;
+
+            if (tagType == BooruSharp.Search.Tag.TagType.Character) {
+                foreach (var tag in TagsList.Where(x => x.type == tagType)) {
+                    TagsString = $"{TagsString}{CleanTag(tag.name, tagType == BooruSharp.Search.Tag.TagType.Character)}{Environment.NewLine}";
+                }
+            }
+
+            return TagsString;
+        }
+
         private string CleanTag(string tag, bool name = false)
         {
             tag = tag.Replace('_', ' ');
-            tag = char.ToUpper(tag[0]) + tag.Substring(1);
+            tag = char.ToUpper(tag[0], CultureInfo.InvariantCulture) + tag.Substring(1);
 
             if (name)
             {
                 string[] Name = tag.Split(' ');
                 for (int i = 0; i < Name.Length; i++)
-                    Name[i] = char.ToUpper(Name[i][0]) + Name[i].Substring(1);
+                    Name[i] = char.ToUpper(Name[i][0], CultureInfo.InvariantCulture) + Name[i].Substring(1);
 
                 tag = String.Join(" ", Name);
             }

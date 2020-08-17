@@ -1,105 +1,105 @@
-﻿using J.H_D.Tools;
+﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using RethinkDb.Driver.Ast;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Tools;
+using J.H_D.Data;
+
+using FBoard = J.H_D.Data.Response.FBoard;
+using FThread = J.H_D.Data.Response.FThread;
 
 namespace J.H_D.Minions.Websites
 {
     public class FChanMinion
     {
+        static Program p = Program.GetP();
         public enum RequestType
         {
             Image,
             Thread
         }
 
-        public class RequestOptions
+        public struct RequestOptions : IEquatable<RequestOptions>
         {
-            public string MandatoryWord; // Will be used with the mandatory word update
-            public RequestType RequestType;
-            public bool AllowNsfw;
+            public string MandatoryWord { get; set; }
+            public RequestType RequestType { get; set; }
+            public bool AllowNsfw { get; set; }
+
+            public bool Equals(RequestOptions other)
+            {
+                return
+                    MandatoryWord == other.MandatoryWord &&
+                    RequestType == other.RequestType &&
+                    AllowNsfw == other.AllowNsfw;
+            }
         }
 
-        public static async Task<List<Response.FBoard>> UpdateAvailableChans(bool AllowNsfw = true)
+        public static async Task<List<FBoard>> UpdateAvailableChansAsync(bool AllowNsfw)
         {
-            List<Response.FBoard> AvailbleBoards = new List<Response.FBoard>();
+            List<FBoard> AvailbleBoards = new List<FBoard>();
 
             dynamic Json;
-            using (HttpClient hc = new HttpClient())
-            {
-                Json = JsonConvert.DeserializeObject(await (await hc.GetAsync("https://a.4cdn.org/boards.json")).Content.ReadAsStringAsync());
-            }
+            Json = JsonConvert.DeserializeObject(await p.Asker.GetStringAsync("https://a.4cdn.org/boards.json"));
+
             if (Json == null)
                 return null;
 
             foreach (dynamic item in (JArray)Json["boards"])
             {
-                AvailbleBoards.Add(new Response.FBoard()
+                AvailbleBoards.Add(new FBoard
                 {
                     Title = item.board,
                     Name = item.title,
                     Description = Utilities.Clarify((string)item.meta_description),
-                    Spoilers = item.spoilers != null ? true : false,
-                    Nsfw = item.ws_board == "0" ? true : false
+                    Spoilers = item.spoilers != null,
+                    Nsfw = item.ws_board == "0"
                 });
             }
 
-            if (AllowNsfw == false)
-                return AvailbleBoards.Where(x => x.Nsfw == false).ToList();
+            if (!AllowNsfw)
+                return AvailbleBoards.Where(x => !x.Nsfw).ToList();
             return AvailbleBoards;
         }
 
-        public static async Task<FeatureRequest<Response.FThread, Error.FChan>> GetRandomThreadFrom(string board, RequestOptions Options)
+        public static async Task<FeatureRequest<FThread?, Error.FChan>> GetRandomThreadFromAsync(string board, RequestOptions Options)
         {
-            List<Response.FBoard> Boards = await UpdateAvailableChans();
-            Response.FBoard UsableBoard = null;
-            List<Response.FThread> ThreadsList = new List<Response.FThread>();
+            List<FBoard> Boards = await UpdateAvailableChansAsync(true).ConfigureAwait(false);
+            FBoard UsableBoard;
+            List<FThread> ThreadsList = new List<FThread>();
 
             if (board != null)
             {
                 if (Boards.Any(x => x.Name == board || x.Title == board))
                 {
                     UsableBoard = Boards.Where(x => x.Name == board || x.Title == board).First();
-                    if (Options.AllowNsfw == false && UsableBoard.Nsfw == true)
-                        return new FeatureRequest<Response.FThread, Error.FChan>(null, Error.FChan.Nsfw);
+                    if (!Options.AllowNsfw && UsableBoard.Nsfw) {
+                        return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Nsfw);
+                    }
+                } else {
+                    return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
                 }
-                else
-                    return new FeatureRequest<Response.FThread, Error.FChan>(null, Error.FChan.Unavailable);
-            }
-            else
-            {
-                if (Options.AllowNsfw == false)
-                {
-                    List<Response.FBoard> SafeBoards = Boards.Where(x => x.Nsfw == false).ToList();
-                    UsableBoard = SafeBoards[Program.p.rand.Next(SafeBoards.Count)];
+            } else {
+                if (!Options.AllowNsfw) {
+                    List<FBoard> SafeBoards = Boards.Where(x => !x.Nsfw).ToList();
+                    UsableBoard = SafeBoards[p.rand.Next(SafeBoards.Count)];
+                } else {
+                    UsableBoard = Boards[p.rand.Next(Boards.Count)];
                 }
-                else
-                    UsableBoard = Boards[Program.p.rand.Next(Boards.Count)];
             }
 
             board = UsableBoard.Title;
             dynamic InitialJson;
-            using (HttpClient hc = new HttpClient())
-            {
-                InitialJson = JsonConvert.DeserializeObject(await (await hc.GetAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json")).Content.ReadAsStringAsync());
-            }
 
-            foreach(dynamic item in (JArray)InitialJson)
+            InitialJson = JsonConvert.DeserializeObject(await p.Asker.GetStringAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json"));
+
+            foreach (dynamic item in (JArray)InitialJson)
             {
                 foreach (dynamic Thread in (JArray)item.threads)
                 {
-                    ThreadsList.Add(new Response.FThread()
+                    ThreadsList.Add(new FThread
                     {
                         Filename = Thread.filename,
                         Extension = Thread.ext,
@@ -109,47 +109,52 @@ namespace J.H_D.Minions.Websites
                         Tim = Thread.tim,
                         Chan = board
                     });
-                    if ((JArray)Thread.last_replies != null)
+                    if ((JArray)Thread.last_replies != null) {
                         AddResponseThreads(Thread, ref ThreadsList, board);
+                    }
+                }
+
+                if (Options.RequestType == RequestType.Image)
+                {
+                    List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
+
+                    return new FeatureRequest<FThread?, Error.FChan>(
+                        ImageThreads[p.rand.Next(ImageThreads.Count - 1)],
+                        Error.FChan.None);
+                } else {
+                    return new FeatureRequest<FThread?, Error.FChan>(
+                        ThreadsList[p.rand.Next(ThreadsList.Count)],
+                        Error.FChan.None);
                 }
             }
 
-            if (Options.RequestType == RequestType.Image)
-            {
-                List<Response.FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
-
-                return new FeatureRequest<Response.FThread, Error.FChan>(
-                    ImageThreads[Program.p.rand.Next(ImageThreads.Count - 1)],
-                    Error.FChan.None);
-            }
-            else
-            { 
-                return new FeatureRequest<Response.FThread, Error.FChan>(
-                    ThreadsList[Program.p.rand.Next(ThreadsList.Count)],
-                    Error.FChan.None);
-            }
+            return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
         }
 
-        public static async Task<FeatureRequest<Response.FBoard, Error.FChan>> GetBoardInfo(string[] board)
+        public static async Task<FeatureRequest<FBoard?, Error.FChan>> GetBoardInfoAsync(string[] board)
         {
-            if (board.Length == 0)
-                return new FeatureRequest<Response.FBoard, Error.FChan>(null, Error.FChan.Unavailable);
-            string BoardName = Utilities.MakeArgs(board);
-            List<Response.FBoard> Boards = await UpdateAvailableChans();
-
-            foreach (Response.FBoard Board in Boards)
-            {
-                if (BoardName == Board.Title || BoardName == Board.Name)
-                    return new FeatureRequest<Response.FBoard, Error.FChan>(Board, Error.FChan.None);
+            if (board.Length == 0) {
+                return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
             }
-            return new FeatureRequest<Response.FBoard, Error.FChan>(null, Error.FChan.Unavailable);
+
+            string BoardName = Utilities.MakeArgs(board);
+            List<FBoard> Boards = await UpdateAvailableChansAsync(true).ConfigureAwait(false);
+
+            foreach (FBoard Board in Boards)
+            {
+                if (BoardName == Board.Title || BoardName == Board.Name) {
+                    return new FeatureRequest<FBoard?, Error.FChan>(Board, Error.FChan.None);
+                }
+            }
+
+            return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
         }
 
-        private static void AddResponseThreads(dynamic First, ref List<Response.FThread> ThreadList, string chan)
+        private static void AddResponseThreads(dynamic First, ref List<FThread> ThreadList, string chan)
         {
             foreach (dynamic response in (JArray)First.last_replies)
             {
-                ThreadList.Add(new Response.FThread()
+                ThreadList.Add(new FThread
                 {
                     Filename = response.filename,
                     Extension = response.ext,

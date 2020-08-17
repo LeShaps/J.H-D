@@ -1,20 +1,22 @@
 ﻿using Discord;
-using RethinkDb.Driver.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using Discord.Commands;
+using System.Reflection;
+
+using J.H_D.Data;
 
 namespace J.H_D.Tools
 {
-    class Utilities
+    static class Utilities
     {
+        private const int DiscordMessageCharacterLimit = 2000;
+        private const int DiscordEmbedMessageCharacterLimit = 2048;
         /// <summary>
         /// Check if a directory exist, if it doesn't, create it
         /// </summary>
@@ -55,13 +57,25 @@ namespace J.H_D.Tools
         /// </summary>
         /// <param name="OriginalString">The string to test</param>
         /// <returns>A Discord-friendly message</returns>
-        public static string DiscordFriendly(string OriginalString)
+        public static string DiscordFriendly(string OriginalString, bool Embed = false)
         {
-            if (OriginalString.Length > 2000)
+            if (!Embed)
             {
-                string resultString = OriginalString.Substring(1997);
-                resultString += "...";
-                return resultString;
+                if (OriginalString.Length > DiscordMessageCharacterLimit)
+                {
+                    string resultString = OriginalString.Substring(0, DiscordMessageCharacterLimit - 3);
+                    resultString = $"{resultString}...";
+                    return resultString;
+                }
+            }
+            else
+            {
+                if (OriginalString.Length > DiscordEmbedMessageCharacterLimit)
+                {
+                    string resultstring = OriginalString.Substring(0, DiscordEmbedMessageCharacterLimit - 3);
+                    resultstring = $"{resultstring}...";
+                    return resultstring;
+                }
             }
             return OriginalString;
         }
@@ -71,7 +85,7 @@ namespace J.H_D.Tools
         /// </summary>
         /// <param name="Context">A ICommandContext</param>
         /// <returns>True if the channel is NSFW</returns>
-        public static bool IsChannelNSFW(ICommandContext Context)
+        public static bool IsChannelNsfw(ICommandContext Context)
         {
             ITextChannel channel = (ITextChannel)Context.Channel;
             return channel.IsNsfw;
@@ -95,13 +109,11 @@ namespace J.H_D.Tools
             Rotated += "0ƖᄅƐㄣϛ9ㄥ86";
 
             string newString = "";
-            foreach (char c in OriginalString)
-            {
-                if (Normal.Contains(c))
-                    newString += Rotated[Normal.IndexOf(c)];
-                else
-                    newString += c;
+            StringBuilder bld = new StringBuilder();
+            foreach (char c in OriginalString) {
+                bld.Append(Normal.Contains(c) ? Rotated[Normal.IndexOf(c)] : c);
             }
+            newString = bld.ToString();
 
             return newString;
         }
@@ -113,7 +125,9 @@ namespace J.H_D.Tools
         /// <returns>The text human-friendly</returns>
         public static string Clarify(string WebString)
         {
-            if (WebString == null) return null;
+            if (WebString == null) {
+                return null;
+            }
             return GetPlainTextFromHtml(WebUtility.HtmlDecode(WebString));
         }
 
@@ -148,9 +162,11 @@ namespace J.H_D.Tools
         /// <returns>The plain text of the HTML string</returns>
         public static string GetPlainTextFromHtml(string htmlString)
         {
-            if (htmlString == null) return null;
+            if (htmlString == null) {
+                return null;
+            }
 
-            string htmlTagPattern = "<.*?>";
+            const string htmlTagPattern = "<.*?>";
             var regexCss = new Regex("(\\<script(.+?)\\</script\\>)|(\\<style(.+?)\\</style\\>)", RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
             htmlString = regexCss.Replace(htmlString, string.Empty);
@@ -158,6 +174,74 @@ namespace J.H_D.Tools
             htmlString = Regex.Replace(htmlString, @"^\s+$[\r\n]*", "", RegexOptions.Multiline);
 
             return htmlString;
+        }
+
+
+        /// <summary>
+        /// Return all the values asked in the list from the EmbedableAttribute of an object
+        /// </summary>
+        /// <typeparam name="T">The class of the EmbedableData object</typeparam>
+        /// <param name="EmbedableData">The embedableData object</param>
+        /// <param name="NeededValues">A list of values of tags you want</param>
+        /// <returns></returns>
+        public static Dictionary<string, string> GetEmbedAttributesValues<T>(T EmbedableData, List<string> NeededValues)
+        {
+            Dictionary<string, string> FoundValues = new Dictionary<string, string>();
+
+            FieldInfo[] Fields = EmbedableData.GetType().GetFields();
+
+            foreach (var Field in Fields)
+            {
+                if (NeededValues.Contains(Field.GetCustomAttribute<EmbedableAttribute>().Name))
+                {
+                    FoundValues.Add(Field.GetCustomAttribute<EmbedableAttribute>().Name, Field.GetValue(EmbedableData).ToString());
+                }
+            }
+
+            return FoundValues;
+        }
+
+        /// <summary>
+        /// Return the value asked from the Embedable data attribute
+        /// </summary>
+        /// <typeparam name="T">The class of the EmbedableData object</typeparam>
+        /// <param name="EmbedableData">The embedableData object</param>
+        /// <param name="NeededValue">The name of the Embedable Attribute field you want</param>
+        /// <returns></returns>
+        public static string GetEmbedAttributeValue<T>(T EmbedableData, string NeededValue)
+        {
+            FieldInfo[] Fields = EmbedableData.GetType().GetFields();
+
+            foreach (var Field in Fields)
+            {
+                if (NeededValue == Field.GetCustomAttribute<EmbedableAttribute>().Name)
+                    return Field.GetValue(EmbedableData).ToString();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get memory stream from an Url
+        /// </summary>
+        /// <param name="Url">The url to get fetch the data from</param>
+        /// <returns>A MemoryStream with the url data</returns>
+        public static Stream GetStreamFromUrl(Uri Url)
+        {
+            byte[] ImageData = null;
+
+            using (var wc = new WebClient())
+                ImageData = wc.DownloadData(Url);
+
+            return new MemoryStream(ImageData);
+        }
+
+        public static string StandardUppercase(string ToUp)
+        {
+            char UppedChar = char.ToUpperInvariant(ToUp[0]);
+            string Lowered = ToUp.Skip(1).ToString().ToLowerInvariant();
+
+            return $"{UppedChar}{Lowered}";
         }
     }
 }

@@ -1,35 +1,33 @@
 ﻿using Discord;
 using Discord.Commands;
-using J.H_D.Minions;
-using J.H_D.Minions.Websites;
-using J.H_D.Tools;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Authentication.ExtendedProtection;
-using System.Text;
 using System.Threading.Tasks;
+
+using J.H_D.Minions.Websites;
+using J.H_D.Minions;
+using J.H_D.Tools;
+using J.H_D.Data;
 
 namespace J.H_D.Modules
 {
     class FChanModule : ModuleBase
     {
         [Command("FChan available boards"), Alias("4chan boards")]
-        public async Task DisplayFchanBoards()
+        public async Task DisplayFchanBoardsAsync()
         {
-            await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
+            await Program.GetP().DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
-            List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChans();
+            List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChansAsync(true);
             await ReplyAsync("", false, BoardInfosBuilder(Boards));
         }
 
         [Command("Fchan board info"), Alias("4chan board info")]
-        public async Task GetBoardInfos(params string[] Args)
+        public async Task GetBoardInfosAsync(params string[] Args)
         {
-            await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
+            await Program.GetP().DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
-            var result = await FChanMinion.GetBoardInfo(Args);
+            var result = await FChanMinion.GetBoardInfoAsync(Args);
 
             switch (result.Error)
             {
@@ -42,27 +40,26 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.FChan.None:
-                    await ReplyAsync("", false, BoardInfos(result.Answer));
+                    await ReplyAsync("", false, BoardInfos((Response.FBoard)result.Answer));
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
         }
 
-        [Command("Random 4image"), Alias("4chan image")]
-        public async Task RandomImage(params string[] Args)
+        [Command("Random 4image", RunMode = RunMode.Async), Alias("4chan image")]
+        public async Task RandomImageAsync(params string[] Args)
         {
-            // For later, to make more easy-to-use command
-            string AskArgs = null;
+            // TODO: Implement search using keywords in threads
 
-            var result = new FeatureRequest<Response.FThread, Error.FChan>();
+            var result = new FeatureRequest<Response.FThread?, Error.FChan>();
             ITextChannel chan = (ITextChannel)Context.Channel;
 
             if (Args.Length >= 1)
             {
                 string OneArg = Utilities.MakeArgs(Args);
-                result = await FChanMinion.GetRandomThreadFrom(OneArg, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions
                 {
                     MandatoryWord = null,
                     AllowNsfw = chan.IsNsfw,
@@ -70,7 +67,7 @@ namespace J.H_D.Modules
                 });
             }
             else
-                result = await FChanMinion.GetRandomThreadFrom(null, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions
                 {
                     MandatoryWord = null,
                     AllowNsfw = chan.IsNsfw,
@@ -84,7 +81,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.FChan.None:
-                    await ReplyAsync("", false, ThreadImageBuild(result.Answer));
+                    await ReplyAsync("", false, ThreadImageBuild((Response.FThread)result.Answer));
                     break;
 
                 case Error.FChan.Nsfw:
@@ -92,24 +89,23 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
         }
 
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]
-        public async Task RandomThread(params string[] Args)
+        public async Task RandomThreadAsync(params string[] Args)
         {
-            // For later, to make more easy-to-use command
-            string AskArgs = null;
+            // TODO: Implement search using keywords in threads
 
             ITextChannel chan = (ITextChannel)Context.Channel;
 
-            var result = new FeatureRequest<Response.FThread, Error.FChan>();
+            var result = new FeatureRequest<Response.FThread?, Error.FChan>();
 
             if (Args.Length >= 1)
             {
                 string OneArg = Utilities.MakeArgs(Args);
-                result = await FChanMinion.GetRandomThreadFrom(OneArg, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions
                 {
                     RequestType = FChanMinion.RequestType.Thread,
                     MandatoryWord = null,
@@ -117,7 +113,7 @@ namespace J.H_D.Modules
                 });
             }
             else
-                result = await FChanMinion.GetRandomThreadFrom(null, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions
                 {
                     RequestType = FChanMinion.RequestType.Thread,
                     MandatoryWord = null,
@@ -131,7 +127,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.FChan.None:
-                    await ReplyAsync("", false, ThreadInfosEmbed(result.Answer));
+                    await ReplyAsync("", false, ThreadInfosEmbed((Response.FThread)result.Answer));
                     break;
 
                 case Error.FChan.Nsfw:
@@ -139,13 +135,13 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
         }
 
         private Embed ThreadInfosEmbed(Response.FThread thread)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = $"From {thread.From} on {thread.Chan}",
                 Url = $"http://4chan.org/{thread.Chan}/thread/{thread.ThreadId}",
@@ -154,8 +150,8 @@ namespace J.H_D.Modules
             };
             if (thread.Filename != null)
             {
-                emb.ImageUrl = $"http://i.4cdn.org/{thread.Chan}/{thread.Tim}/{thread.Extension}";
-                emb.Footer = new EmbedFooterBuilder()
+                emb.ImageUrl = $"http://i.4cdn.org/{thread.Chan}/{thread.Tim}{thread.Extension}";
+                emb.Footer = new EmbedFooterBuilder
                 {
                     Text = $"{thread.Filename}{thread.Extension}"
                 };
@@ -165,10 +161,10 @@ namespace J.H_D.Modules
 
         private Embed ThreadImageBuild(Response.FThread image)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = $"From {image.From} on {image.Chan}",
-                ImageUrl = string.Format($"http://i.4cdn.org/{image.Chan}/{image.Tim}{image.Extension}"),
+                ImageUrl = $"http://i.4cdn.org/{image.Chan}/{image.Tim}{image.Extension}",
                 Color = Color.DarkGreen
             };
             return emb.Build();
@@ -176,7 +172,7 @@ namespace J.H_D.Modules
 
         private Embed BoardInfos(Response.FBoard Board)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = Board.Name,
                 Url = "https://4chan.org/" + Board.Title,
@@ -187,10 +183,12 @@ namespace J.H_D.Modules
             {
                 emb.Color = Color.DarkOrange;
                 string WarningPhrase = null;
-                if (Board.Nsfw)
+                if (Board.Nsfw) {
                     WarningPhrase += "- This board contains NSFW content" + Environment.NewLine;
-                if (Board.Spoilers)
-                    WarningPhrase += "- This board can contains Spoilers";
+                }
+                if (Board.Spoilers) {
+                    WarningPhrase += "- This board can contains Spoilers"; 
+                }
                 emb.AddField("Warning", WarningPhrase);
             }
 
@@ -202,7 +200,7 @@ namespace J.H_D.Modules
             string SafeList = null;
             string NSFWList = null;
 
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = "4Chan available boards",
                 Url = "https://4chan.org/",
@@ -211,10 +209,10 @@ namespace J.H_D.Modules
 
             foreach (Response.FBoard board in Boards)
             {
-                if (board.Nsfw == false)
-                    SafeList += board.Title + " - " + board.Name + Environment.NewLine;
+                if (!board.Nsfw)
+                    SafeList = $"{SafeList}{board.Title} - {board.Name}{Environment.NewLine}";
                 else
-                    NSFWList += board.Title + " - " + board.Name + Environment.NewLine;
+                    NSFWList = $"{NSFWList}{board.Title} - {board.Name}{Environment.NewLine}";
             }
 
             emb.AddField("Safe chans", SafeList, true);

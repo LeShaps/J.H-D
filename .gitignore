@@ -281,3 +281,9 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+# Exclude In-dev modules
+J.H-D/Modules/ExperimentalModule.cs
+
+# Exclude CodeGraph plugin repertory
+CodeGraphData

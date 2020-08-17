@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Data
 {
@@ -95,7 +93,7 @@ namespace J.H_D.Data
             [Embedable("Synopsis")]
             private string overview;
             [Embedable("Seasons", false, false)]
-            private List<TVSeason> seasons;
+            private ICollection<TVSeason> seasons;
 
             [Embedable("RessourceLink", false, false)]
             private readonly string ressourcePath = V;
@@ -113,7 +111,7 @@ namespace J.H_D.Data
             public ICollection<string> Compagnies { get => compagnies; set => compagnies = value; }
             public string VoteAverage { get => voteAverage; set => voteAverage = value; }
             public string Overview { get => overview; set => overview = value; }
-            public List<TVSeason> Seasons { get => seasons; set => seasons = value; }
+            public ICollection<TVSeason> Seasons { get => seasons; set => seasons = value; }
 
             public string RessourcePath => ressourcePath;
         }
@@ -176,11 +174,7 @@ namespace J.H_D.Data
             public bool Equals(UrbanDefinition other)
             {
                 return
-                    Word == other.Word &&
-                    definition == other.definition &&
-                    link == other.link &&
-                    author == other.author &&
-                    exemples == other.exemples;
+                    GetHashCode() == other.GetHashCode();
             }
         }
 
@@ -216,16 +210,11 @@ namespace J.H_D.Data
             public string Bio { get => bio; set => bio = value; }
             public bool OnTour { get => onTour; set => onTour = value; }
 
-            public bool Equals([AllowNull] MusicArtist other)
+            public bool Equals(MusicArtist other)
             {
+
                 return
-                    Name == other.name &&
-                    Mbid == other.Mbid &&
-                    lastUrl == other.lastUrl &&
-                    ImageUrl == other.imageUrl &&
-                    genres == other.genres &&
-                    bio == other.bio &&
-                    onTour == other.onTour;
+                    GetHashCode() == other.GetHashCode();
             }
         }
 
@@ -284,26 +273,10 @@ namespace J.H_D.Data
             public string HumanReadableWatchtime { get => humanReadableWatchtime; set => humanReadableWatchtime = value; }
             public string VideoUrl { get => videoUrl; set => videoUrl = value; }
 
-            public bool Equals([AllowNull] Anime other)
+            public bool Equals(Anime other)
             {
                 return
-                    id == other.id &&
-                    Synopsis == other.Synopsis &&
-                    Title == other.Title &&
-                    LATitle == other.LATitle &&
-                    OriginalTitle == other.OriginalTitle &&
-                    Rating == other.Rating &&
-                    StartDate == other.StartDate &&
-                    EndDate == other.EndDate &&
-                    AgeRating == other.AgeRating &&
-                    Guideline == other.Guideline &&
-                    Status == other.Status &&
-                    PosterImage == other.PosterImage &&
-                    CoverImage == other.CoverImage &&
-                    EpisodeCount == other.EpisodeCount &&
-                    EpLength == other.EpLength &&
-                    HumanReadableWatchtime == other.HumanReadableWatchtime &&
-                    VideoUrl == other.VideoUrl;
+                    GetHashCode() == other.GetHashCode();
             }
         }
     }

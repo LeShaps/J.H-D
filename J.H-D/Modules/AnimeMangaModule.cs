@@ -2,6 +2,7 @@
 using Discord.Commands;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 using J.H_D.Minions.Infos;
 using J.H_D.Tools;
@@ -33,7 +34,7 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    break;
+                    throw new NotSupportedException();
             }
         }
 

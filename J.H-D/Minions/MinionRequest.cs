@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Minions
 {
@@ -15,9 +14,10 @@ namespace J.H_D.Minions
         public T Answer { get; set; }
         public U Error { get; set; }
 
-        public bool Equals([AllowNull] FeatureRequest<T, U> other)
+        public bool Equals(FeatureRequest<T, U> other)
         {
-            return true;
+            return
+                GetHashCode() == other.GetHashCode();
         }
     }
 }

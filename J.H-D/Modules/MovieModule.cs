@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using J.H_D.Minions.Infos;
 using J.H_D.Tools;
 using J.H_D.Data;
+using System.Linq;
 
 namespace J.H_D.Modules
 {
@@ -20,7 +21,7 @@ namespace J.H_D.Modules
             // Availlability check
             // await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
             // Owner only settings
-            var result = await MovieMinion.SearchMovie(Args);
+            var result = await MovieMinion.SearchMovieAsync(Args);
             switch (result.Error)
             {
                 case Error.Movie.Help:
@@ -36,14 +37,14 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    break;
+                    throw new NotSupportedException();
             }
         }
 
         [Command("Get series")]
         public async Task GetSeriesInfosAsync(params string[] Args)
         {
-            var result = await MovieMinion.GetSeriesGeneralInfos(MovieMinion.SearchType.Serie, Args);
+            var result = await MovieMinion.GetSeriesGeneralInfosAsync(MovieMinion.SearchType.Serie, Args);
 
             switch (result.Error)
             {
@@ -62,14 +63,14 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    break;
+                    throw new NotSupportedException();
             }
         }
 
         [Command("Get movie infos"), Alias("Get movie info")]
         public async Task GetMovieInfosAsync(params string[] Args)
         {
-            await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
+            await p.DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Movie);
 
             var result = await MovieMinion.BonusInfosAsync(MovieMinion.SearchType.Serie, Args);
 
@@ -86,6 +87,9 @@ namespace J.H_D.Modules
                 case Error.Movie.None:
                     await ReplyAsync("", false, CreateBonusEmbed(result.Answer));
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
         }
 
@@ -196,7 +200,7 @@ namespace J.H_D.Modules
             await message.ModifyAsync(x =>
             x.Embed = NewPosition == -1 ?
             CreateSeriesEmbed(Data.Item2) :
-            CreateSeasonEmbed(Data.Item2.Seasons[NewPosition]));
+            CreateSeasonEmbed(Data.Item2.Seasons.ElementAt(NewPosition)));
 
             return new Tuple<int, Response.TVSeries>(NewPosition, Data.Item2);
         }

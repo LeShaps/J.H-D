@@ -8,11 +8,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Globalization;
 
 using J.H_D.Modules;
 using J.H_D.Data;
-using System.Security.Cryptography;
-using System.Globalization;
 
 namespace J.H_D
 {
@@ -69,7 +68,7 @@ namespace J.H_D
             {
                 LogLevel = Discord.LogSeverity.Verbose,
             });
-            client.Log += Log;
+            client.Log += LogAsync;
             // TODO: Command error handle
         }
 
@@ -77,7 +76,7 @@ namespace J.H_D
         {
             try
             {
-                await new Program().MainAsync();
+                await new Program().MainAsync().ConfigureAwait(false);
             }
             catch(FileNotFoundException)
             {
@@ -105,7 +104,7 @@ namespace J.H_D
 
             p = this;
 
-            await Log(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D")).ConfigureAwait(false);
+            await LogAsync(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D")).ConfigureAwait(false);
 
             db = new Db.Db();
             await db.InitAsync();
@@ -124,7 +123,7 @@ namespace J.H_D
                     throw new FileNotFoundException("You must have a \"Credentials.json\" file located in " + AppDomain.CurrentDomain.BaseDirectory + "Loggers");
                 dynamic json = JsonConvert.DeserializeObject(File.ReadAllText("Loggers/Credentials.json"));
                 if (json.botToken == null || json.ownerId == null || json.ownerStr == null)
-                    throw new NullReferenceException("Missing informations in Credentials.json, please complete mandatory informations before continue");
+                    throw new FileNotFoundException("Missing informations in Credentials.json, please complete mandatory informations before continue");
                 if (json.developpmentToken != null)
                     DebugMode = true;
                 botToken = json.botToken;
@@ -142,7 +141,7 @@ namespace J.H_D
 
                 await InitServicesAsync(json);
             }
-            await Log(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules..."));
+            await LogAsync(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules...")).ConfigureAwait(false);
 
             await commands.AddModuleAsync<MovieModule>(null);
             await commands.AddModuleAsync<CommunicationModule>(null);
@@ -154,9 +153,9 @@ namespace J.H_D
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += DisconnectedAsync;
-            client.GuildAvailable += GuildJoin;
-            client.JoinedGuild += GuildJoin;
-            client.ReactionAdded += ReactionAdd;
+            client.GuildAvailable += GuildJoinAsync;
+            client.JoinedGuild += GuildJoinAsync;
+            client.ReactionAdded += ReactionAddAsync;
 
             commands.CommandExecuted += CommandExectuteAsync;
 
@@ -172,7 +171,7 @@ namespace J.H_D
                     {
                         await Task.Delay(RefreshSendDelay).ConfigureAwait(false);
                         if (client.ConnectionState == ConnectionState.Connected)
-                            throw new NotImplementedException();
+                            throw new NotSupportedException();
                             // Update bot Status
                     }
                 });
@@ -203,6 +202,10 @@ namespace J.H_D
                     case "⏪":
                         SendedSeriesEmbed[Message.Id] = await Changer.UpdateSeriesEmbedAsync(Mess, Used, -1);
                         break;
+
+                    default:
+                        // The user can add any other emoji so we doesn't throw
+                        break;
                 }
             }
         }
@@ -218,19 +221,25 @@ namespace J.H_D
                     case "🔄":
                         await new CommunicationModule().ReRollTextAsync(Mess, GeneratedText[Message.Id]);
                         break;
+
+                    default:
+                        // The user can add any other emoji so we doesn't throw
+                        break;
                 }
             }
         }
 
-        private async Task ReactionAdd(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
+        private async Task ReactionAddAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
         {
-            if (Reaction.User.Value.IsBot) return;
+            if (Reaction.User.Value.IsBot) {
+                return;
+            }
 
             await CheckSeriesAsync(Message, Channel, Reaction).ConfigureAwait(false);
             await CheckGeneratedTextAsync(Message, Channel, Reaction).ConfigureAwait(false);
         }
 
-        private async Task GuildJoin(SocketGuild arg)
+        private async Task GuildJoinAsync(SocketGuild arg)
         {
             await db.InitGuildAsync(arg);
         }
@@ -256,7 +265,7 @@ namespace J.H_D
             KitsuClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
         }
 
-        public async Task DoAction(IUser u, ulong serverId, Module m)
+        public async Task DoActionAsync(IUser u, ulong serverId, Module m)
         {
             if (!u.IsBot && SendStats)
                 await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
@@ -271,10 +280,14 @@ namespace J.H_D
 
         private  async Task HandleCommandAsync(SocketMessage arg)
         {
-            if (arg.Author.Id == client.CurrentUser.Id || arg.Author.IsBot) return;
+            if (arg.Author.Id == client.CurrentUser.Id || arg.Author.IsBot) {
+                return;
+            }
             var msg = arg as SocketUserMessage;
-            if (msg == null) return;
-            bool DM = (arg.Channel as ITextChannel) == null;
+            if (msg == null) {
+                return;
+            }
+            bool DM = (arg.Channel as ITextChannel) is null;
             string prefix;
 
             int pos = 0;
@@ -284,10 +297,6 @@ namespace J.H_D
                 if (msg.HasMentionPrefix(client.CurrentUser, ref pos) || (prefix != "" && msg.HasStringPrefix(prefix, ref pos)))
                 {
                     var context = new SocketCommandContext(client, msg);
-                    if (!((IGuildUser)await context.Channel.GetUserAsync(client.CurrentUser.Id)).GetPermissions((IGuildChannel)context.Channel).EmbedLinks)
-                    {
-                        // Make error if have not the rights to Embed links
-                    }
                     await commands.ExecuteAsync(context, pos, null);
                 }
             }
@@ -310,9 +319,9 @@ namespace J.H_D
                     throw new NotSupportedException();
                 if (SendStats)
                 {
-                    await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("nbMsgs", "1") });
-                    await AddErrorAsync("Ok");
-                    await AddCommandServsAsync(context.Guild.Id);
+                    await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
+                    await AddErrorAsync("Ok").ConfigureAwait(false);
+                    await AddCommandServsAsync(context.Guild.Id).ConfigureAwait(false);
                 }
             }
         }
@@ -346,11 +355,15 @@ namespace J.H_D
             {
                 await Asker.SendAsync(msg);
             }
-            catch (HttpRequestException) { }
-            catch (TaskCanceledException) { }
+            catch (Exception e)
+            {
+                if (e is HttpRequestException || e is TaskCanceledException) {
+                    await AddErrorAsync(e.Message).ConfigureAwait(false);
+                }
+            }
         }
 
-        private Task Log(LogMessage msg)
+        private Task LogAsync(LogMessage msg)
         {
             var cc = Console.ForegroundColor;
             switch (msg.Severity)
@@ -372,6 +385,10 @@ namespace J.H_D
                     break;
                 case LogSeverity.Debug:
                     Console.ForegroundColor = ConsoleColor.DarkGray;
+                    break;
+
+                default:
+                    Console.ForegroundColor = ConsoleColor.White;
                     break;
             }
             Console.WriteLine(msg);

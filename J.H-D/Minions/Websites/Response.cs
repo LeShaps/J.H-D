@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Data
 {
@@ -24,14 +23,10 @@ namespace J.H_D.Data
             public bool Spoilers { get => spoilers; set => spoilers = value; }
             public bool Nsfw { get => nsfw; set => nsfw = value; }
 
-            public bool Equals([AllowNull] FBoard other)
+            public bool Equals(FBoard other)
             {
                 return
-                    Name == other.name &&
-                    title == other.title &&
-                    description == other.description &&
-                    spoilers == other.spoilers &&
-                    nsfw == other.nsfw;
+                    GetHashCode() == other.GetHashCode();
             }
         }
 
@@ -60,24 +55,16 @@ namespace J.H_D.Data
             public string Tim { get => tim; set => tim = value; }
             public string Chan { get => chan; set => chan = value; }
 
-            public bool Equals([AllowNull] FThread other)
+            public bool Equals(FThread other)
             {
                 return
-                    Filename == other.Filename &&
-                    extension == other.extension &&
-                    ThreadId == other.ThreadId &&
-                    comm == other.comm &&
-                    from == other.from &&
-                    tim == other.tim &&
-                    chan == other.chan;
+                    GetHashCode() == other.GetHashCode();
             }
         }
 
         public class Complete 
         {
-            private string content;
-
-            public string Content { get => content; set => content = value; }
+            public string Content { get; set; }
         }
     }
 }

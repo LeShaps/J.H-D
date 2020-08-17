@@ -17,7 +17,7 @@ namespace J.H_D.Modules
         [Command("FChan available boards"), Alias("4chan boards")]
         public async Task DisplayFchanBoardsAsync()
         {
-            await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
+            await Program.p.DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
             List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChansAsync();
             await ReplyAsync("", false, BoardInfosBuilder(Boards));
@@ -26,7 +26,7 @@ namespace J.H_D.Modules
         [Command("Fchan board info"), Alias("4chan board info")]
         public async Task GetBoardInfosAsync(params string[] Args)
         {
-            await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
+            await Program.p.DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
             var result = await FChanMinion.GetBoardInfoAsync(Args);
 
@@ -45,15 +45,15 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
         }
 
-        [Command("Random 4image"), Alias("4chan image")]
+        [Command("Random 4image", RunMode = RunMode.Async), Alias("4chan image")]
         public async Task RandomImageAsync(params string[] Args)
         {
             // For later, to make more easy-to-use command
-            string AskArgs = null;
+            // string AskArgs = null;
 
             var result = new FeatureRequest<Response.FThread?, Error.FChan>();
             ITextChannel chan = (ITextChannel)Context.Channel;
@@ -91,7 +91,7 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
         }
 
@@ -99,7 +99,7 @@ namespace J.H_D.Modules
         public async Task RandomThreadAsync(params string[] Args)
         {
             // For later, to make more easy-to-use command
-            string AskArgs = null;
+            // string AskArgs = null;
 
             ITextChannel chan = (ITextChannel)Context.Channel;
 
@@ -138,7 +138,7 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
             }
         }
 
@@ -153,7 +153,7 @@ namespace J.H_D.Modules
             };
             if (thread.Filename != null)
             {
-                emb.ImageUrl = $"http://i.4cdn.org/{thread.Chan}/{thread.Tim}/{thread.Extension}";
+                emb.ImageUrl = $"http://i.4cdn.org/{thread.Chan}/{thread.Tim}{thread.Extension}";
                 emb.Footer = new EmbedFooterBuilder
                 {
                     Text = $"{thread.Filename}{thread.Extension}"
@@ -167,7 +167,7 @@ namespace J.H_D.Modules
             EmbedBuilder emb = new EmbedBuilder
             {
                 Title = $"From {image.From} on {image.Chan}",
-                ImageUrl = string.Format($"http://i.4cdn.org/{image.Chan}/{image.Tim}{image.Extension}", CultureInfo.InvariantCulture),
+                ImageUrl = $"http://i.4cdn.org/{image.Chan}/{image.Tim}{image.Extension}",
                 Color = Color.DarkGreen
             };
             return emb.Build();

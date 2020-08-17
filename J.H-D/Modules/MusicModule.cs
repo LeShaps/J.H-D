@@ -12,7 +12,7 @@ namespace J.H_D.Modules
     class MusicModule : ModuleBase
     {
         [Command("Get music artist")]
-        public async Task GetArtistInfos(params string[] Args)
+        public async Task GetArtistInfosAsync(params string[] Args)
         {
             string Artist = Utilities.MakeQueryArgs(Args);
 
@@ -35,6 +35,9 @@ namespace J.H_D.Modules
                 case Error.Brainz.None:
                     await ReplyAsync("", false, MakeArtistEmbed((Response.MusicArtist)Result.Answer));
                     break;
+                    
+                default:
+                    throw new NotSupportedException();
             }
         }
 

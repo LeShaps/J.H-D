@@ -10,6 +10,7 @@ using J.H_D.Tools;
 using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
+using System;
 
 namespace J.H_D.Modules
 {
@@ -18,10 +19,7 @@ namespace J.H_D.Modules
         [Command("Hey !")]
         public async Task ReplytoAsync()
         {
-            if (Context.User.Id == 151425222304595968)
-                await ReplyAsync("No, not you");
-            else
-                await ReplyAsync("Hi !");
+            await ReplyAsync("Hi !");
         }
 
         [Command("Rotate")]
@@ -42,8 +40,7 @@ namespace J.H_D.Modules
             string cleanArgs = Utilities.MakeArgs(Args).ToLower();
             bool Natural = false;
 
-
-            if (cleanArgs == "clean") { Natural = true; }
+            Natural = cleanArgs == "clean";
 
             var Result = await InspirobotMinion.FeelInspirationAsync();
 
@@ -58,7 +55,7 @@ namespace J.H_D.Modules
                         await ReplyAsync("", false, BuildInspirobotEmbed(Result.Answer));
                     else
                     {
-                        string file = await PureImageAsync(Result.Answer);
+                        string file = await PureImageAsync(Result.Answer).ConfigureAwait(false);
                         await Context.Channel.SendFileAsync(file);
                         File.Delete(file);
                     }
@@ -95,9 +92,8 @@ namespace J.H_D.Modules
         public async Task GenerateAsync([Remainder]string sentence)
         {
             string Content = sentence;
-            string OldContent = Content;
 
-            var msg = await StartWaitAsync(sentence);
+            var msg = await StartWaitAsync(sentence).ConfigureAwait(false);
             var Response = await GeneratorMinion.CompleteAsync(sentence, msg, MessageUpdaterAsync);
 
             switch (Response.Error)
@@ -115,6 +111,9 @@ namespace J.H_D.Modules
                     Program.p.GeneratedText.Add(msg.Id, sentence);
                     await msg.AddReactionAsync(new Emoji("🔄"));
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
         }
 
@@ -135,6 +134,9 @@ namespace J.H_D.Modules
                 case Error.Complete.None:
                     await Message.ModifyAsync(x => x.Embed = CreateTextEmbed(Response.Answer.Content));
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
         }
 
@@ -151,7 +153,7 @@ namespace J.H_D.Modules
                 Description = TransformDefinition,
                 Fields = new List<EmbedFieldBuilder>
                 {
-                    new EmbedFieldBuilder()
+                    new EmbedFieldBuilder
                     {
                        Name = "Exemples",
                        Value = TransformExemple
@@ -221,7 +223,7 @@ namespace J.H_D.Modules
             {
                 Color = Color.DarkBlue,
                 Description = Content,
-                Footer = new EmbedFooterBuilder()
+                Footer = new EmbedFooterBuilder
                 {
                     Text = "Powered by https://bellard.org/textsynth/"
                 },

@@ -53,7 +53,7 @@ namespace J.H_D.Minions.Websites
                     Title = item.board,
                     Name = item.title,
                     Description = Utilities.Clarify((string)item.meta_description),
-                    Spoilers = item.spoilers != null ? true : false,
+                    Spoilers = item.spoilers != null,
                     Nsfw = item.ws_board == "0"
                 });
             }

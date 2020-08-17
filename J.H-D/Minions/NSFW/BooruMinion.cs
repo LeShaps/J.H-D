@@ -1,13 +1,12 @@
 ﻿using BooruSharp.Booru;
 using BooruSharp.Search.Post;
 using System;
+using System.Collections.Immutable;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 using J.H_D.Data;
-using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Minions.NSFW
 {
@@ -54,7 +53,7 @@ namespace J.H_D.Minions.NSFW
                 AllowNsfw = Allow;
             }
 
-            public bool Equals([AllowNull] BooruOptions other)
+            public bool Equals(BooruOptions other)
             {
                 return
                     Booru == other.Booru &&

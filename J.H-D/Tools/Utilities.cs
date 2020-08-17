@@ -239,7 +239,7 @@ namespace J.H_D.Tools
 
         public static string StandardUppercase(string ToUpper)
         {
-            string end = char.ToUpper(ToUpper[0], CultureInfo.InvariantCulture) + String.Join("", ToUpper.Skip(1), CultureInfo.InvariantCulture).ToLower(CultureInfo.InvariantCulture);
+            string end = char.ToUpperInvariant(ToUpper[0]) + String.Join("", ToUpper.Skip(1)).ToLowerInvariant();
 
             return end;
         }

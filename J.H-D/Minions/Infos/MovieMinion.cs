@@ -34,7 +34,7 @@ namespace J.H_D.Minions.Infos
             {SearchType.Director, "https://api.themoviedb.org/3/search/person?api_key=" }
         };
 
-        public static async Task<FeatureRequest<Response.Movie, Error.Movie>> SearchMovie(string[] args)
+        public static async Task<FeatureRequest<Response.Movie, Error.Movie>> SearchMovieAsync(string[] args)
         {
             string RequestName = Utilities.MakeQueryArgs(args);
             if (RequestName.Length == 0) {
@@ -65,7 +65,7 @@ namespace J.H_D.Minions.Infos
             }, Error.Movie.None);
         }
 
-        public static async Task<FeatureRequest<Response.TVSeries, Error.Movie>> GetSeriesGeneralInfos(SearchType searchType, string[] Args)
+        public static async Task<FeatureRequest<Response.TVSeries, Error.Movie>> GetSeriesGeneralInfosAsync(SearchType searchType, string[] Args)
         {
             string RequestName = Utilities.MakeQueryArgs(Args);
             if (RequestName.Length == 0) {
@@ -102,7 +102,7 @@ namespace J.H_D.Minions.Infos
                 BackdropPath = DetailsJson.backdrop_path,
                 EpisodeNumber = DetailsJson.number_of_episodes,
                 Started = DetailsJson.first_air_date,
-                InProduction = (string)DetailsJson.status == "Ended" ? true : false,
+                InProduction = (string)DetailsJson.status == "Ended",
                 HomePage = DetailsJson.homepage,
                 SeasonNumber = DetailsJson.number_of_seasons,
                 EpisodeRunTime = DetailsJson.episode_run_time[0],

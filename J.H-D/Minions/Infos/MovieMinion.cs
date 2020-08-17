@@ -13,12 +13,7 @@ namespace J.H_D.Minions.Infos
 {
     public static class MovieMinion
     {
-        static HttpClient Asker;
-
-        static MovieMinion()
-        {
-            Asker = JHConfig.Asker;
-        }
+        static HttpClient Asker = JHConfig.Asker;
 
         public enum SearchType
         {

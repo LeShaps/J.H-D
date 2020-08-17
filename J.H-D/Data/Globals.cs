@@ -1,11 +1,9 @@
 ﻿using Discord;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 
 namespace J.H_D.Data
 {
@@ -13,21 +11,21 @@ namespace J.H_D.Data
 
     public static class JHConfig
     {
-        public static Random rand;
+        public static Random rand { get; private set; }
 
-        public static string TmdbKey;
-        public static string RapidAPIKey;
-        public static string LastFMKey;
-        public static Dictionary<string, string> KitsuAuth;
+        public static string TmdbKey { get; private set; }
+        public static string RapidAPIKey { get; private set; }
+        public static string LastFMKey { get; private set; }
+        public static Dictionary<string, string> KitsuAuth { get; private set; }
 
-        public static HttpClient Asker = new HttpClient();
-        public static HttpClient KitsuClient = new HttpClient();
+        public static HttpClient Asker { get; private set; } = new HttpClient();
+        public static HttpClient KitsuClient { get; private set; } = new HttpClient();
 
-        public static Uri WebsiteStats;
-        public static string WebsiteStatsToken;
-        public static bool SendStats;
+        public static Uri WebsiteStats { get; private set; }
+        public static string WebsiteStatsToken { get; private set; }
+        public static bool SendStats { get; private set; }
 
-        public static DateTime StartingTime;
+        public static DateTime StartingTime { get; private set; }
 
         public static Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
         public static Dictionary<ulong, string> GeneratedText = new Dictionary<ulong, string>();

@@ -25,7 +25,7 @@ namespace J.H_D
 
         private bool DebugMode;
 
-        private static bool isTimerValid;
+        private static bool isTimerValid = false;
 
         // Website stats
         public static bool SendStats { private set; get; }
@@ -95,8 +95,6 @@ namespace J.H_D
                 DebugMode = json.developpmentToken != null;
                 botToken = DebugMode ? json.developpmentToken : json.botToken;
                 // Complete informations about the owner
-
-                isTimerValid = false;
             }
 
             await LogAsync(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules...")).ConfigureAwait(false);
@@ -138,8 +136,7 @@ namespace J.H_D
 
         private async Task DisconnectionAsync(Exception arg)
         {
-            await LogAsync(new LogMessage(LogSeverity.Critical, "Program", arg.Message, null));
-            throw new NotImplementedException();
+            await LogAsync(new LogMessage(LogSeverity.Critical, "Program", arg.Message, null)).ConfigureAwait(false);
         }
 
         private async Task CheckSeriesAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)

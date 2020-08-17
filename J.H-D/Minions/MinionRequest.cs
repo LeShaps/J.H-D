@@ -7,11 +7,14 @@ namespace J.H_D.Minions
     {
         public FeatureRequest(T answer, U error)
         {
-            Answer = answer;
-            Error = error;
+            this.answer = answer;
+            this.error = error;
         }
 
-        public T Answer;
-        public U Error;
+        private T answer;
+        private U error;
+
+        public T Answer { get => answer; set => answer = value; }
+        public U Error { get => error; set => error = value; }
     }
 }

@@ -9,7 +9,7 @@ using System.Globalization;
 
 namespace J.H_D.Minions.Infos
 {
-    class MusicMinion
+    static class MusicMinion
     {
         private const string RootUrl = "http://ws.audioscrobbler.com/2.0/";
 

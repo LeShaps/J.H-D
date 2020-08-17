@@ -16,7 +16,7 @@ namespace J.H_D.Modules
         [Command("Get anime", RunMode = RunMode.Async)]
         public async Task GetAnime(params string[] Args)
         {
-            var Response = await KitsuMinion.SearchAnime(Args);
+            var Response = await KitsuMinion.SearchAnimeAsync(Args);
 
             switch (Response.Error)
             {

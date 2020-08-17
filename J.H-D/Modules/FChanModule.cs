@@ -84,6 +84,7 @@ namespace J.H_D.Modules
 
                 case Error.FChan.None:
                     await ReplyAsync("", false, ThreadImageBuild((Response.FThread)result.Answer));
+                    await PostDebugAsync((Response.FThread)result.Answer);
                     break;
 
                 case Error.FChan.Nsfw:
@@ -93,6 +94,12 @@ namespace J.H_D.Modules
                 default:
                     throw new NotImplementedException();
             }
+        }
+
+        public async Task PostDebugAsync(Response.FThread thread)
+        {
+            var ImageUrl = $"Picture at <http://i.4cdn.org/{thread.Chan}/{thread.Tim}{thread.Extension}>";
+            await ReplyAsync(ImageUrl);
         }
 
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]

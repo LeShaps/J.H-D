@@ -6,111 +6,169 @@ namespace J.H_D.Data
     {
         public class Movie
         {
+            private const string V = "https://image.tmdb.org/t/p/w300";
+
             [Embedable("Name")]
-            public string Name;
+            private string name;
             [Embedable("Poster", false, true)]
-            public string PosterPath;
+            private string posterPath;
             [Embedable("Adult", false)]
-            public bool Adult;
+            private bool adult;
             [Embedable("Synopsis")]
-            public string Overview;
+            private string overview;
             [Embedable("Date")]
-            public string ReleaseDate;
+            private string releaseDate;
             [Embedable("Genres")]
-            public List<string> Genres;
+            private List<string> genres;
             [Embedable("MovieID", false)]
-            public uint Id;
+            private uint id;
             [Embedable("OriginalName")]
-            public string OriginalTitle;
+            private string originalTitle;
             [Embedable("OriginalLanguage")]
-            public string OriginalLanguage;
+            private string originalLanguage;
             [Embedable("BackPoster", false, true)]
-            public string BackdropPath;
+            private string backdropPath;
             [Embedable("Note")]
-            public string AverageNote;
+            private string averageNote;
             [Embedable("Budget")]
-            public uint Budget;
+            private uint budget;
             [Embedable("Revenue")]
-            public uint Revenue;
+            private uint revenue;
             [Embedable("Compagnies")]
-            public List<string> ProductionCompanies;
+            private List<string> productionCompanies;
             [Embedable("Runtime")]
-            public string Runtime;
+            private string runtime;
 
             [Embedable("RessourceLink", false, false)]
-            public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
+            private readonly string ressourcePath = V;
+
+            public string Name { get => name; set => name = value; }
+            public string PosterPath { get => posterPath; set => posterPath = value; }
+            public bool Adult { get => adult; set => adult = value; }
+            public string Overview { get => overview; set => overview = value; }
+            public string ReleaseDate { get => releaseDate; set => releaseDate = value; }
+            public List<string> Genres { get => genres; set => genres = value; }
+            public uint Id { get => id; set => id = value; }
+            public string OriginalTitle { get => originalTitle; set => originalTitle = value; }
+            public string OriginalLanguage { get => originalLanguage; set => originalLanguage = value; }
+            public string BackdropPath { get => backdropPath; set => backdropPath = value; }
+            public string AverageNote { get => averageNote; set => averageNote = value; }
+            public uint Budget { get => budget; set => budget = value; }
+            public uint Revenue { get => revenue; set => revenue = value; }
+            public List<string> ProductionCompanies { get => productionCompanies; set => productionCompanies = value; }
+            public string Runtime { get => runtime; set => runtime = value; }
+
+            public string RessourcePath => ressourcePath;
         }
 
         public class TVSeries
         {
+            private const string V = "https://image.tmdb.org/t/p/w300";
+
             [Embedable("Name")]
-            public string SeriesName;
+            private string seriesName;
             [Embedable("Id", false)]
-            public string SeriesId;
+            private string seriesId;
             [Embedable("BackPoster", false, true)]
-            public string BackdropPath;
+            private string backdropPath;
             [Embedable("EpisodeLenght")]
-            public string EpisodeRunTime;
+            private string episodeRunTime;
             [Embedable("Start Date")]
-            public string Started;
+            private string started;
             [Embedable("Genres")]
-            public List<string> Genres;
+            private List<string> genres;
             [Embedable("In Production")]
-            public bool InProduction;
-            [Embedable("Website", Link:true)]
-            public string HomePage;
+            private bool inProduction;
+            [Embedable("Website", Link: true)]
+            private string homePage;
             [Embedable("Season Count")]
-            public string SeasonNumber;
+            private string seasonNumber;
             [Embedable("Episode Count")]
-            public string EpisodeNumber;
+            private string episodeNumber;
             [Embedable("Compagnies")]
-            public List<string> Compagnies;
+            private List<string> compagnies;
             [Embedable("Note")]
-            public string VoteAverage;
+            private string voteAverage;
             [Embedable("Synopsis")]
-            public string Overview;
+            private string overview;
             [Embedable("Seasons", false, false)]
-            public List<TVSeason> Seasons;
+            private List<TVSeason> seasons;
 
             [Embedable("RessourceLink", false, false)]
-            public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
+            private readonly string ressourcePath = V;
+
+            public string SeriesName { get => seriesName; set => seriesName = value; }
+            public string SeriesId { get => seriesId; set => seriesId = value; }
+            public string BackdropPath { get => backdropPath; set => backdropPath = value; }
+            public string EpisodeRunTime { get => episodeRunTime; set => episodeRunTime = value; }
+            public string Started { get => started; set => started = value; }
+            public List<string> Genres { get => genres; set => genres = value; }
+            public bool InProduction { get => inProduction; set => inProduction = value; }
+            public string HomePage { get => homePage; set => homePage = value; }
+            public string SeasonNumber { get => seasonNumber; set => seasonNumber = value; }
+            public string EpisodeNumber { get => episodeNumber; set => episodeNumber = value; }
+            public List<string> Compagnies { get => compagnies; set => compagnies = value; }
+            public string VoteAverage { get => voteAverage; set => voteAverage = value; }
+            public string Overview { get => overview; set => overview = value; }
+            public List<TVSeason> Seasons { get => seasons; set => seasons = value; }
+
+            public string RessourcePath => ressourcePath;
         }
 
         public class TVSeason
         {
+            private const string V = "https://image.tmdb.org/t/p/w300";
+
             [Embedable("OriginalSeriesName")]
-            public string FirstSeriesName;
+            private string firstSeriesName;
             [Embedable("OriginalSeriesId", false)]
-            public string FirstSeriesId;
+            private string firstSeriesId;
             [Embedable("Number of Episode")]
-            public string EpisodeNumber;
+            private string episodeNumber;
             [Embedable("SeasonID", false)]
-            public string Id;
+            private string id;
             [Embedable("Synopsis")]
-            public string Overview;
+            private string overview;
             [Embedable("Poster", false, true)]
-            public string PosterPath;
+            private string posterPath;
             [Embedable("Season Number")]
-            public string SNumber;
+            private string sNumber;
             [Embedable("Season Name")]
-            public string SName;
+            private string sName;
 
             [Embedable("RessourceLink", false, false)]
-            public readonly string RessourcePath = "https://image.tmdb.org/t/p/w300";
+            private readonly string ressourcePath = V;
+
+            public string FirstSeriesName { get => firstSeriesName; set => firstSeriesName = value; }
+            public string FirstSeriesId { get => firstSeriesId; set => firstSeriesId = value; }
+            public string EpisodeNumber { get => episodeNumber; set => episodeNumber = value; }
+            public string Id { get => id; set => id = value; }
+            public string Overview { get => overview; set => overview = value; }
+            public string PosterPath { get => posterPath; set => posterPath = value; }
+            public string SNumber { get => sNumber; set => sNumber = value; }
+            public string SName { get => sName; set => sName = value; }
+
+            public string RessourcePath => ressourcePath;
         }
 
         public struct UrbanDefinition
         {
             [Embedable("Word")]
-            public string Word;
+            private string word;
             [Embedable("Definition")]
-            public string Definition;
+            private string definition;
             [Embedable("Link", false, true)]
-            public string Link;
+            private string link;
             [Embedable("Author")]
-            public string Author;
+            private string author;
             [Embedable("Exemples")]
-            public string Exemples;
+            private string exemples;
+
+            public string Word { get => word; set => word = value; }
+            public string Definition { get => definition; set => definition = value; }
+            public string Link { get => link; set => link = value; }
+            public string Author { get => author; set => author = value; }
+            public string Exemples { get => exemples; set => exemples = value; }
         }
 
         public enum AreaType
@@ -123,57 +181,83 @@ namespace J.H_D.Data
         public struct MusicArtist
         {
             [Embedable("Artist Name")]
-            public string Name;
+            private string name;
             [Embedable("ID", false, false)]
-            public string MBID;
+            private string mBID;
             [Embedable("Band Page", false, true)]
-            public string LastUrl;
+            private string lastUrl;
             [Embedable("Image Url", false, true)]
-            public string ImageUrl;
+            private string imageUrl;
             [Embedable("Genres")]
-            public List<string> Genres;
+            private List<string> genres;
             [Embedable("Bio")]
-            public string Bio;
+            private string bio;
             [Embedable("Active")]
-            public bool OnTour;
+            private bool onTour;
+
+            public string Name { get => name; set => name = value; }
+            public string MBID { get => mBID; set => mBID = value; }
+            public string LastUrl { get => lastUrl; set => lastUrl = value; }
+            public string ImageUrl { get => imageUrl; set => imageUrl = value; }
+            public List<string> Genres { get => genres; set => genres = value; }
+            public string Bio { get => bio; set => bio = value; }
+            public bool OnTour { get => onTour; set => onTour = value; }
         }
 
         public struct Anime
         {
             [Embedable("Anime ID", false, false)]
-            public string Id;
+            private string id;
             [Embedable("Synopsis")]
-            public string Synopsis;
+            private string synopsis;
             [Embedable("English Title")]
-            public string Title;
+            private string title;
             [Embedable("Latin Title")]
-            public string LATitle;
+            private string lATitle;
             [Embedable("Japanese Title")]
-            public string OriginalTitle;
+            private string originalTitle;
             [Embedable("Average Rating")]
-            public string Rating;
+            private string rating;
             [Embedable("Start Date")]
-            public string StartDate;
+            private string startDate;
             [Embedable("End Date")]
-            public string EndDate;
+            private string endDate;
             [Embedable("Age Rating")]
-            public string AgeRating;
+            private string ageRating;
             [Embedable("Age Reasons")]
-            public string Guideline;
+            private string guideline;
             [Embedable("Status")]
-            public string Status;
+            private string status;
             [Embedable("Poster", false, true)]
-            public string PosterImage;
+            private string posterImage;
             [Embedable("Cover", false, true)]
-            public string CoverImage;
+            private string coverImage;
             [Embedable("Episode Count")]
-            public string EpisodeCount;
+            private string episodeCount;
             [Embedable("Episode Lenght")]
-            public string EpLength;
+            private string epLength;
             [Embedable("Total Watchtime")]
-            public string HumanReadableWatchtime;
+            private string humanReadableWatchtime;
             [Embedable("Video Url", false, true)]
-            public string VideoUrl;
+            private string videoUrl;
+
+            public string Id { get => id; set => id = value; }
+            public string Synopsis { get => synopsis; set => synopsis = value; }
+            public string Title { get => title; set => title = value; }
+            public string LATitle { get => lATitle; set => lATitle = value; }
+            public string OriginalTitle { get => originalTitle; set => originalTitle = value; }
+            public string Rating { get => rating; set => rating = value; }
+            public string StartDate { get => startDate; set => startDate = value; }
+            public string EndDate { get => endDate; set => endDate = value; }
+            public string AgeRating { get => ageRating; set => ageRating = value; }
+            public string Guideline { get => guideline; set => guideline = value; }
+            public string Status { get => status; set => status = value; }
+            public string PosterImage { get => posterImage; set => posterImage = value; }
+            public string CoverImage { get => coverImage; set => coverImage = value; }
+            public string EpisodeCount { get => episodeCount; set => episodeCount = value; }
+            public string EpLength { get => epLength; set => epLength = value; }
+            public string HumanReadableWatchtime { get => humanReadableWatchtime; set => humanReadableWatchtime = value; }
+            public string VideoUrl { get => videoUrl; set => videoUrl = value; }
         }
     }
 }

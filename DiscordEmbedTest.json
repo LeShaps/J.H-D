@@ -1,0 +1,11 @@
+{
+    "content": "Embed video test, for bot improvement purposes",
+    "embed": {
+        "title": "Always testing",
+        "video": {
+            "url": "http://i.4cdn.org/wsg/1597522298879.webm",
+            "height": 380,
+            "width": 420
+        }
+    }
+}

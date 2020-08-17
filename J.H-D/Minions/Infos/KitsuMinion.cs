@@ -12,7 +12,7 @@ namespace J.H_D.Minions.Infos
 {
     static class KitsuMinion
     {
-        public static async Task<FeatureRequest<Anime?, Error.Anime>> SearchAnime(string[] Args)
+        public static async Task<FeatureRequest<Anime?, Error.Anime>> SearchAnimeAsync(string[] Args)
         {
             string SearchName = Utilities.MakeQueryArgs(Args);
             if (SearchName.Length == 0)

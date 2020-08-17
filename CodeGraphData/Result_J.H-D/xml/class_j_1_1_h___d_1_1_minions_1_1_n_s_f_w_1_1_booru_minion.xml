@@ -1,0 +1,202 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion" kind="class" prot="public">
+    <compoundname>J::H_D::Minions::NSFW::BooruMinion</compoundname>
+    <innerclass refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options" prot="public">J::H_D::Minions::NSFW::BooruMinion::BooruOptions</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" prot="public" static="no">
+        <name>BooruType</name>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a4473b330ff56b3b0f7612d8494fad552" prot="public">
+          <name>Danbooru</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a97e6871fb9376b530f73161882b0b80b" prot="public">
+          <name>E621</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a46f4f45467067ba7d3e90829840b502c" prot="public">
+          <name>E926</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a904a086aae962d14b9f05b68e8bd97da" prot="public">
+          <name>Gelbooru</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a366312f37023500f6d881ae1a17ff22b" prot="public">
+          <name>Konachan</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662ac7622c4de985071effb5fb3f720ddb1a" prot="public">
+          <name>Realbooru</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a7c33b065c7fcac2dc179deabecd8c55b" prot="public">
+          <name>R34</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662abdaba39a02d3e0dae137e0d3a473a13c" prot="public">
+          <name>Safebooru</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a1945d49e7e234e296e7f1666561d09db" prot="public">
+          <name>Sakugabooru</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a9dbc428fb33d808391c4a50b1f99f752" prot="public">
+          <name>SankakuComplex</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a4b29580393ce66823d77e54c96387ac6" prot="public">
+          <name>Yandere</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="16" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="15" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a1bbba26afba5e29a1fe1405da6e03a7e" prot="public" static="yes" mutable="no">
+        <type>readonly ImmutableDictionary&lt; <ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruType</ref>, Type &gt;</type>
+        <definition>readonly ImmutableDictionary&lt;BooruType, Type&gt; J.H_D.Minions.NSFW.BooruMinion.WebsiteEndpoints</definition>
+        <argsstring></argsstring>
+        <name>WebsiteEndpoints</name>
+        <initializer>= new Dictionary&lt;<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruType</ref>, Type&gt;
+        {
+            {BooruType.Danbooru, typeof(DanbooruDonmai) },
+            {BooruType.E621, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a97e6871fb9376b530f73161882b0b80b" kindref="member">E621</ref>) },
+            {BooruType.E926, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a46f4f45467067ba7d3e90829840b502c" kindref="member">E926</ref>) },
+            {BooruType.Gelbooru, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a904a086aae962d14b9f05b68e8bd97da" kindref="member">Gelbooru</ref>) },
+            {BooruType.Konachan, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a366312f37023500f6d881ae1a17ff22b" kindref="member">Konachan</ref>) },
+            {BooruType.Realbooru, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662ac7622c4de985071effb5fb3f720ddb1a" kindref="member">Realbooru</ref>) },
+            {BooruType.R34, typeof(Rule34) },
+            {BooruType.SankakuComplex, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a9dbc428fb33d808391c4a50b1f99f752" kindref="member">SankakuComplex</ref>) },
+            {BooruType.Yandere, typeof(<ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a4b29580393ce66823d77e54c96387ac6" kindref="member">Yandere</ref>) }
+        }.ToImmutableDictionary()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="30" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8a691414c94770adfe4a87239d0c32bd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; SearchResult, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105" kindref="member">Error.Booru</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;SearchResult, Error.Booru&gt; &gt; J.H_D.Minions.NSFW.BooruMinion.GetBooruImageAsync</definition>
+        <argsstring>(BooruOptions options)</argsstring>
+        <name>GetBooruImageAsync</name>
+        <param>
+          <type><ref refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options" kindref="compound">BooruOptions</ref></type>
+          <declname>options</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="65" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="65" bodyend="81"/>
+        <references refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1aa52c97be67315bbc9abeebd59008d487" compoundref="_booru_minion_8cs" startline="45">J.H_D.Minions.NSFW.BooruMinion.BooruOptions.AllowNsfw</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a745441e781c025176516bed56b1be4d3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; BooruSharp.Search.Tag.SearchResult, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105" kindref="member">Error.Booru</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;BooruSharp.Search.Tag.SearchResult, Error.Booru&gt; &gt; J.H_D.Minions.NSFW.BooruMinion.GetTagAsync</definition>
+        <argsstring>(BooruType Booru, string Id)</argsstring>
+        <name>GetTagAsync</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruType</ref></type>
+          <declname>Booru</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>Id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="83" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="83" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1ae8fe3728414a81b58aec54fea8d3dd8d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; List&lt; BooruSharp.Search.Tag.SearchResult &gt;, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105" kindref="member">Error.Booru</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;List&lt;BooruSharp.Search.Tag.SearchResult&gt;, Error.Booru&gt; &gt; J.H_D.Minions.NSFW.BooruMinion.GetTagsAsync</definition>
+        <argsstring>(BooruType Booru, string[] Tags, BooruSharp.Search.Tag.TagType OnlyType=BooruSharp.Search.Tag.TagType.Metadata)</argsstring>
+        <name>GetTagsAsync</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruType</ref></type>
+          <declname>Booru</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>Tags</declname>
+        </param>
+        <param>
+          <type>BooruSharp.Search.Tag.TagType</type>
+          <declname>OnlyType</declname>
+          <defval>BooruSharp.Search.Tag.TagType.Metadata</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="92" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="92" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="14" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="13" bodyend="112"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion</scope><name>BooruType</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8a691414c94770adfe4a87239d0c32bd" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion</scope><name>GetBooruImageAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a745441e781c025176516bed56b1be4d3" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion</scope><name>GetTagAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1ae8fe3728414a81b58aec54fea8d3dd8d" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion</scope><name>GetTagsAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a1bbba26afba5e29a1fe1405da6e03a7e" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion</scope><name>WebsiteEndpoints</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

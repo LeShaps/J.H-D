@@ -6,6 +6,7 @@ using J.H_D.Data;
 
 using MusicArtist = J.H_D.Data.Response.MusicArtist;
 using System.Globalization;
+using System;
 
 namespace J.H_D.Minions.Infos
 {
@@ -18,7 +19,7 @@ namespace J.H_D.Minions.Infos
             MusicArtist? Artist = null;
             
             dynamic Json;
-            Json = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{RootUrl}?method=artist.getinfo&artist={GroupName}&api_key={Program.p.LastFMKey}&format=json"));
+            Json = JsonConvert.DeserializeObject(await Program.GetP().Asker.GetStringAsync($"{RootUrl}?method=artist.getinfo&artist={GroupName}&api_key={Program.GetP().LastFMKey}&format=json"));
 
             dynamic ArtistInfos = Json.artist;
 
@@ -26,7 +27,7 @@ namespace J.H_D.Minions.Infos
             {
                 Name = ArtistInfos.name,
                 Mbid = ArtistInfos.mbid,
-                LastUrl = ArtistInfos.url,
+                LastUrl = new Uri((string)ArtistInfos.url),
                 OnTour = (string)ArtistInfos.ontour != "0",
                 Genres = GetTags(ArtistInfos.tags),
                 Bio = ArtistInfos.bio.summary

@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist" kind="struct" prot="public">
+    <compoundname>J::H_D::Data::Response::MusicArtist</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IEquatable&lt; MusicArtist &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ab2e9f8b5d92110c1cfd991bff693a3d0" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.MusicArtist.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="191" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a79c15314bdbdb41e6727f163ed1d7034" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.MusicArtist.mBID</definition>
+        <argsstring></argsstring>
+        <name>mBID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="193" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a1511a18869d6c659972d76fdc9cc66d5" prot="private" static="no" mutable="no">
+        <type>Uri</type>
+        <definition>Uri J.H_D.Data.Response.MusicArtist.lastUrl</definition>
+        <argsstring></argsstring>
+        <name>lastUrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="195" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="195" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a20c645d5a01db435caf3efd30b65fe7d" prot="private" static="no" mutable="no">
+        <type>Uri</type>
+        <definition>Uri J.H_D.Data.Response.MusicArtist.imageUrl</definition>
+        <argsstring></argsstring>
+        <name>imageUrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="197" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a34a405a9835a55997b51ba5e4637f605" prot="private" static="no" mutable="no">
+        <type>ICollection&lt; string &gt;</type>
+        <definition>ICollection&lt;string&gt; J.H_D.Data.Response.MusicArtist.genres</definition>
+        <argsstring></argsstring>
+        <name>genres</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="199" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="199" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1afb434a522f8d685e727a69a4088affe7" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.MusicArtist.bio</definition>
+        <argsstring></argsstring>
+        <name>bio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="201" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="201" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a81fd520abea011ffccf0fc18252c80ea" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool J.H_D.Data.Response.MusicArtist.onTour</definition>
+        <argsstring></argsstring>
+        <name>onTour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="203" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="203" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a9fa4c55dde09592328a2e81c74e7ed45" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.MusicArtist.Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="205" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="205" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1aeb32579b0e436ec4c1b86efb7eea01ca" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.MusicArtist.Mbid</definition>
+        <argsstring></argsstring>
+        <name>Mbid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="206" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="206" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ab69583f24ed038ed89ecf6e0ebd52f78" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Uri</type>
+        <definition>Uri J.H_D.Data.Response.MusicArtist.LastUrl</definition>
+        <argsstring></argsstring>
+        <name>LastUrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="207" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="207" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a1cdeeac8dd90a23dcb49d4cb3b4bc701" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Uri</type>
+        <definition>Uri J.H_D.Data.Response.MusicArtist.ImageUrl</definition>
+        <argsstring></argsstring>
+        <name>ImageUrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="208" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="208" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ace8f30bdcfc3090a615eefc7a0607d37" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>ICollection&lt; string &gt;</type>
+        <definition>ICollection&lt;string&gt; J.H_D.Data.Response.MusicArtist.Genres</definition>
+        <argsstring></argsstring>
+        <name>Genres</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="209" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="209" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a091099c2576b7078b82bf0670324c3a9" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.MusicArtist.Bio</definition>
+        <argsstring></argsstring>
+        <name>Bio</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="210" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="210" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a0f6c167323fa470ced27cfe54e3e9e69" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool J.H_D.Data.Response.MusicArtist.OnTour</definition>
+        <argsstring></argsstring>
+        <name>OnTour</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="211" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="211" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a78146cd03c507af76c950a25f05e9991" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool J.H_D.Data.Response.MusicArtist.Equals</definition>
+        <argsstring>(MusicArtist other)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type><ref refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist" kindref="compound">MusicArtist</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="213" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="213" bodyend="218"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="70">
+        <label>J.H_D.Data.Response.MusicArtist</label>
+        <link refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist"/>
+        <childnode refid="71" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>IEquatable&lt; MusicArtist &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="72">
+        <label>J.H_D.Data.Response.MusicArtist</label>
+        <link refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist"/>
+        <childnode refid="73" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>IEquatable&lt; MusicArtist &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" line="189" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/Response.cs" bodystart="188" bodyend="219"/>
+    <listofallmembers>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1afb434a522f8d685e727a69a4088affe7" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>bio</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a091099c2576b7078b82bf0670324c3a9" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>Bio</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a78146cd03c507af76c950a25f05e9991" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>Equals</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a34a405a9835a55997b51ba5e4637f605" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>genres</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ace8f30bdcfc3090a615eefc7a0607d37" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>Genres</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a20c645d5a01db435caf3efd30b65fe7d" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>imageUrl</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a1cdeeac8dd90a23dcb49d4cb3b4bc701" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>ImageUrl</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ab69583f24ed038ed89ecf6e0ebd52f78" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>LastUrl</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a1511a18869d6c659972d76fdc9cc66d5" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>lastUrl</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1aeb32579b0e436ec4c1b86efb7eea01ca" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>Mbid</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a79c15314bdbdb41e6727f163ed1d7034" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>mBID</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ab2e9f8b5d92110c1cfd991bff693a3d0" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>name</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a9fa4c55dde09592328a2e81c74e7ed45" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>Name</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a0f6c167323fa470ced27cfe54e3e9e69" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>OnTour</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a81fd520abea011ffccf0fc18252c80ea" prot="private" virt="non-virtual"><scope>J::H_D::Data::Response::MusicArtist</scope><name>onTour</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

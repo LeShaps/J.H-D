@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module" kind="class" prot="public">
+    <compoundname>J::H_D::Modules::ExperimentalModule</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModuleBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a5158fcb103042a7e744a7a6cb354e655" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.ParseNHPage</definition>
+        <argsstring>()</argsstring>
+        <name>ParseNHPage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="31" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="31" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1acd6cfac9fe78ffcacb8ad0392881e733" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.CheckAttributes</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>CheckAttributes</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="63" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="63" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a5018f6e86b8ee0013db2ebba2f30c501" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.ExperimentalModule.CustomMovieEmbed</definition>
+        <argsstring>(Response.Movie MovieInfos)</argsstring>
+        <name>CustomMovieEmbed</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie" kindref="compound">Response.Movie</ref></type>
+          <declname>MovieInfos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="70" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="70" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a9f9b6c4d470eecdca75c0916e86eb501" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.GetMessages</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>GetMessages</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="112" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="112" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a12d4111adb55332c9df9736a4d1f3e05" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.ConnectAudio</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>ConnectAudio</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="123" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="123" bodyend="130"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a904de21f3a0d567f16c4b514f3ec1d7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.SendVideoAsync</definition>
+        <argsstring>()</argsstring>
+        <name>SendVideoAsync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="133" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="133" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a85d90d0d88724f70ae269bd8260770dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.TryCreateMultiEmbed</definition>
+        <argsstring>()</argsstring>
+        <name>TryCreateMultiEmbed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="153" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="153" bodyend="164"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1abfcd0ae0b0255223fa2a780e94e136a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.TryGetDb</definition>
+        <argsstring>()</argsstring>
+        <name>TryGetDb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="167" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="167" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1ac1e9b109f59ddfa158316587faac1520" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.GetCritic</definition>
+        <argsstring>([Remainder]string GameName)</argsstring>
+        <name>GetCritic</name>
+        <param>
+          <attributes>[Remainder]</attributes>
+          <type>string</type>
+          <declname>GameName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="203" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="203" bodyend="288"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a726655414065b02dfd50de3d4c427172" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.JustReply</definition>
+        <argsstring>()</argsstring>
+        <name>JustReply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="292" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="292" bodyend="295"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a274e4528f50a1176195840ad6a8b89b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.ExperimentalModule.Try</definition>
+        <argsstring>()</argsstring>
+        <name>Try</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="319" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="319" bodyend="324"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a3a1d3d24ef4ef147c53a99a6f8e6bf0b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int J.H_D.Modules.ExperimentalModule.GetLastPageNb</definition>
+        <argsstring>(string html)</argsstring>
+        <name>GetLastPageNb</name>
+        <param>
+          <type>string</type>
+          <declname>html</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="49" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="49" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1ab9d734f5bf0695294ffeca86cb5b907a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Embed &gt;</type>
+        <definition>List&lt;Embed&gt; J.H_D.Modules.ExperimentalModule.CreateEmbeds</definition>
+        <argsstring>()</argsstring>
+        <name>CreateEmbeds</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="297" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="297" bodyend="316"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1af7efb353ff1baae577c41ce0f5566109" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.ExperimentalModule.AddEmbedVideo</definition>
+        <argsstring>(Embed BaseEmbed)</argsstring>
+        <name>AddEmbedVideo</name>
+        <param>
+          <type>Embed</type>
+          <declname>BaseEmbed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="326" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="326" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a0672c07c6a856dc4cfba0a4f5f692465" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T J.H_D.Modules.ExperimentalModule.ChangePrivateValue&lt; T, U &gt;</definition>
+        <argsstring>(T OldObject, U NewValue, string PropertyName)</argsstring>
+        <name>ChangePrivateValue&lt; T, U &gt;</name>
+        <param>
+          <type>T</type>
+          <declname>OldObject</declname>
+        </param>
+        <param>
+          <type>U</type>
+          <declname>NewValue</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>PropertyName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="379" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="379" bodyend="385"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="32">
+        <label>J.H_D.Modules.ExperimentalModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>ModuleBase</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="34">
+        <label>J.H_D.Modules.ExperimentalModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>ModuleBase</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" line="29" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/ExperimentalModule.cs" bodystart="28" bodyend="386"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1af7efb353ff1baae577c41ce0f5566109" prot="private" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>AddEmbedVideo</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a0672c07c6a856dc4cfba0a4f5f692465" prot="private" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>ChangePrivateValue&lt; T, U &gt;</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1acd6cfac9fe78ffcacb8ad0392881e733" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>CheckAttributes</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a12d4111adb55332c9df9736a4d1f3e05" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>ConnectAudio</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1ab9d734f5bf0695294ffeca86cb5b907a" prot="private" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>CreateEmbeds</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a5018f6e86b8ee0013db2ebba2f30c501" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>CustomMovieEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1ac1e9b109f59ddfa158316587faac1520" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>GetCritic</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a3a1d3d24ef4ef147c53a99a6f8e6bf0b" prot="private" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>GetLastPageNb</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a9f9b6c4d470eecdca75c0916e86eb501" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>GetMessages</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a726655414065b02dfd50de3d4c427172" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>JustReply</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a5158fcb103042a7e744a7a6cb354e655" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>ParseNHPage</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a904de21f3a0d567f16c4b514f3ec1d7b" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>SendVideoAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a274e4528f50a1176195840ad6a8b89b4" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>Try</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a85d90d0d88724f70ae269bd8260770dd" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>TryCreateMultiEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1abfcd0ae0b0255223fa2a780e94e136a5" prot="public" virt="non-virtual"><scope>J::H_D::Modules::ExperimentalModule</scope><name>TryGetDb</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

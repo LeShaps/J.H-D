@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion" kind="class" prot="public">
+    <compoundname>J::H_D::Minions::Infos::KitsuMinion</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion_1ac5c33bf06491aa9bb9b1c9967d0a2f7d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; <ref refid="_kitsu_minion_8cs_1aba55619315b6d0af59b0c23c712dc362" kindref="member">Anime</ref>?, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1ab868b65183393d92f05271214ee31a41" kindref="member">Error.Anime</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;Anime?, Error.Anime&gt; &gt; J.H_D.Minions.Infos.KitsuMinion.SearchAnimeAsync</definition>
+        <argsstring>(string[] Args)</argsstring>
+        <name>SearchAnimeAsync</name>
+        <param>
+          <type>string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" line="15" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" bodystart="15" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion_1af9b1d8e66b8611d92baea70c8a3652d1" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string J.H_D.Minions.Infos.KitsuMinion.GetReadableWatchtime</definition>
+        <argsstring>(string minutes)</argsstring>
+        <name>GetReadableWatchtime</name>
+        <param>
+          <type>string</type>
+          <declname>minutes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" line="54" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" bodystart="54" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" line="14" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" bodystart="13" bodyend="60"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion_1af9b1d8e66b8611d92baea70c8a3652d1" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::KitsuMinion</scope><name>GetReadableWatchtime</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion_1ac5c33bf06491aa9bb9b1c9967d0a2f7d" prot="public" virt="non-virtual"><scope>J::H_D::Minions::Infos::KitsuMinion</scope><name>SearchAnimeAsync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

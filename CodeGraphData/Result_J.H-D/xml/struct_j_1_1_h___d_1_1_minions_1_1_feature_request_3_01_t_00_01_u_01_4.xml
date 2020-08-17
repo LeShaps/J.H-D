@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4" kind="struct" prot="public">
+    <compoundname>J::H_D::Minions::FeatureRequest&lt; T, U &gt;</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IEquatable&lt; FeatureRequest&lt; T, U &gt;&gt;</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+      <param>
+        <type>U</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1aade0a2c377bc55c0f928a140302c5a4b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>T</type>
+        <definition>T J.H_D.Minions.FeatureRequest&lt; T, U &gt;.Answer</definition>
+        <argsstring></argsstring>
+        <name>Answer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" line="14" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a170c61923c9d080f077a6c2d3e9fc3e3" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>U</type>
+        <definition>U J.H_D.Minions.FeatureRequest&lt; T, U &gt;.Error</definition>
+        <argsstring></argsstring>
+        <name>Error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" line="15" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a3d5cb71f59308432f99c01bd7fc963cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>J.H_D.Minions.FeatureRequest&lt; T, U &gt;.FeatureRequest</definition>
+        <argsstring>(T answer, U error)</argsstring>
+        <name>FeatureRequest</name>
+        <param>
+          <type>T</type>
+          <declname>answer</declname>
+        </param>
+        <param>
+          <type>U</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" line="8" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" bodystart="8" bodyend="12"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a9dbe723df6be4b58e4213020475574c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool J.H_D.Minions.FeatureRequest&lt; T, U &gt;.Equals</definition>
+        <argsstring>(FeatureRequest&lt; T, U &gt; other)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type><ref refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a3d5cb71f59308432f99c01bd7fc963cd" kindref="member">FeatureRequest</ref>&lt; T, U &gt;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" line="17" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" bodystart="17" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="47">
+        <label>IEquatable&lt; FeatureRequest&lt; T, U &gt;&gt;</label>
+      </node>
+      <node id="46">
+        <label>J.H_D.Minions.FeatureRequest&lt; T, U &gt;</label>
+        <link refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4"/>
+        <childnode refid="47" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="49">
+        <label>IEquatable&lt; FeatureRequest&lt; T, U &gt;&gt;</label>
+      </node>
+      <node id="48">
+        <label>J.H_D.Minions.FeatureRequest&lt; T, U &gt;</label>
+        <link refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4"/>
+        <childnode refid="49" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" line="7" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/MinionRequest.cs" bodystart="5" bodyend="22"/>
+    <listofallmembers>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1aade0a2c377bc55c0f928a140302c5a4b" prot="public" virt="non-virtual"><scope>J::H_D::Minions::FeatureRequest&lt; T, U &gt;</scope><name>Answer</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a9dbe723df6be4b58e4213020475574c3" prot="public" virt="non-virtual"><scope>J::H_D::Minions::FeatureRequest&lt; T, U &gt;</scope><name>Equals</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a170c61923c9d080f077a6c2d3e9fc3e3" prot="public" virt="non-virtual"><scope>J::H_D::Minions::FeatureRequest&lt; T, U &gt;</scope><name>Error</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a3d5cb71f59308432f99c01bd7fc963cd" prot="public" virt="non-virtual"><scope>J::H_D::Minions::FeatureRequest&lt; T, U &gt;</scope><name>FeatureRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

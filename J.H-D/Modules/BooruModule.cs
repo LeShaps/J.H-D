@@ -18,7 +18,7 @@ namespace J.H_D.Modules
         [Command("Konachan", RunMode = RunMode.Async), Priority(-1)]
         public async Task SearchKonachanAsync(params string[] Args)
         {
-            await Program.p.DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Booru);
+            await Program.GetP().DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Booru);
 
             var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNsfw(Context)));
 
@@ -28,7 +28,7 @@ namespace J.H_D.Modules
         [Command("Konachan with infos", RunMode = RunMode.Async)]
         public async Task SearchWithBonusAsync(params string[] Args)
         {
-            await Program.p.DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Booru);
+            await Program.GetP().DoActionAsync(Context.User, Context.Guild.Id, Program.Module.Booru);
 
             var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNsfw(Context)));
 

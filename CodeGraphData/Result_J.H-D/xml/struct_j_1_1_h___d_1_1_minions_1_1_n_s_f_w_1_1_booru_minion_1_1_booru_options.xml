@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options" kind="struct" prot="public">
+    <compoundname>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">IEquatable&lt; BooruOptions &gt;</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1aa52c97be67315bbc9abeebd59008d487" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool J.H_D.Minions.NSFW.BooruMinion.BooruOptions.AllowNsfw</definition>
+        <argsstring></argsstring>
+        <name>AllowNsfw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="45" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="45" bodyend="-1"/>
+        <referencedby refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8a691414c94770adfe4a87239d0c32bd" compoundref="_booru_minion_8cs" startline="65" endline="81">J.H_D.Minions.NSFW.BooruMinion.GetBooruImageAsync</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a32dbc69493bea278fd65ed5fe026d411" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruType</ref></type>
+        <definition>BooruType J.H_D.Minions.NSFW.BooruMinion.BooruOptions.Booru</definition>
+        <argsstring></argsstring>
+        <name>Booru</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="46" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a38fe763e901b1fb40fbbf0b2e0e9dc16" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string[]</type>
+        <definition>string [] J.H_D.Minions.NSFW.BooruMinion.BooruOptions.SearchQuery</definition>
+        <argsstring></argsstring>
+        <name>SearchQuery</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="47" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a882875754190300bddd78bfbc128ea9e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>J.H_D.Minions.NSFW.BooruMinion.BooruOptions.BooruOptions</definition>
+        <argsstring>(BooruType Website, string[] Search, bool Allow)</argsstring>
+        <name>BooruOptions</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruType</ref></type>
+          <declname>Website</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>Search</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>Allow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="49" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="49" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1ac180960d20c0ebd71af21d78aaff8a98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool J.H_D.Minions.NSFW.BooruMinion.BooruOptions.Equals</definition>
+        <argsstring>(BooruOptions other)</argsstring>
+        <name>Equals</name>
+        <param>
+          <type><ref refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options" kindref="compound">BooruOptions</ref></type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="56" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="56" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="15">
+        <label>IEquatable&lt; BooruOptions &gt;</label>
+      </node>
+      <node id="14">
+        <label>J.H_D.Minions.NSFW.BooruMinion.BooruOptions</label>
+        <link refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="17">
+        <label>IEquatable&lt; BooruOptions &gt;</label>
+      </node>
+      <node id="16">
+        <label>J.H_D.Minions.NSFW.BooruMinion.BooruOptions</label>
+        <link refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" line="44" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/BooruMinion.cs" bodystart="43" bodyend="63"/>
+    <listofallmembers>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1aa52c97be67315bbc9abeebd59008d487" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</scope><name>AllowNsfw</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a32dbc69493bea278fd65ed5fe026d411" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</scope><name>Booru</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a882875754190300bddd78bfbc128ea9e" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</scope><name>BooruOptions</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1ac180960d20c0ebd71af21d78aaff8a98" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</scope><name>Equals</name></member>
+      <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a38fe763e901b1fb40fbbf0b2e0e9dc16" prot="public" virt="non-virtual"><scope>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</scope><name>SearchQuery</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

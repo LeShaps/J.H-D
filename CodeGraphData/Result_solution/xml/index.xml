@@ -1,0 +1,650 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.6">
+  <compound refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime" kind="struct"><name>J::H_D::Data::Response::Anime</name>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a8d901df082a8baf52b2426bbf476a0e4" kind="variable"><name>id</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a30033fc760da56d77bb52a0fb96aa8b3" kind="variable"><name>synopsis</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a6c62c47c68cfe684a968d6783626438d" kind="variable"><name>title</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1aad74380805d076f3278bac00535a741f" kind="variable"><name>lATitle</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a664f9ebd9f69a77bd37e66ed1e04c5de" kind="variable"><name>originalTitle</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a67b770a5d92d68787ba7f2cd462b89de" kind="variable"><name>rating</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a289da6215e33c61480e655dd89219a2c" kind="variable"><name>startDate</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1aa48963d7e77ae650e088edf8c5346dd7" kind="variable"><name>endDate</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1affa7a0b8cdc91653e73152a827bada9c" kind="variable"><name>ageRating</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a19d8238340fde69ec88a4967f78d5d58" kind="variable"><name>guideline</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1aaf972022713ba5036e8b31a0320ab647" kind="variable"><name>status</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1ad6cadfbf7328435e90da79034d89999c" kind="variable"><name>posterImage</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a4c74f900606ec0a0ce2095a03426793b" kind="variable"><name>coverImage</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a55708407b690b91e045cddc3753998cf" kind="variable"><name>episodeCount</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1aceab0377c226535ca125a9c02e08e32a" kind="variable"><name>epLength</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a6bd750f8d9867b373b31518bf18d04f5" kind="variable"><name>humanReadableWatchtime</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a5606a5a3a148ddd2d8f555636aa7ce8f" kind="variable"><name>videoUrl</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a44e43ed90f352d75c52c89814fa07909" kind="property"><name>Id</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1adcbaf5c887966d1ca55927f153776a8c" kind="property"><name>Synopsis</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1ac4f16bbdfdabd4e0b128ca1bffac39be" kind="property"><name>Title</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1ad2201b5f188f0f7eae610d2f7bff7c1c" kind="property"><name>LATitle</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a657631bf19a9f0f6dda8da7a04ce5fe6" kind="property"><name>OriginalTitle</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a36383556ce110bb79279b6eac41896d4" kind="property"><name>Rating</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a7ded5cd74276624d1e9cfa0feb494556" kind="property"><name>StartDate</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a9fbcd98fd2629bad412e39438f1d885a" kind="property"><name>EndDate</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1ab8f0be63d2416b13f291441c32419110" kind="property"><name>AgeRating</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a60eb26b514327aac43737727d71058c7" kind="property"><name>Guideline</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1ab95f72d428db116cafcf243d91315af0" kind="property"><name>Status</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a269d4b2e5c93556097ac80de99163ac0" kind="property"><name>PosterImage</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a61b19b2de875a5fb6400cc900df42e2f" kind="property"><name>CoverImage</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a176e884ca339d3a0400753f7adf9e188" kind="property"><name>EpisodeCount</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a176961e069195041839a11d1ba027f55" kind="property"><name>EpLength</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1aa53f92de7ec2fa72e5fae81385ed0fe9" kind="property"><name>HumanReadableWatchtime</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a79a62750b302f041297fbee1e2d93f53" kind="property"><name>VideoUrl</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_anime_1a44639f7858e3adc0c383473a2376d700" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module" kind="class"><name>J::H_D::Modules::AnimeMangaModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module_1a22dcdc31103b9813a571d7ecc95d3b1b" kind="function"><name>GetAnimeAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module_1a4ee3e975a8ea3594a7789ae6ab8e7a44" kind="function"><name>BuildAnimeEmbed</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion" kind="class"><name>J::H_D::Minions::NSFW::BooruMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kind="enum"><name>BooruType</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a4473b330ff56b3b0f7612d8494fad552" kind="enumvalue"><name>Danbooru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a97e6871fb9376b530f73161882b0b80b" kind="enumvalue"><name>E621</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a46f4f45467067ba7d3e90829840b502c" kind="enumvalue"><name>E926</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a904a086aae962d14b9f05b68e8bd97da" kind="enumvalue"><name>Gelbooru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a366312f37023500f6d881ae1a17ff22b" kind="enumvalue"><name>Konachan</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662ac7622c4de985071effb5fb3f720ddb1a" kind="enumvalue"><name>Realbooru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a7c33b065c7fcac2dc179deabecd8c55b" kind="enumvalue"><name>R34</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662abdaba39a02d3e0dae137e0d3a473a13c" kind="enumvalue"><name>Safebooru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a1945d49e7e234e296e7f1666561d09db" kind="enumvalue"><name>Sakugabooru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a9dbc428fb33d808391c4a50b1f99f752" kind="enumvalue"><name>SankakuComplex</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662a4b29580393ce66823d77e54c96387ac6" kind="enumvalue"><name>Yandere</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a1bbba26afba5e29a1fe1405da6e03a7e" kind="variable"><name>WebsiteEndpoints</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8a691414c94770adfe4a87239d0c32bd" kind="function"><name>GetBooruImageAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a745441e781c025176516bed56b1be4d3" kind="function"><name>GetTagAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1ae8fe3728414a81b58aec54fea8d3dd8d" kind="function"><name>GetTagsAsync</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module" kind="class"><name>J::H_D::Modules::BooruModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a7c57ed51957ea9f44d877aa773f1fc3a" kind="function"><name>SearchKonachanAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1ac2cba9cddd2859f5f543e4082eef5632" kind="function"><name>SearchWithBonusAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a9fbc407a89598737b5c3fdb6e2903841" kind="function"><name>ProccessResultAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a9d188709a6d10b7ad7e206ab48955fe0" kind="function"><name>ProccessInfosResultAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1add4792edeeb921481437a4b46255b601" kind="function"><name>BuildImageEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a0fb3733d214e8cdd76d4af9552cc6a68" kind="function"><name>BuildImageInfosEmbedAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a619699800b93bbebdd773670fa6eb117" kind="function"><name>CleanTag</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options" kind="struct"><name>J::H_D::Minions::NSFW::BooruMinion::BooruOptions</name>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1aa52c97be67315bbc9abeebd59008d487" kind="property"><name>AllowNsfw</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a32dbc69493bea278fd65ed5fe026d411" kind="property"><name>Booru</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a38fe763e901b1fb40fbbf0b2e0e9dc16" kind="property"><name>SearchQuery</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1a882875754190300bddd78bfbc128ea9e" kind="function"><name>BooruOptions</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1_1_booru_options_1ac180960d20c0ebd71af21d78aaff8a98" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module" kind="class"><name>J::H_D::Modules::CommunicationModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ac88158b3c9f427723ecb2dd309cb7d66" kind="function"><name>ReplytoAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a9282b03889c30376ce41f527ce164d7a" kind="function"><name>RotateThenRespondAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a4c0f97cf584ad69a654663406b645799" kind="function"><name>ClarifyThenRespondAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a7a93b215164db5e21b4982c13e41b297" kind="function"><name>MotiveAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a0c11208f7091b5a15a7fa7be5d9a0b3e" kind="function"><name>FindDefinitionAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a1086bde96e110959a1173abcddd22258" kind="function"><name>GenerateAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a1b533a42118083d359e9d09daa7d038d" kind="function"><name>ReRollTextAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a6189e0422491d9fe4fc89512a6c7e5e8" kind="function"><name>MessageUpdaterAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a792c6fec2c0504aa969f7321491c4e41" kind="function"><name>BuildDefinition</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a19357c2b336faaa7448e6beb7c940ae0" kind="function"><name>PureImageAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ac5e099f178132addf82567b95a33f3c8" kind="function"><name>BuildInspirobotEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ad6726242a0357e2c55a3e3f34796dd7d" kind="function"><name>StartWaitAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1aa2b6fcdd8dec1e21e878d32a272ce06e" kind="function"><name>CreateTextEmbed</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_complete" kind="class"><name>J::H_D::Data::Response::Complete</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_complete_1a66e80239fec6c406db5870412fe4a8dc" kind="property"><name>Content</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_db_1_1_db" kind="class"><name>J::H_D::Db::Db</name>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a377087ec32212b436b73b16b1951640a" kind="property"><name>R1</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a7131100fca0d3dec6dc327002a970414" kind="property"><name>Languages</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1af25bf66483c09aa61f1e600cb367b041" kind="property"><name>Prefixs</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1af41c49889eed6a2ef23888402637d9c5" kind="property"><name>Anonymize</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1acab2a5bb09dec11f5fbc85740006e9e8" kind="property"><name>Availlability</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a8371d61b7c2bdf448a5cd3793d8ace76" kind="variable"><name>conn</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a04544986e633d88b397e2095c1ea9cde" kind="variable"><name>DbName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a592eb423ffd8780f894ab03ce50cc6e5" kind="variable"><name>defaultAvailability</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a5e76a9ad7da5b738776e3efc96799020" kind="variable"><name>GuildTableName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a543480f6006303c259ba6aaa8a8d43b0" kind="function"><name>Db</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a64aab438a228892d3c2bb2f39a7e509d" kind="function"><name>InitAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a9eb036ec1c7218014252eb1752d4a66d" kind="function"><name>InitAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_db_1_1_db_1a048114c5e5e30fb1283ac6438968faca" kind="function"><name>InitGuildAsync</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_embedable_attribute" kind="class"><name>J::H_D::Data::EmbedableAttribute</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_embedable_attribute_1a3d13e5e5eac99f060d42949a393aaf93" kind="property"><name>Name</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_embedable_attribute_1a334d9e59807e8f3fefaa6be91cfad3ff" kind="property"><name>Fieldable</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_embedable_attribute_1aefc8b1a5ab43baac4aed0b6bee92f1b7" kind="property"><name>Link</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_embedable_attribute_1a67b9895440938ea418c6fef93fadd59f" kind="function"><name>EmbedableAttribute</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_embedable_attribute_1add46390c387fd07952243c956e03c079" kind="function"><name>EmbedableAttribute</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_error" kind="class"><name>J::H_D::Data::Error</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519" kind="enum"><name>Movie</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519a38c300f4fc9ce8a77aad4a30de05cad8" kind="enumvalue"><name>NotFound</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519a6a26f548831e6a8c26bfbbd9f6ec61e0" kind="enumvalue"><name>Help</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a832e518f876ce7cc34e5ecf606149f2e" kind="enum"><name>Urban</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a832e518f876ce7cc34e5ecf606149f2ea33dfc7c51d6a9955fd39cd90b5fd9830" kind="enumvalue"><name>WordNotFound</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a832e518f876ce7cc34e5ecf606149f2ea6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a55764c4325e1563bd6abe430c4db4fdb" kind="enum"><name>Brainz</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a55764c4325e1563bd6abe430c4db4fdba153ec8199c7c09378087580b778048da" kind="enumvalue"><name>ArtistNotFound</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a55764c4325e1563bd6abe430c4db4fdba7d616e19addf6ab281ff29df6c795dc1" kind="enumvalue"><name>TitleNotFound</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a55764c4325e1563bd6abe430c4db4fdba094a6f6b0868122a9dd008cb91c083e4" kind="enumvalue"><name>ConnectionError</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a55764c4325e1563bd6abe430c4db4fdba6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ab868b65183393d92f05271214ee31a41" kind="enum"><name>Anime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ab868b65183393d92f05271214ee31a41a38c300f4fc9ce8a77aad4a30de05cad8" kind="enumvalue"><name>NotFound</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ab868b65183393d92f05271214ee31a41a6a26f548831e6a8c26bfbbd9f6ec61e0" kind="enumvalue"><name>Help</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ab868b65183393d92f05271214ee31a41a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105" kind="enum"><name>Booru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105a64b4e7ec8fd2f1f77f650b90c00c1542" kind="enumvalue"><name>IsNSFW</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105a38c300f4fc9ce8a77aad4a30de05cad8" kind="enumvalue"><name>NotFound</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a0e3a50e388379363481449b38ca31297" kind="enum"><name>FChan</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a0e3a50e388379363481449b38ca31297a453e6aa38d87b28ccae545967c53004f" kind="enumvalue"><name>Unavailable</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a0e3a50e388379363481449b38ca31297a698cef8efdcb4c1c11523b41985e8bbd" kind="enumvalue"><name>ThreadExpired</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a0e3a50e388379363481449b38ca31297a32e384681c63499ee6ac5bd96113cb3c" kind="enumvalue"><name>Nsfw</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a0e3a50e388379363481449b38ca31297a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a46e74bd2f8d2f5806b4dced87111f031" kind="enum"><name>InspirationnalError</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a46e74bd2f8d2f5806b4dced87111f031a6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1a46e74bd2f8d2f5806b4dced87111f031a07a3dd247ad6bec7fe401aa11619959f" kind="enumvalue"><name>Communication</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ad0072e87af920fd2a50f83038b735c3f" kind="enum"><name>Complete</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ad0072e87af920fd2a50f83038b735c3fa6a26f548831e6a8c26bfbbd9f6ec61e0" kind="enumvalue"><name>Help</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ad0072e87af920fd2a50f83038b735c3fac2cc7082a89c1ad6631a2f66af5f00c0" kind="enumvalue"><name>Connection</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_error_1ad0072e87af920fd2a50f83038b735c3fa6adf97f83acf6453d4a6a4b1070f3754" kind="enumvalue"><name>None</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module" kind="class"><name>J::H_D::Modules::ExperimentalModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a5158fcb103042a7e744a7a6cb354e655" kind="function"><name>ParseNHPage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1acd6cfac9fe78ffcacb8ad0392881e733" kind="function"><name>CheckAttributes</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a5018f6e86b8ee0013db2ebba2f30c501" kind="function"><name>CustomMovieEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a9f9b6c4d470eecdca75c0916e86eb501" kind="function"><name>GetMessages</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a12d4111adb55332c9df9736a4d1f3e05" kind="function"><name>ConnectAudio</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a904de21f3a0d567f16c4b514f3ec1d7b" kind="function"><name>SendVideoAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a85d90d0d88724f70ae269bd8260770dd" kind="function"><name>TryCreateMultiEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1abfcd0ae0b0255223fa2a780e94e136a5" kind="function"><name>TryGetDb</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1ac1e9b109f59ddfa158316587faac1520" kind="function"><name>GetCritic</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a726655414065b02dfd50de3d4c427172" kind="function"><name>JustReply</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a274e4528f50a1176195840ad6a8b89b4" kind="function"><name>Try</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a3a1d3d24ef4ef147c53a99a6f8e6bf0b" kind="function"><name>GetLastPageNb</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1ab9d734f5bf0695294ffeca86cb5b907a" kind="function"><name>CreateEmbeds</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1af7efb353ff1baae577c41ce0f5566109" kind="function"><name>AddEmbedVideo</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_experimental_module_1a0672c07c6a856dc4cfba0a4f5f692465" kind="function"><name>ChangePrivateValue&lt; T, U &gt;</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board" kind="struct"><name>J::H_D::Data::Response::FBoard</name>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1a5bc31512954332b97a21a3fd65a60c44" kind="variable"><name>name</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1af1e48dca5fbfc17113bc852de5baad50" kind="variable"><name>title</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1a8b10d97a239df589d1ee9ecddb36a976" kind="variable"><name>description</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1a1a8a7dbb9c9cbf252729c31f9b3e8ae8" kind="variable"><name>spoilers</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1ad79643c005a5acb33e41c70dd8201d4d" kind="variable"><name>nsfw</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1a4371185890ae07aac4ccff5477a00569" kind="property"><name>Name</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1a4e5c99acd3bd68895f5b0f69e063abca" kind="property"><name>Title</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1aae887e6b107f84c62703b38e04d9c773" kind="property"><name>Description</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1a2d9e053b3d3dd06400cf67d143be3303" kind="property"><name>Spoilers</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1abd3b8d31433b380266a669de880c80d6" kind="property"><name>Nsfw</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_board_1ae6ae94efd310ceda6b826114104ca19b" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion" kind="class"><name>J::H_D::Minions::Websites::FChanMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1aeabff7315986b788255798fb2d63c311" kind="enum"><name>RequestType</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1aeabff7315986b788255798fb2d63c311abe53a0541a6d36f6ecb879fa2c584b08" kind="enumvalue"><name>Image</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1aeabff7315986b788255798fb2d63c311ad97477d6d8a838ead9348185bb5b6742" kind="enumvalue"><name>Thread</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1a4f15d01d7afe36fc4bbece6fe8a87cfe" kind="function"><name>UpdateAvailableChansAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1ab2ecf89a09d2bddc54278aadda98e329" kind="function"><name>GetRandomThreadFromAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1ab5877285d6ed9ad543dad30502dec5e7" kind="function"><name>GetBoardInfoAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1acb689b1328307db85e0c51565c7824d1" kind="function"><name>AddResponseThreads</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module" kind="class"><name>J::H_D::Modules::FChanModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1afeb71fe12e039b8c4e9ffb29341eb348" kind="function"><name>DisplayFchanBoardsAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1ae0eb9d851cc4a109789d94e59cf04cb3" kind="function"><name>GetBoardInfosAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1a0f43b969002a8121067501c98080a65e" kind="function"><name>RandomImageAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1a1cba7a220f65d126f60ffa65bc0776d0" kind="function"><name>RandomThreadAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1a593c9097a274cd6650b8b8a9131cdc3a" kind="function"><name>ThreadInfosEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1ae082fb83804d80e6a8550b76a39aca74" kind="function"><name>ThreadImageBuild</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1aa5b182428af34aa8abba77d26451e21b" kind="function"><name>BoardInfos</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_f_chan_module_1acbd277ca225ae633ff8332b975006884" kind="function"><name>BoardInfosBuilder</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4" kind="struct"><name>J::H_D::Minions::FeatureRequest&lt; T, U &gt;</name>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1aade0a2c377bc55c0f928a140302c5a4b" kind="property"><name>Answer</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a170c61923c9d080f077a6c2d3e9fc3e3" kind="property"><name>Error</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a3d5cb71f59308432f99c01bd7fc963cd" kind="function"><name>FeatureRequest</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_feature_request_3_01_t_00_01_u_01_4_1a9dbe723df6be4b58e4213020475574c3" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread" kind="struct"><name>J::H_D::Data::Response::FThread</name>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1afb091e40974bae874ca1cce44542f15f" kind="variable"><name>filename</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a3358b72122b40651f33c0902e6e0d426" kind="variable"><name>extension</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a7a52c241a47aa80da940369bdf93466d" kind="variable"><name>threadId</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1ac6d242bdfbc0a8b7b497cb0ca8c6e034" kind="variable"><name>comm</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a72f8952ac19b2f0cb34332ffd3a39498" kind="variable"><name>from</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a5f87dd24899e9ffa6d53ed22b63bbe49" kind="variable"><name>tim</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a2e697caa43a20cded0a9f64f3a5bc21c" kind="variable"><name>chan</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1ae7040e886fd283d4a35f368b5cafbdb4" kind="property"><name>Filename</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1ad64fbba3084a2855669cedcf1de5f6a8" kind="property"><name>Extension</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a892e0927bcc3d199bf3f0e3b70a7a39d" kind="property"><name>ThreadId</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a7bfafc804db8820d0911b303e92574ad" kind="property"><name>Comm</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1aa56015040938c731ac4ec60e7b218ed3" kind="property"><name>From</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1ac78563e5c62055e2bf78baec1eccc522" kind="property"><name>Tim</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a84bf461edb9e06c47f41a7d8d9ab5c21" kind="property"><name>Chan</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_f_thread_1a628b8cfd73b4f179578497235d978c05" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_generator_minion" kind="class"><name>J::H_D::Minions::Websites::GeneratorMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_generator_minion_1aaa980a7d3130c3e033c3b805ea894d96" kind="variable"><name>RefreshDelay</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_generator_minion_1a81e25accd134bc5c9ed80fb4d102d107" kind="function"><name>CompleteAsync</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion" kind="class"><name>J::H_D::Minions::Websites::InspirobotMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion_1aab65d572c79cfc43463120beeb1c5229" kind="function"><name>FeelInspirationAsync</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion" kind="class"><name>J::H_D::Minions::Infos::KitsuMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion_1ac5c33bf06491aa9bb9b1c9967d0a2f7d" kind="function"><name>SearchAnimeAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion_1af9b1d8e66b8611d92baea70c8a3652d1" kind="function"><name>GetReadableWatchtime</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie" kind="class"><name>J::H_D::Data::Response::Movie</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1abd8473c7f02f09ffd3592ed802c509cd" kind="variable"><name>V</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ac502ef71cd14afba09e089fcded23dab" kind="variable"><name>name</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ac15dc811bc91de9009b9f8e700fafc23" kind="variable"><name>posterPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a67d5bec0f1cfa44268e84e8d7bb3c50f" kind="variable"><name>adult</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ae5cbbc79e4361d62e22fd0fd989e2d28" kind="variable"><name>overview</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a04700434957c72ea9de92003f8c3fb32" kind="variable"><name>releaseDate</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a8206ad2c42016c637c7a61650072f578" kind="variable"><name>genres</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a3d1c654e9be82387e60ada6337c4f174" kind="variable"><name>id</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a06fc9fe0a6919d6b5fcbf6eec48f536c" kind="variable"><name>originalTitle</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a388b0f8e6444e50fb6e086faddc953b5" kind="variable"><name>originalLanguage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ac599b93b2079f98efbdd79038f0369df" kind="variable"><name>backdropPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a2e1f08c7158c440a8c901db7f0f9b98e" kind="variable"><name>averageNote</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a4e96ffb7babc2b1f6d00230c29958a55" kind="variable"><name>budget</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a764df3c4372a1e3e466d016750ab1059" kind="variable"><name>revenue</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a2034005bbb254117711de414aa7e514f" kind="variable"><name>productionCompanies</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1acac7679ed375f657e7f716151846442e" kind="variable"><name>runtime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a3d076252bf8df02b4d36024d288d000a" kind="variable"><name>ressourcePath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1aa6bedd13a81a1a376b45a2d14294f032" kind="property"><name>Name</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ae5369e466fe5ba354a3b75a68e203920" kind="property"><name>PosterPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a9c7d96c4773c88b2f9f619bbb6ebadff" kind="property"><name>Adult</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1aa96b1f2b8aeb73cc02cd4745791bd20b" kind="property"><name>Overview</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a626ebfbde6535c544f44ec8050138d3b" kind="property"><name>ReleaseDate</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a623d11c799639c2d795955796c0e969a" kind="property"><name>Genres</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1aacfb4f3a39191b16113d65037b546b4a" kind="property"><name>Id</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ab623fc4b83f32662dc7096a76160a59a" kind="property"><name>OriginalTitle</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ae06d54ce1dc39d0eff8899fb7bce203b" kind="property"><name>OriginalLanguage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a1b9ec0e7a099e21de6837028daeb3c39" kind="property"><name>BackdropPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ad697a4d1fd930b5f631f45a830e248cb" kind="property"><name>AverageNote</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a0bff1b99a305ec6245ce2ce39b78be84" kind="property"><name>Budget</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a64635b8b08a75578bf6dd2e25e7f98b6" kind="property"><name>Revenue</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a60b0218327c067909c3511bd6bc7b884" kind="property"><name>ProductionCompanies</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1ae33bf4d1c739c26c42ce4f9a297d782a" kind="property"><name>Runtime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie_1a6d421b3eadd46e6d8d9113f235b74e6b" kind="variable"><name>RessourcePath</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion" kind="class"><name>J::H_D::Minions::Infos::MovieMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" kind="enum"><name>SearchType</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6a1526e0ac850c241ee1631d9ad5664475" kind="enumvalue"><name>Movie</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6acd4b9482eadd1fea35dbf01c9a05b093" kind="enumvalue"><name>Serie</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6a7c5ba892645af8d7dba520e3978c726f" kind="enumvalue"><name>Director</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a4ca3578f3a403d7f03f1724594d7e2e2" kind="variable"><name>EndpointList</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a3cddd9decb09dff840109e69e6513727" kind="function"><name>ContainNullCheck</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a0a1f600ac3640aff8e99ea3b06afacb7" kind="function"><name>GetRuntime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a215784af9489be7d168dba96584d7065" kind="function"><name>GetNames</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a2f07b1e16e8f8408b48575e6bd381525" kind="function"><name>SearchMovieAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a95f7f45206eb2b0ca412d86de928b0c4" kind="function"><name>GetSeriesGeneralInfosAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1aa4d821bc0b7758dd45367233fcbf5751" kind="function"><name>BonusInfosAsync</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module" kind="class"><name>J::H_D::Modules::MovieModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a6ac3de4852c105c433d8c4829e325a60" kind="variable"><name>p</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1ae5c157bc770c74dad0e06583ad39fe5f" kind="function"><name>GetMovieAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a14448336a16de53c1326770ccbcc04b5" kind="function"><name>GetSeriesInfosAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a76b666b860ef41bb5ab9d26f9cfb64f6" kind="function"><name>GetMovieInfosAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a0e647d71121e893b9f614c56d1d2d289" kind="function"><name>UpdateSeriesEmbedAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1ad618828494e238e6eadd9f083f436d25" kind="function"><name>CreateBonusEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1aec6cefbf87fb5392ead86a5a7ba2cf10" kind="function"><name>CreateSeriesEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a0b3f1a6ef33fa64e5b69ee6df30f61f0" kind="function"><name>CreateSeasonEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a3742596f81f59271d498dc58f5cce23f" kind="function"><name>CreateEmbedSimple</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist" kind="struct"><name>J::H_D::Data::Response::MusicArtist</name>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ab2e9f8b5d92110c1cfd991bff693a3d0" kind="variable"><name>name</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a79c15314bdbdb41e6727f163ed1d7034" kind="variable"><name>mBID</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a1511a18869d6c659972d76fdc9cc66d5" kind="variable"><name>lastUrl</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a20c645d5a01db435caf3efd30b65fe7d" kind="variable"><name>imageUrl</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a34a405a9835a55997b51ba5e4637f605" kind="variable"><name>genres</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1afb434a522f8d685e727a69a4088affe7" kind="variable"><name>bio</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a81fd520abea011ffccf0fc18252c80ea" kind="variable"><name>onTour</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a9fa4c55dde09592328a2e81c74e7ed45" kind="property"><name>Name</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1aeb32579b0e436ec4c1b86efb7eea01ca" kind="property"><name>Mbid</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ab69583f24ed038ed89ecf6e0ebd52f78" kind="property"><name>LastUrl</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a1cdeeac8dd90a23dcb49d4cb3b4bc701" kind="property"><name>ImageUrl</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1ace8f30bdcfc3090a615eefc7a0607d37" kind="property"><name>Genres</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a091099c2576b7078b82bf0670324c3a9" kind="property"><name>Bio</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a0f6c167323fa470ced27cfe54e3e9e69" kind="property"><name>OnTour</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist_1a78146cd03c507af76c950a25f05e9991" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_music_minion" kind="class"><name>J::H_D::Minions::Infos::MusicMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_music_minion_1ab7de7ba63db690be6354000f44ad052b" kind="variable"><name>RootUrl</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_music_minion_1a6ef00dd183cdb259cde823de28d84626" kind="function"><name>LookForArtistAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_music_minion_1a901a6fd795f4ab484bb4a6cb156173b8" kind="function"><name>GetTags</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_modules_1_1_music_module" kind="class"><name>J::H_D::Modules::MusicModule</name>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_music_module_1ace592fa51e62ce898b5cdb5f1dfed899" kind="function"><name>GetArtistInfosAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_modules_1_1_music_module_1a0ec6acabcab118d66ed252f1f6f81e77" kind="function"><name>MakeArtistEmbed</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_program" kind="class"><name>J::H_D::Program</name>
+    <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8" kind="enum"><name>Module</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8ac19f0b6611546292750128b5afc84e15" kind="enumvalue"><name>AnimeManga</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8ae6a7f8a2f42cc35979973da8dfb10720" kind="enumvalue"><name>Forum</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8a579951efc1d928e2f1cf6c51e193e899" kind="enumvalue"><name>Vn</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8a1526e0ac850c241ee1631d9ad5664475" kind="enumvalue"><name>Movie</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8a83b02a962d11a1d25824a843b2936198" kind="enumvalue"><name>Booru</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a79990375faeae29af0654a31aa723a39" kind="variable"><name>client</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ac505bfb89356ffc1ba0d18030e482e80" kind="variable"><name>rand</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a3b110a95c997a83ce74059512ea0827a" kind="variable"><name>TmDbKey</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a2f3acee89402fa7962612638355420c8" kind="variable"><name>RapidAPIKey</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a7547d40a361da2af6b4f4214d9378439" kind="variable"><name>LastFMKey</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a03f65eba4ecdd60296739aee3d37a9ea" kind="variable"><name>Asker</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a9f4b06c091fab3c238990688be277fd6" kind="variable"><name>KitsuClient</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a12748a4b013389191304c7eded43ff67" kind="variable"><name>SendedSeriesEmbed</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aefdaa0735f2bf8af4088be711dc3b812" kind="variable"><name>GeneratedText</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aa00bf6800b8395b80eec498d718df029" kind="variable"><name>StartingTime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a4467f888e76f7b80738c8932ca9da445" kind="variable"><name>db</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ac2ae5c0d47217ff070bbb0a5a3a16dd9" kind="variable"><name>KitsuAuth</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a6a6bff9949ede6a9cf283557da896a80" kind="variable"><name>commands</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a2110b59b0fde1c4ff5552557feb2f590" kind="variable"><name>RefreshDelay</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a6040af291de524899949451ecb5cde6a" kind="variable"><name>RefreshSendDelay</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1af12622dd36b36fae19f81107b5bfa38c" kind="variable"><name>DebugMode</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ac96d9c56892c5e32fa1d67aa060f846e" kind="variable"><name>WebsiteStats</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a3f1a83fa199ea85e4c4395442a1be708" kind="variable"><name>WebsiteStatsToken</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1abbe79a9dc83dee207e8c6757936e2339" kind="variable"><name>p</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a5b05e8560c2a86c207701fa567a4fc45" kind="variable"><name>isTimerValid</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ad1854ce74b448b1eddcc08c7798ee341" kind="property"><name>WebsiteUpload</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a0f238a0008f357b2046a214ed5550ecb" kind="property"><name>WebsiteUrl</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a1f1a0117171ad8ac7110a9582c660b58" kind="property"><name>SendStats</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aae8dfa92ebb1cb3a51528e56cb03996c" kind="function"><name>Program</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a9ec64f91ef9a7ef8e524d0e5e09b394b" kind="function"><name>MainAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a1a8b342558c16c90220ca5aaf02e5315" kind="function"><name>MainAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ae75c7e7b07bef33c5a3fb04fd72fd4c9" kind="function"><name>DoActionAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a83c083a1c94348024959a967e7b59757" kind="function"><name>UpdateElementAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a36b43ff99c5619083852f4a0c884357a" kind="function"><name>Main</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1afe757da24ce400346d2f891d42f28117" kind="function"><name>GetP</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1adc0a2532ba30a9bcce52b3f5a074cce6" kind="function"><name>CheckSeriesAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1af8945494f7ae21abbd7866654708cc25" kind="function"><name>CheckGeneratedTextAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1abff2e274f69df955e7c6f7f9c79d84df" kind="function"><name>ReactionAddAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ae8ab2af9f2a550a96fe9f83dd3253295" kind="function"><name>GuildJoinAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1afa15fd36da31ec1c4b80fe3ad4a1a34c" kind="function"><name>InitServicesAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ae8ff0a97a28f54b9bb30e73bd7df7f08" kind="function"><name>DisconnectedAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a63403079d9f4a8f0242154bf8a4ee1fb" kind="function"><name>HandleCommandAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1aeca267c9036b6897a020e26e50a4bf2d" kind="function"><name>CommandExectuteAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a24044ae0abd8d0422d76ac1e7d16c761" kind="function"><name>AddErrorAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1a13278e4a2248d1eb6cce2efefe84538d" kind="function"><name>AddCommandServsAsync</name></member>
+    <member refid="class_j_1_1_h___d_1_1_program_1ae735c2056f09d0a7d1f8d8a9d9106c63" kind="function"><name>LogAsync</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1_1_request_options" kind="struct"><name>J::H_D::Minions::Websites::FChanMinion::RequestOptions</name>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1_1_request_options_1aa19137c111bddd09c7e4180ea6f3c448" kind="property"><name>MandatoryWord</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1_1_request_options_1ac947102dcb695f4dd536104e022fa304" kind="property"><name>RequestType</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1_1_request_options_1a064ea0ec63b668ce9d40693f67564262" kind="property"><name>AllowNsfw</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion_1_1_request_options_1a35797066bdaced8b9334a5a4db88cfab" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_response" kind="class"><name>J::H_D::Data::Response</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1a22a7cce46079732d0462205f091b1b4d" kind="enum"><name>AreaType</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1a22a7cce46079732d0462205f091b1b4da57d056ed0984166336b7879c2af3657f" kind="enumvalue"><name>City</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1a22a7cce46079732d0462205f091b1b4dac39b56d4489fb2507289e7ae19567b80" kind="enumvalue"><name>Building</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1a22a7cce46079732d0462205f091b1b4dad61ebdd8a0c0cd57c22455e9f0918c65" kind="enumvalue"><name>Street</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season" kind="class"><name>J::H_D::Data::Response::TVSeason</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1aaa61e898d325b0797cde4a280f344f14" kind="variable"><name>V</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a1d9befa472be8e9b753a88f729b62797" kind="variable"><name>firstSeriesName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a682799bbe4bd1300ec76286740400872" kind="variable"><name>firstSeriesId</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a032828b7793597fcaac18b45a5775de0" kind="variable"><name>episodeNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a64700e1fcfe27713012aa9079eda56b0" kind="variable"><name>id</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a726f64b109af4c44c5a5fda0da0a6a3c" kind="variable"><name>overview</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1ac4d2a3f12fafce9612619afdf816ed5f" kind="variable"><name>posterPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a0bc9aa50d4150bac9a808a2d1fdf9de8" kind="variable"><name>sNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a2c932919728383fed231b9fa34f165bb" kind="variable"><name>sName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a450b39df925347c19a5b53a099c4a4d9" kind="variable"><name>ressourcePath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1aea058e5fc6a2483e684f56d4b8a6cc6d" kind="property"><name>FirstSeriesName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a90d884989fed4d09fcf74195e9500f34" kind="property"><name>FirstSeriesId</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a7fdeaf2029a00585300b002d50a4771d" kind="property"><name>EpisodeNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1ac71e8dd0c6c47e2b261f3ea2f542c2ff" kind="property"><name>Id</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a7a63cbb71d01dcbd885bb8c212ae47e9" kind="property"><name>Overview</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1aa49aa1ea46a44cc7e33e4fde2027ea5d" kind="property"><name>PosterPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a57a86a5d3884faf5ff6062b338830787" kind="property"><name>SNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a70b10037e6d4a10e0199d6cbfa9fbfad" kind="property"><name>SName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season_1a084c60143ae043f2ce8cee72b2605363" kind="variable"><name>RessourcePath</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series" kind="class"><name>J::H_D::Data::Response::TVSeries</name>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a44c0dc954c433fe98a7f198de1f5f18c" kind="variable"><name>V</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a319fdf37b97c1798880d8ed2298069e8" kind="variable"><name>seriesName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1ad8ee8a1e0f8d2266f37909352d3912c7" kind="variable"><name>seriesId</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1af53e390e01f5e3e2384b15c0b5e16bb4" kind="variable"><name>backdropPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1ab6e5ca59d5fb54b6f3b8f40bf77eafba" kind="variable"><name>episodeRunTime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a6c9a55945bc6b93a22f114919b2f14eb" kind="variable"><name>started</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1ad459fc759adc1484fcbccc9ba9fc8779" kind="variable"><name>genres</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a49aa8aa7ceb617558db573a7c4f617ff" kind="variable"><name>inProduction</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a7104f51f0ec95dc7cbcac23357baa5ec" kind="variable"><name>homePage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a96d3bfd0be024557f55303eff98c0d0b" kind="variable"><name>seasonNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a80ee3b801d606934ed7298b6a0c8dd06" kind="variable"><name>episodeNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a781089e8e054d621694a0266e27cbe93" kind="variable"><name>compagnies</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a2479c509b43c35078129e971da658274" kind="variable"><name>voteAverage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a45d19759a02e1f7ff06fee3345f26406" kind="variable"><name>overview</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a2ff2ab53f449512f27569a5177e976ff" kind="variable"><name>seasons</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1af5bdedb103d6888a66bc905155710ff6" kind="variable"><name>ressourcePath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1ac2b5e0ccd50504f12c5e1c37cd96ba72" kind="property"><name>SeriesName</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1afc11535e425f4436deeddccf435662aa" kind="property"><name>SeriesId</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1acf5160cf3fdd86c4893cdc352f8c34b5" kind="property"><name>BackdropPath</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1aa195328fe4cabdf6cbce4dcf6b738440" kind="property"><name>EpisodeRunTime</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a9583134a2d3e1515857f23b2a0524983" kind="property"><name>Started</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a324179ebde3ebfe2bfe899d186dc3ddc" kind="property"><name>Genres</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1adaf299bbd0b113db494224e53726c7e4" kind="property"><name>InProduction</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1ae75c7534242625413071429ad9d3a2f9" kind="property"><name>HomePage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a8f4da449e701b2d6626595b17737ff27" kind="property"><name>SeasonNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a75d624b7fb40a2c5cd23ea1fd49dad80" kind="property"><name>EpisodeNumber</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a0cc956983d393421010435eb55979e26" kind="property"><name>Compagnies</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1acca95f8e0a156f0743b5ee9ef37b7519" kind="property"><name>VoteAverage</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a77dadb876ce2c58a32f54d250fa97aee" kind="property"><name>Overview</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1a9ecab0490b4c6bf387de9c506b13060f" kind="property"><name>Seasons</name></member>
+    <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series_1acec1526e0656363ffa3bfe6dc426fe3b" kind="variable"><name>RessourcePath</name></member>
+  </compound>
+  <compound refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition" kind="struct"><name>J::H_D::Data::Response::UrbanDefinition</name>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1aa135b67773a571f977b036509a851ee9" kind="variable"><name>word</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1a3a045c8a260252c9eb9c8c1e66f2fd08" kind="variable"><name>definition</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1a78c7dd67092e3bbd50d1e9bf8e326317" kind="variable"><name>link</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1ac01cb7fc5490369923b6de7294ac7867" kind="variable"><name>author</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1ad2fc5716ed7e046720f30a4d53ae2f07" kind="variable"><name>exemples</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1a4541a3a78372f27fe8fac70b7d6ad2c6" kind="property"><name>Word</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1a2e67fd2f21a16758348ebaa50bc21496" kind="property"><name>Definition</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1a9a73d3bfddb79a7a906fd3ab9e56aa5b" kind="property"><name>Link</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1ae804022fc909a17dc565a035d948264e" kind="property"><name>Author</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1a62112ec654fb77794187fd6b4d4bac14" kind="property"><name>Exemples</name></member>
+    <member refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition_1aafab56f4aac709ed03582bd98a60c1d6" kind="function"><name>Equals</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion" kind="class"><name>J::H_D::Minions::Infos::UrbanDictionaryMinion</name>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1ab26c9aa58a47b52a1ea984146e5ef1ea" kind="variable"><name>RapidAPIHost</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1ac6152bd4295f8bd4b0844521011f1501" kind="variable"><name>DefineAdress</name></member>
+    <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1aa7e8616d8a3801f64b9d8198195d4637" kind="function"><name>SearchForWordAsync</name></member>
+  </compound>
+  <compound refid="class_j_1_1_h___d_1_1_tools_1_1_utilities" kind="class"><name>J::H_D::Tools::Utilities</name>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1ae136264aa3199610902a464d5f6b91c5" kind="variable"><name>DiscordMessageCharacterLimit</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a00a6043449b54ebe4ed0df3770fad920" kind="variable"><name>DiscordEmbedMessageCharacterLimit</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a1d8d29aa4c7c39b12a8cb844a22ba103" kind="function"><name>CheckDir</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a0448472378bbfbf67dc25b632ceb2075" kind="function"><name>DeleteDirectoryContent</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a27e300d6a25674cd18c5444cd7358b22" kind="function"><name>DiscordFriendly</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a6ef047df79e738865b09916d1c4b6ed6" kind="function"><name>IsChannelNsfw</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1af207d741420e92c85fca31f1e47b1402" kind="function"><name>RotateString</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a0f8187bcbb6a733285885cd5968339a2" kind="function"><name>Clarify</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1aaf15da37542f3baa24dd338093294041" kind="function"><name>MakeArgs</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1ab61f8b506f0fc2846bd7936c11674aad" kind="function"><name>MakeQueryArgs</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1aea9e1071a1b5ccb1469b6bb0b93d6258" kind="function"><name>GetPlainTextFromHtml</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1af164838cb721e0dd5b9a7356f153a9cc" kind="function"><name>GetEmbedAttributesValues&lt; T &gt;</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1aa19672e3d63ab8476f3bb9c4dbd3b00c" kind="function"><name>GetEmbedAttributeValue&lt; T &gt;</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1ab0555419126de4f581ea4beecdaccc56" kind="function"><name>GetStreamFromUrl</name></member>
+    <member refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1af67c3748cd209a5e7cec6a485335fa24" kind="function"><name>StandardUppercase</name></member>
+  </compound>
+  <compound refid="namespace_anime" kind="namespace"><name>Anime</name>
+  </compound>
+  <compound refid="namespace_booru_sharp_1_1_booru" kind="namespace"><name>BooruSharp::Booru</name>
+  </compound>
+  <compound refid="namespace_booru_sharp_1_1_search_1_1_post" kind="namespace"><name>BooruSharp::Search::Post</name>
+  </compound>
+  <compound refid="namespace_complete" kind="namespace"><name>Complete</name>
+  </compound>
+  <compound refid="namespace_discord" kind="namespace"><name>Discord</name>
+  </compound>
+  <compound refid="namespace_discord_1_1_audio_1_1_streams" kind="namespace"><name>Discord::Audio::Streams</name>
+  </compound>
+  <compound refid="namespace_discord_1_1_commands" kind="namespace"><name>Discord::Commands</name>
+  </compound>
+  <compound refid="namespace_discord_1_1_net_1_1_rest" kind="namespace"><name>Discord::Net::Rest</name>
+  </compound>
+  <compound refid="namespace_discord_1_1_rest" kind="namespace"><name>Discord::Rest</name>
+  </compound>
+  <compound refid="namespace_discord_1_1_webhook" kind="namespace"><name>Discord::Webhook</name>
+  </compound>
+  <compound refid="namespace_discord_1_1_web_socket" kind="namespace"><name>Discord::WebSocket</name>
+  </compound>
+  <compound refid="namespace_f_board" kind="namespace"><name>FBoard</name>
+  </compound>
+  <compound refid="namespace_f_thread" kind="namespace"><name>FThread</name>
+  </compound>
+  <compound refid="namespace_j" kind="namespace"><name>J</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d" kind="namespace"><name>J::H_D</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_data" kind="namespace"><name>J::H_D::Data</name>
+    <member refid="namespace_j_1_1_h___d_1_1_data_1aaf2876acdba14cc7691830e75cc57701" kind="function"><name>MessageModifier</name></member>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_db" kind="namespace"><name>J::H_D::Db</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_minions" kind="namespace"><name>J::H_D::Minions</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_minions_1_1_infos" kind="namespace"><name>J::H_D::Minions::Infos</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_minions_1_1_n_s_f_w" kind="namespace"><name>J::H_D::Minions::NSFW</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_minions_1_1_websites" kind="namespace"><name>J::H_D::Minions::Websites</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_modules" kind="namespace"><name>J::H_D::Modules</name>
+  </compound>
+  <compound refid="namespace_j_1_1_h___d_1_1_tools" kind="namespace"><name>J::H_D::Tools</name>
+  </compound>
+  <compound refid="namespace_music_artist" kind="namespace"><name>MusicArtist</name>
+  </compound>
+  <compound refid="namespace_newtonsoft_1_1_json" kind="namespace"><name>Newtonsoft::Json</name>
+  </compound>
+  <compound refid="namespace_newtonsoft_1_1_json_1_1_linq" kind="namespace"><name>Newtonsoft::Json::Linq</name>
+  </compound>
+  <compound refid="namespace_npgsql" kind="namespace"><name>Npgsql</name>
+  </compound>
+  <compound refid="namespace_rethink_db_1_1_driver" kind="namespace"><name>RethinkDb::Driver</name>
+  </compound>
+  <compound refid="namespace_rethink_db_1_1_driver_1_1_ast" kind="namespace"><name>RethinkDb::Driver::Ast</name>
+  </compound>
+  <compound refid="namespace_rethink_db_1_1_driver_1_1_net" kind="namespace"><name>RethinkDb::Driver::Net</name>
+  </compound>
+  <compound refid="namespace_system" kind="namespace"><name>System</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_generic" kind="namespace"><name>System::Collections::Generic</name>
+  </compound>
+  <compound refid="namespace_system_1_1_collections_1_1_immutable" kind="namespace"><name>System::Collections::Immutable</name>
+  </compound>
+  <compound refid="namespace_system_1_1_diagnostics" kind="namespace"><name>System::Diagnostics</name>
+  </compound>
+  <compound refid="namespace_system_1_1_globalization" kind="namespace"><name>System::Globalization</name>
+  </compound>
+  <compound refid="namespace_system_1_1_i_o" kind="namespace"><name>System::IO</name>
+  </compound>
+  <compound refid="namespace_system_1_1_linq" kind="namespace"><name>System::Linq</name>
+  </compound>
+  <compound refid="namespace_system_1_1_net" kind="namespace"><name>System::Net</name>
+  </compound>
+  <compound refid="namespace_system_1_1_net_1_1_http" kind="namespace"><name>System::Net::Http</name>
+  </compound>
+  <compound refid="namespace_system_1_1_reflection" kind="namespace"><name>System::Reflection</name>
+  </compound>
+  <compound refid="namespace_system_1_1_runtime_1_1_interop_services" kind="namespace"><name>System::Runtime::InteropServices</name>
+  </compound>
+  <compound refid="namespace_system_1_1_security_1_1_cryptography_1_1_x509_certificates" kind="namespace"><name>System::Security::Cryptography::X509Certificates</name>
+  </compound>
+  <compound refid="namespace_system_1_1_text" kind="namespace"><name>System::Text</name>
+  </compound>
+  <compound refid="namespace_system_1_1_text_1_1_regular_expressions" kind="namespace"><name>System::Text::RegularExpressions</name>
+  </compound>
+  <compound refid="namespace_system_1_1_threading_1_1_tasks" kind="namespace"><name>System::Threading::Tasks</name>
+  </compound>
+  <compound refid="namespace_urban_definition" kind="namespace"><name>UrbanDefinition</name>
+  </compound>
+  <compound refid="namespace_web_socket_sharp" kind="namespace"><name>WebSocketSharp</name>
+  </compound>
+  <compound refid="_embedable_attribute_8cs" kind="file"><name>EmbedableAttribute.cs</name>
+  </compound>
+  <compound refid="_globals_8cs" kind="file"><name>Globals.cs</name>
+  </compound>
+  <compound refid="_db_8cs" kind="file"><name>Db.cs</name>
+  </compound>
+  <compound refid="_infos_2_error_8cs" kind="file"><name>Error.cs</name>
+  </compound>
+  <compound refid="_n_s_f_w_2_error_8cs" kind="file"><name>Error.cs</name>
+  </compound>
+  <compound refid="_websites_2_error_8cs" kind="file"><name>Error.cs</name>
+  </compound>
+  <compound refid="_kitsu_minion_8cs" kind="file"><name>KitsuMinion.cs</name>
+    <member refid="_kitsu_minion_8cs_1aba55619315b6d0af59b0c23c712dc362" kind="typedef"><name>Anime</name></member>
+  </compound>
+  <compound refid="_movie_minion_8cs" kind="file"><name>MovieMinion.cs</name>
+  </compound>
+  <compound refid="_music_minion_8cs" kind="file"><name>MusicMinion.cs</name>
+    <member refid="_music_minion_8cs_1ad17887327d6945f85c28bd721451f13a" kind="typedef"><name>MusicArtist</name></member>
+  </compound>
+  <compound refid="_infos_2_response_8cs" kind="file"><name>Response.cs</name>
+  </compound>
+  <compound refid="_websites_2_response_8cs" kind="file"><name>Response.cs</name>
+  </compound>
+  <compound refid="_urban_dictionary_minion_8cs" kind="file"><name>UrbanDictionaryMinion.cs</name>
+    <member refid="_urban_dictionary_minion_8cs_1adc3282495a5eeadc89817a980226b690" kind="typedef"><name>UrbanDefinition</name></member>
+  </compound>
+  <compound refid="_minion_request_8cs" kind="file"><name>MinionRequest.cs</name>
+  </compound>
+  <compound refid="_booru_minion_8cs" kind="file"><name>BooruMinion.cs</name>
+  </compound>
+  <compound refid="_f_chan_minion_8cs" kind="file"><name>FChanMinion.cs</name>
+    <member refid="_f_chan_minion_8cs_1a118990b326289524b64fd16178407132" kind="typedef"><name>FBoard</name></member>
+    <member refid="_f_chan_minion_8cs_1adf01b921164de0f5c95ae4954fd0c8ad" kind="typedef"><name>FThread</name></member>
+  </compound>
+  <compound refid="_generator_minion_8cs" kind="file"><name>GeneratorMinion.cs</name>
+    <member refid="_generator_minion_8cs_1a2d9c5ec95a51ae7bfa0b149d815e1f75" kind="typedef"><name>Complete</name></member>
+  </compound>
+  <compound refid="_inspirobot_8cs" kind="file"><name>Inspirobot.cs</name>
+  </compound>
+  <compound refid="_anime_manga_module_8cs" kind="file"><name>AnimeMangaModule.cs</name>
+    <member refid="_anime_manga_module_8cs_1aba55619315b6d0af59b0c23c712dc362" kind="typedef"><name>Anime</name></member>
+  </compound>
+  <compound refid="_booru_module_8cs" kind="file"><name>BooruModule.cs</name>
+  </compound>
+  <compound refid="_communication_module_8cs" kind="file"><name>CommunicationModule.cs</name>
+  </compound>
+  <compound refid="_experimental_module_8cs" kind="file"><name>ExperimentalModule.cs</name>
+  </compound>
+  <compound refid="_f_chan_module_8cs" kind="file"><name>FChanModule.cs</name>
+  </compound>
+  <compound refid="_movie_module_8cs" kind="file"><name>MovieModule.cs</name>
+  </compound>
+  <compound refid="_music_module_8cs" kind="file"><name>MusicModule.cs</name>
+  </compound>
+  <compound refid="_program_8cs" kind="file"><name>Program.cs</name>
+  </compound>
+  <compound refid="_utilities_8cs" kind="file"><name>Utilities.cs</name>
+  </compound>
+  <compound refid="dir_f357d5bb6b555a1c1a59827a61c4fb6f" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Data</name>
+  </compound>
+  <compound refid="dir_625d4f3ddf49b1d48b7aaee1962e3300" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Db</name>
+  </compound>
+  <compound refid="dir_84e7a5db4faa3bb3efa0834f14a17625" kind="dir"><name>H:</name>
+  </compound>
+  <compound refid="dir_d4eee7633f9b76067b326b59098b1abc" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos</name>
+  </compound>
+  <compound refid="dir_43f1036132818d110d2875edbfd455bc" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D</name>
+  </compound>
+  <compound refid="dir_1aef070de55625d44992ea8f5b023101" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master</name>
+  </compound>
+  <compound refid="dir_ab3ba865812b6b9a74fbd6cd414cee76" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions</name>
+  </compound>
+  <compound refid="dir_e18a283026cb51a553a9650d794db560" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules</name>
+  </compound>
+  <compound refid="dir_f1b9e12355eff21e5cf9c24c96d81a28" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW</name>
+  </compound>
+  <compound refid="dir_b6d8e42e469ae6758568d99f58bf279a" kind="dir"><name>H:/Projects</name>
+  </compound>
+  <compound refid="dir_8f8533b0097950cc7f0b1adce718fb59" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Tools</name>
+  </compound>
+  <compound refid="dir_be76c23f533109a0a637d7b4769919eb" kind="dir"><name>H:/Projects/Visual Studio</name>
+  </compound>
+  <compound refid="dir_53abd3f05be3cacff44dff4aa63e7748" kind="dir"><name>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites</name>
+  </compound>
+</doxygenindex>

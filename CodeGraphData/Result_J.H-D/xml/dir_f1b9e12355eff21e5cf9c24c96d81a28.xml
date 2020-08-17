@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_f1b9e12355eff21e5cf9c24c96d81a28" kind="dir">
+    <compoundname>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW</compoundname>
+    <innerfile refid="_booru_minion_8cs">BooruMinion.cs</innerfile>
+    <innerfile refid="_n_s_f_w_2_error_8cs">Error.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW/"/>
+  </compounddef>
+</doxygen>

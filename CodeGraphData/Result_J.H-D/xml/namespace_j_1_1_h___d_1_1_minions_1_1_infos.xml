@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_j_1_1_h___d_1_1_minions_1_1_infos" kind="namespace">
+    <compoundname>J::H_D::Minions::Infos</compoundname>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_kitsu_minion" prot="public">J::H_D::Minions::Infos::KitsuMinion</innerclass>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion" prot="public">J::H_D::Minions::Infos::MovieMinion</innerclass>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_music_minion" prot="public">J::H_D::Minions::Infos::MusicMinion</innerclass>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion" prot="public">J::H_D::Minions::Infos::UrbanDictionaryMinion</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/KitsuMinion.cs" line="12" column="1"/>
+  </compounddef>
+</doxygen>

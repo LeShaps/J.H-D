@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_j_1_1_h___d_1_1_tools" kind="namespace">
+    <compoundname>J::H_D::Tools</compoundname>
+    <innerclass refid="class_j_1_1_h___d_1_1_tools_1_1_utilities" prot="public">J::H_D::Tools::Utilities</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Tools/Utilities.cs" line="15" column="1"/>
+  </compounddef>
+</doxygen>

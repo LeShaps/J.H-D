@@ -15,6 +15,7 @@ namespace J.H_D.Minions.Websites
 {
     public class FChanMinion
     {
+        static Program p = Program.GetP();
         public enum RequestType
         {
             Image,
@@ -41,7 +42,7 @@ namespace J.H_D.Minions.Websites
             List<FBoard> AvailbleBoards = new List<FBoard>();
 
             dynamic Json;
-            Json = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync("https://a.4cdn.org/boards.json"));
+            Json = JsonConvert.DeserializeObject(await p.Asker.GetStringAsync("https://a.4cdn.org/boards.json"));
 
             if (Json == null)
                 return null;
@@ -83,16 +84,16 @@ namespace J.H_D.Minions.Websites
             } else {
                 if (!Options.AllowNsfw) {
                     List<FBoard> SafeBoards = Boards.Where(x => !x.Nsfw).ToList();
-                    UsableBoard = SafeBoards[Program.p.rand.Next(SafeBoards.Count)];
+                    UsableBoard = SafeBoards[p.rand.Next(SafeBoards.Count)];
                 } else {
-                    UsableBoard = Boards[Program.p.rand.Next(Boards.Count)];
+                    UsableBoard = Boards[p.rand.Next(Boards.Count)];
                 }
             }
 
             board = UsableBoard.Title;
             dynamic InitialJson;
 
-            InitialJson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json"));
+            InitialJson = JsonConvert.DeserializeObject(await p.Asker.GetStringAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json"));
 
             foreach (dynamic item in (JArray)InitialJson)
             {
@@ -118,11 +119,11 @@ namespace J.H_D.Minions.Websites
                     List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
 
                     return new FeatureRequest<FThread?, Error.FChan>(
-                        ImageThreads[Program.p.rand.Next(ImageThreads.Count - 1)],
+                        ImageThreads[p.rand.Next(ImageThreads.Count - 1)],
                         Error.FChan.None);
                 } else {
                     return new FeatureRequest<FThread?, Error.FChan>(
-                        ThreadsList[Program.p.rand.Next(ThreadsList.Count)],
+                        ThreadsList[p.rand.Next(ThreadsList.Count)],
                         Error.FChan.None);
                 }
             }

@@ -10,7 +10,7 @@ namespace J.H_D.Minions.Websites
         {
             string Ressource = null;
 
-            Ressource = await Program.p.Asker.GetStringAsync("https://inspirobot.me/api?generate=true");
+            Ressource = await Program.GetP().Asker.GetStringAsync("https://inspirobot.me/api?generate=true");
             if (Ressource == null)
                 return new FeatureRequest<string, Error.InspirationnalError>(null, Error.InspirationnalError.Communication);
             return new FeatureRequest<string, Error.InspirationnalError>(Ressource, Error.InspirationnalError.None);

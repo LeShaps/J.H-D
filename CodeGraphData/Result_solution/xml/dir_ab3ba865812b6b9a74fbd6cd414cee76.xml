@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_ab3ba865812b6b9a74fbd6cd414cee76" kind="dir">
+    <compoundname>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions</compoundname>
+    <innerdir refid="dir_d4eee7633f9b76067b326b59098b1abc">H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos</innerdir>
+    <innerdir refid="dir_f1b9e12355eff21e5cf9c24c96d81a28">H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/NSFW</innerdir>
+    <innerdir refid="dir_53abd3f05be3cacff44dff4aa63e7748">H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites</innerdir>
+    <innerfile refid="_minion_request_8cs">MinionRequest.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/"/>
+  </compounddef>
+</doxygen>

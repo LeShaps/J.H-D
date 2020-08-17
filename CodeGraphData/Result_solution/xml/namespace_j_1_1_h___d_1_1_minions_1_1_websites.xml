@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="namespace_j_1_1_h___d_1_1_minions_1_1_websites" kind="namespace">
+    <compoundname>J::H_D::Minions::Websites</compoundname>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_f_chan_minion" prot="public">J::H_D::Minions::Websites::FChanMinion</innerclass>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_generator_minion" prot="public">J::H_D::Minions::Websites::GeneratorMinion</innerclass>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion" prot="public">J::H_D::Minions::Websites::InspirobotMinion</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites/FChanMinion.cs" line="15" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,283 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_modules_1_1_communication_module" kind="class" prot="public">
+    <compoundname>J::H_D::Modules::CommunicationModule</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModuleBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ac88158b3c9f427723ecb2dd309cb7d66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.ReplytoAsync</definition>
+        <argsstring>()</argsstring>
+        <name>ReplytoAsync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="20" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a9282b03889c30376ce41f527ce164d7a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.RotateThenRespondAsync</definition>
+        <argsstring>([Remainder]string Args)</argsstring>
+        <name>RotateThenRespondAsync</name>
+        <param>
+          <attributes>[Remainder]</attributes>
+          <type>string</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="26" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="26" bodyend="29"/>
+        <references refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1af207d741420e92c85fca31f1e47b1402" compoundref="_utilities_8cs" startline="100" endline="119">J.H_D.Tools.Utilities.RotateString</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a4c0f97cf584ad69a654663406b645799" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.ClarifyThenRespondAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>ClarifyThenRespondAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="32" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="32" bodyend="35"/>
+        <references refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1aea9e1071a1b5ccb1469b6bb0b93d6258" compoundref="_utilities_8cs" startline="163" endline="177">J.H_D.Tools.Utilities.GetPlainTextFromHtml</references>
+        <references refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1aaf15da37542f3baa24dd338093294041" compoundref="_utilities_8cs" startline="139" endline="144">J.H_D.Tools.Utilities.MakeArgs</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a7a93b215164db5e21b4982c13e41b297" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.MotiveAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>MotiveAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="38" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="38" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a0c11208f7091b5a15a7fa7be5d9a0b3e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.FindDefinitionAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>FindDefinitionAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="70" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="70" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a1086bde96e110959a1173abcddd22258" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.GenerateAsync</definition>
+        <argsstring>([Remainder]string sentence)</argsstring>
+        <name>GenerateAsync</name>
+        <param>
+          <attributes>[Remainder]</attributes>
+          <type>string</type>
+          <declname>sentence</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="92" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="92" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a1b533a42118083d359e9d09daa7d038d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.ReRollTextAsync</definition>
+        <argsstring>(IUserMessage Message, string Sentence)</argsstring>
+        <name>ReRollTextAsync</name>
+        <param>
+          <type>IUserMessage</type>
+          <declname>Message</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>Sentence</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="118" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="118" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a6189e0422491d9fe4fc89512a6c7e5e8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.CommunicationModule.MessageUpdaterAsync</definition>
+        <argsstring>(IUserMessage msg, string Content)</argsstring>
+        <name>MessageUpdaterAsync</name>
+        <param>
+          <type>IUserMessage</type>
+          <declname>msg</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>Content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="231" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="231" bodyend="246"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a792c6fec2c0504aa969f7321491c4e41" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.CommunicationModule.BuildDefinition</definition>
+        <argsstring>(Response.UrbanDefinition InfosBuilder)</argsstring>
+        <name>BuildDefinition</name>
+        <param>
+          <type><ref refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_urban_definition" kindref="compound">Response.UrbanDefinition</ref></type>
+          <declname>InfosBuilder</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="141" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="141" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a19357c2b336faaa7448e6beb7c940ae0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; string &gt;</type>
+        <definition>async Task&lt;string&gt; J.H_D.Modules.CommunicationModule.PureImageAsync</definition>
+        <argsstring>(string Url)</argsstring>
+        <name>PureImageAsync</name>
+        <param>
+          <type>string</type>
+          <declname>Url</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="171" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="171" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ac5e099f178132addf82567b95a33f3c8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.CommunicationModule.BuildInspirobotEmbed</definition>
+        <argsstring>(Uri Url)</argsstring>
+        <name>BuildInspirobotEmbed</name>
+        <param>
+          <type>Uri</type>
+          <declname>Url</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="186" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="186" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ad6726242a0357e2c55a3e3f34796dd7d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; IUserMessage &gt;</type>
+        <definition>async Task&lt;IUserMessage&gt; J.H_D.Modules.CommunicationModule.StartWaitAsync</definition>
+        <argsstring>(string sentence)</argsstring>
+        <name>StartWaitAsync</name>
+        <param>
+          <type>string</type>
+          <declname>sentence</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="202" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="202" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1aa2b6fcdd8dec1e21e878d32a272ce06e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.CommunicationModule.CreateTextEmbed</definition>
+        <argsstring>(string Content)</argsstring>
+        <name>CreateTextEmbed</name>
+        <param>
+          <type>string</type>
+          <declname>Content</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="215" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="215" bodyend="229"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="18">
+        <label>J.H_D.Modules.CommunicationModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>ModuleBase</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="20">
+        <label>J.H_D.Modules.CommunicationModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>ModuleBase</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" line="18" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/CommunicationModule.cs" bodystart="17" bodyend="247"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a792c6fec2c0504aa969f7321491c4e41" prot="private" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>BuildDefinition</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ac5e099f178132addf82567b95a33f3c8" prot="private" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>BuildInspirobotEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a4c0f97cf584ad69a654663406b645799" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>ClarifyThenRespondAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1aa2b6fcdd8dec1e21e878d32a272ce06e" prot="private" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>CreateTextEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a0c11208f7091b5a15a7fa7be5d9a0b3e" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>FindDefinitionAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a1086bde96e110959a1173abcddd22258" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>GenerateAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a6189e0422491d9fe4fc89512a6c7e5e8" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>MessageUpdaterAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a7a93b215164db5e21b4982c13e41b297" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>MotiveAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a19357c2b336faaa7448e6beb7c940ae0" prot="private" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>PureImageAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ac88158b3c9f427723ecb2dd309cb7d66" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>ReplytoAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a1b533a42118083d359e9d09daa7d038d" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>ReRollTextAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1a9282b03889c30376ce41f527ce164d7a" prot="public" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>RotateThenRespondAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_communication_module_1ad6726242a0357e2c55a3e3f34796dd7d" prot="private" virt="non-virtual"><scope>J::H_D::Modules::CommunicationModule</scope><name>StartWaitAsync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

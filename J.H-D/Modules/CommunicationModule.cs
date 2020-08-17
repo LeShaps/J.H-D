@@ -52,7 +52,7 @@ namespace J.H_D.Modules
 
                 case Error.InspirationnalError.None:
                     if (!Natural)
-                        await ReplyAsync("", false, BuildInspirobotEmbed(Result.Answer));
+                        await ReplyAsync("", false, BuildInspirobotEmbed(new Uri(Result.Answer)));
                     else
                     {
                         string file = await PureImageAsync(Result.Answer).ConfigureAwait(false);
@@ -62,7 +62,7 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    break;
+                    throw new NotSupportedException();
             }
         }
 
@@ -84,15 +84,13 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    break;
+                    throw new NotSupportedException();
             }
         }
 
         [Command("Generate", RunMode = RunMode.Async)]
         public async Task GenerateAsync([Remainder]string sentence)
         {
-            string Content = sentence;
-
             var msg = await StartWaitAsync(sentence).ConfigureAwait(false);
             var Response = await GeneratorMinion.CompleteAsync(sentence, msg, MessageUpdaterAsync);
 
@@ -108,7 +106,7 @@ namespace J.H_D.Modules
 
                 case Error.Complete.None:
                     await msg.ModifyAsync(x => x.Embed = CreateTextEmbed(Response.Answer.Content));
-                    Program.p.GeneratedText.Add(msg.Id, sentence);
+                    Program.GetP().GeneratedText.Add(msg.Id, sentence);
                     await msg.AddReactionAsync(new Emoji("🔄"));
                     break;
 
@@ -185,11 +183,11 @@ namespace J.H_D.Modules
             return Path;
         }
 
-        private Embed BuildInspirobotEmbed(string Url)
+        private Embed BuildInspirobotEmbed(Uri Url)
         {
             EmbedBuilder builder = new EmbedBuilder
             {
-                ImageUrl = Url,
+                ImageUrl = Url.AbsoluteUri,
                 Color = Color.DarkBlue
             };
 
@@ -232,7 +230,7 @@ namespace J.H_D.Modules
 
         public async Task MessageUpdaterAsync(IUserMessage msg, string Content)
         {
-            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",", System.StringComparison.OrdinalIgnoreCase);
+            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
             Content = Content.Replace("( ", "(").Replace(" )", ")");
             string url = (msg.Embeds.ElementAt(0) as Embed).Url;
             await msg.ModifyAsync(x => x.Embed = new EmbedBuilder

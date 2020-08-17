@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_modules_1_1_music_module" kind="class" prot="public">
+    <compoundname>J::H_D::Modules::MusicModule</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModuleBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_music_module_1ace592fa51e62ce898b5cdb5f1dfed899" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.MusicModule.GetArtistInfosAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>GetArtistInfosAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MusicModule.cs" line="15" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MusicModule.cs" bodystart="15" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_music_module_1a0ec6acabcab118d66ed252f1f6f81e77" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.MusicModule.MakeArtistEmbed</definition>
+        <argsstring>(Response.MusicArtist Artist)</argsstring>
+        <name>MakeArtistEmbed</name>
+        <param>
+          <type><ref refid="struct_j_1_1_h___d_1_1_data_1_1_response_1_1_music_artist" kindref="compound">Response.MusicArtist</ref></type>
+          <declname>Artist</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MusicModule.cs" line="44" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MusicModule.cs" bodystart="44" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="76">
+        <label>J.H_D.Modules.MusicModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_music_module"/>
+        <childnode refid="77" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>ModuleBase</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="78">
+        <label>J.H_D.Modules.MusicModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_music_module"/>
+        <childnode refid="79" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>ModuleBase</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MusicModule.cs" line="13" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MusicModule.cs" bodystart="12" bodyend="71"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_music_module_1ace592fa51e62ce898b5cdb5f1dfed899" prot="public" virt="non-virtual"><scope>J::H_D::Modules::MusicModule</scope><name>GetArtistInfosAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_music_module_1a0ec6acabcab118d66ed252f1f6f81e77" prot="private" virt="non-virtual"><scope>J::H_D::Modules::MusicModule</scope><name>MakeArtistEmbed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

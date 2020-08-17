@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_modules_1_1_movie_module" kind="class" prot="public">
+    <compoundname>J::H_D::Modules::MovieModule</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModuleBase</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a6ac3de4852c105c433d8c4829e325a60" prot="private" static="no" mutable="no">
+        <type>readonly <ref refid="class_j_1_1_h___d_1_1_program" kindref="compound">Program</ref></type>
+        <definition>readonly Program J.H_D.Modules.MovieModule.p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <initializer>= <ref refid="class_j_1_1_h___d_1_1_program_1afe757da24ce400346d2f891d42f28117" kindref="member">Program.GetP</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="16" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1ae5c157bc770c74dad0e06583ad39fe5f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.MovieModule.GetMovieAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>GetMovieAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="19" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="19" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a14448336a16de53c1326770ccbcc04b5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.MovieModule.GetSeriesInfosAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>GetSeriesInfosAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="47" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="47" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a76b666b860ef41bb5ab9d26f9cfb64f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.MovieModule.GetMovieInfosAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>GetMovieInfosAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="73" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="73" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a0e647d71121e893b9f614c56d1d2d289" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; Tuple&lt; int, <ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series" kindref="compound">Response.TVSeries</ref> &gt; &gt;</type>
+        <definition>async Task&lt;Tuple&lt;int, Response.TVSeries&gt; &gt; J.H_D.Modules.MovieModule.UpdateSeriesEmbedAsync</definition>
+        <argsstring>(IUserMessage message, Tuple&lt; int, Response.TVSeries &gt; Data, int NewPosition)</argsstring>
+        <name>UpdateSeriesEmbedAsync</name>
+        <param>
+          <type>IUserMessage</type>
+          <declname>message</declname>
+        </param>
+        <param>
+          <type>Tuple&lt; int, <ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series" kindref="compound">Response.TVSeries</ref> &gt;</type>
+          <declname>Data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>NewPosition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="197" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="197" bodyend="208"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1ad618828494e238e6eadd9f083f436d25" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.MovieModule.CreateBonusEmbed</definition>
+        <argsstring>(Response.Movie res)</argsstring>
+        <name>CreateBonusEmbed</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie" kindref="compound">Response.Movie</ref></type>
+          <declname>res</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="98" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="98" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1aec6cefbf87fb5392ead86a5a7ba2cf10" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.MovieModule.CreateSeriesEmbed</definition>
+        <argsstring>(Response.TVSeries Response)</argsstring>
+        <name>CreateSeriesEmbed</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series" kindref="compound">Response.TVSeries</ref></type>
+          <declname>Response</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="137" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="137" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a0b3f1a6ef33fa64e5b69ee6df30f61f0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.MovieModule.CreateSeasonEmbed</definition>
+        <argsstring>(Response.TVSeason Season)</argsstring>
+        <name>CreateSeasonEmbed</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_season" kindref="compound">Response.TVSeason</ref></type>
+          <declname>Season</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="154" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="154" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a3742596f81f59271d498dc58f5cce23f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.MovieModule.CreateEmbedSimple</definition>
+        <argsstring>(Response.Movie res)</argsstring>
+        <name>CreateEmbedSimple</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie" kindref="compound">Response.Movie</ref></type>
+          <declname>res</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="180" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="180" bodyend="195"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="64">
+        <label>J.H_D.Modules.MovieModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module"/>
+        <childnode refid="65" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>ModuleBase</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="66">
+        <label>J.H_D.Modules.MovieModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module"/>
+        <childnode refid="67" relation="public-inheritance">
+        </childnode>
+        <childnode refid="68" relation="usage">
+          <edgelabel>p</edgelabel>
+        </childnode>
+      </node>
+      <node id="68">
+        <label>J.H_D.Program</label>
+        <link refid="class_j_1_1_h___d_1_1_program"/>
+        <childnode refid="68" relation="usage">
+          <edgelabel>p</edgelabel>
+        </childnode>
+        <childnode refid="69" relation="usage">
+          <edgelabel>rand</edgelabel>
+        </childnode>
+      </node>
+      <node id="69">
+        <label>System</label>
+      </node>
+      <node id="67">
+        <label>ModuleBase</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" line="15" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/MovieModule.cs" bodystart="14" bodyend="209"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1ad618828494e238e6eadd9f083f436d25" prot="private" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>CreateBonusEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a3742596f81f59271d498dc58f5cce23f" prot="private" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>CreateEmbedSimple</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a0b3f1a6ef33fa64e5b69ee6df30f61f0" prot="private" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>CreateSeasonEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1aec6cefbf87fb5392ead86a5a7ba2cf10" prot="private" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>CreateSeriesEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1ae5c157bc770c74dad0e06583ad39fe5f" prot="public" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>GetMovieAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a76b666b860ef41bb5ab9d26f9cfb64f6" prot="public" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>GetMovieInfosAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a14448336a16de53c1326770ccbcc04b5" prot="public" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>GetSeriesInfosAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a6ac3de4852c105c433d8c4829e325a60" prot="private" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>p</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_movie_module_1a0e647d71121e893b9f614c56d1d2d289" prot="public" virt="non-virtual"><scope>J::H_D::Modules::MovieModule</scope><name>UpdateSeriesEmbedAsync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

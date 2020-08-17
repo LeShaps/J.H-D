@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion" kind="class" prot="public">
+    <compoundname>J::H_D::Minions::Infos::MovieMinion</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" prot="public" static="no">
+        <name>SearchType</name>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6a1526e0ac850c241ee1631d9ad5664475" prot="public">
+          <name>Movie</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6acd4b9482eadd1fea35dbf01c9a05b093" prot="public">
+          <name>Serie</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6a7c5ba892645af8d7dba520e3978c726f" prot="public">
+          <name>Director</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="17" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="16" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a4ca3578f3a403d7f03f1724594d7e2e2" prot="private" static="yes" mutable="no">
+        <type>readonly Dictionary&lt; <ref refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" kindref="member">SearchType</ref>, string &gt;</type>
+        <definition>readonly Dictionary&lt;SearchType, string&gt; J.H_D.Minions.Infos.MovieMinion.EndpointList</definition>
+        <argsstring></argsstring>
+        <name>EndpointList</name>
+        <initializer>= new Dictionary&lt;<ref refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" kindref="member">SearchType</ref>, string&gt;
+        {
+            {SearchType.Movie, &quot;https://api.themoviedb.org/3/search/movie?api_key=&quot; },
+            {SearchType.Serie, &quot;https://api.themoviedb.org/3/search/tv?api_key=&quot; },
+            {SearchType.Director, &quot;https://api.themoviedb.org/3/search/person?api_key=&quot; }
+        }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="30" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a3cddd9decb09dff840109e69e6513727" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool J.H_D.Minions.Infos.MovieMinion.ContainNullCheck</definition>
+        <argsstring>(string s1, string s2)</argsstring>
+        <name>ContainNullCheck</name>
+        <param>
+          <type>string</type>
+          <declname>s1</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>s2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="23" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="23" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a0a1f600ac3640aff8e99ea3b06afacb7" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string J.H_D.Minions.Infos.MovieMinion.GetRuntime</definition>
+        <argsstring>(int minutes)</argsstring>
+        <name>GetRuntime</name>
+        <param>
+          <type>int</type>
+          <declname>minutes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="159" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="159" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a215784af9489be7d168dba96584d7065" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; string &gt;</type>
+        <definition>static List&lt;string&gt; J.H_D.Minions.Infos.MovieMinion.GetNames</definition>
+        <argsstring>(dynamic DynamicArray)</argsstring>
+        <name>GetNames</name>
+        <param>
+          <type>dynamic</type>
+          <declname>DynamicArray</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="165" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="165" bodyend="177"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a2f07b1e16e8f8408b48575e6bd381525" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; <ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie" kindref="compound">Response.Movie</ref>, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519" kindref="member">Error.Movie</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;Response.Movie, Error.Movie&gt; &gt; J.H_D.Minions.Infos.MovieMinion.SearchMovieAsync</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>SearchMovieAsync</name>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="37" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="37" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a95f7f45206eb2b0ca412d86de928b0c4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; <ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series" kindref="compound">Response.TVSeries</ref>, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519" kindref="member">Error.Movie</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;Response.TVSeries, Error.Movie&gt; &gt; J.H_D.Minions.Infos.MovieMinion.GetSeriesGeneralInfosAsync</definition>
+        <argsstring>(SearchType searchType, string[] Args)</argsstring>
+        <name>GetSeriesGeneralInfosAsync</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" kindref="member">SearchType</ref></type>
+          <declname>searchType</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="68" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="68" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1aa4d821bc0b7758dd45367233fcbf5751" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; <ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_movie" kindref="compound">Response.Movie</ref>, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a3801665358ed86ae90b860d2e0190519" kindref="member">Error.Movie</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;Response.Movie, Error.Movie&gt; &gt; J.H_D.Minions.Infos.MovieMinion.BonusInfosAsync</definition>
+        <argsstring>(SearchType searchType, string[] args)</argsstring>
+        <name>BonusInfosAsync</name>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" kindref="member">SearchType</ref></type>
+          <declname>searchType</declname>
+        </param>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="119" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="119" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" line="15" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/MovieMinion.cs" bodystart="14" bodyend="178"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1aa4d821bc0b7758dd45367233fcbf5751" prot="public" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>BonusInfosAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a3cddd9decb09dff840109e69e6513727" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>ContainNullCheck</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a4ca3578f3a403d7f03f1724594d7e2e2" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>EndpointList</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a215784af9489be7d168dba96584d7065" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>GetNames</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a0a1f600ac3640aff8e99ea3b06afacb7" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>GetRuntime</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a95f7f45206eb2b0ca412d86de928b0c4" prot="public" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>GetSeriesGeneralInfosAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a2f07b1e16e8f8408b48575e6bd381525" prot="public" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>SearchMovieAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_movie_minion_1a30b19fd680afd3a90796b7dc9f6af2f6" prot="public" virt="non-virtual"><scope>J::H_D::Minions::Infos::MovieMinion</scope><name>SearchType</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

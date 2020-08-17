@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module" kind="class" prot="public">
+    <compoundname>J::H_D::Modules::AnimeMangaModule</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModuleBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module_1a22dcdc31103b9813a571d7ecc95d3b1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.AnimeMangaModule.GetAnimeAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>GetAnimeAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/AnimeMangaModule.cs" line="18" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/AnimeMangaModule.cs" bodystart="18" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module_1a4ee3e975a8ea3594a7789ae6ab8e7a44" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.AnimeMangaModule.BuildAnimeEmbed</definition>
+        <argsstring>(Anime Result)</argsstring>
+        <name>BuildAnimeEmbed</name>
+        <param>
+          <type><ref refid="_kitsu_minion_8cs_1aba55619315b6d0af59b0c23c712dc362" kindref="member">Anime</ref></type>
+          <declname>Result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/AnimeMangaModule.cs" line="41" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/AnimeMangaModule.cs" bodystart="41" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>J.H_D.Modules.AnimeMangaModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ModuleBase</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>J.H_D.Modules.AnimeMangaModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ModuleBase</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/AnimeMangaModule.cs" line="16" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/AnimeMangaModule.cs" bodystart="15" bodyend="84"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module_1a4ee3e975a8ea3594a7789ae6ab8e7a44" prot="private" virt="non-virtual"><scope>J::H_D::Modules::AnimeMangaModule</scope><name>BuildAnimeEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_anime_manga_module_1a22dcdc31103b9813a571d7ecc95d3b1b" prot="public" virt="non-virtual"><scope>J::H_D::Modules::AnimeMangaModule</scope><name>GetAnimeAsync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="_inspirobot_8cs" kind="file">
+    <compoundname>Inspirobot.cs</compoundname>
+    <innerclass refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion" prot="public">J::H_D::Minions::Websites::InspirobotMinion</innerclass>
+    <innernamespace refid="namespace_j_1_1_h___d_1_1_minions_1_1_websites">J::H_D::Minions::Websites</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Threading.Tasks;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>J.H_D.Data;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">J.H_D.Minions.Websites</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7" refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion" kindref="compound">InspirobotMinion</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="9" refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion_1aab65d572c79cfc43463120beeb1c5229" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>async<sp/>Task&lt;FeatureRequest&lt;string,<sp/><ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a46e74bd2f8d2f5806b4dced87111f031" kindref="member">Error.InspirationnalError</ref>&gt;&gt;<sp/><ref refid="class_j_1_1_h___d_1_1_minions_1_1_websites_1_1_inspirobot_minion_1aab65d572c79cfc43463120beeb1c5229" kindref="member">FeelInspirationAsync</ref>()</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>Ressource<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ressource<sp/>=<sp/>await<sp/>Program.p.Asker.GetStringAsync(</highlight><highlight class="stringliteral">&quot;https://inspirobot.me/api?generate=true&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Ressource<sp/>==<sp/>null)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>FeatureRequest&lt;string,<sp/><ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a46e74bd2f8d2f5806b4dced87111f031" kindref="member">Error.InspirationnalError</ref>&gt;(null,<sp/>Error.InspirationnalError.Communication);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>FeatureRequest&lt;string,<sp/><ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a46e74bd2f8d2f5806b4dced87111f031" kindref="member">Error.InspirationnalError</ref>&gt;(Ressource,<sp/>Error.InspirationnalError.None);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites/Inspirobot.cs"/>
+  </compounddef>
+</doxygen>

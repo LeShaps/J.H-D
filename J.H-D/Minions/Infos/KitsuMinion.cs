@@ -18,7 +18,7 @@ namespace J.H_D.Minions.Infos
             if (SearchName.Length == 0)
                 return new FeatureRequest<Anime?, Error.Anime>(null, Error.Anime.Help);
 
-            dynamic json = JsonConvert.DeserializeObject(await Program.p.KitsuClient.GetStringAsync($"https://kitsu.io/api/edge/anime?page[limit]=1&filter[text]=" + SearchName));
+            dynamic json = JsonConvert.DeserializeObject(await Program.GetP().KitsuClient.GetStringAsync($"https://kitsu.io/api/edge/anime?page[limit]=1&filter[text]=" + SearchName));
 
 
             if (json == null)
@@ -45,7 +45,7 @@ namespace J.H_D.Minions.Infos
                 EpisodeCount = Attributes.episodeCount,
                 EpLength = Attributes.episodeLength,
                 HumanReadableWatchtime = GetReadableWatchtime((string)Attributes.totalLength),
-                VideoUrl = $"https://youtube.com/watch?v={Attributes.youtubeVideoId}"
+                VideoUrl = new Uri($"https://youtube.com/watch?v={Attributes.youtubeVideoId}")
             };
 
             return new FeatureRequest<Anime?, Error.Anime>(Response, Error.Anime.None);

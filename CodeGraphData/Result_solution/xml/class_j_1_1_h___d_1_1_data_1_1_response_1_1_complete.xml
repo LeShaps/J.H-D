@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_data_1_1_response_1_1_complete" kind="class" prot="public">
+    <compoundname>J::H_D::Data::Response::Complete</compoundname>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_j_1_1_h___d_1_1_data_1_1_response_1_1_complete_1a66e80239fec6c406db5870412fe4a8dc" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string J.H_D.Data.Response.Complete.Content</definition>
+        <argsstring></argsstring>
+        <name>Content</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites/Response.cs" line="67" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites/Response.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites/Response.cs" line="66" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Websites/Response.cs" bodystart="65" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_complete_1a66e80239fec6c406db5870412fe4a8dc" prot="public" virt="non-virtual"><scope>J::H_D::Data::Response::Complete</scope><name>Content</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

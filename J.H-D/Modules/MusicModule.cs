@@ -48,7 +48,7 @@ namespace J.H_D.Modules
             EmbedBuilder builder = new EmbedBuilder
             {
                 Title = Artist.Name,
-                Url = Artist.LastUrl,
+                Url = Artist.LastUrl.AbsoluteUri,
                 Description = NoPromoDescription,
             };
 

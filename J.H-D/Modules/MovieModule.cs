@@ -13,14 +13,16 @@ namespace J.H_D.Modules
 {
     class MovieModule : ModuleBase
     {
-        readonly Program p = Program.p;
+        readonly Program p = Program.GetP();
 
         [Command("Get movie"), Priority(-1)]
         public async Task GetMovieAsync(params string[] Args)
         {
-            // Availlability check
-            // await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
-            // Owner only settings
+            if (Context.Channel as ITextChannel is null)
+                await p.DoActionAsync(Context.User, 0, Program.Module.Movie);
+            else
+                await p.DoActionAsync(Context.User, Context.Channel.Id, Program.Module.Movie);
+
             var result = await MovieMinion.SearchMovieAsync(Args);
             switch (result.Error)
             {

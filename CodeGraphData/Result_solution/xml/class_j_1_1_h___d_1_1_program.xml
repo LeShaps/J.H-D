@@ -1,0 +1,773 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_program" kind="class" prot="public">
+    <compoundname>J::H_D::Program</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8" prot="public" static="no">
+        <name>Module</name>
+        <enumvalue id="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8ac19f0b6611546292750128b5afc84e15" prot="public">
+          <name>AnimeManga</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8ae6a7f8a2f42cc35979973da8dfb10720" prot="public">
+          <name>Forum</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8a579951efc1d928e2f1cf6c51e193e899" prot="public">
+          <name>Vn</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8a1526e0ac850c241ee1631d9ad5664475" prot="public">
+          <name>Movie</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8a83b02a962d11a1d25824a843b2936198" prot="public">
+          <name>Booru</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="57" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="56" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a79990375faeae29af0654a31aa723a39" prot="public" static="no" mutable="no">
+        <type>readonly DiscordSocketClient</type>
+        <definition>readonly DiscordSocketClient J.H_D.Program.client</definition>
+        <argsstring></argsstring>
+        <name>client</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="20" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1ac505bfb89356ffc1ba0d18030e482e80" prot="public" static="no" mutable="no">
+        <type>System.Random</type>
+        <definition>System.Random J.H_D.Program.rand</definition>
+        <argsstring></argsstring>
+        <name>rand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="23" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a3b110a95c997a83ce74059512ea0827a" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Program.TmDbKey</definition>
+        <argsstring></argsstring>
+        <name>TmDbKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="24" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a2f3acee89402fa7962612638355420c8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Program.RapidAPIKey</definition>
+        <argsstring></argsstring>
+        <name>RapidAPIKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="25" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a7547d40a361da2af6b4f4214d9378439" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Program.LastFMKey</definition>
+        <argsstring></argsstring>
+        <name>LastFMKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="26" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a03f65eba4ecdd60296739aee3d37a9ea" prot="public" static="no" mutable="no">
+        <type>HttpClient</type>
+        <definition>HttpClient J.H_D.Program.Asker</definition>
+        <argsstring></argsstring>
+        <name>Asker</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="31" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a9f4b06c091fab3c238990688be277fd6" prot="public" static="no" mutable="no">
+        <type>HttpClient</type>
+        <definition>HttpClient J.H_D.Program.KitsuClient</definition>
+        <argsstring></argsstring>
+        <name>KitsuClient</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="32" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a12748a4b013389191304c7eded43ff67" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; ulong, Tuple&lt; int, <ref refid="class_j_1_1_h___d_1_1_data_1_1_response_1_1_t_v_series" kindref="compound">Response.TVSeries</ref> &gt; &gt;</type>
+        <definition>Dictionary&lt;ulong, Tuple&lt;int, Response.TVSeries&gt; &gt; J.H_D.Program.SendedSeriesEmbed</definition>
+        <argsstring></argsstring>
+        <name>SendedSeriesEmbed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="45" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1aefdaa0735f2bf8af4088be711dc3b812" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; ulong, string &gt;</type>
+        <definition>Dictionary&lt;ulong, string&gt; J.H_D.Program.GeneratedText</definition>
+        <argsstring></argsstring>
+        <name>GeneratedText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="46" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1aa00bf6800b8395b80eec498d718df029" prot="public" static="no" mutable="no">
+        <type>DateTime</type>
+        <definition>DateTime J.H_D.Program.StartingTime</definition>
+        <argsstring></argsstring>
+        <name>StartingTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="49" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a4467f888e76f7b80738c8932ca9da445" prot="public" static="no" mutable="no">
+        <type><ref refid="class_j_1_1_h___d_1_1_db_1_1_db" kindref="compound">Db.Db</ref></type>
+        <definition>Db.Db J.H_D.Program.db</definition>
+        <argsstring></argsstring>
+        <name>db</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="52" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1ac2ae5c0d47217ff070bbb0a5a3a16dd9" prot="public" static="no" mutable="no">
+        <type>Dictionary&lt; string, string &gt;</type>
+        <definition>Dictionary&lt;string, string&gt; J.H_D.Program.KitsuAuth</definition>
+        <argsstring></argsstring>
+        <name>KitsuAuth</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="54" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a6a6bff9949ede6a9cf283557da896a80" prot="private" static="no" mutable="no">
+        <type>readonly CommandService</type>
+        <definition>readonly CommandService J.H_D.Program.commands</definition>
+        <argsstring></argsstring>
+        <name>commands</name>
+        <initializer>= new CommandService()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="21" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a2110b59b0fde1c4ff5552557feb2f590" prot="private" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int J.H_D.Program.RefreshDelay</definition>
+        <argsstring></argsstring>
+        <name>RefreshDelay</name>
+        <initializer>= 300_000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="28" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a6040af291de524899949451ecb5cde6a" prot="private" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int J.H_D.Program.RefreshSendDelay</definition>
+        <argsstring></argsstring>
+        <name>RefreshSendDelay</name>
+        <initializer>= 6_000_000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="29" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1af12622dd36b36fae19f81107b5bfa38c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool J.H_D.Program.DebugMode</definition>
+        <argsstring></argsstring>
+        <name>DebugMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="34" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1ac96d9c56892c5e32fa1d67aa060f846e" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Program.WebsiteStats</definition>
+        <argsstring></argsstring>
+        <name>WebsiteStats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="39" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a3f1a83fa199ea85e4c4395442a1be708" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Program.WebsiteStatsToken</definition>
+        <argsstring></argsstring>
+        <name>WebsiteStatsToken</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="40" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1abbe79a9dc83dee207e8c6757936e2339" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_j_1_1_h___d_1_1_program" kindref="compound">Program</ref></type>
+        <definition>Program J.H_D.Program.p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="22" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_program_1a5b05e8560c2a86c207701fa567a4fc45" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool J.H_D.Program.isTimerValid</definition>
+        <argsstring></argsstring>
+        <name>isTimerValid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="36" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_j_1_1_h___d_1_1_program_1ad1854ce74b448b1eddcc08c7798ee341" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string J.H_D.Program.WebsiteUpload</definition>
+        <argsstring></argsstring>
+        <name>WebsiteUpload</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="41" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_j_1_1_h___d_1_1_program_1a0f238a0008f357b2046a214ed5550ecb" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string J.H_D.Program.WebsiteUrl</definition>
+        <argsstring></argsstring>
+        <name>WebsiteUrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="42" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_j_1_1_h___d_1_1_program_1a1f1a0117171ad8ac7110a9582c660b58" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool J.H_D.Program.SendStats</definition>
+        <argsstring></argsstring>
+        <name>SendStats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="43" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1aae8dfa92ebb1cb3a51528e56cb03996c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>J.H_D.Program.Program</definition>
+        <argsstring>()</argsstring>
+        <name>Program</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="65" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="65" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a9ec64f91ef9a7ef8e524d0e5e09b394b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.MainAsync</definition>
+        <argsstring>()</argsstring>
+        <name>MainAsync</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a1a8b342558c16c90220ca5aaf02e5315" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.MainAsync</definition>
+        <argsstring>(string botToken, ulong inamiId)</argsstring>
+        <name>MainAsync</name>
+        <param>
+          <type>string</type>
+          <declname>botToken</declname>
+        </param>
+        <param>
+          <type>ulong</type>
+          <declname>inamiId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="96" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="96" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1ae75c7e7b07bef33c5a3fb04fd72fd4c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.DoActionAsync</definition>
+        <argsstring>(IUser u, ulong serverId, Module m)</argsstring>
+        <name>DoActionAsync</name>
+        <param>
+          <type>IUser</type>
+          <declname>u</declname>
+        </param>
+        <param>
+          <type>ulong</type>
+          <declname>serverId</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8" kindref="member">Module</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="278" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="278" bodyend="282"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a83c083a1c94348024959a967e7b59757" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.UpdateElementAsync</definition>
+        <argsstring>(Tuple&lt; string, string &gt;[] elems)</argsstring>
+        <name>UpdateElementAsync</name>
+        <param>
+          <type>Tuple&lt; string, string &gt;[]</type>
+          <declname>elems</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="349" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="349" bodyend="372"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a36b43ff99c5619083852f4a0c884357a" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>static async Task J.H_D.Program.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
+        <param>
+          <type>string[]</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="75" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="75" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1afe757da24ce400346d2f891d42f28117" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_j_1_1_h___d_1_1_program" kindref="compound">Program</ref></type>
+        <definition>static Program J.H_D.Program.GetP</definition>
+        <argsstring>()</argsstring>
+        <name>GetP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="185" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="185" bodyend="185"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1adc0a2532ba30a9bcce52b3f5a074cce6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.CheckSeriesAsync</definition>
+        <argsstring>(Cacheable&lt; IUserMessage, ulong &gt; Message, ISocketMessageChannel Channel, SocketReaction Reaction)</argsstring>
+        <name>CheckSeriesAsync</name>
+        <param>
+          <type>Cacheable&lt; IUserMessage, ulong &gt;</type>
+          <declname>Message</declname>
+        </param>
+        <param>
+          <type>ISocketMessageChannel</type>
+          <declname>Channel</declname>
+        </param>
+        <param>
+          <type>SocketReaction</type>
+          <declname>Reaction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="187" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="187" bodyend="221"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1af8945494f7ae21abbd7866654708cc25" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.CheckGeneratedTextAsync</definition>
+        <argsstring>(Cacheable&lt; IUserMessage, ulong &gt; Message, ISocketMessageChannel Channel, SocketReaction Reaction)</argsstring>
+        <name>CheckGeneratedTextAsync</name>
+        <param>
+          <type>Cacheable&lt; IUserMessage, ulong &gt;</type>
+          <declname>Message</declname>
+        </param>
+        <param>
+          <type>ISocketMessageChannel</type>
+          <declname>Channel</declname>
+        </param>
+        <param>
+          <type>SocketReaction</type>
+          <declname>Reaction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="223" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="223" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1abff2e274f69df955e7c6f7f9c79d84df" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.ReactionAddAsync</definition>
+        <argsstring>(Cacheable&lt; IUserMessage, ulong &gt; Message, ISocketMessageChannel Channel, SocketReaction Reaction)</argsstring>
+        <name>ReactionAddAsync</name>
+        <param>
+          <type>Cacheable&lt; IUserMessage, ulong &gt;</type>
+          <declname>Message</declname>
+        </param>
+        <param>
+          <type>ISocketMessageChannel</type>
+          <declname>Channel</declname>
+        </param>
+        <param>
+          <type>SocketReaction</type>
+          <declname>Reaction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="242" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="242" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1ae8ab2af9f2a550a96fe9f83dd3253295" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.GuildJoinAsync</definition>
+        <argsstring>(SocketGuild arg)</argsstring>
+        <name>GuildJoinAsync</name>
+        <param>
+          <type>SocketGuild</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="252" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="252" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1afa15fd36da31ec1c4b80fe3ad4a1a34c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.InitServicesAsync</definition>
+        <argsstring>(dynamic json)</argsstring>
+        <name>InitServicesAsync</name>
+        <param>
+          <type>dynamic</type>
+          <declname>json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="259" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="259" bodyend="276"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1ae8ff0a97a28f54b9bb30e73bd7df7f08" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Task</type>
+        <definition>Task J.H_D.Program.DisconnectedAsync</definition>
+        <argsstring>(Exception e)</argsstring>
+        <name>DisconnectedAsync</name>
+        <param>
+          <type>Exception</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="284" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="284" bodyend="289"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a63403079d9f4a8f0242154bf8a4ee1fb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.HandleCommandAsync</definition>
+        <argsstring>(SocketMessage arg)</argsstring>
+        <name>HandleCommandAsync</name>
+        <param>
+          <type>SocketMessage</type>
+          <declname>arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="291" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="291" bodyend="322"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1aeca267c9036b6897a020e26e50a4bf2d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.CommandExectuteAsync</definition>
+        <argsstring>(Optional&lt; CommandInfo &gt; cmd, ICommandContext context, IResult result)</argsstring>
+        <name>CommandExectuteAsync</name>
+        <param>
+          <type>Optional&lt; CommandInfo &gt;</type>
+          <declname>cmd</declname>
+        </param>
+        <param>
+          <type>ICommandContext</type>
+          <declname>context</declname>
+        </param>
+        <param>
+          <type>IResult</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="324" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="324" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a24044ae0abd8d0422d76ac1e7d16c761" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.AddErrorAsync</definition>
+        <argsstring>(string name)</argsstring>
+        <name>AddErrorAsync</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="339" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="339" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1a13278e4a2248d1eb6cce2efefe84538d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Program.AddCommandServsAsync</definition>
+        <argsstring>(ulong name)</argsstring>
+        <name>AddCommandServsAsync</name>
+        <param>
+          <type>ulong</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="344" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="344" bodyend="347"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_program_1ae735c2056f09d0a7d1f8d8a9d9106c63" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Task</type>
+        <definition>Task J.H_D.Program.LogAsync</definition>
+        <argsstring>(LogMessage msg)</argsstring>
+        <name>LogAsync</name>
+        <param>
+          <type>LogMessage</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="374" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="374" bodyend="405"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="81">
+        <label>J.H_D.Program</label>
+        <link refid="class_j_1_1_h___d_1_1_program"/>
+        <childnode refid="81" relation="usage">
+          <edgelabel>p</edgelabel>
+        </childnode>
+        <childnode refid="82" relation="usage">
+          <edgelabel>rand</edgelabel>
+        </childnode>
+      </node>
+      <node id="82">
+        <label>System</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" line="19" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Program.cs" bodystart="18" bodyend="406"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_program_1a13278e4a2248d1eb6cce2efefe84538d" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>AddCommandServsAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a24044ae0abd8d0422d76ac1e7d16c761" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>AddErrorAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a03f65eba4ecdd60296739aee3d37a9ea" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>Asker</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1af8945494f7ae21abbd7866654708cc25" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>CheckGeneratedTextAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1adc0a2532ba30a9bcce52b3f5a074cce6" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>CheckSeriesAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a79990375faeae29af0654a31aa723a39" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>client</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1aeca267c9036b6897a020e26e50a4bf2d" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>CommandExectuteAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a6a6bff9949ede6a9cf283557da896a80" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>commands</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a4467f888e76f7b80738c8932ca9da445" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>db</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1af12622dd36b36fae19f81107b5bfa38c" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>DebugMode</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ae8ff0a97a28f54b9bb30e73bd7df7f08" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>DisconnectedAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ae75c7e7b07bef33c5a3fb04fd72fd4c9" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>DoActionAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1aefdaa0735f2bf8af4088be711dc3b812" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>GeneratedText</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1afe757da24ce400346d2f891d42f28117" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>GetP</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ae8ab2af9f2a550a96fe9f83dd3253295" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>GuildJoinAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a63403079d9f4a8f0242154bf8a4ee1fb" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>HandleCommandAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1afa15fd36da31ec1c4b80fe3ad4a1a34c" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>InitServicesAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a5b05e8560c2a86c207701fa567a4fc45" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>isTimerValid</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ac2ae5c0d47217ff070bbb0a5a3a16dd9" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>KitsuAuth</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a9f4b06c091fab3c238990688be277fd6" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>KitsuClient</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a7547d40a361da2af6b4f4214d9378439" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>LastFMKey</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ae735c2056f09d0a7d1f8d8a9d9106c63" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>LogAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a36b43ff99c5619083852f4a0c884357a" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>Main</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a9ec64f91ef9a7ef8e524d0e5e09b394b" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>MainAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a1a8b342558c16c90220ca5aaf02e5315" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>MainAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1aba916e692b1dec88bf0787e3d6aaafa8" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>Module</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1abbe79a9dc83dee207e8c6757936e2339" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>p</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1aae8dfa92ebb1cb3a51528e56cb03996c" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>Program</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ac505bfb89356ffc1ba0d18030e482e80" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>rand</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a2f3acee89402fa7962612638355420c8" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>RapidAPIKey</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1abff2e274f69df955e7c6f7f9c79d84df" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>ReactionAddAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a2110b59b0fde1c4ff5552557feb2f590" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>RefreshDelay</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a6040af291de524899949451ecb5cde6a" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>RefreshSendDelay</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a12748a4b013389191304c7eded43ff67" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>SendedSeriesEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a1f1a0117171ad8ac7110a9582c660b58" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>SendStats</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1aa00bf6800b8395b80eec498d718df029" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>StartingTime</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a3b110a95c997a83ce74059512ea0827a" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>TmDbKey</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a83c083a1c94348024959a967e7b59757" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>UpdateElementAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ac96d9c56892c5e32fa1d67aa060f846e" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>WebsiteStats</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a3f1a83fa199ea85e4c4395442a1be708" prot="private" virt="non-virtual"><scope>J::H_D::Program</scope><name>WebsiteStatsToken</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1ad1854ce74b448b1eddcc08c7798ee341" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>WebsiteUpload</name></member>
+      <member refid="class_j_1_1_h___d_1_1_program_1a0f238a0008f357b2046a214ed5550ecb" prot="public" virt="non-virtual"><scope>J::H_D::Program</scope><name>WebsiteUrl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

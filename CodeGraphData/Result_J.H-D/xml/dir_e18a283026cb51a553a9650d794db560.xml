@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="dir_e18a283026cb51a553a9650d794db560" kind="dir">
+    <compoundname>H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules</compoundname>
+    <innerfile refid="_anime_manga_module_8cs">AnimeMangaModule.cs</innerfile>
+    <innerfile refid="_booru_module_8cs">BooruModule.cs</innerfile>
+    <innerfile refid="_communication_module_8cs">CommunicationModule.cs</innerfile>
+    <innerfile refid="_experimental_module_8cs">ExperimentalModule.cs</innerfile>
+    <innerfile refid="_f_chan_module_8cs">FChanModule.cs</innerfile>
+    <innerfile refid="_movie_module_8cs">MovieModule.cs</innerfile>
+    <innerfile refid="_music_module_8cs">MusicModule.cs</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/"/>
+  </compounddef>
+</doxygen>

@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Text.RegularExpressions;
 using Discord.Commands;
 using System.Reflection;
 
 using J.H_D.Data;
-using System.Globalization;
-using System.Text;
 
 namespace J.H_D.Tools
 {
@@ -227,7 +226,7 @@ namespace J.H_D.Tools
         /// </summary>
         /// <param name="Url">The url to get fetch the data from</param>
         /// <returns>A MemoryStream with the url data</returns>
-        public static Stream GetStreamFromUrl(string Url)
+        public static Stream GetStreamFromUrl(Uri Url)
         {
             byte[] ImageData = null;
 
@@ -237,11 +236,9 @@ namespace J.H_D.Tools
             return new MemoryStream(ImageData);
         }
 
-        public static string StandardUppercase(string ToUpper)
+        public static string StandardUppercase(string ToUp)
         {
-            string end = char.ToUpperInvariant(ToUpper[0]) + String.Join("", ToUpper.Skip(1)).ToLowerInvariant();
-
-            return end;
+            return char.ToUpperInvariant(ToUp[0]) + String.Join("", ToUp.Skip(1)).ToLowerInvariant();
         }
     }
 }

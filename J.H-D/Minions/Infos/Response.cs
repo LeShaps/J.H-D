@@ -192,9 +192,9 @@ namespace J.H_D.Data
             [Embedable("ID", false, false)]
             private string mBID;
             [Embedable("Band Page", false, true)]
-            private string lastUrl;
+            private Uri lastUrl;
             [Embedable("Image Url", false, true)]
-            private string imageUrl;
+            private Uri imageUrl;
             [Embedable("Genres")]
             private ICollection<string> genres;
             [Embedable("Bio")]
@@ -204,8 +204,8 @@ namespace J.H_D.Data
 
             public string Name { get => name; set => name = value; }
             public string Mbid { get => mBID; set => mBID = value; }
-            public string LastUrl { get => lastUrl; set => lastUrl = value; }
-            public string ImageUrl { get => imageUrl; set => imageUrl = value; }
+            public Uri LastUrl { get => lastUrl; set => lastUrl = value; }
+            public Uri ImageUrl { get => imageUrl; set => imageUrl = value; }
             public ICollection<string> Genres { get => genres; set => genres = value; }
             public string Bio { get => bio; set => bio = value; }
             public bool OnTour { get => onTour; set => onTour = value; }
@@ -253,7 +253,7 @@ namespace J.H_D.Data
             [Embedable("Total Watchtime")]
             private string humanReadableWatchtime;
             [Embedable("Video Url", false, true)]
-            private string videoUrl;
+            private Uri videoUrl;
 
             public string Id { get => id; set => id = value; }
             public string Synopsis { get => synopsis; set => synopsis = value; }
@@ -271,7 +271,7 @@ namespace J.H_D.Data
             public string EpisodeCount { get => episodeCount; set => episodeCount = value; }
             public string EpLength { get => epLength; set => epLength = value; }
             public string HumanReadableWatchtime { get => humanReadableWatchtime; set => humanReadableWatchtime = value; }
-            public string VideoUrl { get => videoUrl; set => videoUrl = value; }
+            public Uri VideoUrl { get => videoUrl; set => videoUrl = value; }
 
             public bool Equals(Anime other)
             {

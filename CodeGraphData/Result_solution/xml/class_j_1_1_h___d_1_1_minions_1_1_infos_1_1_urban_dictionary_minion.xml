@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion" kind="class" prot="public">
+    <compoundname>J::H_D::Minions::Infos::UrbanDictionaryMinion</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1ab26c9aa58a47b52a1ea984146e5ef1ea" prot="private" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Minions.Infos.UrbanDictionaryMinion.RapidAPIHost</definition>
+        <argsstring></argsstring>
+        <name>RapidAPIHost</name>
+        <initializer>= &quot;mashape-community-urban-dictionary.p.rapidapi.com&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" line="14" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1ac6152bd4295f8bd4b0844521011f1501" prot="private" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string J.H_D.Minions.Infos.UrbanDictionaryMinion.DefineAdress</definition>
+        <argsstring></argsstring>
+        <name>DefineAdress</name>
+        <initializer>= &quot;https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" line="15" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1aa7e8616d8a3801f64b9d8198195d4637" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; FeatureRequest&lt; <ref refid="_urban_dictionary_minion_8cs_1adc3282495a5eeadc89817a980226b690" kindref="member">UrbanDefinition</ref>?, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1a832e518f876ce7cc34e5ecf606149f2e" kindref="member">Error.Urban</ref> &gt; &gt;</type>
+        <definition>static async Task&lt;FeatureRequest&lt;UrbanDefinition?, Error.Urban&gt; &gt; J.H_D.Minions.Infos.UrbanDictionaryMinion.SearchForWordAsync</definition>
+        <argsstring>(string search)</argsstring>
+        <name>SearchForWordAsync</name>
+        <param>
+          <type>string</type>
+          <declname>search</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" line="17" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" bodystart="17" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" line="13" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Minions/Infos/UrbanDictionaryMinion.cs" bodystart="12" bodyend="46"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1ac6152bd4295f8bd4b0844521011f1501" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::UrbanDictionaryMinion</scope><name>DefineAdress</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1ab26c9aa58a47b52a1ea984146e5ef1ea" prot="private" virt="non-virtual"><scope>J::H_D::Minions::Infos::UrbanDictionaryMinion</scope><name>RapidAPIHost</name></member>
+      <member refid="class_j_1_1_h___d_1_1_minions_1_1_infos_1_1_urban_dictionary_minion_1aa7e8616d8a3801f64b9d8198195d4637" prot="public" virt="non-virtual"><scope>J::H_D::Minions::Infos::UrbanDictionaryMinion</scope><name>SearchForWordAsync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

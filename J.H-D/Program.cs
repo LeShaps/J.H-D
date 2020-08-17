@@ -19,7 +19,7 @@ namespace J.H_D
     {
         public readonly DiscordSocketClient client;
         private readonly CommandService commands = new CommandService();
-        public static Program p;
+        private static Program p;
         public System.Random rand;
         public string TmDbKey;
         public string RapidAPIKey;
@@ -126,7 +126,10 @@ namespace J.H_D
                     throw new FileNotFoundException("Missing informations in Credentials.json, please complete mandatory informations before continue");
                 if (json.developpmentToken != null)
                     DebugMode = true;
-                botToken = json.botToken;
+                if (DebugMode)
+                    botToken = json.developpmentToken;
+                else
+                    botToken = json.botToken;
                 // Complete informations about the owner
 
                 KitsuAuth = (json.kitsuCredentials.kitsuMail != null && json.kitsuCredentials.kitsuPass != null) ?
@@ -179,6 +182,8 @@ namespace J.H_D
             await Task.Delay(-1).ConfigureAwait(false);
         }
 
+        public static Program GetP() { return p; }
+
         private async Task CheckSeriesAsync(Cacheable<IUserMessage, ulong> Message, ISocketMessageChannel Channel, SocketReaction Reaction)
         {
             if (SendedSeriesEmbed.ContainsKey(Message.Id))
@@ -187,6 +192,11 @@ namespace J.H_D
                 MovieModule Changer = new MovieModule();
 
                 IUserMessage Mess = await Message.DownloadAsync();
+
+                if (Channel as ITextChannel is null)
+                    await p.DoActionAsync(Mess.Author, 0, Module.Movie).ConfigureAwait(false);
+                else
+                    await p.DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Movie).ConfigureAwait(false);
 
                 switch (Reaction.Emote.Name)
                 {
@@ -355,11 +365,9 @@ namespace J.H_D
             {
                 await Asker.SendAsync(msg);
             }
-            catch (Exception e)
+            catch (Exception e) when (e is HttpRequestException || e is TaskCanceledException)
             {
-                if (e is HttpRequestException || e is TaskCanceledException) {
                     await AddErrorAsync(e.Message).ConfigureAwait(false);
-                }
             }
         }
 

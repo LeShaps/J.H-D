@@ -48,7 +48,7 @@ namespace J.H_D.Minions.Websites
                 {
                     OldContent = Content;
                     await Updater(msg, OldContent).ConfigureAwait(false);
-                    await Task.Delay(RefreshDelay);
+                    await Task.Delay(RefreshDelay).ConfigureAwait(false);
                 }
             }).ConfigureAwait(false);
 

@@ -8,7 +8,6 @@ using J.H_D.Minions.Websites;
 using J.H_D.Minions;
 using J.H_D.Tools;
 using J.H_D.Data;
-using System.Globalization;
 
 namespace J.H_D.Modules
 {
@@ -17,7 +16,7 @@ namespace J.H_D.Modules
         [Command("FChan available boards"), Alias("4chan boards")]
         public async Task DisplayFchanBoardsAsync()
         {
-            await Program.p.DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
+            await Program.GetP().DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
             List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChansAsync();
             await ReplyAsync("", false, BoardInfosBuilder(Boards));
@@ -26,7 +25,7 @@ namespace J.H_D.Modules
         [Command("Fchan board info"), Alias("4chan board info")]
         public async Task GetBoardInfosAsync(params string[] Args)
         {
-            await Program.p.DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
+            await Program.GetP().DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
             var result = await FChanMinion.GetBoardInfoAsync(Args);
 
@@ -52,8 +51,7 @@ namespace J.H_D.Modules
         [Command("Random 4image", RunMode = RunMode.Async), Alias("4chan image")]
         public async Task RandomImageAsync(params string[] Args)
         {
-            // For later, to make more easy-to-use command
-            // string AskArgs = null;
+            // TODO: Implement search using keywords in threads
 
             var result = new FeatureRequest<Response.FThread?, Error.FChan>();
             ITextChannel chan = (ITextChannel)Context.Channel;
@@ -98,8 +96,7 @@ namespace J.H_D.Modules
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]
         public async Task RandomThreadAsync(params string[] Args)
         {
-            // For later, to make more easy-to-use command
-            // string AskArgs = null;
+            // TODO: Implement search using keywords in threads
 
             ITextChannel chan = (ITextChannel)Context.Channel;
 

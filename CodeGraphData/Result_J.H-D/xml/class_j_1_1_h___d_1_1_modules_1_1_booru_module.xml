@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
+  <compounddef id="class_j_1_1_h___d_1_1_modules_1_1_booru_module" kind="class" prot="public">
+    <compoundname>J::H_D::Modules::BooruModule</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModuleBase</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a7c57ed51957ea9f44d877aa773f1fc3a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.BooruModule.SearchKonachanAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>SearchKonachanAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="19" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="19" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1ac2cba9cddd2859f5f543e4082eef5632" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.BooruModule.SearchWithBonusAsync</definition>
+        <argsstring>(params string[] Args)</argsstring>
+        <name>SearchWithBonusAsync</name>
+        <param>
+          <type>params string[]</type>
+          <declname>Args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="29" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="29" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a9fbc407a89598737b5c3fdb6e2903841" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.BooruModule.ProccessResultAsync</definition>
+        <argsstring>(FeatureRequest&lt; BooruSharp.Search.Post.SearchResult, Error.Booru &gt; Result)</argsstring>
+        <name>ProccessResultAsync</name>
+        <param>
+          <type>FeatureRequest&lt; BooruSharp.Search.Post.SearchResult, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105" kindref="member">Error.Booru</ref> &gt;</type>
+          <declname>Result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="38" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="38" bodyend="59"/>
+        <references refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a6ef047df79e738865b09916d1c4b6ed6" compoundref="_utilities_8cs" startline="88" endline="92">J.H_D.Tools.Utilities.IsChannelNsfw</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a9d188709a6d10b7ad7e206ab48955fe0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task</type>
+        <definition>async Task J.H_D.Modules.BooruModule.ProccessInfosResultAsync</definition>
+        <argsstring>(FeatureRequest&lt; BooruSharp.Search.Post.SearchResult, Error.Booru &gt; Result, BooruMinion.BooruType Website)</argsstring>
+        <name>ProccessInfosResultAsync</name>
+        <param>
+          <type>FeatureRequest&lt; BooruSharp.Search.Post.SearchResult, <ref refid="class_j_1_1_h___d_1_1_data_1_1_error_1aa1463a43749c1a24903afffedefdf105" kindref="member">Error.Booru</ref> &gt;</type>
+          <declname>Result</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruMinion.BooruType</ref></type>
+          <declname>Website</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="61" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="61" bodyend="82"/>
+        <references refid="class_j_1_1_h___d_1_1_tools_1_1_utilities_1a6ef047df79e738865b09916d1c4b6ed6" compoundref="_utilities_8cs" startline="88" endline="92">J.H_D.Tools.Utilities.IsChannelNsfw</references>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1add4792edeeb921481437a4b46255b601" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Embed</type>
+        <definition>Embed J.H_D.Modules.BooruModule.BuildImageEmbed</definition>
+        <argsstring>(BooruSharp.Search.Post.SearchResult Result)</argsstring>
+        <name>BuildImageEmbed</name>
+        <param>
+          <type>BooruSharp.Search.Post.SearchResult</type>
+          <declname>Result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="84" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="84" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a0fb3733d214e8cdd76d4af9552cc6a68" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>async Task&lt; Embed &gt;</type>
+        <definition>async Task&lt;Embed&gt; J.H_D.Modules.BooruModule.BuildImageInfosEmbedAsync</definition>
+        <argsstring>(BooruSharp.Search.Post.SearchResult Result, BooruMinion.BooruType Website)</argsstring>
+        <name>BuildImageInfosEmbedAsync</name>
+        <param>
+          <type>BooruSharp.Search.Post.SearchResult</type>
+          <declname>Result</declname>
+        </param>
+        <param>
+          <type><ref refid="class_j_1_1_h___d_1_1_minions_1_1_n_s_f_w_1_1_booru_minion_1a8799946847181f86b4b555443690d662" kindref="member">BooruMinion.BooruType</ref></type>
+          <declname>Website</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="118" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="118" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a619699800b93bbebdd773670fa6eb117" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string J.H_D.Modules.BooruModule.CleanTag</definition>
+        <argsstring>(string tag, bool name=false)</argsstring>
+        <name>CleanTag</name>
+        <param>
+          <type>string</type>
+          <declname>tag</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>name</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="197" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="197" bodyend="212"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="10">
+        <label>J.H_D.Modules.BooruModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>ModuleBase</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="12">
+        <label>J.H_D.Modules.BooruModule</label>
+        <link refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>ModuleBase</label>
+      </node>
+    </collaborationgraph>
+    <location file="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" line="17" column="1" bodyfile="H:/Projects/Visual Studio/J.H-D-master/J.H-D/Modules/BooruModule.cs" bodystart="16" bodyend="213"/>
+    <listofallmembers>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1add4792edeeb921481437a4b46255b601" prot="private" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>BuildImageEmbed</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a0fb3733d214e8cdd76d4af9552cc6a68" prot="private" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>BuildImageInfosEmbedAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a619699800b93bbebdd773670fa6eb117" prot="private" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>CleanTag</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a9d188709a6d10b7ad7e206ab48955fe0" prot="private" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>ProccessInfosResultAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a9fbc407a89598737b5c3fdb6e2903841" prot="private" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>ProccessResultAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1a7c57ed51957ea9f44d877aa773f1fc3a" prot="public" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>SearchKonachanAsync</name></member>
+      <member refid="class_j_1_1_h___d_1_1_modules_1_1_booru_module_1ac2cba9cddd2859f5f543e4082eef5632" prot="public" virt="non-virtual"><scope>J::H_D::Modules::BooruModule</scope><name>SearchWithBonusAsync</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

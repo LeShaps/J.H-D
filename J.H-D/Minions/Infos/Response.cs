@@ -80,7 +80,7 @@ namespace J.H_D.Data
             private ICollection<string> genres;
             [Embedable("In Production")]
             private bool inProduction;
-            [Embedable("Website", Link: true)]
+            [Embedable("Website", true, true)]
             private string homePage;
             [Embedable("Season Count")]
             private string seasonNumber;

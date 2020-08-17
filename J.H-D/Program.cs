@@ -59,7 +59,8 @@ namespace J.H_D
             Forum,
             Vn,
             Movie,
-            Booru
+            Booru,
+            Communication
         }
 
         public Program()
@@ -124,8 +125,7 @@ namespace J.H_D
                 dynamic json = JsonConvert.DeserializeObject(File.ReadAllText("Loggers/Credentials.json"));
                 if (json.botToken == null || json.ownerId == null || json.ownerStr == null)
                     throw new FileNotFoundException("Missing informations in Credentials.json, please complete mandatory informations before continue");
-                if (json.developpmentToken != null)
-                    DebugMode = true;
+                DebugMode = json.developpmentToken != null;
                 if (DebugMode)
                     botToken = json.developpmentToken;
                 else
@@ -226,6 +226,11 @@ namespace J.H_D
             {
                 IUserMessage Mess = await Message.DownloadAsync();
 
+                if (Channel as ITextChannel is null)
+                    await p.DoActionAsync(Mess.Author, 0, Module.Communication);
+                else
+                    await p.DoActionAsync(Mess.Author, Mess.Channel.Id, Module.Communication);
+
                 switch (Reaction.Emote.Name)
                 {
                     case "🔄":
@@ -253,8 +258,6 @@ namespace J.H_D
         {
             await db.InitGuildAsync(arg);
         }
-
-        
 
         private async Task InitServicesAsync(dynamic json)
         {

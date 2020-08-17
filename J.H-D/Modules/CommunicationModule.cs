@@ -55,7 +55,7 @@ namespace J.H_D.Modules
                         await ReplyAsync("", false, BuildInspirobotEmbed(new Uri(Result.Answer)));
                     else
                     {
-                        string file = await PureImageAsync(Result.Answer).ConfigureAwait(false);
+                        string file = await PureImageAsync(new Uri(Result.Answer)).ConfigureAwait(false);
                         await Context.Channel.SendFileAsync(file);
                         File.Delete(file);
                     }
@@ -168,10 +168,10 @@ namespace J.H_D.Modules
             return builder.Build();
         }
 
-        private async Task<string> PureImageAsync(string Url)
+        private async Task<string> PureImageAsync(Uri Url)
         {
             Utilities.CheckDir("Ressources/Inspiration");
-            string FileName = Url.Split('/')[Url.Split('/').Length - 1];
+            string FileName = Url.AbsoluteUri.Split('/')[Url.AbsoluteUri.Split('/').Length - 1];
             string Path = $"Ressources/Inspiration/{FileName}";
 
 

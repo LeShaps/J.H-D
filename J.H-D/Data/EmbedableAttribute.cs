@@ -15,7 +15,14 @@ namespace J.H_D.Data
             Link = false;
         }
 
-        public EmbedableAttribute(string FieldName, bool Fieldable = true, bool Link = false)
+        public EmbedableAttribute(string FieldName, bool Fieldable)
+        {
+            Name = FieldName;
+            this.Fieldable = Fieldable;
+            Link = false;
+        }
+
+        public EmbedableAttribute(string FieldName, bool Fieldable, bool Link)
         {
             Name = FieldName;
             this.Fieldable = Fieldable;

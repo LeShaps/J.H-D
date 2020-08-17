@@ -10,6 +10,7 @@ using J.H_D.Minions;
 using J.H_D.Minions.NSFW;
 using J.H_D.Tools;
 using System.Globalization;
+using BooruSharp.Search.Tag;
 
 namespace J.H_D.Modules
 {
@@ -139,25 +140,16 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    break;
+                    throw new NotSupportedException();
             }
 
             var TagResults = await BooruMinion.GetTagsAsync(Website, Result.tags);
             List<BooruSharp.Search.Tag.SearchResult> FoundTags = TagResults.Answer;
 
-            string Artist = null;
-            string Parodies = null;
-            string GeneralTags = null;
-            string Characters = null;
-
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Artist))
-                { Artist = $"{Artist}{CleanTag(Tag.name)}{Environment.NewLine}"; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Copyright))
-                { Parodies = $"{Parodies}{CleanTag(Tag.name)}{Environment.NewLine}"; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Character))
-                { Characters = $"{Characters}{CleanTag(Tag.name, true)}{Environment.NewLine}"; }
-            foreach (var Tag in FoundTags.Where(x => x.type == BooruSharp.Search.Tag.TagType.Trivia))
-                { GeneralTags = $"{Characters}{CleanTag(Tag.name)}{Environment.NewLine}"; }
+            string Artist = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Artist);
+            string Parodies = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Copyright);
+            string GeneralTags = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Trivia);
+            string Characters = BuildTagsString(FoundTags, BooruSharp.Search.Tag.TagType.Character);
 
             emb.AddField(new EmbedFieldBuilder
             {
@@ -192,6 +184,18 @@ namespace J.H_D.Modules
                 Text = $"Posted the {Result.creation}"
             };
             return emb.Build();
+        }
+
+        private string BuildTagsString(List<BooruSharp.Search.Tag.SearchResult> TagsList, BooruSharp.Search.Tag.TagType tagType)
+        {
+            string TagsString = null;
+
+            if (tagType == BooruSharp.Search.Tag.TagType.Character)
+            foreach (var tag in TagsList.Where(x => x.type == tagType)) {
+                TagsString = $"{TagsString}{CleanTag(tag.name, tagType == BooruSharp.Search.Tag.TagType.Character)}{Environment.NewLine}";
+            }
+
+            return TagsString;
         }
 
         private string CleanTag(string tag, bool name = false)

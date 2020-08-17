@@ -8,12 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BooruSharp" Version="2.8.0" />
+    <PackageReference Include="BooruSharp" Version="2.9.0" />
     <PackageReference Include="Discord.Net" Version="2.2.0" />
     <PackageReference Include="Npgsql" Version="4.1.4" />
     <PackageReference Include="Npgsql.Json.NET" Version="4.1.4" />
     <PackageReference Include="RethinkDb.Driver" Version="2.3.150" />
     <PackageReference Include="WebSocketSharp-netstandard" Version="1.0.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>

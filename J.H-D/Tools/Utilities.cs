@@ -13,7 +13,7 @@ using J.H_D.Data;
 
 namespace J.H_D.Tools
 {
-    static class Utilities
+    public static class Utilities
     {
         private const int DiscordMessageCharacterLimit = 2000;
         private const int DiscordEmbedMessageCharacterLimit = 2048;

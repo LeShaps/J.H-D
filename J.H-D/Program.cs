@@ -92,9 +92,9 @@ namespace J.H_D
         }
 
         public async Task MainAsync()
-            => await MainAsync(null, 0).ConfigureAwait(false);
+            => await MainAsync(null).ConfigureAwait(false);
 
-        public async Task MainAsync(string botToken, ulong inamiId)
+        public async Task MainAsync(string botToken)
         {
             _ = Task.Run(async () =>
             {

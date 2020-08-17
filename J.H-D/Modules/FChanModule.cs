@@ -18,7 +18,7 @@ namespace J.H_D.Modules
         {
             await Program.GetP().DoActionAsync(Context.User, Context.Message.Id, Program.Module.Forum);
 
-            List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChansAsync();
+            List<Response.FBoard> Boards = await FChanMinion.UpdateAvailableChansAsync(true);
             await ReplyAsync("", false, BoardInfosBuilder(Boards));
         }
 

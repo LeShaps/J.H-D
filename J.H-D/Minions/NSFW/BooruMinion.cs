@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using J.H_D.Data;
+using BooruSharp.Search;
 
 namespace J.H_D.Minions.NSFW
 {
@@ -66,7 +67,7 @@ namespace J.H_D.Minions.NSFW
         {
             Type Booru = WebsiteEndpoints[options.Booru];
             var BooruSearch = (ABooru)Activator.CreateInstance(Booru);
-            SearchResult Result = new SearchResult();
+            SearchResult Result;
 
             if (!options.AllowNsfw) {
                 options.SearchQuery.Append("Safe");
@@ -76,10 +77,10 @@ namespace J.H_D.Minions.NSFW
             {
                 Result = await BooruSearch.GetRandomPostAsync(options.SearchQuery);
             }
-            catch(Exception e)
+            catch(Exception e) when (e is InvalidTags)
             {
                 Console.Error.Write(e.Message);
-                return new FeatureRequest<SearchResult, Error.Booru>(Result, Error.Booru.NotFound);
+                return new FeatureRequest<SearchResult, Error.Booru>(new SearchResult(), Error.Booru.NotFound);
             }
 
             if (Result.fileUrl == null) {

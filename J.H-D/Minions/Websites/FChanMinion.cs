@@ -37,7 +37,7 @@ namespace J.H_D.Minions.Websites
             }
         }
 
-        public static async Task<List<FBoard>> UpdateAvailableChansAsync(bool AllowNsfw = true)
+        public static async Task<List<FBoard>> UpdateAvailableChansAsync(bool AllowNsfw)
         {
             List<FBoard> AvailbleBoards = new List<FBoard>();
 
@@ -66,7 +66,7 @@ namespace J.H_D.Minions.Websites
 
         public static async Task<FeatureRequest<FThread?, Error.FChan>> GetRandomThreadFromAsync(string board, RequestOptions Options)
         {
-            List<FBoard> Boards = await UpdateAvailableChansAsync().ConfigureAwait(false);
+            List<FBoard> Boards = await UpdateAvailableChansAsync(true).ConfigureAwait(false);
             FBoard UsableBoard;
             List<FThread> ThreadsList = new List<FThread>();
 
@@ -138,7 +138,7 @@ namespace J.H_D.Minions.Websites
             }
 
             string BoardName = Utilities.MakeArgs(board);
-            List<FBoard> Boards = await UpdateAvailableChansAsync().ConfigureAwait(false);
+            List<FBoard> Boards = await UpdateAvailableChansAsync(true).ConfigureAwait(false);
 
             foreach (FBoard Board in Boards)
             {

@@ -141,6 +141,7 @@ namespace J.H_D
                     } : null;
 
                 Asker = new HttpClient();
+                isTimerValid = true;
 
                 await InitServicesAsync(json);
             }
@@ -235,6 +236,10 @@ namespace J.H_D
                 {
                     case "🔄":
                         await new CommunicationModule().ReRollTextAsync(Mess, GeneratedText[Message.Id]);
+                        break;
+
+                    case "▶️":
+                        await new CommunicationModule().ContinueTextAsync(Mess);
                         break;
 
                     default:

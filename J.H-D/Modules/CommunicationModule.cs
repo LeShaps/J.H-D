@@ -138,6 +138,12 @@ namespace J.H_D.Modules
             }
         }
 
+        public async Task ContinueTextAsync(IUserMessage Message)
+        {
+            string MessageSentence = Message.Content;
+            await ReplyAsync(MessageSentence);
+        }
+
         private Embed BuildDefinition(Response.UrbanDefinition InfosBuilder)
         {
             string TransformDefinition = InfosBuilder.Definition.Replace("[", "").Replace("]", "");
@@ -214,8 +220,13 @@ namespace J.H_D.Modules
 
         private Embed CreateTextEmbed(string Content)
         {
-            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
-            Content = Content.Replace("( ", "(").Replace(" )", ")");
+            Content = Content.Replace(" .", ".", StringComparison.OrdinalIgnoreCase)
+                .Replace("\" ", "\"", StringComparison.OrdinalIgnoreCase).
+                Replace("' ", "'", StringComparison.OrdinalIgnoreCase).
+                Replace(" '", "'", StringComparison.OrdinalIgnoreCase).
+                Replace(" ,", ",", StringComparison.OrdinalIgnoreCase).
+                Replace("( ", "(", StringComparison.OrdinalIgnoreCase).
+                Replace(" )", ")", StringComparison.OrdinalIgnoreCase);
 
             return new EmbedBuilder
             {

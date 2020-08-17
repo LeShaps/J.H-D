@@ -1,8 +1,11 @@
-﻿namespace J.H_D.Data
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+
+namespace J.H_D.Data
 {
     public static partial class Response
     {
-        public struct FBoard
+        public struct FBoard : IEquatable<FBoard>
         {
             [Embedable("Full Name")]
             private string name;
@@ -20,9 +23,19 @@
             public string Description { get => description; set => description = value; }
             public bool Spoilers { get => spoilers; set => spoilers = value; }
             public bool Nsfw { get => nsfw; set => nsfw = value; }
+
+            public bool Equals([AllowNull] FBoard other)
+            {
+                return
+                    Name == other.name &&
+                    title == other.title &&
+                    description == other.description &&
+                    spoilers == other.spoilers &&
+                    nsfw == other.nsfw;
+            }
         }
 
-        public struct FThread
+        public struct FThread : IEquatable<FThread>
         {
             [Embedable("FileName")]
             private string filename;
@@ -46,11 +59,25 @@
             public string From { get => from; set => from = value; }
             public string Tim { get => tim; set => tim = value; }
             public string Chan { get => chan; set => chan = value; }
+
+            public bool Equals([AllowNull] FThread other)
+            {
+                return
+                    Filename == other.Filename &&
+                    extension == other.extension &&
+                    ThreadId == other.ThreadId &&
+                    comm == other.comm &&
+                    from == other.from &&
+                    tim == other.tim &&
+                    chan == other.chan;
+            }
         }
 
         public class Complete 
         {
-            public string Content;
+            private string content;
+
+            public string Content { get => content; set => content = value; }
         }
     }
 }

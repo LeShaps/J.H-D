@@ -22,7 +22,7 @@ namespace J.H_D.Modules
 
             var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
 
-            await ProccessResult(result).ConfigureAwait(false);
+            await ProccessResultAsync(result).ConfigureAwait(false);
         }
 
         [Command("Konachan with infos", RunMode = RunMode.Async)]
@@ -35,7 +35,7 @@ namespace J.H_D.Modules
             await ProccessInfosResultAsync(result, BooruMinion.BooruType.Konachan);
         }
 
-        private async Task ProccessResult(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result)
+        private async Task ProccessResultAsync(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result)
         {
             if (!Utilities.IsChannelNSFW(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
             {
@@ -73,7 +73,7 @@ namespace J.H_D.Modules
                     break;
 
                 case Error.Booru.None:
-                    await ReplyAsync("", false, await BuildImageInfosEmbedAsync(Result.Answer, Website));
+                    await ReplyAsync("", false, await BuildImageInfosEmbedAsync(Result.Answer, Website).ConfigureAwait(false));
                     break;
 
                 default:

@@ -9,6 +9,8 @@ using J.H_D.Data;
 
 using FBoard = J.H_D.Data.Response.FBoard;
 using FThread = J.H_D.Data.Response.FThread;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Minions.Websites
 {
@@ -20,15 +22,19 @@ namespace J.H_D.Minions.Websites
             Thread
         }
 
-        public struct RequestOptions
+        public struct RequestOptions : IEquatable<RequestOptions>
         {
-            private string mandatoryWord; // Will be used with the mandatory word update
-            private RequestType requestType;
-            private bool allowNsfw;
+            public string MandatoryWord { get; set; }
+            public RequestType RequestType { get; set; }
+            public bool AllowNsfw { get; set; }
 
-            public string MandatoryWord { get => mandatoryWord; set => mandatoryWord = value; }
-            public RequestType RequestType { get => requestType; set => requestType = value; }
-            public bool AllowNsfw { get => allowNsfw; set => allowNsfw = value; }
+            public bool Equals([AllowNull] RequestOptions other)
+            {
+                return
+                    MandatoryWord == other.MandatoryWord &&
+                    RequestType == other.RequestType &&
+                    AllowNsfw == other.AllowNsfw;
+            }
         }
 
         public static async Task<List<FBoard>> UpdateAvailableChansAsync(bool AllowNsfw = true)
@@ -43,25 +49,25 @@ namespace J.H_D.Minions.Websites
 
             foreach (dynamic item in (JArray)Json["boards"])
             {
-                AvailbleBoards.Add(new FBoard()
+                AvailbleBoards.Add(new FBoard
                 {
                     Title = item.board,
                     Name = item.title,
                     Description = Utilities.Clarify((string)item.meta_description),
                     Spoilers = item.spoilers != null ? true : false,
-                    Nsfw = item.ws_board == "0" ? true : false
+                    Nsfw = item.ws_board == "0"
                 });
             }
 
-            if (AllowNsfw == false)
-                return AvailbleBoards.Where(x => x.Nsfw == false).ToList();
+            if (!AllowNsfw)
+                return AvailbleBoards.Where(x => !x.Nsfw).ToList();
             return AvailbleBoards;
         }
 
         public static async Task<FeatureRequest<FThread?, Error.FChan>> GetRandomThreadFromAsync(string board, RequestOptions Options)
         {
             List<FBoard> Boards = await UpdateAvailableChansAsync().ConfigureAwait(false);
-            FBoard UsableBoard = new FBoard();
+            FBoard UsableBoard;
             List<FThread> ThreadsList = new List<FThread>();
 
             if (board != null)
@@ -69,21 +75,19 @@ namespace J.H_D.Minions.Websites
                 if (Boards.Any(x => x.Name == board || x.Title == board))
                 {
                     UsableBoard = Boards.Where(x => x.Name == board || x.Title == board).First();
-                    if (!Options.AllowNsfw && UsableBoard.Nsfw)
+                    if (!Options.AllowNsfw && UsableBoard.Nsfw) {
                         return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Nsfw);
-                }
-                else
+                    }
+                } else {
                     return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
-            }
-            else
-            {
-                if (Options.AllowNsfw == false)
-                {
+                }
+            } else {
+                if (Options.AllowNsfw == false) {
                     List<FBoard> SafeBoards = Boards.Where(x => !x.Nsfw).ToList();
                     UsableBoard = SafeBoards[Program.p.rand.Next(SafeBoards.Count)];
-                }
-                else
+                } else {
                     UsableBoard = Boards[Program.p.rand.Next(Boards.Count)];
+                }
             }
 
             board = UsableBoard.Title;
@@ -91,7 +95,7 @@ namespace J.H_D.Minions.Websites
 
             InitialJson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json"));
 
-            foreach(dynamic item in (JArray)InitialJson)
+            foreach (dynamic item in (JArray)InitialJson)
             {
                 foreach (dynamic Thread in (JArray)item.threads)
                 {
@@ -105,39 +109,44 @@ namespace J.H_D.Minions.Websites
                         Tim = Thread.tim,
                         Chan = board
                     });
-                    if ((JArray)Thread.last_replies != null)
+                    if ((JArray)Thread.last_replies != null) {
                         AddResponseThreads(Thread, ref ThreadsList, board);
+                    }
+                }
+
+                if (Options.RequestType == RequestType.Image)
+                {
+                    List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
+
+                    return new FeatureRequest<FThread?, Error.FChan>(
+                        ImageThreads[Program.p.rand.Next(ImageThreads.Count - 1)],
+                        Error.FChan.None);
+                } else {
+                    return new FeatureRequest<FThread?, Error.FChan>(
+                        ThreadsList[Program.p.rand.Next(ThreadsList.Count)],
+                        Error.FChan.None);
                 }
             }
 
-            if (Options.RequestType == RequestType.Image)
-            {
-                List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
-
-                return new FeatureRequest<FThread?, Error.FChan>(
-                    ImageThreads[Program.p.rand.Next(ImageThreads.Count - 1)],
-                    Error.FChan.None);
-            }
-            else
-            {
-                return new FeatureRequest<FThread?, Error.FChan>(
-                    ThreadsList[Program.p.rand.Next(ThreadsList.Count)],
-                    Error.FChan.None);
-            }
+            return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
         }
 
         public static async Task<FeatureRequest<FBoard?, Error.FChan>> GetBoardInfoAsync(string[] board)
         {
-            if (board.Length == 0)
+            if (board.Length == 0) {
                 return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
+            }
+
             string BoardName = Utilities.MakeArgs(board);
             List<FBoard> Boards = await UpdateAvailableChansAsync().ConfigureAwait(false);
 
             foreach (FBoard Board in Boards)
             {
-                if (BoardName == Board.Title || BoardName == Board.Name)
+                if (BoardName == Board.Title || BoardName == Board.Name) {
                     return new FeatureRequest<FBoard?, Error.FChan>(Board, Error.FChan.None);
+                }
             }
+
             return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
         }
 

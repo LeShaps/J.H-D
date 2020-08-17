@@ -37,7 +37,8 @@ namespace J.H_D
         private static bool isTimerValid;
 
         // Website stats
-        private string WebsiteStats, WebsiteStatsToken;
+        private string WebsiteStats;
+        private string WebsiteStatsToken;
         public string WebsiteUpload { get; private set; }
         public string WebsiteUrl { private set; get; }
         public bool SendStats { private set; get; }
@@ -97,14 +98,14 @@ namespace J.H_D
         {
             _ = Task.Run(async () =>
             {
-                await Task.Delay(RefreshDelay);
+                await Task.Delay(RefreshDelay).ConfigureAwait(false);
                 if (isTimerValid)
                     Environment.Exit(1);
             });
 
             p = this;
 
-            await Log(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D"));
+            await Log(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D")).ConfigureAwait(false);
 
             db = new Db.Db();
             await db.InitAsync();
@@ -273,7 +274,7 @@ namespace J.H_D
             if (arg.Author.Id == client.CurrentUser.Id || arg.Author.IsBot) return;
             var msg = arg as SocketUserMessage;
             if (msg == null) return;
-            bool DM = (arg.Channel as ITextChannel) == null ? true : false;
+            bool DM = (arg.Channel as ITextChannel) == null;
             string prefix;
 
             int pos = 0;

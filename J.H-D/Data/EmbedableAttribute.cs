@@ -2,7 +2,7 @@
 namespace J.H_D.Data
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]
-    public class EmbedableAttribute : Attribute
+    public sealed class EmbedableAttribute : Attribute
     {
         public string Name { get; private set; }
         public bool Fieldable { get; private set; }

@@ -52,7 +52,7 @@ namespace J.H_D.Modules
             builder.AddField(new EmbedFieldBuilder
             {
                 Name = "Genres",
-                Value = String.Join(Environment.NewLine, Artist.Genres.ToArray()),
+                Value = String.Join(Environment.NewLine, Artist.Genres),
                 IsInline = true
             });
 

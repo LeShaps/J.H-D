@@ -9,7 +9,7 @@ using UrbanDefinition = J.H_D.Data.Response.UrbanDefinition;
 
 namespace J.H_D.Minions.Infos
 {
-    class UrbanDictionaryMinion
+    static class UrbanDictionaryMinion
     {
         private static string RapidAPIHost = "mashape-community-urban-dictionary.p.rapidapi.com";
         private static string DefineAdress = "https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=";

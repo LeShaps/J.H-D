@@ -8,14 +8,14 @@ using J.H_D.Minions.Websites;
 using J.H_D.Minions;
 using J.H_D.Tools;
 using J.H_D.Data;
-
+using System.Globalization;
 
 namespace J.H_D.Modules
 {
     class FChanModule : ModuleBase
     {
         [Command("FChan available boards"), Alias("4chan boards")]
-        public async Task DisplayFchanBoards()
+        public async Task DisplayFchanBoardsAsync()
         {
             await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
 
@@ -24,7 +24,7 @@ namespace J.H_D.Modules
         }
 
         [Command("Fchan board info"), Alias("4chan board info")]
-        public async Task GetBoardInfos(params string[] Args)
+        public async Task GetBoardInfosAsync(params string[] Args)
         {
             await Program.p.DoAction(Context.User, Context.Message.Id, Program.Module.Forum);
 
@@ -50,7 +50,7 @@ namespace J.H_D.Modules
         }
 
         [Command("Random 4image"), Alias("4chan image")]
-        public async Task RandomImage(params string[] Args)
+        public async Task RandomImageAsync(params string[] Args)
         {
             // For later, to make more easy-to-use command
             string AskArgs = null;
@@ -96,7 +96,7 @@ namespace J.H_D.Modules
         }
 
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]
-        public async Task RandomThread(params string[] Args)
+        public async Task RandomThreadAsync(params string[] Args)
         {
             // For later, to make more easy-to-use command
             string AskArgs = null;
@@ -108,7 +108,7 @@ namespace J.H_D.Modules
             if (Args.Length >= 1)
             {
                 string OneArg = Utilities.MakeArgs(Args);
-                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(OneArg, new FChanMinion.RequestOptions
                 {
                     RequestType = FChanMinion.RequestType.Thread,
                     MandatoryWord = null,
@@ -116,7 +116,7 @@ namespace J.H_D.Modules
                 });
             }
             else
-                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions()
+                result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions
                 {
                     RequestType = FChanMinion.RequestType.Thread,
                     MandatoryWord = null,
@@ -144,7 +144,7 @@ namespace J.H_D.Modules
 
         private Embed ThreadInfosEmbed(Response.FThread thread)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = $"From {thread.From} on {thread.Chan}",
                 Url = $"http://4chan.org/{thread.Chan}/thread/{thread.ThreadId}",
@@ -154,7 +154,7 @@ namespace J.H_D.Modules
             if (thread.Filename != null)
             {
                 emb.ImageUrl = $"http://i.4cdn.org/{thread.Chan}/{thread.Tim}/{thread.Extension}";
-                emb.Footer = new EmbedFooterBuilder()
+                emb.Footer = new EmbedFooterBuilder
                 {
                     Text = $"{thread.Filename}{thread.Extension}"
                 };
@@ -164,10 +164,10 @@ namespace J.H_D.Modules
 
         private Embed ThreadImageBuild(Response.FThread image)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = $"From {image.From} on {image.Chan}",
-                ImageUrl = string.Format($"http://i.4cdn.org/{image.Chan}/{image.Tim}{image.Extension}"),
+                ImageUrl = string.Format($"http://i.4cdn.org/{image.Chan}/{image.Tim}{image.Extension}", CultureInfo.InvariantCulture),
                 Color = Color.DarkGreen
             };
             return emb.Build();
@@ -175,7 +175,7 @@ namespace J.H_D.Modules
 
         private Embed BoardInfos(Response.FBoard Board)
         {
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = Board.Name,
                 Url = "https://4chan.org/" + Board.Title,
@@ -203,7 +203,7 @@ namespace J.H_D.Modules
             string SafeList = null;
             string NSFWList = null;
 
-            EmbedBuilder emb = new EmbedBuilder()
+            EmbedBuilder emb = new EmbedBuilder
             {
                 Title = "4Chan available boards",
                 Url = "https://4chan.org/",
@@ -212,10 +212,10 @@ namespace J.H_D.Modules
 
             foreach (Response.FBoard board in Boards)
             {
-                if (board.Nsfw == false)
-                    SafeList += board.Title + " - " + board.Name + Environment.NewLine;
+                if (!board.Nsfw)
+                    SafeList = $"{SafeList}{board.Title} - {board.Name}{Environment.NewLine}";
                 else
-                    NSFWList += board.Title + " - " + board.Name + Environment.NewLine;
+                    NSFWList = $"{NSFWList}{board.Title} - {board.Name}{Environment.NewLine}";
             }
 
             emb.AddField("Safe chans", SafeList, true);

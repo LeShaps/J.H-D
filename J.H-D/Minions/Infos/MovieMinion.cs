@@ -37,14 +37,17 @@ namespace J.H_D.Minions.Infos
         public static async Task<FeatureRequest<Response.Movie, Error.Movie>> SearchMovie(string[] args)
         {
             string RequestName = Utilities.MakeQueryArgs(args);
-            if (RequestName.Length == 0)
-                return (new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.Help));
+            if (RequestName.Length == 0) {
+                return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.Help);
+            }
 
             dynamic Json;
             Json = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{Program.p.TmDbKey}&language=en-US&query={RequestName}&page=1"));
 
-            if (Json["total_results"] == "0")
+            if (Json["total_results"] == "0") {
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
+            }
+
             JArray Results = (JArray)Json["results"];
             dynamic FinalData = Results[0];
             return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie
@@ -65,12 +68,14 @@ namespace J.H_D.Minions.Infos
         public static async Task<FeatureRequest<Response.TVSeries, Error.Movie>> GetSeriesGeneralInfos(SearchType searchType, string[] Args)
         {
             string RequestName = Utilities.MakeQueryArgs(Args);
-            if (RequestName.Length == 0)
+            if (RequestName.Length == 0) {
                 return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.Help);
+            }
 
             dynamic SeriesInfos = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[searchType]}{Program.p.TmDbKey}&language=en-US&query={RequestName}&page=1"));
             if (SeriesInfos["total_results"] == "0") {
-                return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.NotFound); }
+                return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.NotFound); 
+            }
 
             JArray Results = (JArray)SeriesInfos["results"];
             dynamic SerieResult = Results[0];
@@ -121,8 +126,9 @@ namespace J.H_D.Minions.Infos
 
             Moviejson = JsonConvert.DeserializeObject(await Program.p.Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{Program.p.TmDbKey}&lanuage=en-US&query={RequestName}"));
 
-            if (Moviejson["total_results"] == "0")
+            if (Moviejson["total_results"] == "0") {
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
+            }
 
             JArray Results = (JArray)Moviejson["results"];
             dynamic MovieResults = Results[0];

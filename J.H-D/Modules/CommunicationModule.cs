@@ -63,6 +63,9 @@ namespace J.H_D.Modules
                         File.Delete(file);
                     }
                     break;
+
+                default:
+                    break;
             }
         }
 

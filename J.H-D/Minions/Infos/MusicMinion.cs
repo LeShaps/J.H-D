@@ -25,9 +25,9 @@ namespace J.H_D.Minions.Infos
             Artist = new MusicArtist
             {
                 Name = ArtistInfos.name,
-                MBID = ArtistInfos.mbid,
+                Mbid = ArtistInfos.mbid,
                 LastUrl = ArtistInfos.url,
-                OnTour = (string)ArtistInfos.ontour == "0" ? false : true,
+                OnTour = (string)ArtistInfos.ontour != "0",
                 Genres = GetTags(ArtistInfos.tags),
                 Bio = ArtistInfos.bio.summary
             };

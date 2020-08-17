@@ -53,7 +53,7 @@ namespace J.H_D.Minions.Infos
 
         private static string GetReadableWatchtime(string minutes)
         {
-            int Mins = int.Parse(minutes);
+            int Mins = int.Parse(minutes, CultureInfo.InvariantCulture);
             TimeSpan span = TimeSpan.FromMinutes(Mins);
             return span.ToString(@"hh\hmm", CultureInfo.InvariantCulture);
         }

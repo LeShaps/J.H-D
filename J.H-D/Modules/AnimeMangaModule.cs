@@ -14,7 +14,7 @@ namespace J.H_D.Modules
     class AnimeMangaModule : ModuleBase
     {
         [Command("Get anime", RunMode = RunMode.Async)]
-        public async Task GetAnime(params string[] Args)
+        public async Task GetAnimeAsync(params string[] Args)
         {
             var Response = await KitsuMinion.SearchAnimeAsync(Args);
 
@@ -31,6 +31,9 @@ namespace J.H_D.Modules
                 case Error.Anime.None:
                     await ReplyAsync("", false, BuildAnimeEmbed((Anime)Response.Answer));
                     break;
+
+                default:
+                    break;
             }
         }
 
@@ -44,32 +47,32 @@ namespace J.H_D.Modules
                 ImageUrl = Result.PosterImage,
                 Fields = new List<EmbedFieldBuilder>
                 {
-                    new EmbedFieldBuilder()
+                    new EmbedFieldBuilder
                     {
                         Name = "Episodes",
                         Value = Result.EpisodeCount,
                         IsInline = true
                     },
-                    new EmbedFieldBuilder()
+                    new EmbedFieldBuilder
                     {
                         Name = "Total watchtime",
                         Value = Result.HumanReadableWatchtime,
                         IsInline = true
                     },
-                    new EmbedFieldBuilder()
+                    new EmbedFieldBuilder
                     {
                         Name = "Status",
                         Value = Utilities.StandardUppercase(Result.Status),
                         IsInline = true
                     },
-                    new EmbedFieldBuilder()
+                    new EmbedFieldBuilder
                     {
                         Name = "Rating",
                         Value = $"{Result.AgeRating} ({Result.Guideline})",
                         IsInline = true
                     }
                 },
-                Footer = new EmbedFooterBuilder()
+                Footer = new EmbedFooterBuilder
                 {
                     Text = $"Average note of {Result.Rating} out of 100"
                 }

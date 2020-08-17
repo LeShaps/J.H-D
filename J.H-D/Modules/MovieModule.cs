@@ -12,7 +12,7 @@ namespace J.H_D.Modules
 {
     class MovieModule : ModuleBase
     {
-        Program p = Program.p;
+        readonly Program p = Program.p;
 
         [Command("Get movie"), Priority(-1)]
         public async Task GetMovieAsync(params string[] Args)
@@ -36,7 +36,7 @@ namespace J.H_D.Modules
                     break;
 
                 default:
-                    throw new NotImplementedException();
+                    break;
             }
         }
 
@@ -59,6 +59,9 @@ namespace J.H_D.Modules
                     var Message = await ReplyAsync("", false, CreateSeriesEmbed(result.Answer));
                     p.SendedSeriesEmbed.Add(Message.Id, new Tuple<int, Response.TVSeries>(-1, result.Answer));
                     await Message.AddReactionsAsync(new[] { new Emoji("⏪"), new Emoji("◀️"), new Emoji("▶️"), new Emoji("⏩") });
+                    break;
+
+                default:
                     break;
             }
         }
@@ -110,8 +113,8 @@ namespace J.H_D.Modules
                 Description = $"Runtime : {res.Runtime}"
             };
 
-            embed.AddField("Production Companies", String.Join(Environment.NewLine, res.ProductionCompanies.ToArray()), true);
-            embed.AddField("Genres", String.Join(Environment.NewLine, res.Genres.ToArray()), true);
+            embed.AddField("Production Companies", String.Join(Environment.NewLine, res.ProductionCompanies), true);
+            embed.AddField("Genres", String.Join(Environment.NewLine, res.Genres), true);
 
             embed.AddField("Budget", $"{Budget}$", false);
             embed.AddField("Revenue", $"{Revenue}$", true);

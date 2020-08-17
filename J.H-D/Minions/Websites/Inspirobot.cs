@@ -4,7 +4,7 @@ using J.H_D.Data;
 
 namespace J.H_D.Minions.Websites
 {
-    class InspirobotMinion
+    static class InspirobotMinion
     {
         public static async Task<FeatureRequest<string, Error.InspirationnalError>> FeelInspirationAsync()
         {

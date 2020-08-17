@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Data
 {
@@ -19,7 +22,7 @@ namespace J.H_D.Data
             [Embedable("Date")]
             private string releaseDate;
             [Embedable("Genres")]
-            private List<string> genres;
+            private ICollection<string> genres;
             [Embedable("MovieID", false)]
             private uint id;
             [Embedable("OriginalName")]
@@ -35,7 +38,7 @@ namespace J.H_D.Data
             [Embedable("Revenue")]
             private uint revenue;
             [Embedable("Compagnies")]
-            private List<string> productionCompanies;
+            private ICollection<string> productionCompanies;
             [Embedable("Runtime")]
             private string runtime;
 
@@ -47,7 +50,7 @@ namespace J.H_D.Data
             public bool Adult { get => adult; set => adult = value; }
             public string Overview { get => overview; set => overview = value; }
             public string ReleaseDate { get => releaseDate; set => releaseDate = value; }
-            public List<string> Genres { get => genres; set => genres = value; }
+            public ICollection<string> Genres { get => genres; set => genres = value; }
             public uint Id { get => id; set => id = value; }
             public string OriginalTitle { get => originalTitle; set => originalTitle = value; }
             public string OriginalLanguage { get => originalLanguage; set => originalLanguage = value; }
@@ -55,7 +58,7 @@ namespace J.H_D.Data
             public string AverageNote { get => averageNote; set => averageNote = value; }
             public uint Budget { get => budget; set => budget = value; }
             public uint Revenue { get => revenue; set => revenue = value; }
-            public List<string> ProductionCompanies { get => productionCompanies; set => productionCompanies = value; }
+            public ICollection<string> ProductionCompanies { get => productionCompanies; set => productionCompanies = value; }
             public string Runtime { get => runtime; set => runtime = value; }
 
             public string RessourcePath => ressourcePath;
@@ -76,7 +79,7 @@ namespace J.H_D.Data
             [Embedable("Start Date")]
             private string started;
             [Embedable("Genres")]
-            private List<string> genres;
+            private ICollection<string> genres;
             [Embedable("In Production")]
             private bool inProduction;
             [Embedable("Website", Link: true)]
@@ -86,7 +89,7 @@ namespace J.H_D.Data
             [Embedable("Episode Count")]
             private string episodeNumber;
             [Embedable("Compagnies")]
-            private List<string> compagnies;
+            private ICollection<string> compagnies;
             [Embedable("Note")]
             private string voteAverage;
             [Embedable("Synopsis")]
@@ -102,12 +105,12 @@ namespace J.H_D.Data
             public string BackdropPath { get => backdropPath; set => backdropPath = value; }
             public string EpisodeRunTime { get => episodeRunTime; set => episodeRunTime = value; }
             public string Started { get => started; set => started = value; }
-            public List<string> Genres { get => genres; set => genres = value; }
+            public ICollection<string> Genres { get => genres; set => genres = value; }
             public bool InProduction { get => inProduction; set => inProduction = value; }
             public string HomePage { get => homePage; set => homePage = value; }
             public string SeasonNumber { get => seasonNumber; set => seasonNumber = value; }
             public string EpisodeNumber { get => episodeNumber; set => episodeNumber = value; }
-            public List<string> Compagnies { get => compagnies; set => compagnies = value; }
+            public ICollection<string> Compagnies { get => compagnies; set => compagnies = value; }
             public string VoteAverage { get => voteAverage; set => voteAverage = value; }
             public string Overview { get => overview; set => overview = value; }
             public List<TVSeason> Seasons { get => seasons; set => seasons = value; }
@@ -151,7 +154,7 @@ namespace J.H_D.Data
             public string RessourcePath => ressourcePath;
         }
 
-        public struct UrbanDefinition
+        public struct UrbanDefinition : IEquatable<UrbanDefinition>
         {
             [Embedable("Word")]
             private string word;
@@ -169,6 +172,16 @@ namespace J.H_D.Data
             public string Link { get => link; set => link = value; }
             public string Author { get => author; set => author = value; }
             public string Exemples { get => exemples; set => exemples = value; }
+
+            public bool Equals(UrbanDefinition other)
+            {
+                return
+                    Word == other.Word &&
+                    definition == other.definition &&
+                    link == other.link &&
+                    author == other.author &&
+                    exemples == other.exemples;
+            }
         }
 
         public enum AreaType
@@ -178,7 +191,7 @@ namespace J.H_D.Data
             Street
         }
 
-        public struct MusicArtist
+        public struct MusicArtist : IEquatable<MusicArtist>
         {
             [Embedable("Artist Name")]
             private string name;
@@ -189,22 +202,34 @@ namespace J.H_D.Data
             [Embedable("Image Url", false, true)]
             private string imageUrl;
             [Embedable("Genres")]
-            private List<string> genres;
+            private ICollection<string> genres;
             [Embedable("Bio")]
             private string bio;
             [Embedable("Active")]
             private bool onTour;
 
             public string Name { get => name; set => name = value; }
-            public string MBID { get => mBID; set => mBID = value; }
+            public string Mbid { get => mBID; set => mBID = value; }
             public string LastUrl { get => lastUrl; set => lastUrl = value; }
             public string ImageUrl { get => imageUrl; set => imageUrl = value; }
-            public List<string> Genres { get => genres; set => genres = value; }
+            public ICollection<string> Genres { get => genres; set => genres = value; }
             public string Bio { get => bio; set => bio = value; }
             public bool OnTour { get => onTour; set => onTour = value; }
+
+            public bool Equals([AllowNull] MusicArtist other)
+            {
+                return
+                    Name == other.name &&
+                    Mbid == other.Mbid &&
+                    lastUrl == other.lastUrl &&
+                    ImageUrl == other.imageUrl &&
+                    genres == other.genres &&
+                    bio == other.bio &&
+                    onTour == other.onTour;
+            }
         }
 
-        public struct Anime
+        public struct Anime : IEquatable<Anime>
         {
             [Embedable("Anime ID", false, false)]
             private string id;
@@ -258,6 +283,28 @@ namespace J.H_D.Data
             public string EpLength { get => epLength; set => epLength = value; }
             public string HumanReadableWatchtime { get => humanReadableWatchtime; set => humanReadableWatchtime = value; }
             public string VideoUrl { get => videoUrl; set => videoUrl = value; }
+
+            public bool Equals([AllowNull] Anime other)
+            {
+                return
+                    id == other.id &&
+                    Synopsis == other.Synopsis &&
+                    Title == other.Title &&
+                    LATitle == other.LATitle &&
+                    OriginalTitle == other.OriginalTitle &&
+                    Rating == other.Rating &&
+                    StartDate == other.StartDate &&
+                    EndDate == other.EndDate &&
+                    AgeRating == other.AgeRating &&
+                    Guideline == other.Guideline &&
+                    Status == other.Status &&
+                    PosterImage == other.PosterImage &&
+                    CoverImage == other.CoverImage &&
+                    EpisodeCount == other.EpisodeCount &&
+                    EpLength == other.EpLength &&
+                    HumanReadableWatchtime == other.HumanReadableWatchtime &&
+                    VideoUrl == other.VideoUrl;
+            }
         }
     }
 }

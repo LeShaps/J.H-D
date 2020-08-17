@@ -1,20 +1,23 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Minions
 {
-    public struct FeatureRequest<T, U>
+    public struct FeatureRequest<T, U> : IEquatable<FeatureRequest<T, U>>
         where U : Enum
     {
         public FeatureRequest(T answer, U error)
         {
-            this.answer = answer;
-            this.error = error;
+            this.Answer = answer;
+            this.Error = error;
         }
 
-        private T answer;
-        private U error;
+        public T Answer { get; set; }
+        public U Error { get; set; }
 
-        public T Answer { get => answer; set => answer = value; }
-        public U Error { get => error; set => error = value; }
+        public bool Equals([AllowNull] FeatureRequest<T, U> other)
+        {
+            return true;
+        }
     }
 }

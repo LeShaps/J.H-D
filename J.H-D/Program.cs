@@ -25,7 +25,7 @@ namespace J.H_D
 
         private bool DebugMode;
 
-        private static bool isTimerValid = false;
+        private static bool isTimerValid;
 
         // Website stats
         public static bool SendStats { private set; get; }

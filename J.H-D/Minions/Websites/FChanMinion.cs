@@ -83,9 +83,9 @@ namespace J.H_D.Minions.Websites
             } else {
                 if (!Options.AllowNsfw) {
                     List<FBoard> SafeBoards = Boards.Where(x => !x.Nsfw).ToList();
-                    UsableBoard = SafeBoards[JHConfig.rand.Next(SafeBoards.Count)];
+                    UsableBoard = SafeBoards[JHConfig.Rand.Next(SafeBoards.Count)];
                 } else {
-                    UsableBoard = Boards[JHConfig.rand.Next(Boards.Count)];
+                    UsableBoard = Boards[JHConfig.Rand.Next(Boards.Count)];
                 }
             }
 
@@ -118,11 +118,11 @@ namespace J.H_D.Minions.Websites
                     List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
 
                     return new FeatureRequest<FThread?, Error.FChan>(
-                        ImageThreads[JHConfig.rand.Next(ImageThreads.Count - 1)],
+                        ImageThreads[JHConfig.Rand.Next(ImageThreads.Count - 1)],
                         Error.FChan.None);
                 } else {
                     return new FeatureRequest<FThread?, Error.FChan>(
-                        ThreadsList[JHConfig.rand.Next(ThreadsList.Count)],
+                        ThreadsList[JHConfig.Rand.Next(ThreadsList.Count)],
                         Error.FChan.None);
                 }
             }

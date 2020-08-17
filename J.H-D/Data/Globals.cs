@@ -11,10 +11,10 @@ namespace J.H_D.Data
 
     public static class JHConfig
     {
-        public static Random rand { get; private set; }
+        public static Random Rand { get; private set; }
 
         public static string TmdbKey { get; private set; }
-        public static string RapidAPIKey { get; private set; }
+        public static string RapidApiKey { get; private set; }
         public static string LastFMKey { get; private set; }
         public static Dictionary<string, string> KitsuAuth { get; private set; }
 
@@ -27,8 +27,8 @@ namespace J.H_D.Data
 
         public static DateTime StartingTime { get; private set; }
 
-        public static Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
-        public static Dictionary<ulong, string> GeneratedText = new Dictionary<ulong, string>();
+        public static Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed { get; set; } = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
+        public static Dictionary<ulong, string> GeneratedText { get; set; } = new Dictionary<ulong, string>();
 
         static JHConfig()
         {
@@ -50,10 +50,10 @@ namespace J.H_D.Data
             StartingTime = DateTime.Now;
 
             TmdbKey = ConfigurationJson.MvKey;
-            RapidAPIKey = ConfigurationJson.RapidAPIKey;
+            RapidApiKey = ConfigurationJson.RapidAPIKey;
             LastFMKey = ConfigurationJson.LastAMAPIKey;
 
-            rand = new Random();
+            Rand = new Random();
             Asker.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 Jeremia");
         }
     }

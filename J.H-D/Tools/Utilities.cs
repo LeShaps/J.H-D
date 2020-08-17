@@ -10,11 +10,14 @@ using System.Reflection;
 
 using J.H_D.Data;
 using System.Globalization;
+using System.Text;
 
 namespace J.H_D.Tools
 {
     static class Utilities
     {
+        private const int DiscordMessageCharacterLimit = 2000;
+        private const int DiscordEmbedMessageCharacterLimit = 2048;
         /// <summary>
         /// Check if a directory exist, if it doesn't, create it
         /// </summary>
@@ -59,19 +62,19 @@ namespace J.H_D.Tools
         {
             if (!Embed)
             {
-                if (OriginalString.Length > 2000)
+                if (OriginalString.Length > DiscordMessageCharacterLimit)
                 {
-                    string resultString = OriginalString.Substring(0, 1997);
-                    resultString += "...";
+                    string resultString = OriginalString.Substring(0, DiscordMessageCharacterLimit - 3);
+                    resultString = $"{resultString}...";
                     return resultString;
                 }
             }
             else
             {
-                if (OriginalString.Length > 2048)
+                if (OriginalString.Length > DiscordEmbedMessageCharacterLimit)
                 {
-                    string resultstring = OriginalString.Substring(0, 2045);
-                    resultstring += "...";
+                    string resultstring = OriginalString.Substring(0, DiscordEmbedMessageCharacterLimit - 3);
+                    resultstring = $"{resultstring}...";
                     return resultstring;
                 }
             }
@@ -83,7 +86,7 @@ namespace J.H_D.Tools
         /// </summary>
         /// <param name="Context">A ICommandContext</param>
         /// <returns>True if the channel is NSFW</returns>
-        public static bool IsChannelNSFW(ICommandContext Context)
+        public static bool IsChannelNsfw(ICommandContext Context)
         {
             ITextChannel channel = (ITextChannel)Context.Channel;
             return channel.IsNsfw;
@@ -107,9 +110,11 @@ namespace J.H_D.Tools
             Rotated += "0ƖᄅƐㄣϛ9ㄥ86";
 
             string newString = "";
+            StringBuilder bld = new StringBuilder();
             foreach (char c in OriginalString) {
-                newString += Normal.Contains(c) ? Rotated[Normal.IndexOf(c)] : c;
+                bld.Append(Normal.Contains(c) ? Rotated[Normal.IndexOf(c)] : c);
             }
+            newString = bld.ToString();
 
             return newString;
         }
@@ -121,7 +126,9 @@ namespace J.H_D.Tools
         /// <returns>The text human-friendly</returns>
         public static string Clarify(string WebString)
         {
-            if (WebString == null) return null;
+            if (WebString == null) {
+                return null;
+            }
             return GetPlainTextFromHtml(WebUtility.HtmlDecode(WebString));
         }
 
@@ -232,7 +239,7 @@ namespace J.H_D.Tools
 
         public static string StandardUppercase(string ToUpper)
         {
-            string end = char.ToUpper(ToUpper[0], CultureInfo.InvariantCulture) + String.Join("", ToUpper.Skip(1), CultureInfo.InvariantCulture).ToLower();
+            string end = char.ToUpper(ToUpper[0], CultureInfo.InvariantCulture) + String.Join("", ToUpper.Skip(1), CultureInfo.InvariantCulture).ToLower(CultureInfo.InvariantCulture);
 
             return end;
         }

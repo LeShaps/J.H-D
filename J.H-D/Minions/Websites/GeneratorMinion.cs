@@ -9,9 +9,10 @@ using Complete = J.H_D.Data.Response.Complete;
 
 namespace J.H_D.Minions.Websites
 {
-    class GeneratorMinion
+    static class GeneratorMinion
     {
-        public static async Task<FeatureRequest<Complete, Error.Complete>> Complete(string Sentence, IUserMessage msg, Func<IUserMessage, string, Task> Updater)
+        private const int RefreshDelay = 2000;
+        public static async Task<FeatureRequest<Complete, Error.Complete>> CompleteAsync(string Sentence, IUserMessage msg, Func<IUserMessage, string, Task> Updater)
         {
             string Content = Sentence;
             string OldContent = Content;
@@ -46,13 +47,14 @@ namespace J.H_D.Minions.Websites
                 while (Content != null)
                 {
                     OldContent = Content;
-                    await Updater(msg, OldContent);
-                    await Task.Delay(2000).ConfigureAwait(false);
+                    await Updater(msg, OldContent).ConfigureAwait(false);
+                    await Task.Delay(RefreshDelay).ConfigureAwait(false);
                 }
-            });
+            }).ConfigureAwait(false);
 
-            if (SendError == true)
+            if (SendError) {
                 return new FeatureRequest<Complete, Error.Complete>(null, Error.Complete.Connection);
+            }
 
             return new FeatureRequest<Complete, Error.Complete>(new Complete
             {

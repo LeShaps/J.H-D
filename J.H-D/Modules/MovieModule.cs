@@ -71,7 +71,7 @@ namespace J.H_D.Modules
         {
             await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Movie);
 
-            var result = await MovieMinion.BonusInfos(MovieMinion.SearchType.Serie, Args);
+            var result = await MovieMinion.BonusInfosAsync(MovieMinion.SearchType.Serie, Args);
 
             switch (result.Error)
             {

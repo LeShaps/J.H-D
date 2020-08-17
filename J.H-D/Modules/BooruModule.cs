@@ -20,7 +20,7 @@ namespace J.H_D.Modules
         {
             await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
 
-            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
+            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNsfw(Context)));
 
             await ProccessResultAsync(result).ConfigureAwait(false);
         }
@@ -30,14 +30,14 @@ namespace J.H_D.Modules
         {
             await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Booru);
 
-            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNSFW(Context)));
+            var result = await BooruMinion.GetBooruImageAsync(new BooruMinion.BooruOptions(BooruMinion.BooruType.Konachan, Args, Utilities.IsChannelNsfw(Context)));
 
-            await ProccessInfosResultAsync(result, BooruMinion.BooruType.Konachan);
+            await ProccessInfosResultAsync(result, BooruMinion.BooruType.Konachan).ConfigureAwait(false);
         }
 
         private async Task ProccessResultAsync(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result)
         {
-            if (!Utilities.IsChannelNSFW(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
+            if (!Utilities.IsChannelNsfw(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
             {
                 await ReplyAsync("No safe image was found with theses parameters, please try on an NSFW channel or with others");
                 return;
@@ -60,7 +60,7 @@ namespace J.H_D.Modules
 
         private async Task ProccessInfosResultAsync(FeatureRequest<BooruSharp.Search.Post.SearchResult, Error.Booru> Result, BooruMinion.BooruType Website)
         {
-            if (!Utilities.IsChannelNSFW(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
+            if (!Utilities.IsChannelNsfw(Context) && Result.Answer.rating != BooruSharp.Search.Post.Rating.Safe)
             {
                 await ReplyAsync("No safe image was found with theses parameters, please try on an NSFW channel or with others");
                 return;
@@ -102,6 +102,9 @@ namespace J.H_D.Modules
 
                 case BooruSharp.Search.Post.Rating.Explicit:
                     emb.Color = Color.Purple;
+                    break;
+
+                default:
                     break;
             }
             
@@ -194,7 +197,7 @@ namespace J.H_D.Modules
         private string CleanTag(string tag, bool name = false)
         {
             tag = tag.Replace('_', ' ');
-            tag = char.ToUpper(tag[0]) + tag.Substring(1);
+            tag = char.ToUpper(tag[0], CultureInfo.InvariantCulture) + tag.Substring(1);
 
             if (name)
             {

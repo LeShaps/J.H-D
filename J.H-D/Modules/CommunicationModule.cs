@@ -85,6 +85,9 @@ namespace J.H_D.Modules
                 case Error.Urban.None:
                     await ReplyAsync("", false, BuildDefinition((Response.UrbanDefinition)Result.Answer));
                     break;
+
+                default:
+                    break;
             }
         }
 
@@ -95,7 +98,7 @@ namespace J.H_D.Modules
             string OldContent = Content;
 
             var msg = await StartWaitAsync(sentence);
-            var Response = await GeneratorMinion.Complete(sentence, msg, MessageUpdaterAsync);
+            var Response = await GeneratorMinion.CompleteAsync(sentence, msg, MessageUpdaterAsync);
 
             switch (Response.Error)
             {
@@ -117,7 +120,7 @@ namespace J.H_D.Modules
 
         public async Task ReRollTextAsync(IUserMessage Message, string Sentence)
         {
-            var Response = await GeneratorMinion.Complete(Sentence, Message, MessageUpdaterAsync);
+            var Response = await GeneratorMinion.CompleteAsync(Sentence, Message, MessageUpdaterAsync);
 
             switch (Response.Error)
             {
@@ -140,13 +143,13 @@ namespace J.H_D.Modules
             string TransformDefinition = InfosBuilder.Definition.Replace("[", "").Replace("]", "");
             string TransformExemple = InfosBuilder.Exemples.Replace("[", "").Replace("]", "");
 
-            EmbedBuilder builder = new EmbedBuilder()
+            EmbedBuilder builder = new EmbedBuilder
             {
                 Color = Color.Blue,
                 Url = InfosBuilder.Link,
                 Title = InfosBuilder.Word,
                 Description = TransformDefinition,
-                Fields = new List<EmbedFieldBuilder>()
+                Fields = new List<EmbedFieldBuilder>
                 {
                     new EmbedFieldBuilder()
                     {
@@ -157,7 +160,7 @@ namespace J.H_D.Modules
 
             };
 
-            builder.Footer = new EmbedFooterBuilder()
+            builder.Footer = new EmbedFooterBuilder
             {
                 Text = $"Definition by {InfosBuilder.Author}",
             };
@@ -182,13 +185,13 @@ namespace J.H_D.Modules
 
         private Embed BuildInspirobotEmbed(string Url)
         {
-            EmbedBuilder builder = new EmbedBuilder()
+            EmbedBuilder builder = new EmbedBuilder
             {
                 ImageUrl = Url,
                 Color = Color.DarkBlue
             };
 
-            builder.Footer = new EmbedFooterBuilder()
+            builder.Footer = new EmbedFooterBuilder
             {
                 Text = "Powered by https://inspirobot.me"
             };
@@ -198,11 +201,11 @@ namespace J.H_D.Modules
 
         private async Task<IUserMessage> StartWaitAsync(string sentence)
         {
-            return await ReplyAsync("", false, new EmbedBuilder()
+            return await ReplyAsync("", false, new EmbedBuilder
             {
                 Color = Color.DarkBlue,
                 Description = sentence,
-                Footer = new EmbedFooterBuilder()
+                Footer = new EmbedFooterBuilder
                 {
                     Text = "Please wait for embed updating"
                 },
@@ -214,7 +217,7 @@ namespace J.H_D.Modules
             Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
             Content = Content.Replace("( ", "(").Replace(" )", ")");
 
-            return new EmbedBuilder()
+            return new EmbedBuilder
             {
                 Color = Color.DarkBlue,
                 Description = Content,
@@ -227,14 +230,14 @@ namespace J.H_D.Modules
 
         public async Task MessageUpdaterAsync(IUserMessage msg, string Content)
         {
-            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",");
+            Content = Content.Replace(" .", ".").Replace("\" ", "\"").Replace("' ", "'").Replace(" '", "'").Replace(" ,", ",", System.StringComparison.OrdinalIgnoreCase);
             Content = Content.Replace("( ", "(").Replace(" )", ")");
             string url = (msg.Embeds.ElementAt(0) as Embed).Url;
             await msg.ModifyAsync(x => x.Embed = new EmbedBuilder
             {
                 Description = Content,
                 Color = Color.DarkBlue,
-                Footer = new EmbedFooterBuilder()
+                Footer = new EmbedFooterBuilder
                 {
                     Text = "Please wait for embed updating"
                 },

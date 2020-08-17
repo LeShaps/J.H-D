@@ -158,7 +158,7 @@ namespace J.H_D
             client.JoinedGuild += GuildJoin;
             client.ReactionAdded += ReactionAdd;
 
-            commands.CommandExecuted += CommandExectute;
+            commands.CommandExecuted += CommandExectuteAsync;
 
             await client.LoginAsync(TokenType.Bot, botToken);
             StartingTime = DateTime.Now;
@@ -168,7 +168,7 @@ namespace J.H_D
             {
                 _ = Task.Run(async () =>
                 {
-                    for (; ; )
+                    while (true)
                     {
                         await Task.Delay(RefreshSendDelay).ConfigureAwait(false);
                         if (client.ConnectionState == ConnectionState.Connected)
@@ -259,7 +259,7 @@ namespace J.H_D
         public async Task DoAction(IUser u, ulong serverId, Module m)
         {
             if (!u.IsBot && SendStats)
-                await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
+                await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
         }
 
         private Task DisconnectedAsync(Exception e)
@@ -302,32 +302,32 @@ namespace J.H_D
             }
         }
 
-        private async Task CommandExectute(Optional<CommandInfo> cmd, ICommandContext context, IResult result)
+        private async Task CommandExectuteAsync(Optional<CommandInfo> cmd, ICommandContext context, IResult result)
         {
             if (result.IsSuccess)
             {
                 if (cmd.IsSpecified)
-                    throw new NotImplementedException();
+                    throw new NotSupportedException();
                 if (SendStats)
                 {
-                    await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("nbMsgs", "1") });
-                    await AddError("Ok");
-                    await AddCommandServs(context.Guild.Id);
+                    await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("nbMsgs", "1") });
+                    await AddErrorAsync("Ok");
+                    await AddCommandServsAsync(context.Guild.Id);
                 }
             }
         }
 
-        private async Task AddError(string name)
+        private async Task AddErrorAsync(string name)
         {
-            await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("errors", name) }).ConfigureAwait(false);
+            await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("errors", name) }).ConfigureAwait(false);
         }
 
-        private async Task AddCommandServs(ulong name)
+        private async Task AddCommandServsAsync(ulong name)
         {
-            await UpdateElement(new Tuple<string, string>[] { new Tuple<string, string>("commandServs", name.ToString()) }).ConfigureAwait(false);
+            await UpdateElementAsync(new Tuple<string, string>[] { new Tuple<string, string>("commandServs", name.ToString(CultureInfo.InvariantCulture)) }).ConfigureAwait(false);
         }
 
-        public async Task UpdateElement(Tuple<string, string>[] elems)
+        public async Task UpdateElementAsync(Tuple<string, string>[] elems)
         {
             Dictionary<string, string> Values = new Dictionary<string, string>
             {

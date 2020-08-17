@@ -14,6 +14,7 @@ namespace J.H_D.Db
         private string DbName;
 
         private const string defaultAvailability = "1111111111111111";
+        private const string GuildTableName = "Guilds";
 
         public Dictionary<ulong, string> Languages { private set; get; }
         public Dictionary<ulong, string> Prefixs { private set; get; }
@@ -38,22 +39,22 @@ namespace J.H_D.Db
             conn = await R1.Connection().ConnectAsync();
             if (!await R1.DbList().Contains(DbName).RunAsync<bool>(conn))
                 R1.DbCreate(DbName).Run(conn);
-            if (!await R1.Db(dbName).TableList().Contains("Guilds").RunAsync<bool>(conn))
-                R1.Db(dbName).TableCreate("Guilds").Run(conn);
+            if (!await R1.Db(dbName).TableList().Contains(GuildTableName).RunAsync<bool>(conn))
+                R1.Db(dbName).TableCreate(GuildTableName).Run(conn);
         }
 
         public async Task InitGuildAsync(IGuild guild)
         {
             string guildIdStr = guild.Id.ToString();
-            if (await R1.Db(DbName).Table("Guilds").GetAll(guildIdStr).Count().Eq(0).RunAsync<bool>(conn))
+            if (await R1.Db(DbName).Table(GuildTableName).GetAll(guildIdStr).Count().Eq(0).RunAsync<bool>(conn))
             {
-                await R1.Db(DbName).Table("Guilds").Insert(R1.HashMap("id", guildIdStr)
+                await R1.Db(DbName).Table(GuildTableName).Insert(R1.HashMap("id", guildIdStr)
                     .With("Prefix", ".jh")
                     .With("Language", "en")
                     .With("Availability", defaultAvailability)
                     ).RunAsync(conn);
             }
-            dynamic json = await R1.Db(DbName).Table("Guilds").Get(guildIdStr).RunAsync(conn);
+            dynamic json = await R1.Db(DbName).Table(GuildTableName).Get(guildIdStr).RunAsync(conn);
             Languages.Add(guild.Id, (string)json.Languages);
             Prefixs.Add(guild.Id, (string)json.Prefix);
             string availability = (string)json.Availability;

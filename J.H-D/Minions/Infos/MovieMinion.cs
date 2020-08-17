@@ -86,7 +86,7 @@ namespace J.H_D.Minions.Infos
             
             foreach (dynamic season in DetailsJson.seasons)
             {
-                Seasons.Add(new Response.TVSeason()
+                Seasons.Add(new Response.TVSeason
                 {
                     EpisodeNumber = season.episode_count,
                     Id = season.id,
@@ -116,7 +116,7 @@ namespace J.H_D.Minions.Infos
             }, Error.Movie.None);
         }
 
-        public static async Task<FeatureRequest<Response.Movie, Error.Movie>> BonusInfos(SearchType searchType, string[] args)
+        public static async Task<FeatureRequest<Response.Movie, Error.Movie>> BonusInfosAsync(SearchType searchType, string[] args)
         {
             string RequestName = Utilities.MakeQueryArgs(args);
             if (RequestName.Length == 0)
@@ -166,7 +166,8 @@ namespace J.H_D.Minions.Infos
         {
             List<string> results = new List<string>();
             if (DynamicArray == null) {
-                return new List<string>(); }
+                return new List<string>();
+            }
 
             foreach (dynamic d in DynamicArray) {
                 results.Add((string)d.name);

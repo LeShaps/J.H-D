@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,6 @@ using J.H_D.Data;
 
 using FBoard = J.H_D.Data.Response.FBoard;
 using FThread = J.H_D.Data.Response.FThread;
-using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Minions.Websites
 {
@@ -28,7 +27,7 @@ namespace J.H_D.Minions.Websites
             public RequestType RequestType { get; set; }
             public bool AllowNsfw { get; set; }
 
-            public bool Equals([AllowNull] RequestOptions other)
+            public bool Equals(RequestOptions other)
             {
                 return
                     MandatoryWord == other.MandatoryWord &&
@@ -82,7 +81,7 @@ namespace J.H_D.Minions.Websites
                     return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
                 }
             } else {
-                if (Options.AllowNsfw == false) {
+                if (!Options.AllowNsfw) {
                     List<FBoard> SafeBoards = Boards.Where(x => !x.Nsfw).ToList();
                     UsableBoard = SafeBoards[Program.p.rand.Next(SafeBoards.Count)];
                 } else {

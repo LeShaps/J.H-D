@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using J.H_D.Data;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Minions.NSFW
 {
@@ -40,21 +41,25 @@ namespace J.H_D.Minions.NSFW
             {BooruType.Yandere, typeof(Yandere) }
         }.ToImmutableDictionary();
 
-        public struct BooruOptions
+        public struct BooruOptions : IEquatable<BooruOptions>
         {
-            private BooruType booru;
-            private string[] searchQuery;
-            private bool allowNSFW;
-
-            public bool AllowNSFW { get => allowNSFW; private set => allowNSFW = value; }
-            public BooruType Booru { get => booru; set => booru = value; }
-            public string[] SearchQuery { get => searchQuery; set => searchQuery = value; }
+            public bool AllowNsfw { get; private set; }
+            public BooruType Booru { get; set; }
+            public string[] SearchQuery { get; set; }
 
             public BooruOptions(BooruType Website, string[] Search, bool Allow)
             {
-                booru = Website;
-                searchQuery = Search;
-                allowNSFW = Allow;
+                Booru = Website;
+                SearchQuery = Search;
+                AllowNsfw = Allow;
+            }
+
+            public bool Equals([AllowNull] BooruOptions other)
+            {
+                return
+                    Booru == other.Booru &&
+                    SearchQuery == other.SearchQuery &&
+                    AllowNsfw == other.AllowNsfw;
             }
         }
 
@@ -63,18 +68,20 @@ namespace J.H_D.Minions.NSFW
             Type Booru = WebsiteEndpoints[options.Booru];
             var BooruSearch = (ABooru)Activator.CreateInstance(Booru);
 
-            if (options.AllowNSFW == false)
+            if (!options.AllowNsfw) {
                 options.SearchQuery.Append("Safe");
+            }
 
             SearchResult Result = await BooruSearch.GetRandomPostAsync(options.SearchQuery);
 
-            if (Result.fileUrl == null)
+            if (Result.fileUrl == null) {
                 return new FeatureRequest<SearchResult, Error.Booru>(Result, Error.Booru.NotFound);
+            }
 
             return new FeatureRequest<SearchResult, Error.Booru>(Result, Error.Booru.None);
         }
 
-        public static async Task<FeatureRequest<BooruSharp.Search.Tag.SearchResult, Error.Booru>> GetTag(BooruType Booru, string Id)
+        public static async Task<FeatureRequest<BooruSharp.Search.Tag.SearchResult, Error.Booru>> GetTagAsync(BooruType Booru, string Id)
         {
             Type BType = WebsiteEndpoints[Booru];
             var BooruWebsite = (ABooru)Activator.CreateInstance(BType);
@@ -90,18 +97,18 @@ namespace J.H_D.Minions.NSFW
             var BooruWebsite = (ABooru)Activator.CreateInstance(BType);
 
             List<BooruSharp.Search.Tag.SearchResult> FoundTags = new List<BooruSharp.Search.Tag.SearchResult>();
-            foreach (string Tag in Tags)
-            {
+            foreach (string Tag in Tags) {
                 FoundTags.Add(await BooruWebsite.GetTagAsync(Tag));
             }
 
             if (OnlyType != BooruSharp.Search.Tag.TagType.Metadata)
+            {
                 return new FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>(
                     FoundTags.Where(x => x.type == OnlyType).ToList(),
                     Error.Booru.None);
-
-            else
+            } else {
                 return new FeatureRequest<List<BooruSharp.Search.Tag.SearchResult>, Error.Booru>(FoundTags, Error.Booru.None);
+            }
         }
     }
 }

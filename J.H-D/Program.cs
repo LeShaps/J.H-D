@@ -153,7 +153,6 @@ namespace J.H_D
             await commands.AddModuleAsync<BooruModule>(null);
             await commands.AddModuleAsync<MusicModule>(null);
             await commands.AddModuleAsync<AnimeMangaModule>(null);
-            await commands.AddModuleAsync<ExperimentalModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += DisconnectedAsync;

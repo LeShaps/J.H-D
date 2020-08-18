@@ -24,7 +24,7 @@ namespace J.H_D.Tools
         public static void CheckDir(string Path)
         {
             if (Path == null)
-                throw new ArgumentNullException("Path shouldn't be null");
+                throw new ArgumentNullException(Path);
             string[] list = Path.Split('/');
             if (list[0].Length == 0)
                 return;

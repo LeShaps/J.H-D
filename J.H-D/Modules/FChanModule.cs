@@ -94,8 +94,6 @@ namespace J.H_D.Modules
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]
         public async Task RandomThreadAsync(params string[] Args)
         {
-            // TODO: Implement search using keywords in threads
-
             ITextChannel chan = (ITextChannel)Context.Channel;
 
             var result = new FeatureRequest<Response.FThread?, Error.FChan>();

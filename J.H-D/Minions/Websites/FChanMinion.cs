@@ -10,6 +10,7 @@ using J.H_D.Data;
 
 using FBoard = J.H_D.Data.Response.FBoard;
 using FThread = J.H_D.Data.Response.FThread;
+using System.Reflection.Emit;
 
 namespace J.H_D.Minions.Websites
 {
@@ -89,10 +90,27 @@ namespace J.H_D.Minions.Websites
                 }
             }
 
-            board = UsableBoard.Title;
-            dynamic InitialJson;
+            ThreadsList = (List<FThread>)await CreateThreadFromBoardAsync(UsableBoard, Options);
 
-            InitialJson = JsonConvert.DeserializeObject(await JHConfig.Asker.GetStringAsync($"https://a.4cdn.org/{UsableBoard.Title}/catalog.json"));
+            if (Options.RequestType == RequestType.Image) {
+                List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
+
+                return new FeatureRequest<FThread?, Error.FChan>(
+                    ImageThreads[JHConfig.Rand.Next(ImageThreads.Count - 1)],
+                    Error.FChan.None);
+            } else {
+                return new FeatureRequest<FThread?, Error.FChan>(
+                    ThreadsList[JHConfig.Rand.Next(ThreadsList.Count - 1)],
+                    Error.FChan.None);
+            }
+        }
+
+        private static async Task<ICollection<FThread>> CreateThreadFromBoardAsync(FBoard BoardInfos, RequestOptions Options)
+        {
+            List<FThread> ThreadsList = new List<FThread>();
+            string BoardName = BoardInfos.Title;
+
+            dynamic InitialJson = JsonConvert.DeserializeObject(await JHConfig.Asker.GetStringAsync($"http://a.4cdn.org/{BoardName}/catalog.json"));
 
             foreach (dynamic item in (JArray)InitialJson)
             {
@@ -106,28 +124,15 @@ namespace J.H_D.Minions.Websites
                         Comm = Utilities.Clarify((string)Thread.comm),
                         From = Thread.name,
                         Tim = Thread.tim,
-                        Chan = board
+                        Chan = BoardName
                     });
                     if ((JArray)Thread.last_replies != null) {
-                        AddResponseThreads(Thread, ref ThreadsList, board);
+                        AddResponseThreads(Thread, ref ThreadsList, BoardName);
                     }
-                }
-
-                if (Options.RequestType == RequestType.Image)
-                {
-                    List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
-
-                    return new FeatureRequest<FThread?, Error.FChan>(
-                        ImageThreads[JHConfig.Rand.Next(ImageThreads.Count - 1)],
-                        Error.FChan.None);
-                } else {
-                    return new FeatureRequest<FThread?, Error.FChan>(
-                        ThreadsList[JHConfig.Rand.Next(ThreadsList.Count)],
-                        Error.FChan.None);
                 }
             }
 
-            return new FeatureRequest<FThread?, Error.FChan>(null, Error.FChan.Unavailable);
+            return ThreadsList;
         }
 
         public static async Task<FeatureRequest<FBoard?, Error.FChan>> GetBoardInfoAsync(string[] board)

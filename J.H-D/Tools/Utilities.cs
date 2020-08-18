@@ -57,26 +57,27 @@ namespace J.H_D.Tools
         /// </summary>
         /// <param name="OriginalString">The string to test</param>
         /// <returns>A Discord-friendly message</returns>
-        public static string DiscordFriendly(string OriginalString, bool Embed = false)
+        public static string DiscordFriendly(string OriginalString)
         {
-            if (!Embed)
+            if (OriginalString.Length > DiscordMessageCharacterLimit)
             {
-                if (OriginalString.Length > DiscordMessageCharacterLimit)
-                {
-                    string resultString = OriginalString.Substring(0, DiscordMessageCharacterLimit - 3);
-                    resultString = $"{resultString}...";
-                    return resultString;
-                }
+                string resultString = OriginalString.Substring(0, DiscordMessageCharacterLimit - 3);
+                resultString = $"{resultString}...";
+                return resultString;
             }
-            else
+
+            return OriginalString;
+        }
+
+        public static string DiscordEmbedFriendly(string OriginalString)
+        {
+            if (OriginalString.Length > DiscordEmbedMessageCharacterLimit)
             {
-                if (OriginalString.Length > DiscordEmbedMessageCharacterLimit)
-                {
-                    string resultstring = OriginalString.Substring(0, DiscordEmbedMessageCharacterLimit - 3);
-                    resultstring = $"{resultstring}...";
-                    return resultstring;
-                }
+                string resultString = OriginalString.Substring(0, DiscordEmbedMessageCharacterLimit - 3);
+                resultString = $"{resultString}...";
+                return resultString;
             }
+
             return OriginalString;
         }
 
@@ -184,7 +185,7 @@ namespace J.H_D.Tools
         /// <param name="EmbedableData">The embedableData object</param>
         /// <param name="NeededValues">A list of values of tags you want</param>
         /// <returns></returns>
-        public static Dictionary<string, string> GetEmbedAttributesValues<T>(T EmbedableData, List<string> NeededValues)
+        public static IDictionary<string, string> GetEmbedAttributesValues<T>(T EmbedableData, List<string> NeededValues)
         {
             Dictionary<string, string> FoundValues = new Dictionary<string, string>();
 

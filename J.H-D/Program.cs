@@ -12,6 +12,7 @@ using System.Globalization;
 
 using J.H_D.Modules;
 using J.H_D.Data;
+using Newtonsoft.Json.Linq;
 
 namespace J.H_D
 {
@@ -23,15 +24,7 @@ namespace J.H_D
         private const int RefreshDelay = 300_000;
         private const int RefreshSendDelay = 6_000_000;
 
-        private bool DebugMode;
-
-        private static bool isTimerValid;
-
-        // Website stats
-        public static bool SendStats { private set; get; }
-
-        // Starting Time
-        public DateTime StartingTime;
+        private static bool IsTimerValid;
 
         // Db
         public Db.Db db;
@@ -40,10 +33,9 @@ namespace J.H_D
         {
             client = new DiscordSocketClient(new DiscordSocketConfig
             {
-                LogLevel = Discord.LogSeverity.Verbose,
+                LogLevel = LogSeverity.Verbose,
             });
             client.Log += LogAsync;
-            // TODO: Command error handle
         }
 
         static async Task Main(string[] args)
@@ -72,7 +64,7 @@ namespace J.H_D
             _ = Task.Run(async () =>
             {
                 await Task.Delay(RefreshDelay).ConfigureAwait(false);
-                if (isTimerValid)
+                if (IsTimerValid)
                     Environment.Exit(1);
             });
 
@@ -85,18 +77,11 @@ namespace J.H_D
             Tools.Utilities.CheckDir("Saves/Download");
             Tools.Utilities.CheckDir("Saves/Profiles");
 
-            if (botToken == null)
-            {
-                if (!File.Exists("Loggers/Credentials.json"))
-                    throw new FileNotFoundException("You must have a \"Credentials.json\" file located in " + AppDomain.CurrentDomain.BaseDirectory + "Loggers");
-                dynamic json = JsonConvert.DeserializeObject(File.ReadAllText("Loggers/Credentials.json"));
-                if (json.botToken == null || json.ownerId == null || json.ownerStr == null)
-                    throw new FileNotFoundException("Missing informations in Credentials.json, please complete mandatory informations before continue");
-                DebugMode = json.developpmentToken != null;
-                botToken = DebugMode ? json.developpmentToken : json.botToken;
-                // Complete informations about the owner
-            }
+            JHConfig.InitConfig();
 
+            if (botToken == null)
+                botToken = JHConfig.BotToken;
+            
             await LogAsync(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules...")).ConfigureAwait(false);
 
             await commands.AddModuleAsync<MovieModule>(null);
@@ -118,7 +103,7 @@ namespace J.H_D
             await client.LoginAsync(TokenType.Bot, botToken);
             await client.StartAsync();
 
-            if (SendStats)
+            if (JHConfig.SendStats)
             {
                 _ = Task.Run(async () =>
                 {
@@ -220,7 +205,7 @@ namespace J.H_D
 
         public static async Task DoActionAsync(IUser u, ulong serverId, Module m)
         {
-            if (!u.IsBot && SendStats)
+            if (!u.IsBot && JHConfig.SendStats)
                 await UpdateElementAsync(new [] { new Tuple<string, string>("modules", m.ToString()) }).ConfigureAwait(false);
         }
 
@@ -270,12 +255,12 @@ namespace J.H_D
             {
                 if (cmd.IsSpecified)
                     throw new NotSupportedException();
-                if (SendStats)
+                if (JHConfig.SendStats)
                 {
                     await UpdateElementAsync(new [] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
                     await AddErrorAsync("Ok").ConfigureAwait(false);
                     await AddCommandServsAsync(context.Guild.Id).ConfigureAwait(false);
-                    if (DebugMode)
+                    if (JHConfig.DebugMode)
                         await LogAsync(new LogMessage(LogSeverity.Debug, "ElementUpdated", null, null)).ConfigureAwait(false);
                 }
             }

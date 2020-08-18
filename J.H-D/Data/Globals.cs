@@ -13,6 +13,9 @@ namespace J.H_D.Data
     {
         public static Random Rand { get; private set; }
 
+        public static string BotToken { get; private set; }
+        public static bool DebugMode { get; private set; }
+
         public static string TmdbKey { get; private set; }
         public static string RapidApiKey { get; private set; }
         public static string LastFMKey { get; private set; }
@@ -30,11 +33,17 @@ namespace J.H_D.Data
         public static Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed { get; set; } = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
         public static Dictionary<ulong, string> GeneratedText { get; set; } = new Dictionary<ulong, string>();
 
-        static JHConfig()
+        public static void InitConfig()
         {
             Tools.Utilities.CheckDir("Loggers/");
 
+            if (!File.Exists("Loggers/Credentials.json"))
+                throw new FileNotFoundException($"You must have a \"Credential.json\" file located in {AppDomain.CurrentDomain.BaseDirectory}Loggers");
             dynamic ConfigurationJson = JsonConvert.DeserializeObject(File.ReadAllText("Loggers/Credentials.json"));
+            if (ConfigurationJson.botToken == null || ConfigurationJson.ownerId == null || ConfigurationJson.ownerStr == null)
+                throw new FileNotFoundException("Missing critical informations in Credential.json, please complete mandatory informations before continue");
+            DebugMode = ConfigurationJson.developpmentToken != null;
+            BotToken = DebugMode ? ConfigurationJson.developpmentToken : ConfigurationJson.botToken;
 
             WebsiteStats = new Uri((string)ConfigurationJson.WebsiteStats);
             WebsiteStatsToken = ConfigurationJson.WebsiteStatsToken;

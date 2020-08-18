@@ -10,7 +10,6 @@ using J.H_D.Data;
 
 using FBoard = J.H_D.Data.Response.FBoard;
 using FThread = J.H_D.Data.Response.FThread;
-using System.Reflection.Emit;
 
 namespace J.H_D.Minions.Websites
 {
@@ -90,7 +89,7 @@ namespace J.H_D.Minions.Websites
                 }
             }
 
-            ThreadsList = (List<FThread>)await CreateThreadFromBoardAsync(UsableBoard, Options);
+            ThreadsList = (List<FThread>)await CreateThreadFromBoardAsync(UsableBoard).ConfigureAwait(false);
 
             if (Options.RequestType == RequestType.Image) {
                 List<FThread> ImageThreads = ThreadsList.Where(x => x.Filename != null).ToList();
@@ -105,7 +104,7 @@ namespace J.H_D.Minions.Websites
             }
         }
 
-        private static async Task<ICollection<FThread>> CreateThreadFromBoardAsync(FBoard BoardInfos, RequestOptions Options)
+        private static async Task<ICollection<FThread>> CreateThreadFromBoardAsync(FBoard BoardInfos)
         {
             List<FThread> ThreadsList = new List<FThread>();
             string BoardName = BoardInfos.Title;

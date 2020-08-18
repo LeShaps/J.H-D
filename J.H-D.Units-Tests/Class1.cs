@@ -10,21 +10,24 @@ namespace J.H_D.Units_Tests
         [Fact]
         public void CheckDirectory()
         {
+            const string FirstDirTest = "CurrentDir";
+            const string SecondDirTest = "Currentdir/Utilities/Tests/Moving";
             // The test here will check the "CheckDir" function, with invalid arguments, complex arguments, ect..
-            Tools.Utilities.CheckDir("CurrentDir");
-            Assert.True(Directory.Exists("CurrentDir"));
-            Directory.Delete("CurrentDir");
-            Tools.Utilities.CheckDir("CurrentDir/");
-            Assert.True(Directory.Exists("CurrentDir"));
-            Directory.Delete("CurrentDir");
+
+            Tools.Utilities.CheckDir(FirstDirTest);
+            Assert.True(Directory.Exists(FirstDirTest));
+            Directory.Delete(FirstDirTest);
+
             Action act = () => Tools.Utilities.CheckDir(null);
             Assert.Throws<ArgumentNullException>(act);
-            Tools.Utilities.CheckDir("Currentdir/Utilities/Tests/Moving");
-            Assert.True(Directory.Exists("Currentdir/Utilities/Tests/Moving"));
-            Directory.Delete("Currentdir/Utilities/Tests/Moving", true);
+
+            Tools.Utilities.CheckDir(SecondDirTest);
+            Assert.True(Directory.Exists(SecondDirTest));
+            Directory.Delete(SecondDirTest, true);
+
             Tools.Utilities.CheckDir("Currentdir/Utilities/Tests///Moving");
-            Assert.True(Directory.Exists("Currentdir/Utilities/Tests/Moving"));
-            Directory.Delete("Currentdir/Utilities/Tests/Moving", true);
+            Assert.True(Directory.Exists(SecondDirTest));
+            Directory.Delete(SecondDirTest, true);
         }
     }
 }

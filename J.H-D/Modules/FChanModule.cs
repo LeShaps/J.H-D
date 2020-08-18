@@ -51,8 +51,6 @@ namespace J.H_D.Modules
         [Command("Random 4image", RunMode = RunMode.Async), Alias("4chan image")]
         public async Task RandomImageAsync(params string[] Args)
         {
-            // TODO: Implement search using keywords in threads
-
             var result = new FeatureRequest<Response.FThread?, Error.FChan>();
             ITextChannel chan = (ITextChannel)Context.Channel;
 

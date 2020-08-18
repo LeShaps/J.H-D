@@ -67,7 +67,7 @@ namespace J.H_D.Minions.Websites
         {
             List<FBoard> Boards = await UpdateAvailableChansAsync(true).ConfigureAwait(false);
             FBoard UsableBoard;
-            List<FThread> ThreadsList = new List<FThread>();
+            List<FThread> ThreadsList;
 
             if (board != null)
             {

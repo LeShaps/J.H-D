@@ -23,6 +23,8 @@ namespace J.H_D.Tools
         /// <param name="Path">The path to test</param>
         public static void CheckDir(string Path)
         {
+            if (Path == null)
+                throw new ArgumentNullException();
             string[] list = Path.Split('/');
             if (list[0].Length == 0)
                 return;
@@ -185,7 +187,7 @@ namespace J.H_D.Tools
         /// <param name="EmbedableData">The embedableData object</param>
         /// <param name="NeededValues">A list of values of tags you want</param>
         /// <returns></returns>
-        public static IDictionary<string, string> GetEmbedAttributesValues<T>(T EmbedableData, List<string> NeededValues)
+        public static IDictionary<string, string> GetEmbedAttributesValues<T>(T EmbedableData, ICollection<string> NeededValues)
         {
             Dictionary<string, string> FoundValues = new Dictionary<string, string>();
 

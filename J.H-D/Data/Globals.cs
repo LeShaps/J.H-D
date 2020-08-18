@@ -15,6 +15,7 @@ namespace J.H_D.Data
 
         public static string BotToken { get; private set; }
         public static bool DebugMode { get; private set; }
+        public static bool IsTimerValid { get; set; }
 
         public static string TmdbKey { get; private set; }
         public static string RapidApiKey { get; private set; }
@@ -64,6 +65,7 @@ namespace J.H_D.Data
 
             Rand = new Random();
             Asker.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 Jeremia");
+            IsTimerValid = false;
         }
     }
 

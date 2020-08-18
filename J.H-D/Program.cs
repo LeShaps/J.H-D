@@ -24,8 +24,6 @@ namespace J.H_D
         private const int RefreshDelay = 300_000;
         private const int RefreshSendDelay = 6_000_000;
 
-        private static bool IsTimerValid;
-
         // Db
         public Db.Db db;
 
@@ -64,7 +62,7 @@ namespace J.H_D
             _ = Task.Run(async () =>
             {
                 await Task.Delay(RefreshDelay).ConfigureAwait(false);
-                if (IsTimerValid)
+                if (JHConfig.IsTimerValid)
                     Environment.Exit(1);
             });
 
@@ -79,9 +77,8 @@ namespace J.H_D
 
             JHConfig.InitConfig();
 
-            if (botToken == null)
-                botToken = JHConfig.BotToken;
-            
+            botToken ??= JHConfig.BotToken;
+
             await LogAsync(new LogMessage(LogSeverity.Info, "Setup", "Initialising Modules...")).ConfigureAwait(false);
 
             await commands.AddModuleAsync<MovieModule>(null);

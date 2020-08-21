@@ -153,7 +153,7 @@ namespace J.H_D.Minions.Websites
             return new FeatureRequest<FBoard?, Error.FChan>(null, Error.FChan.Unavailable);
         }
 
-        private static void AddResponseThreads(dynamic First, ref List<FThread> ThreadList, string chan)
+        internal static void AddResponseThreads(dynamic First, ref List<FThread> ThreadList, string chan)
         {
             foreach (dynamic response in (JArray)First.last_replies)
             {

@@ -237,7 +237,7 @@ namespace J.H_D
             }
             else
             {
-                prefix = "jh"; //To change later to match the user configuration
+                prefix = "jh."; //To change later to match the user configuration
                 if (msg.HasMentionPrefix(client.CurrentUser, ref pos) || prefix != "" && msg.HasStringPrefix(prefix, ref pos))
                 {
                     var Context = new SocketCommandContext(client, msg);

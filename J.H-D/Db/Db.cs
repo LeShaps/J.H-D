@@ -49,7 +49,7 @@ namespace J.H_D.Db
             if (await R1.Db(DbName).Table(GuildTableName).GetAll(guildIdStr).Count().Eq(0).RunAsync<bool>(conn))
             {
                 await R1.Db(DbName).Table(GuildTableName).Insert(R1.HashMap("id", guildIdStr)
-                    .With("Prefix", ".jh")
+                    .With("Prefix", "jh.")
                     .With("Language", "en")
                     .With("Availability", defaultAvailability)
                     ).RunAsync(conn);

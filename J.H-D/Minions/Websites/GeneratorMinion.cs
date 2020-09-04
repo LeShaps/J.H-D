@@ -20,12 +20,12 @@ namespace J.H_D.Minions.Websites
 
             if (Sentence.Length == 0)
                 return new FeatureRequest<Complete, Error.Complete>(null, Error.Complete.Help);
-            var ws = new WebSocket("ws://163.172.76.10:8080");
-            ws.Origin = "http://textsynth.org";
+            var ws = new WebSocket("wss://bellard.org/textsynth/ws");
+            ws.Origin = "https://bellard.org";
 
             ws.OnMessage += (sender, e)
                 => {
-                Content += " " + e.Data.Replace(" .", ".").Replace(" '", "'").Replace(" ,", ",").Replace("*", "\\*").Replace("_", "\\_");
+                Content += e.Data.Replace(" .", ".").Replace(" '", "'").Replace(" ,", ",").Replace("*", "\\*").Replace("_", "\\_");
             };
 
             ws.OnError += (sender, e)
@@ -40,7 +40,7 @@ namespace J.H_D.Minions.Websites
             };
 
             ws.Connect();
-            ws.Send("g," + Sentence);
+            ws.Send($"g,1558M,40,0.9,1,{JHConfig.Rand.Next(200000)}," + Sentence);
 
             await Task.Run(async () =>
             {

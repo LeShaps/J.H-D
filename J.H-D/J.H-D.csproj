@@ -8,16 +8,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BooruSharp" Version="2.9.0" />
+    <None Remove="Minions\Websites\GeneratorMinion.cs~RF2ac54d7.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BooruSharp" Version="2.10.0" />
     <PackageReference Include="Discord.Net" Version="2.2.0" />
     <PackageReference Include="Npgsql" Version="4.1.4" />
     <PackageReference Include="Npgsql.Json.NET" Version="4.1.4" />
     <PackageReference Include="RethinkDb.Driver" Version="2.3.150" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     <PackageReference Include="WebSocketSharp-netstandard" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Horlenson-Devitt-oldbright_ver2.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

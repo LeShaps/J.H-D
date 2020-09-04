@@ -117,7 +117,7 @@ namespace J.H_D.Modules
 
         public async Task ReRollTextAsync(IUserMessage Message, string Sentence)
         {
-            var Response = await GeneratorMinion.CompleteAsync(Sentence, Message, MessageUpdaterAsync);
+            var Response = await GeneratorMinion.CompleteAsync(Sentence, Message, MessageUpdaterAsync).ConfigureAwait(false);
 
             switch (Response.Error)
             {

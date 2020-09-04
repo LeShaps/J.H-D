@@ -22,4 +22,8 @@
     <ProjectReference Include="..\J.H-D\J.H-D.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\Modules\" />
+  </ItemGroup>
+
 </Project>

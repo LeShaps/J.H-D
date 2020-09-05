@@ -175,7 +175,7 @@ namespace J.H_D
                         break;
 
                     case "▶️":
-                        await new CommunicationModule().ContinueTextAsync(Mess);
+                        await new CommunicationModule().ContinueTextAsync(Mess, JHConfig.GeneratedText[Message.Id]);
                         break;
 
                     default:

@@ -11,6 +11,8 @@ using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
 using System;
+using System.Reflection.Emit;
+using Microsoft.VisualBasic;
 
 namespace J.H_D.Modules
 {
@@ -107,7 +109,7 @@ namespace J.H_D.Modules
                 case Error.Complete.None:
                     await msg.ModifyAsync(x => x.Embed = CreateTextEmbed(Response.Answer.Content));
                     JHConfig.GeneratedText.Add(msg.Id, sentence);
-                    await msg.AddReactionAsync(new Emoji("🔄"));
+                    await msg.AddReactionsAsync(new[] { new Emoji("🔄"), new Emoji("▶️") });
                     break;
 
                 default:
@@ -138,10 +140,20 @@ namespace J.H_D.Modules
             }
         }
 
-        public async Task ContinueTextAsync(IUserMessage Message)
+        public async Task ContinueTextAsync(IUserMessage Message, string Sentence)
         {
-            string MessageSentence = Message.Content;
-            await ReplyAsync(MessageSentence);
+            EmbedBuilder emb = Message.Embeds.First().ToEmbedBuilder();
+            emb.Footer.Text = "This feature isn't implemented yet...";
+
+            await Message.ModifyAsync(x => x.Embed = emb.Build());
+        }
+
+        private async Task BuildContinued(IUserMessage msg, string Content)
+        {
+            EmbedBuilder TheEmbed = msg.Embeds.First().ToEmbedBuilder();
+            TheEmbed.Fields.Last().Value = Content;
+
+            await msg.ModifyAsync(x => x.Embed = TheEmbed.Build());
         }
 
         private Embed BuildDefinition(Response.UrbanDefinition InfosBuilder)
@@ -217,16 +229,99 @@ namespace J.H_D.Modules
                 },
             }.Build());
         }
+        
+        private async Task<Embed> StartContinueAsync(IUserMessage Message)
+        {
+            if ((Message.Embeds.First() as Embed).Fields.Length == 0) {
+                return await InitializeContinueAsync(Message);
+            }
+
+            EmbedBuilder OldBuilder = Message.Embeds.First().ToEmbedBuilder();
+            int IterationNumber = OldBuilder.Fields.Count + 1;
+
+            OldBuilder.AddField(new EmbedFieldBuilder
+            {
+                Name = $"Iteration {IterationNumber}",
+                Value = "[Generating...]",
+                IsInline = false
+            });
+            OldBuilder.Title = $"Iteration {IterationNumber}";
+            OldBuilder.Footer.Text = "Waiting for continuation...";
+
+            await Message.ModifyAsync(x => x.Embed = OldBuilder.Build());
+            return Message.Embeds.First() as Embed;
+        }
+
+        private async Task<Embed> InitializeContinueAsync(IUserMessage Message)
+        {
+            string FirstIteration = Message.Embeds.First().Description;
+
+            await Message.ModifyAsync(x => x.Embed = new EmbedBuilder
+            {
+                Title = "Iteration 2",
+                Fields = new List<EmbedFieldBuilder>
+                {
+                    new EmbedFieldBuilder
+                    {
+                        Name = "Iteration 1",
+                        Value = FirstIteration,
+                        IsInline = false
+                    },
+                    new EmbedFieldBuilder
+                    {
+                        Name = "Iteration 2",
+                        Value = "[Generating...]",
+                        IsInline = false
+                    }
+                },
+                Footer = new EmbedFooterBuilder
+                {
+                   Text = "Continuing text..."
+                },
+                Color = Color.DarkBlue
+            }.Build());
+
+            return Message.Embeds.First() as Embed;
+        }
+        
+        private Embed CreateIterationEmbed(Embed BaseEmbed)
+        {
+            int CurrentLoop = BaseEmbed.Fields.Length + 1;
+
+            EmbedBuilder ContinuedBuilder = new EmbedBuilder()
+            {
+                Color = Color.DarkBlue,
+                Footer = new EmbedFooterBuilder()
+                {
+                    Text = "Continuing the text..."
+                },
+            };
+
+            if (CurrentLoop > 1)
+            {
+                foreach (var Field in BaseEmbed.Fields)
+                {
+                    ContinuedBuilder.Fields.Add(new EmbedFieldBuilder() { Name = Field.Name, Value = Field.Value, IsInline = Field.Inline });
+                }
+            }
+            else
+            {
+                ContinuedBuilder.AddField(new EmbedFieldBuilder() { Name = "Iteration 1", Value = BaseEmbed.Description, IsInline = false });
+                CurrentLoop++;
+            }
+            if (CurrentLoop > 10)
+            {
+                ContinuedBuilder.Footer = new EmbedFooterBuilder() { Text = "You've reached the maximum number of iterations" };
+                return ContinuedBuilder.Build();
+            }
+            ContinuedBuilder.AddField(new EmbedFieldBuilder() { Name = $"Iteration {CurrentLoop}", Value = "[generating...]", IsInline = false });
+            ContinuedBuilder.Title = "Iteration " + ContinuedBuilder.Fields.Count;
+            return ContinuedBuilder.Build();
+        }
 
         private Embed CreateTextEmbed(string Content)
         {
-            Content = Content.Replace(" .", ".", StringComparison.OrdinalIgnoreCase)
-                .Replace("\" ", "\"", StringComparison.OrdinalIgnoreCase).
-                Replace("' ", "'", StringComparison.OrdinalIgnoreCase).
-                Replace(" '", "'", StringComparison.OrdinalIgnoreCase).
-                Replace(" ,", ",", StringComparison.OrdinalIgnoreCase).
-                Replace("( ", "(", StringComparison.OrdinalIgnoreCase).
-                Replace(" )", ")", StringComparison.OrdinalIgnoreCase);
+            Content = GenerationMessageCleaner(Content);
 
             return new EmbedBuilder
             {
@@ -239,15 +334,36 @@ namespace J.H_D.Modules
             }.Build();
         }
 
+        public async Task IterationUpdater(IUserMessage msg, string Content)
+        {
+            Content = GenerationMessageCleaner(Content);
+            EmbedBuilder Ember = msg.Embeds.First().ToEmbedBuilder();
+            string MessageEmbeds = GetLastMessage(msg.Embeds.First() as Embed);
+            MessageEmbeds.Replace("[Generating...]", "");
+
+            if (MessageEmbeds == Content)
+                return;
+
+            string UsableContent = Content.Split(MessageEmbeds, StringSplitOptions.None)[1];
+            Ember.Fields.Last().Value = UsableContent;
+            await msg.ModifyAsync(x => x.Embed = Ember.Build());
+        }
+
+        private string GetLastMessage(Embed embed)
+        {
+            string EndMessage = null;
+
+            foreach (var Field in embed.Fields)
+            {
+                EndMessage += Field.Value;
+            }
+
+            return EndMessage;
+        }
+
         public async Task MessageUpdaterAsync(IUserMessage msg, string Content)
         {
-            Content = Content.Replace(" .", ".", StringComparison.OrdinalIgnoreCase)
-                .Replace("\" ", "\"", StringComparison.OrdinalIgnoreCase).
-                Replace("' ", "'", StringComparison.OrdinalIgnoreCase).
-                Replace(" '", "'", StringComparison.OrdinalIgnoreCase).
-                Replace(" ,", ",", StringComparison.OrdinalIgnoreCase).
-                Replace("( ", "(", StringComparison.OrdinalIgnoreCase).
-                Replace(" )", ")", StringComparison.OrdinalIgnoreCase);
+            Content = GenerationMessageCleaner(Content);
 
             string url = (msg.Embeds.ElementAt(0) as Embed).Url;
             await msg.ModifyAsync(x => x.Embed = new EmbedBuilder
@@ -260,6 +376,17 @@ namespace J.H_D.Modules
                 },
                 Url = url
             }.Build());
+        }
+
+        private string GenerationMessageCleaner(string msg)
+        {
+            return msg.Replace(" .", ".", StringComparison.OrdinalIgnoreCase)
+                .Replace("\" ", "\"", StringComparison.OrdinalIgnoreCase).
+                Replace("' ", "'", StringComparison.OrdinalIgnoreCase).
+                Replace(" '", "'", StringComparison.OrdinalIgnoreCase).
+                Replace(" ,", ",", StringComparison.OrdinalIgnoreCase).
+                Replace("( ", "(", StringComparison.OrdinalIgnoreCase).
+                Replace(" )", ")", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

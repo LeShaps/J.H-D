@@ -14,6 +14,7 @@ namespace J.H_D.Modules
     class FChanModule : ModuleBase
     {
         [Command("FChan available boards"), Alias("4chan boards")]
+        [Help("4chan", "Display a list of 4chan boards available")]
         public async Task DisplayFchanBoardsAsync()
         {
             await Program.DoActionAsync(Context.User, Context.Message.Id, Module.Forum);
@@ -23,6 +24,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Fchan board info"), Alias("4chan board info")]
+        [Help("4chan", "Get a few more infos about a 4chan board")]
+        [Parameter("Board", "The board you want infos on, it can either be the / name, of the complete name", ParameterType.Mandatory)]
         public async Task GetBoardInfosAsync(params string[] Args)
         {
             await Program.DoActionAsync(Context.User, Context.Message.Id, Module.Forum);
@@ -49,6 +52,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Random 4image", RunMode = RunMode.Async), Alias("4chan image")]
+        [Help("4chan", "Return a random image from 4chan", Warnings.Spoilers | Warnings.NSFW)]
+        [Parameter("Board", "The board from which the image is from, NSFW boards are only availables in NSFW channels", ParameterType.Optional)]
         public async Task RandomImageAsync(params string[] Args)
         {
             var result = new FeatureRequest<Response.FThread?, Error.FChan>();
@@ -92,6 +97,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]
+        [Help("4chan", "Return a random thread from 4chan", Warnings.Spoilers | Warnings.NSFW)]
+        [Parameter("Board", "The board from which the thread is from, NSFW boards are only availables in NSFW channels", ParameterType.Optional)]
         public async Task RandomThreadAsync(params string[] Args)
         {
             ITextChannel chan = (ITextChannel)Context.Channel;

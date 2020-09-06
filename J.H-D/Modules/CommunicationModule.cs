@@ -13,6 +13,9 @@ using J.H_D.Minions.Infos;
 using System;
 using System.Reflection.Emit;
 using Microsoft.VisualBasic;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.InteropServices;
 
 namespace J.H_D.Modules
 {
@@ -25,18 +28,24 @@ namespace J.H_D.Modules
         }
 
         [Command("Rotate")]
+        [Help("Communication", "Rotate a given text")]
+        [Parameter("Text", "The text to rotate", ParameterType.Mandatory)]
         public async Task RotateThenRespondAsync([Remainder]string Args)
         {
             await ReplyAsync(Utilities.RotateString(Args));
         }
 
         [Command("Clarify")]
-        public async Task ClarifyThenRespondAsync(params string[] Args)
+        [Help("Communication", "Convert an HTML text to human-readable text")]
+        [Parameter("Text", "The HTML text to clarify", ParameterType.Mandatory)]
+        public async Task ClarifyThenRespondAsync([Remainder]string Args)
         {
-            await ReplyAsync(Utilities.GetPlainTextFromHtml(Utilities.MakeArgs(Args)));
+            await ReplyAsync(Utilities.GetPlainTextFromHtml(Args));
         }
 
         [Command("Motive"), Alias("Inspire")]
+        [Help("Communication", "Generate a motivational poster using Inspirobot", Warnings.NSFW)]
+        [Parameter("Clean", "If you want the image to be send as a file, and not in an embed, send \"Clean\"", ParameterType.Optional)]
         public async Task MotiveAsync(params string[] Args)
         {
             string cleanArgs = Utilities.MakeArgs(Args).ToLower();
@@ -69,6 +78,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Define")]
+        [Help("Communication", "Define a word (definition from Urban Dictionnary)", Warnings.NSFW | Warnings.Spoilers)]
+        [Parameter("Word", "The word to define", ParameterType.Mandatory)]
         public async Task FindDefinitionAsync(params string[] Args)
         {
             string FinalArgs = Utilities.MakeQueryArgs(Args);
@@ -91,6 +102,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Generate", RunMode = RunMode.Async)]
+        [Help("Communication", "Generate a text using AI", Warnings.NSFW)]
+        [Parameter("Starting text", "The text to begin with", ParameterType.Mandatory)]
         public async Task GenerateAsync([Remainder]string sentence)
         {
             var msg = await StartWaitAsync(sentence).ConfigureAwait(false);
@@ -115,6 +128,188 @@ namespace J.H_D.Modules
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        [Command("Help")]
+        [Help("Communication", "Display all commands")]
+        public async Task DisplayHelpAsync()
+        {
+            var Methods = GetAvailablesCommands();
+
+            EmbedBuilder BuildHelp = new EmbedBuilder
+            {
+                Color = new Color(214, 201, 45),
+                Title = "Commands",
+                Fields = GetCommandsName(Methods),
+                Footer = new EmbedFooterBuilder
+                {
+                    Text = "Use Command Info + Command Name to get more infos about a listed command"
+                }
+            };
+
+            await ReplyAsync("", false, BuildHelp.Build());
+        }
+
+        [Command("Command Info")]
+        [Help("Communication", "Get the informations about a command")]
+        [Parameter("Command name", "The command you wish to know more about", ParameterType.Mandatory)]
+        public async Task DisplayCommandInfos([Remainder]string CommandName)
+        {
+            var Methods = GetAvailablesCommands();
+
+            EmbedBuilder EmbedMessage = null;
+
+            try
+            {
+                EmbedMessage = GetCommandsInfos(Methods, CommandName);
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "Invalid command")
+                {
+                    await ReplyAsync("The command name is invalid, please make sure you haven't misspelled it, or execute Help for a list of commands");
+                    return;
+                }
+            }
+
+            await ReplyAsync("", false, EmbedMessage.Build());
+        }
+
+        private EmbedBuilder GetCommandsInfos(MethodInfo[] Commands, string CommandName)
+        {
+            MethodInfo Command = null;
+            HelpAttribute Helper = null;
+            List<ParameterAttribute> Parameters = new List<ParameterAttribute>();
+            List<EmbedFieldBuilder> Fields = new List<EmbedFieldBuilder>();
+            
+
+            foreach (MethodInfo info in Commands)
+            {
+                if ((info.GetCustomAttribute(typeof(CommandAttribute), false) as CommandAttribute).Text.ToLower() == CommandName.ToLower()) {
+                    Command = info;
+                    break;
+                }
+            }
+
+            if (Command == null)
+                throw new Exception("Invalid command");
+
+            CommandName = Command.GetCustomAttribute<CommandAttribute>().Text;
+            Helper = Command.GetCustomAttribute<HelpAttribute>();
+            Parameters = Command.GetCustomAttributes<ParameterAttribute>().ToList();
+
+            foreach (ParameterAttribute Param in Parameters)
+                MakeParameterField(ref Fields, Param);
+
+            Color EmbedColor = new Color(214, 201, 45);
+
+            if (Helper.Warnings != Warnings.None) {
+                MakeWarningField(ref Fields, Helper.Warnings);
+                EmbedColor = Color.DarkOrange;
+            }
+
+            return new EmbedBuilder
+            {
+                Title = $"{Helper.Category} - {CommandName}",
+                Description = Helper.Description,
+                Color = EmbedColor,
+                Fields = Fields
+            };
+        }
+
+        private void MakeParameterField(ref List<EmbedFieldBuilder> Fields, ParameterAttribute Parameter)
+        {
+            switch (Parameter.Type)
+            {
+                case ParameterType.Mandatory:
+                    if (Fields.Any(x => x.Name == "Mandatory Parameters")) {
+                        Fields.Where(x => x.Name == "Mandatory Parameters").First()
+                            .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
+                    } else {
+                        Fields.Add(new EmbedFieldBuilder
+                        {
+                            Name = "Mandatory Parameters",
+                            Value = $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}",
+                            IsInline = true
+                        });
+                    }
+                    break;
+
+                case ParameterType.Optional:
+                    if (Fields.Any(x => x.Name == "Optional Parameters")) {
+                        Fields.Where(x => x.Name == "Optional Parameters").First()
+                            .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
+                    } else {
+                        Fields.Add(new EmbedFieldBuilder
+                        {
+                            Name = "Optional Parameters",
+                            Value = $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}",
+                            IsInline = true
+                        });
+                    }
+                    break;
+            }
+        }
+
+        private void MakeWarningField(ref List<EmbedFieldBuilder> Fields, Warnings Warning)
+        {
+            EmbedFieldBuilder WarningField = new EmbedFieldBuilder
+            {
+                Name = "Warnings",
+                Value = "...",
+                IsInline = false
+            };
+
+            if ((Warning & Warnings.NSFW) == Warnings.NSFW) {
+                WarningField.Value += $"- May contain NSFW content {Environment.NewLine}";
+            }
+            if ((Warning & Warnings.Spoilers) == Warnings.Spoilers) {
+                WarningField.Value += $"- May contain spoilers {Environment.NewLine}";
+            }
+            if ((Warning & Warnings.RequireAuthorization) == Warnings.RequireAuthorization) {
+                WarningField.Value += $"- May need special authorizations (cf. Webhooks)";
+            }
+
+            WarningField.Value = WarningField.Value.ToString().Replace("...", "");
+            Fields.Add(WarningField);
+        }
+
+        private List<EmbedFieldBuilder> GetCommandsName(MethodInfo[] Commands)
+        {
+            List<EmbedFieldBuilder> Fields = new List<EmbedFieldBuilder>();
+
+            foreach (MethodInfo info in Commands)
+            {
+                HelpAttribute CurrentHelper = info.GetCustomAttribute(typeof(HelpAttribute), false) as HelpAttribute;
+                string CommandName = (info.GetCustomAttribute(typeof(CommandAttribute), false) as CommandAttribute).Text;
+
+                if (!Fields.Any(x => x.Name == CurrentHelper.Category))
+                    Fields.Add(new EmbedFieldBuilder
+                    {
+                        Name = $"{CurrentHelper.Category}",
+                        Value = $"{CommandName} {Environment.NewLine}",
+                        IsInline = false
+                    });
+                else
+                    Fields.Where(x => x.Name == CurrentHelper.Category).First().Value += $"{CommandName} {Environment.NewLine}";
+            }
+
+            foreach (EmbedFieldBuilder Field in Fields)
+                Field.Name = $"**{Field.Name}**";
+
+            return Fields;
+        }
+
+        private MethodInfo[] GetAvailablesCommands()
+        {
+            Assembly CurrentAssembly = Assembly.GetExecutingAssembly();
+            var Methods = CurrentAssembly.GetTypes()
+                .SelectMany(t => t.GetMethods())
+                .Where(m => m.GetCustomAttributes(typeof(CommandAttribute), false).Length > 0)
+                .Where(m => m.GetCustomAttributes(typeof(HelpAttribute), false).Length > 0)
+                .ToArray();
+
+            return Methods;
         }
 
         public async Task ReRollTextAsync(IUserMessage Message, string Sentence)

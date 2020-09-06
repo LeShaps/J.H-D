@@ -1,4 +1,5 @@
 ﻿using Discord;
+using Discord.Commands;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace J.H_D.Data
             IsTimerValid = false;
         }
     }
-
+    
     public enum Module
     {
         AnimeManga,
@@ -77,5 +78,20 @@ namespace J.H_D.Data
         Booru,
         Communication,
         Music
+    }
+
+    [Flags]
+    public enum Warnings
+    {
+        NSFW = 1,
+        Spoilers = 2,
+        RequireAuthorization = 4,
+        None = 8
+    }
+
+    public enum ParameterType
+    {
+        Mandatory,
+        Optional
     }
 }

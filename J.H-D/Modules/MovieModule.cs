@@ -14,6 +14,8 @@ namespace J.H_D.Modules
     class MovieModule : ModuleBase
     {
         [Command("Get movie"), Priority(-1)]
+        [Help("Movie", "Get infos about a movie", Warnings.RequireAuthorization)]
+        [Parameter("Movie", "The name of the movie", ParameterType.Mandatory)]
         public async Task GetMovieAsync(params string[] Args)
         {
             if (Context.Channel as ITextChannel is null)
@@ -42,6 +44,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Get series")]
+        [Help("Movie", "Get infos about a serie")]
+        [Parameter("Serie", "The serie of the serie", ParameterType.Mandatory)]
         public async Task GetSeriesInfosAsync(params string[] Args)
         {
             var result = await MovieMinion.GetSeriesGeneralInfosAsync(MovieMinion.SearchType.Serie, Args);
@@ -68,6 +72,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Get movie infos"), Alias("Get movie info")]
+        [Help("Movie", "Gather more infos about the movie, it's box office, the productions companies, ect...", Warnings.RequireAuthorization | Warnings.Spoilers)]
+        [Parameter("Name", "The name of the movie", ParameterType.Mandatory)]
         public async Task GetMovieInfosAsync(params string[] Args)
         {
             await Program.DoActionAsync(Context.User, Context.Guild.Id, Module.Movie);

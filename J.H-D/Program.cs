@@ -16,10 +16,10 @@ using Newtonsoft.Json.Linq;
 
 namespace J.H_D
 {
-    class Program
+    partial class Program
     {
         public readonly DiscordSocketClient client;
-        private readonly CommandService commands = new CommandService();
+        public readonly CommandService commands = new CommandService();
 
         private const int RefreshDelay = 300_000;
         private const int RefreshSendDelay = 6_000_000;

@@ -17,6 +17,8 @@ namespace J.H_D.Modules
     class BooruModule : ModuleBase
     {
         [Command("Konachan", RunMode = RunMode.Async), Priority(-1)]
+        [Help("Booru", "Find an image on Konachan, only send Safe images in non-NSFW channels", Warnings.NSFW | Warnings.Spoilers)]
+        [Parameter("Search", "One or multiple tags you're looking for", ParameterType.Optional)]
         public async Task SearchKonachanAsync(params string[] Args)
         {
             await Program.DoActionAsync(Context.User, Context.Guild.Id, Module.Booru);
@@ -27,6 +29,8 @@ namespace J.H_D.Modules
         }
 
         [Command("Konachan with infos", RunMode = RunMode.Async)]
+        [Help("Booru", "Find an image on Konachan and return it with informations about the characters, the tags, and the artist", Warnings.NSFW | Warnings.Spoilers)]
+        [Parameter("Search", "One or multiple tags you're looking for", ParameterType.Optional)]
         public async Task SearchWithBonusAsync(params string[] Args)
         {
             await Program.DoActionAsync(Context.User, Context.Guild.Id, Module.Booru);

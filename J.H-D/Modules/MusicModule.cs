@@ -12,6 +12,8 @@ namespace J.H_D.Modules
     class MusicModule : ModuleBase
     {
         [Command("Get music artist")]
+        [Help("Music", "Get infos about a music artist")]
+        [Parameter("Artist", "The name of the artist", ParameterType.Mandatory)]
         public async Task GetArtistInfosAsync(params string[] Args)
         {
             string Artist = Utilities.MakeQueryArgs(Args);

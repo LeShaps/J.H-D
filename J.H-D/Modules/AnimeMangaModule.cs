@@ -15,6 +15,8 @@ namespace J.H_D.Modules
     class AnimeMangaModule : ModuleBase
     {
         [Command("Get anime", RunMode = RunMode.Async)]
+        [Help("Anime", "Find the asked anime on Kitsu.io")]
+        [Parameter("Name", "The name of the anime", ParameterType.Mandatory)]
         public async Task GetAnimeAsync(params string[] Args)
         {
             var Response = await KitsuMinion.SearchAnimeAsync(Args);

@@ -11,11 +11,8 @@ using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
 using System;
-using System.Reflection.Emit;
-using Microsoft.VisualBasic;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Runtime.InteropServices;
+using System.Globalization;
 
 namespace J.H_D.Modules
 {
@@ -161,38 +158,35 @@ namespace J.H_D.Modules
 
             try
             {
-                EmbedMessage = GetCommandsInfos(Methods, CommandName);
+                EmbedMessage = GetCommandsInfosAsync(Methods, CommandName);
             }
-            catch (Exception e)
+            catch (Exception e) when (e is ArgumentException)
             {
-                if (e.Message == "Invalid command")
-                {
-                    await ReplyAsync("The command name is invalid, please make sure you haven't misspelled it, or execute Help for a list of commands");
-                    return;
-                }
+                await ReplyAsync("The command name is invalid, please make sure you haven't misspelled it, or execute Help for a list of commands");
+                return;
             }
 
             await ReplyAsync("", false, EmbedMessage.Build());
         }
 
-        private EmbedBuilder GetCommandsInfos(MethodInfo[] Commands, string CommandName)
+        private EmbedBuilder GetCommandsInfosAsync(MethodInfo[] Commands, string CommandName)
         {
             MethodInfo Command = null;
             HelpAttribute Helper = null;
-            List<ParameterAttribute> Parameters = new List<ParameterAttribute>();
+            List<ParameterAttribute> Parameters;
             List<EmbedFieldBuilder> Fields = new List<EmbedFieldBuilder>();
             
 
             foreach (MethodInfo info in Commands)
             {
-                if ((info.GetCustomAttribute(typeof(CommandAttribute), false) as CommandAttribute).Text.ToLower() == CommandName.ToLower()) {
+                if (info.GetCustomAttribute<CommandAttribute>().Text.ToLower(CultureInfo.InvariantCulture) == CommandName.ToLower(CultureInfo.InvariantCulture)) {
                     Command = info;
                     break;
                 }
             }
 
             if (Command == null)
-                throw new Exception("Invalid command");
+                throw new ArgumentException(CommandName);
 
             CommandName = Command.GetCustomAttribute<CommandAttribute>().Text;
             Helper = Command.GetCustomAttribute<HelpAttribute>();
@@ -219,35 +213,34 @@ namespace J.H_D.Modules
 
         private void MakeParameterField(ref List<EmbedFieldBuilder> Fields, ParameterAttribute Parameter)
         {
-            switch (Parameter.Type)
-            {
-                case ParameterType.Mandatory:
-                    if (Fields.Any(x => x.Name == "Mandatory Parameters")) {
-                        Fields.Where(x => x.Name == "Mandatory Parameters").First()
-                            .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
-                    } else {
-                        Fields.Add(new EmbedFieldBuilder
-                        {
-                            Name = "Mandatory Parameters",
-                            Value = $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}",
-                            IsInline = true
-                        });
-                    }
-                    break;
-
-                case ParameterType.Optional:
-                    if (Fields.Any(x => x.Name == "Optional Parameters")) {
-                        Fields.Where(x => x.Name == "Optional Parameters").First()
-                            .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
-                    } else {
-                        Fields.Add(new EmbedFieldBuilder
-                        {
-                            Name = "Optional Parameters",
-                            Value = $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}",
-                            IsInline = true
-                        });
-                    }
-                    break;
+            if (Parameter.Type == ParameterType.Mandatory) {
+                if (Fields.Any(x => x.Name == "Mandatory Parameters")) {
+                    Fields.Where(x => x.Name == "Mandatory Parameters").First()
+                        .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
+                } else {
+                    Fields.Add(new EmbedFieldBuilder
+                    {
+                        Name = "Mandatory Parameters",
+                        Value = $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}",
+                        IsInline = true
+                    });
+                }
+            }
+            else if (Parameter.Type == ParameterType.Optional) {
+                if (Fields.Any(x => x.Name == "Optional Parameters"))
+                {
+                    Fields.Where(x => x.Name == "Optional Parameters").First()
+                        .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
+                }
+                else
+                {
+                    Fields.Add(new EmbedFieldBuilder
+                    {
+                        Name = "Optional Parameters",
+                        Value = $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}",
+                        IsInline = true
+                    });
+                }
             }
         }
 
@@ -280,8 +273,8 @@ namespace J.H_D.Modules
 
             foreach (MethodInfo info in Commands)
             {
-                HelpAttribute CurrentHelper = info.GetCustomAttribute(typeof(HelpAttribute), false) as HelpAttribute;
-                string CommandName = (info.GetCustomAttribute(typeof(CommandAttribute), false) as CommandAttribute).Text;
+                HelpAttribute CurrentHelper = info.GetCustomAttribute<HelpAttribute>();
+                string CommandName = info.GetCustomAttribute<CommandAttribute>().Text;
 
                 if (!Fields.Any(x => x.Name == CurrentHelper.Category))
                     Fields.Add(new EmbedFieldBuilder

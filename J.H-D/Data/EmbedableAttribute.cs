@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace J.H_D.Data
 {
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true, Inherited = true)]

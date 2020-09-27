@@ -10,6 +10,7 @@ using J.H_D.Data.Extensions;
 using J.H_D.Data.Interfaces;
 using static J.H_D.Data.Response;
 using J.H_D.Data.Extensions.Discord;
+using System.Globalization;
 
 namespace J.H_D.Data.Abstracts.Impl
 {
@@ -31,6 +32,7 @@ namespace J.H_D.Data.Abstracts.Impl
 
         private readonly Regex Pattern = new Regex("[\\w\\S]");
         private readonly int MaxScore = 10_000;
+        private readonly float TimePerWord = 0.9f;
 
         public LetsJam(IMessageChannel Channel, IUser _, ISetup Setup, IPostMode PostMode) : base(Channel, _, Setup, PostMode)
         {
@@ -145,7 +147,7 @@ namespace J.H_D.Data.Abstracts.Impl
         }
 
         protected override int GetGameTimer()
-            => (int)(0.9 * Lyrics.Count);
+            => (int)(TimePerWord * Lyrics.Count);
 
         protected override object GetNextPost()
         {
@@ -194,13 +196,13 @@ namespace J.H_D.Data.Abstracts.Impl
         protected override string GetRules()
         {
             TimeSpan span = TimeSpan.FromSeconds(GetGameTimer());
-            string Timer = span.ToString(@"mm\:ss");
+            string Timer = span.ToString(@"mm\:ss", CultureInfo.InvariantCulture);
             return $"Write the lyrics to complete the song, you have {Timer}\nGood luck!";
         }
 
         protected override int GetScore()
         {
-            float ScoreRatio = MaxScore / Lyrics.Count;
+            float ScoreRatio = (float)MaxScore / Lyrics.Count;
             Score = (int)(Lyrics.Where(x => x.Item2 == true).Count() * ScoreRatio);
             return Score;
         }
@@ -214,11 +216,8 @@ namespace J.H_D.Data.Abstracts.Impl
         }
 
         protected override void UpdateMessage(IUserMessage Message)
-        {
-            if (EmbedMessage == null)
-                EmbedMessage = Message;
-        }
-
+            => EmbedMessage ??= Message;
+        
         private Embed UpdateEmbed(Embed Original, string Lyrics) {
             EmbedBuilder NewBuilder = Original.ToEmbedBuilder();
             Color EmbedColor = new Color(Convert.ToUInt32("A5A597", 16));

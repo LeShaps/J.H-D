@@ -1,6 +1,5 @@
 ﻿using Discord;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace J.H_D.Data.Extensions.Discord
 {

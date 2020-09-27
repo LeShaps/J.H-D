@@ -4,8 +4,6 @@ using J.H_D.Data.Exceptions;
 using J.H_D.Data.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace J.H_D.Data.Abstracts

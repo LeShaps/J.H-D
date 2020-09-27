@@ -29,5 +29,12 @@
             Help,
             None
         }
+
+        public enum LyricsMatch
+        {
+            NotFound,
+            Help,
+            None
+        }
     }
 }

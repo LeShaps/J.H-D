@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace J.H_D.Data
 {
@@ -152,6 +153,43 @@ namespace J.H_D.Data
             public string RessourcePath => ressourcePath;
         }
 
+        public struct SongLyrics : IEquatable<SongLyrics>
+        {
+            private string lyrics;
+            private string artist;
+            private string songName;
+
+            public string Lyrics { get => lyrics; set => lyrics = value; }
+            public string Artist { get => artist; set => artist = value; }
+            public string SongName { get => songName; set => songName = value; }
+
+            public override bool Equals(object obj)
+            {
+                return obj is SongLyrics lyrics &&
+                       Lyrics == lyrics.Lyrics;
+            }
+
+            public bool Equals([AllowNull] SongLyrics other)
+            {
+                return Equals(other);
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Combine(Lyrics);
+            }
+
+            public static bool operator ==(SongLyrics left, SongLyrics right)
+            {
+                return left.Equals(right);
+            }
+
+            public static bool operator !=(SongLyrics left, SongLyrics right)
+            {
+                return !(left == right);
+            }
+        }
+
         public struct UrbanDefinition : IEquatable<UrbanDefinition>
         {
             [Embedable("Word")]
@@ -212,12 +250,11 @@ namespace J.H_D.Data
 
             public bool Equals(MusicArtist other)
             {
-
                 return
                     GetHashCode() == other.GetHashCode();
             }
         }
-
+        
         public struct Anime : IEquatable<Anime>
         {
             [Embedable("Anime ID", false, false)]

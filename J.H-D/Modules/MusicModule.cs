@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using J.H_D.Minions.Infos;
 using J.H_D.Tools;
 using J.H_D.Data;
+using System.Runtime.InteropServices;
 
 namespace J.H_D.Modules
 {
@@ -43,6 +44,30 @@ namespace J.H_D.Modules
             }
         }
 
+        [Command("Lyrics")]
+        [Help("Music", "Find the lyrics of a song")]
+        [Parameter("Song name", "The name of the song", ParameterType.Mandatory)]
+        [Parameter("Artist name", "Name of the artist, recommended", ParameterType.Optional)]
+        public async Task GetSongLyrics(params string[] Args)
+        {
+            var Results = await MusicMinion.GetLyrics(Args);
+
+            switch (Results.Error)
+            {
+                case Error.LyricsMatch.NotFound:
+                    await ReplyAsync("I couldn't find theses lyrics");
+                    break;
+
+                case Error.LyricsMatch.Help:
+                    await ReplyAsync("", false, CommunicationModule.GetHelperEmbed("Lyrics"));
+                    break;
+
+                case Error.LyricsMatch.None:
+                    await ReplyAsync("", false, BuildLyricsEmbed((Response.SongLyrics)Results.Answer));
+                    break;
+            }
+        }
+
         private Embed MakeArtistEmbed(Response.MusicArtist Artist)
         {
             string NoPromoDescription = Artist.Bio.Substring(0, Artist.Bio.IndexOf("<a"));
@@ -69,6 +94,20 @@ namespace J.H_D.Modules
             });
 
             return builder.Build();
+        }
+
+        private Embed BuildLyricsEmbed(Response.SongLyrics Lyrics)
+        {
+            return new EmbedBuilder
+            {
+                Title = String.Join(" - ", Lyrics.Artist, Lyrics.SongName),
+                Description = Lyrics.Lyrics,
+                Color = Color.Green,
+                Footer = new EmbedFooterBuilder
+                {
+                    Text = "Lyrics founds on Google"
+                }
+            }.Build();
         }
     }
 }

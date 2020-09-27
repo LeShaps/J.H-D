@@ -44,7 +44,7 @@ namespace J.H_D.Minions.Infos
             }
 
             dynamic Json;
-            Json = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{JHConfig.TmdbKey}&language=en-US&query={RequestName}&page=1"));
+            Json = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{JHConfig.APIKey["Tmdb"]}&language=en-US&query={RequestName}&page=1"));
 
             if (Json["total_results"] == "0") {
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
@@ -74,7 +74,7 @@ namespace J.H_D.Minions.Infos
                 return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.Help);
             }
 
-            dynamic SeriesInfos = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"{EndpointList[searchType]}{JHConfig.TmdbKey}&language=en-US&query={RequestName}&page=1"));
+            dynamic SeriesInfos = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"{EndpointList[searchType]}{JHConfig.APIKey["Tmdb"]}&language=en-US&query={RequestName}&page=1"));
             if (SeriesInfos["total_results"] == "0") {
                 return new FeatureRequest<Response.TVSeries, Error.Movie>(null, Error.Movie.NotFound); 
             }
@@ -82,7 +82,7 @@ namespace J.H_D.Minions.Infos
             JArray Results = (JArray)SeriesInfos["results"];
             dynamic SerieResult = Results[0];
 
-            dynamic DetailsJson = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"https://api.themoviedb.org/3/tv/{SerieResult.id}?api_key={JHConfig.TmdbKey}&language=en-US"));
+            dynamic DetailsJson = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"https://api.themoviedb.org/3/tv/{SerieResult.id}?api_key={JHConfig.APIKey["Tmdb"]}&language=en-US"));
 
             List<Response.TVSeason> Seasons = new List<Response.TVSeason>();
             
@@ -126,7 +126,7 @@ namespace J.H_D.Minions.Infos
             
             dynamic Moviejson;
 
-            Moviejson = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{JHConfig.TmdbKey}&lanuage=en-US&query={RequestName}"));
+            Moviejson = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"{EndpointList[SearchType.Movie]}{JHConfig.APIKey["Tmdb"]}&lanuage=en-US&query={RequestName}"));
 
             if (Moviejson["total_results"] == "0") {
                 return new FeatureRequest<Response.Movie, Error.Movie>(null, Error.Movie.NotFound);
@@ -136,7 +136,7 @@ namespace J.H_D.Minions.Infos
             dynamic MovieResults = Results[0];
             dynamic DetailsJson;
 
-            DetailsJson = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"https://api.themoviedb.org/3/movie/{MovieResults.id}?api_key={JHConfig.TmdbKey}&language=en-US"));
+            DetailsJson = JsonConvert.DeserializeObject(await Asker.GetStringAsync($"https://api.themoviedb.org/3/movie/{MovieResults.id}?api_key={JHConfig.APIKey["Tmdb"]}&language=en-US"));
 
             return new FeatureRequest<Response.Movie, Error.Movie>(new Response.Movie
             {

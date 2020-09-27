@@ -36,6 +36,7 @@ namespace J.H_D.Data
         public static Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed { get; set; } = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
         public static Dictionary<ulong, string> GeneratedText { get; set; } = new Dictionary<ulong, string>();
 
+
         public static List<AGame> Games { get; } = new List<AGame>();
         public static ISetup[] Preloads { get; set; }
         public static GameContainer GameRunner { get; set; }

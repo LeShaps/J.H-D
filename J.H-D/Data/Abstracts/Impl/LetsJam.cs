@@ -10,7 +10,6 @@ using J.H_D.Data.Extensions;
 using J.H_D.Data.Interfaces;
 using static J.H_D.Data.Response;
 using J.H_D.Data.Extensions.Discord;
-using System.Security.Cryptography.X509Certificates;
 
 namespace J.H_D.Data.Abstracts.Impl
 {

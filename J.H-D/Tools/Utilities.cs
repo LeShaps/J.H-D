@@ -1,14 +1,14 @@
-﻿using System;
+using System;
+﻿using Discord;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Reflection;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-using Discord;
 using Discord.Commands;
 
 using J.H_D.Data;
@@ -289,6 +289,7 @@ namespace J.H_D.Tools
 
             return $"{UppedChar}{Lowered}";
         }
+
         public static async Task CallHelper(string CommandName)
         {
             CommunicationModule Module = new CommunicationModule();

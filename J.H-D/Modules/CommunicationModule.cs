@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Reflection;
 using System.Globalization;
@@ -81,6 +82,7 @@ namespace J.H_D.Modules
         public async Task FindDefinitionAsync(params string[] Args)
         {
             string FinalArgs = Utilities.MakeQueryArgs(Args);
+
             if (!Utilities.IsChannelNsfw(Context)) {
                 await ReplyAsync("Nah, there's some things I can't tell you here, try in a NSFW channel");
                 return;
@@ -312,7 +314,6 @@ namespace J.H_D.Modules
                 if (!Fields.Any(x => x.Name == CurrentHelper.Category))
                     Fields.Add(new EmbedFieldBuilder
                     {
-                        Name = $"{CurrentHelper.Category}",
                         Value = $"{CommandName} {GetAliases(info)} {Environment.NewLine}",
                         IsInline = false
                     });

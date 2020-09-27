@@ -155,13 +155,9 @@ namespace J.H_D.Data
 
         public struct SongLyrics : IEquatable<SongLyrics>
         {
-            private string lyrics;
-            private string artist;
-            private string songName;
-
-            public string Lyrics { get => lyrics; set => lyrics = value; }
-            public string Artist { get => artist; set => artist = value; }
-            public string SongName { get => songName; set => songName = value; }
+            public string Lyrics { get; set; }
+            public string Artist { get; set; }
+            public string SongName { get; set; }
 
             public override bool Equals(object obj)
             {
@@ -254,7 +250,7 @@ namespace J.H_D.Data
                     GetHashCode() == other.GetHashCode();
             }
         }
-        
+
         public struct Anime : IEquatable<Anime>
         {
             [Embedable("Anime ID", false, false)]

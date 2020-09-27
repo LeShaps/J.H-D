@@ -1,12 +1,8 @@
-﻿using AngleSharp.Services;
-using Discord;
+﻿using Discord;
 using J.H_D.Data.Exceptions;
 using J.H_D.Data.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace J.H_D.Data.Abstracts.Impl

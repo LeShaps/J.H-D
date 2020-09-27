@@ -1,18 +1,17 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.WebSocket;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 using System.IO;
+using System.Diagnostics;
+using System.Globalization;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Globalization;
+using System.Collections.Generic;
 
-using J.H_D.Modules;
+using Discord;
+using Discord.Commands;
+using Discord.WebSocket;
+
 using J.H_D.Data;
-using Newtonsoft.Json.Linq;
+using J.H_D.Modules;
 
 namespace J.H_D
 {
@@ -87,6 +86,7 @@ namespace J.H_D
             await commands.AddModuleAsync<BooruModule>(null);
             await commands.AddModuleAsync<MusicModule>(null);
             await commands.AddModuleAsync<AnimeMangaModule>(null);
+            await commands.AddModuleAsync<GameModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += DisconnectedAsync;
@@ -193,6 +193,19 @@ namespace J.H_D
 
             await CheckSeriesAsync(Message, Channel, Reaction).ConfigureAwait(false);
             await CheckGeneratedTextAsync(Message, Channel, Reaction).ConfigureAwait(false);
+
+            if (Reaction.Emote.Name == "🌀")
+                await CheckSourceEmoteAsync(Message);
+        }
+
+        private async Task CheckSourceEmoteAsync(Cacheable<IUserMessage, ulong> Message)
+        {
+            IUserMessage Mess = await Message.DownloadAsync();
+
+            if (Mess.Embeds.Count < 1)
+                return;
+
+            // TODO : Make source check if the emote is added
         }
 
         private async Task GuildJoinAsync(SocketGuild arg)
@@ -226,6 +239,14 @@ namespace J.H_D
             string prefix;
 
             int pos = 0;
+            if (!msg.Content.StartsWith("//") && !msg.Content.StartsWith("#"))
+            {
+                var game = JHConfig.Games.Find(x => x.IsMyGame(msg.Channel.Id));
+                if (game != null)
+                {
+                    game.AddAnwser(msg);
+                }
+            }
             if (!DM)
             {
                 prefix = db.Prefixs[(arg.Channel as ITextChannel).GuildId];
@@ -254,7 +275,7 @@ namespace J.H_D
                     throw new NotSupportedException();
                 if (JHConfig.SendStats)
                 {
-                    await UpdateElementAsync(new [] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
+                    await UpdateElementAsync(new[] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
                     await AddErrorAsync("Ok").ConfigureAwait(false);
                     await AddCommandServsAsync(context.Guild.Id).ConfigureAwait(false);
                     if (JHConfig.DebugMode)

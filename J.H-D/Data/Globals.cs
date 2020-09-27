@@ -1,4 +1,8 @@
 ﻿using Discord;
+using J.H_D.Data.Abstracts;
+using J.H_D.Data.Interfaces;
+using J.H_D.Data.Interfaces.Impl;
+using J.H_D.Tools;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,9 +21,7 @@ namespace J.H_D.Data
         public static bool DebugMode { get; private set; }
         public static bool IsTimerValid { get; set; }
 
-        public static string TmdbKey { get; private set; }
-        public static string RapidApiKey { get; private set; }
-        public static string LastFMKey { get; private set; }
+        public static Dictionary<string, string> APIKey { get; set; }
         public static Dictionary<string, string> KitsuAuth { get; private set; }
 
         public static HttpClient Asker { get; private set; } = new HttpClient();
@@ -33,6 +35,10 @@ namespace J.H_D.Data
 
         public static Dictionary<ulong, Tuple<int, Response.TVSeries>> SendedSeriesEmbed { get; set; } = new Dictionary<ulong, Tuple<int, Response.TVSeries>>();
         public static Dictionary<ulong, string> GeneratedText { get; set; } = new Dictionary<ulong, string>();
+
+        public static List<AGame> Games { get; } = new List<AGame>();
+        public static ISetup[] Preloads { get; set; }
+        public static GameContainer GameRunner { get; set; }
 
         public static void InitConfig()
         {
@@ -59,13 +65,26 @@ namespace J.H_D.Data
 
             StartingTime = DateTime.Now;
 
-            TmdbKey = ConfigurationJson.MvKey;
-            RapidApiKey = ConfigurationJson.RapidAPIKey;
-            LastFMKey = ConfigurationJson.LastAMAPIKey;
+            APIKey = new Dictionary<string, string>
+            {
+                {"Tmdb", (string)ConfigurationJson.MvKey },
+                {"RapidAPI", (string)ConfigurationJson.RapidAPIKey },
+                {"LastFM", (string)ConfigurationJson.LastFMAPIKey },
+                {"Genius", (string)ConfigurationJson.GeniusApiKey }
+            };
 
             Rand = new Random();
             Asker.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 Jeremia");
             IsTimerValid = false;
+
+            Preloads = new ISetup[]
+            {
+                new GuessNumberSetup(),
+                new JamGameSetup()
+            };
+
+            GameRunner = new GameContainer();
+            GameRunner.Init();
         }
     }
     
@@ -92,5 +111,13 @@ namespace J.H_D.Data
     {
         Mandatory,
         Optional
+    }
+
+    public enum GameState
+    {
+        Prepare,
+        Posting,
+        Running,
+        Lost
     }
 }

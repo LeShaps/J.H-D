@@ -22,7 +22,7 @@ namespace J.H_D.Minions.Infos
             using (HttpClient hc = new HttpClient())
             {
                 hc.DefaultRequestHeaders.Add("X-RapidAPI-Host", RapidAPIHost);
-                hc.DefaultRequestHeaders.Add("X-RapidAPI-Key", JHConfig.RapidApiKey);
+                hc.DefaultRequestHeaders.Add("X-RapidAPI-Key", JHConfig.APIKey["RapidAPI"]);
 
                 result = JsonConvert.DeserializeObject(await (await hc.GetAsync($"{DefineAdress}{search}")).Content.ReadAsStringAsync());
             }

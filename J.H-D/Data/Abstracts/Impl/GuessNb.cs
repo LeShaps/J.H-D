@@ -58,7 +58,7 @@ namespace J.H_D.Data.Abstracts.Impl
             throw new NotSupportedException();
         }
 
-        protected override void CheckReactionAsync(IMessage Message, IReaction Reaction)
+        protected override Task CheckReactionAsync(IMessage Message, IReaction Reaction)
         {
             throw new NotSupportedException();
         }

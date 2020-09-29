@@ -294,7 +294,7 @@ namespace J.H_D.Tools
         {
             CommunicationModule Module = new CommunicationModule();
 
-            await Module.DisplayCommandInfos(CommandName);
+            await Module.DisplayCommandInfosAsync(CommandName);
         }
     }
 }

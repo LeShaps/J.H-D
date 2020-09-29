@@ -11,15 +11,14 @@ using J.H_D.Data.Interfaces;
 using static J.H_D.Data.Response;
 using J.H_D.Data.Extensions.Discord;
 using System.Globalization;
+using System.Text;
 
 namespace J.H_D.Data.Abstracts.Impl
 {
     class LetsJam : AGame
     {
-        List<string> EmbedTexts = new List<string>();
-        List<Tuple<string, bool>> Lyrics = new List<Tuple<string, bool>>();
+        List<Tuple<string, bool>> Lyrics;
         SongLyrics? Infos;
-        List<string> WordsForTest = new List<string>();
         IUserMessage EmbedMessage;
 
         readonly List<Tuple<float, uint, string>> ScoreInfos = new List<Tuple<float, uint, string>>
@@ -33,23 +32,19 @@ namespace J.H_D.Data.Abstracts.Impl
         private readonly Regex Pattern = new Regex("[\\w\\S]");
         private readonly int MaxScore = 10_000;
         private readonly float TimePerWord = 0.9f;
+        private readonly int NotGuessedWordDisplay = 5;
 
         public LetsJam(IMessageChannel Channel, IUser _, ISetup Setup, IPostMode PostMode) : base(Channel, _, Setup, PostMode)
         {
             var LyricsInfos = Setup.GetLoadedParameters() as Tuple<SongLyrics?, List<Tuple<string, bool>>>;
             Lyrics = LyricsInfos.Item2;
             Infos = LyricsInfos.Item1;
-            foreach (var Word in Lyrics) {
-                string UsableWord = Word.Item1.ToWordOnly();
-                if (UsableWord != null)
-                    WordsForTest.Add(UsableWord.ToLowerInvariant());
-            }
         }
 
         protected override Task CheckAnswerInternalAsync(string Answer)
         {
             List<int> ReplaceInstances = new List<int>();
-            string LyricsToDiplay = null;
+            StringBuilder LyricsToDiplay = new StringBuilder();
 
             if (Answer.IsNullOrEmpty())
                 return Task.CompletedTask;
@@ -57,10 +52,10 @@ namespace J.H_D.Data.Abstracts.Impl
             
             foreach (string Word in Answer.Split(" "))
             {
-                string WordVar = Word.ToWordOnly().ToLowerInvariant();
+                string WordVar = Word.ToWordOnly().ToUpperInvariant();
 
-                if (Lyrics.Any(lyr => lyr.Item1 != "\n" && lyr.Item1.ToWordOnly().ToLowerInvariant() == WordVar)) {
-                    ReplaceInstances.AddRange(Lyrics.IndexesOf(lyr => lyr.Item1 != "\n" && lyr.Item1.ToWordOnly().ToLowerInvariant() == WordVar));
+                if (Lyrics.Any(lyr => lyr.Item1 != "\n" && lyr.Item1.ToWordOnly().ToUpperInvariant() == WordVar)) {
+                    ReplaceInstances.AddRange(Lyrics.IndexesOf(lyr => lyr.Item1 != "\n" && lyr.Item1.ToWordOnly().ToUpperInvariant() == WordVar));
                 }
             }
 
@@ -73,67 +68,62 @@ namespace J.H_D.Data.Abstracts.Impl
             foreach (var lyr in Lyrics)
             {
                 if (lyr.Item2)
-                    LyricsToDiplay += " " + lyr.Item1;
+                    LyricsToDiplay.Append(" " + lyr.Item1);
                 else
-                    LyricsToDiplay += " " + Pattern.Replace(lyr.Item1, "-");
+                    LyricsToDiplay.Append(" " + Pattern.Replace(lyr.Item1, "-"));
             }
 
             var Emb = (Embed)EmbedMessage.Embeds.First();
 
-            if (LyricsToDiplay.Length < 2048)
+            if (LyricsToDiplay.Length < EmbedBuilder.MaxDescriptionLength)
             {
-                Emb = UpdateEmbed(Emb, LyricsToDiplay);
+                Emb = UpdateEmbed(Emb, LyricsToDiplay.ToString());
                 EmbedMessage.ModifyAsync(x => x.Embed = Emb);
             }
             else
             {
                 Emb = UpdateEmbed(Emb);
-                EmbedMessage.ModifyAsync(x => x.Embed = Emb.BuildParagraphs(LyricsToDiplay, "\n \n"));
+                EmbedMessage.ModifyAsync(x => x.Embed = Emb.BuildParagraphs(LyricsToDiplay.ToString(), "\n \n"));
             }
 
-            if (Lyrics.Any(x => x.Item2 == false))
+            if (Lyrics.Any(x => !x.Item2))
                 throw new InvalidGameAnwserException("Continue");
             else
                 throw new GameLostException("Win");
         }
 
-        protected override void CheckReactionAsync(IMessage Message, IReaction Reaction)
+        protected override Task CheckReactionAsync(IMessage Message, IReaction Reaction)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         protected override string GetAnswer()
         {
-            string FinalLyrics = null;
+            StringBuilder FinalLyrics = new StringBuilder();
             float ScorePercent = Score * 100 / MaxScore;
             var FinalScoreInfos = ScoreInfos.Where(sc => ScorePercent > sc.Item1).Last();
 
 
             foreach (var lyr in Lyrics)
-            {
-                if (lyr.Item2)
-                    FinalLyrics += " " + lyr.Item1;
-                else
-                    FinalLyrics += " **" + lyr.Item1 + "**";
-            }
+                FinalLyrics.Append(lyr.Item2 ? " " + lyr.Item1 : " **" + lyr.Item1 + "**");
 
-            if (FinalLyrics.Length < 2048)
+            if (FinalLyrics.Length < EmbedBuilder.MaxDescriptionLength)
             {
                 var Emb = (Embed)EmbedMessage.Embeds.First();
-                Emb = UpdateEmbed(Emb, FinalLyrics);
+                Emb = UpdateEmbed(Emb, FinalLyrics.ToString());
                 EmbedMessage.ModifyAsync(x => x.Embed = Emb);
             }
             else
             {
                 Random rand = new Random();
-                string Exemples = $"Here's some exemples of words you haven't found{Environment.NewLine}";
+                StringBuilder Exemples = new StringBuilder($"Here's some exemples of words you haven't found{Environment.NewLine}");
 
-                var NotFounds = Lyrics.Where(lyr => lyr.Item2 == false && lyr.Item1 != "\n").ToList();
-                if (NotFounds.Count >= 5)
+                var NotFounds = Lyrics.Where(lyr => !lyr.Item2 && lyr.Item1 != "\n").ToList();
+                if (NotFounds.Count >= NotGuessedWordDisplay)
                 {
-                    for (int i = 5; i > 0; i--)
+                    for (int i = NotGuessedWordDisplay; i > 0; i--)
                     {
-                        Exemples += $"=> {NotFounds[rand.Next(NotFounds.Count) - 1].Item1}{Environment.NewLine}";
+                        Exemples.Append($"=> {NotFounds[rand.Next(NotFounds.Count) - 1].Item1}{Environment.NewLine}");
                     }
                 }
                 Lyrics.Clear();
@@ -151,23 +141,23 @@ namespace J.H_D.Data.Abstracts.Impl
 
         protected override object GetNextPost()
         {
-            string LyricsToDisplay = null;
+            StringBuilder LyricsToDisplay = new StringBuilder();
             EmbedBuilder Builder;
 
             foreach (var lyr in Lyrics)
             {
                 if (lyr.Item2)
-                    LyricsToDisplay += " " + lyr.Item1;
+                    LyricsToDisplay.Append(" " + lyr.Item1);
                 else
-                    LyricsToDisplay += " " + Pattern.Replace(lyr.Item1, "-");
+                    LyricsToDisplay.Append(" " + Pattern.Replace(lyr.Item1, "-"));
             }
 
-            if (LyricsToDisplay.Length < 2048)
+            if (LyricsToDisplay.Length < EmbedBuilder.MaxDescriptionLength)
             {
                 Builder = new EmbedBuilder
                 {
                     Color = Color.DarkerGrey,
-                    Description = LyricsToDisplay,
+                    Description = LyricsToDisplay.ToString(),
                     Title = $"You play on {Infos.Value.Artist} - {Infos.Value.SongName}",
                     Footer = new EmbedFooterBuilder
                     {
@@ -188,7 +178,7 @@ namespace J.H_D.Data.Abstracts.Impl
                     }
                 };
 
-                return Builder.Build().BuildParagraphs(LyricsToDisplay, "\n \n");
+                return Builder.Build().BuildParagraphs(LyricsToDisplay.ToString(), "\n \n");
             }
 
         }
@@ -203,7 +193,7 @@ namespace J.H_D.Data.Abstracts.Impl
         protected override int GetScore()
         {
             float ScoreRatio = (float)MaxScore / Lyrics.Count;
-            Score = (int)(Lyrics.Where(x => x.Item2 == true).Count() * ScoreRatio);
+            Score = (int)(Lyrics.Where(x => x.Item2).Count() * ScoreRatio);
             return Score;
         }
 
@@ -230,7 +220,7 @@ namespace J.H_D.Data.Abstracts.Impl
 
             NewBuilder.Description = Lyrics;
             NewBuilder.Color = EmbedColor;
-            NewBuilder.Footer.Text = $"{GetScore():N} pts / {MaxScore:N}";
+            NewBuilder.Footer.Text = $"{GetScore():N0} pts / {MaxScore:N0}";
 
             return NewBuilder.Build();
         }
@@ -248,7 +238,7 @@ namespace J.H_D.Data.Abstracts.Impl
             }
 
             UpdateBuilder.Color = EmbedColor;
-            UpdateBuilder.Footer.Text = $"{GetScore():N} pts / {MaxScore:N}";
+            UpdateBuilder.Footer.Text = $"{GetScore():N0} pts / {MaxScore:N0}";
 
             return UpdateBuilder.Build();
         }

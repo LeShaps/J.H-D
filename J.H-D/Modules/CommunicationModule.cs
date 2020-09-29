@@ -1,7 +1,5 @@
-
 ﻿using System;
 using System.Reflection;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -20,6 +18,8 @@ namespace J.H_D.Modules
 {
     class CommunicationModule : ModuleBase
     {
+        private readonly int MaxIterationNumber = 10;
+
         [Command("Hey !")]
         public async Task ReplytoAsync()
         {
@@ -116,7 +116,7 @@ namespace J.H_D.Modules
             switch (Response.Error)
             {
                 case Error.Complete.Help:
-                    await DisplayCommandInfos("Generate");
+                    await DisplayCommandInfosAsync("Generate").ConfigureAwait(false);
                     break;
 
                 case Error.Complete.Connection:
@@ -157,7 +157,7 @@ namespace J.H_D.Modules
         [Command("Command Info")]
         [Help("Communication", "Get the informations about a command")]
         [Parameter("Command name", "The command you wish to know more about", ParameterType.Mandatory)]
-        public async Task DisplayCommandInfos([Remainder]string CommandName)
+        public async Task DisplayCommandInfosAsync([Remainder]string CommandName)
         {
             var Methods = GetAvailablesCommands();
 
@@ -196,11 +196,11 @@ namespace J.H_D.Modules
 
             foreach (MethodInfo info in Commands)
             {
-                if (info.GetCustomAttribute<CommandAttribute>().Text.ToLower(CultureInfo.InvariantCulture) == CommandName.ToLower(CultureInfo.InvariantCulture)) {
+                if (info.GetCustomAttribute<CommandAttribute>().Text.ToUpperInvariant() == CommandName.ToUpperInvariant()) {
                     Command = info;
                     break;
                 }
-                else if (GetAliases(info) != null && GetAliases(info).ToLowerInvariant().Contains(CommandName.ToLowerInvariant())) {
+                else if (GetAliases(info) != null && GetAliases(info).ToUpperInvariant().Contains(CommandName.ToUpperInvariant())) {
                     Command = info;
                     break;
                 }
@@ -234,11 +234,15 @@ namespace J.H_D.Modules
 
         private void MakeParameterField(ref List<EmbedFieldBuilder> Fields, ParameterAttribute Parameter)
         {
-            if (Parameter.Type == ParameterType.Mandatory) {
-                if (Fields.Any(x => x.Name == "Mandatory Parameters")) {
+            if (Parameter.Type == ParameterType.Mandatory)
+            {
+                if (Fields.Any(x => x.Name == "Mandatory Parameters"))
+                {
                     Fields.Where(x => x.Name == "Mandatory Parameters").First()
                         .Value += $"{Parameter.Name} - {Parameter.Description} {Environment.NewLine}";
-                } else {
+                }
+                else
+                {
                     Fields.Add(new EmbedFieldBuilder
                     {
                         Name = "Mandatory Parameters",
@@ -247,7 +251,8 @@ namespace J.H_D.Modules
                     });
                 }
             }
-            else if (Parameter.Type == ParameterType.Optional) {
+            else if (Parameter.Type == ParameterType.Optional)
+            {
                 if (Fields.Any(x => x.Name == "Optional Parameters"))
                 {
                     Fields.Where(x => x.Name == "Optional Parameters").First()
@@ -263,6 +268,8 @@ namespace J.H_D.Modules
                     });
                 }
             }
+            else
+                return;
         }
 
         private void MakeWarningField(ref List<EmbedFieldBuilder> Fields, Warnings Warning)
@@ -370,7 +377,7 @@ namespace J.H_D.Modules
             await Message.ModifyAsync(x => x.Embed = emb.Build());
         }
 
-        private async Task BuildContinued(IUserMessage msg, string Content)
+        private async Task BuildContinuedAsync(IUserMessage msg, string Content)
         {
             EmbedBuilder TheEmbed = msg.Embeds.First().ToEmbedBuilder();
             TheEmbed.Fields.Last().Value = Content;
@@ -455,7 +462,7 @@ namespace J.H_D.Modules
         private async Task<Embed> StartContinueAsync(IUserMessage Message)
         {
             if ((Message.Embeds.First() as Embed).Fields.Length == 0) {
-                return await InitializeContinueAsync(Message);
+                return await InitializeContinueAsync(Message).ConfigureAwait(false);
             }
 
             EmbedBuilder OldBuilder = Message.Embeds.First().ToEmbedBuilder();
@@ -510,10 +517,10 @@ namespace J.H_D.Modules
         {
             int CurrentLoop = BaseEmbed.Fields.Length + 1;
 
-            EmbedBuilder ContinuedBuilder = new EmbedBuilder()
+            EmbedBuilder ContinuedBuilder = new EmbedBuilder
             {
                 Color = Color.DarkBlue,
-                Footer = new EmbedFooterBuilder()
+                Footer = new EmbedFooterBuilder
                 {
                     Text = "Continuing the text..."
                 },
@@ -523,20 +530,20 @@ namespace J.H_D.Modules
             {
                 foreach (var Field in BaseEmbed.Fields)
                 {
-                    ContinuedBuilder.Fields.Add(new EmbedFieldBuilder() { Name = Field.Name, Value = Field.Value, IsInline = Field.Inline });
+                    ContinuedBuilder.Fields.Add(new EmbedFieldBuilder { Name = Field.Name, Value = Field.Value, IsInline = Field.Inline });
                 }
             }
             else
             {
-                ContinuedBuilder.AddField(new EmbedFieldBuilder() { Name = "Iteration 1", Value = BaseEmbed.Description, IsInline = false });
+                ContinuedBuilder.AddField(new EmbedFieldBuilder { Name = "Iteration 1", Value = BaseEmbed.Description, IsInline = false });
                 CurrentLoop++;
             }
-            if (CurrentLoop > 10)
+            if (CurrentLoop > MaxIterationNumber)
             {
-                ContinuedBuilder.Footer = new EmbedFooterBuilder() { Text = "You've reached the maximum number of iterations" };
+                ContinuedBuilder.Footer = new EmbedFooterBuilder { Text = "You've reached the maximum number of iterations" };
                 return ContinuedBuilder.Build();
             }
-            ContinuedBuilder.AddField(new EmbedFieldBuilder() { Name = $"Iteration {CurrentLoop}", Value = "[generating...]", IsInline = false });
+            ContinuedBuilder.AddField(new EmbedFieldBuilder { Name = $"Iteration {CurrentLoop}", Value = "[generating...]", IsInline = false });
             ContinuedBuilder.Title = "Iteration " + ContinuedBuilder.Fields.Count;
             return ContinuedBuilder.Build();
         }

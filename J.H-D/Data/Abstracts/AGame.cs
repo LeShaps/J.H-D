@@ -58,7 +58,7 @@ namespace J.H_D.Data.Abstracts
         protected abstract string GetRules();
         protected abstract string GetSuccessMessage();
         protected abstract int GetScore();
-        protected abstract void CheckReactionAsync(IMessage Message, IReaction Reaction);
+        protected abstract Task CheckReactionAsync(IMessage Message, IReaction Reaction);
         protected abstract Task ProccessSuccessAsync(string Answer);
         protected abstract void UpdateMessage(IUserMessage Message);
         protected virtual void DisposeInternal()

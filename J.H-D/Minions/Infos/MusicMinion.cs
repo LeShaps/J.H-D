@@ -10,6 +10,7 @@ using System;
 using static J.H_D.Data.Response;
 using J.H_D.Data.Exceptions;
 using J.H_D.Tools;
+using J.H_D.Data.Extensions;
 
 namespace J.H_D.Minions.Infos
 {
@@ -17,6 +18,8 @@ namespace J.H_D.Minions.Infos
     {
         private const string RootUrl = "http://ws.audioscrobbler.com/2.0/";
         private const string LyricsRootApi = "https://api.musixmatch.com/ws/1.1/";
+
+        private const string VgmdbBase = "https://vgmdb.info/";
 
         private const string LyricsSection = "class=\"hwc\"><div class=\"BNeawe tAd8D AP7Wnd\"><div><div class=\"BNeawe tAd8D AP7Wnd\">";
         private const string ArtistSection = "class=\"BNeawe s3v9rd AP7Wnd\">";

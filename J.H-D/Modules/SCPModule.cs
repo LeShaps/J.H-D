@@ -2,9 +2,7 @@
 using Discord.Commands;
 using J.H_D.Minions.Websites;
 using J.H_D.Tools;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using static J.H_D.Data.Response;
 

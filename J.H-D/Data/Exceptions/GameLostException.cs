@@ -5,7 +5,6 @@ namespace J.H_D.Data.Exceptions
     class GameLostException : Exception
     {
         public GameLostException()
-            : base()
         { }
 
         /// <summary>

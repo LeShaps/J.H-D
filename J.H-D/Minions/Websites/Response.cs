@@ -70,14 +70,23 @@ namespace J.H_D.Data
 
         public class SCPReport
         {
-            public string ImageLink;
-            public string ImageCaption;
-            public bool HasImage = false;
-            public string Class;
-            public string Description;
-            public string Confinement;
-            public string Name;
-            public int Number;
+            private string imageLink;
+            private string imageCaption;
+            private bool hasImage = false;
+            private string Classs;
+            private string description;
+            private string confinement;
+            private string name;
+            private int number;
+
+            public string ImageLink { get => imageLink; set => imageLink = value; }
+            public string ImageCaption { get => imageCaption; set => imageCaption = value; }
+            public bool HasImage { get => hasImage; set => hasImage = value; }
+            public string Class { get => Classs; set => Classs = value; }
+            public string Description { get => description; set => description = value; }
+            public string Confinement { get => confinement; set => confinement = value; }
+            public string Name { get => name; set => name = value; }
+            public int Number { get => number; set => number = value; }
         }
     }
 }

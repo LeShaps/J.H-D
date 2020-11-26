@@ -36,5 +36,12 @@
             Help,
             None
         }
+
+        public enum OST
+        {
+            NotFound,
+            Help,
+            None
+        }
     }
 }

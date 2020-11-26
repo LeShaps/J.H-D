@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Discord;
 using J.H_D.Data.Abstracts;
 using J.H_D.Data.Exceptions;
+using System.IO;
+using J.H_D.Tools;
 
 namespace J.H_D.Modules
 {
@@ -47,7 +49,7 @@ namespace J.H_D.Modules
             }
             await game?.CancelAsync();
         }
-
+        
         public AGame LoadGame(string gameName, IMessageChannel Channel, IUser User, string argument)
         {
             foreach (var Preload in JHConfig.Preloads)

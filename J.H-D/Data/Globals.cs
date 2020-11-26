@@ -42,7 +42,7 @@ namespace J.H_D.Data
         public static ISetup[] Preloads { get; set; }
         public static GameContainer GameRunner { get; set; }
 
-        public static Db.Db Db = new Db.Db();
+        public static Db.Db Db { private set; get; } = new Db.Db();
 
         public static void InitConfig()
         {

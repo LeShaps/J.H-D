@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Globalization;
 
 namespace J.H_D.Data.Extensions
 {
@@ -8,7 +6,7 @@ namespace J.H_D.Data.Extensions
     {
         public static string TrailingCharacters(this int nb, char character, int size)
         {
-            string nbString = nb.ToString();
+            string nbString = nb.ToString(CultureInfo.InvariantCulture);
             string NewStringNb = "";
             if (nbString.Length >= size)
                 return nbString;

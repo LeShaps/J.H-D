@@ -35,27 +35,27 @@ namespace J.H_D.Minions.Websites
             foreach (Match ImgMatch in ImageRegex.Matches(Article))
             {
                 if (!ImgMatch.Success) {
-                    Report.HasImage = false;
+                    Report.HasImage1 = false;
                 }
 
-                Report.ImageLink = ImgMatch.Groups[1].Value;
-                Report.ImageCaption = ImgMatch.Groups[2].Value;
-                Report.HasImage = true;
+                Report.ImageLink1 = ImgMatch.Groups[1].Value;
+                Report.ImageCaption1 = ImgMatch.Groups[2].Value;
+                Report.HasImage1 = true;
             }
 
             foreach (Match InfoMatch in InfosRegex.Matches(Article))
             {
                 if (InfoMatch.Groups[1].Value.Contains("Class")) {
-                    Report.Class = InfoMatch.Groups[2].Value;
+                    Report.Class1 = InfoMatch.Groups[2].Value;
                 } else if (InfoMatch.Groups[1].Value.Contains("Containment Procedures")) {
-                    Report.Confinement = InfoMatch.Groups[2].Value + " [...]";
+                    Report.Confinement1 = InfoMatch.Groups[2].Value + " [...]";
                 } else if (InfoMatch.Groups[1].Value.Contains("Description")) {
-                    Report.Description = InfoMatch.Groups[2].Value + " [...]";
+                    Report.Description1 = InfoMatch.Groups[2].Value + " [...]";
                 }
             }
 
-            Report.Name = await GetObjectName(SCPNumber);
-            Report.Number = SCPNumber;
+            Report.Name1 = await GetObjectName(SCPNumber);
+            Report.Number1 = SCPNumber;
 
             return new FeatureRequest<SCPReport?, SCPError>(Report, SCPError.None);
         }

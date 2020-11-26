@@ -18,7 +18,7 @@ namespace J.H_D.Data.Interfaces.Impl
             => new LetsJam(MessageChannel, User, this, new EmbedMode());
 
         public string[] GetGameNames()
-            => new string[] { "jam", "let's jam" };
+            => new[] { "jam", "let's jam" };
 
         public object GetLoadedParameters()
             => LyricsInfos;

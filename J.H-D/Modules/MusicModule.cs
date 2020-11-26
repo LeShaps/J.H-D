@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using J.H_D.Minions.Infos;
 using J.H_D.Tools;
 using J.H_D.Data;
+using System.IO;
 
 namespace J.H_D.Modules
 {
@@ -64,6 +65,9 @@ namespace J.H_D.Modules
                 case Error.LyricsMatch.None:
                     await ReplyAsync("", false, BuildLyricsEmbed((Response.SongLyrics)Results.Answer));
                     break;
+
+                default:
+                    throw new NotSupportedException();
             }
         }
 

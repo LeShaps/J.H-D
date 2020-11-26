@@ -13,6 +13,9 @@ using J.H_D.Tools;
 using J.H_D.Data;
 using J.H_D.Minions.Websites;
 using J.H_D.Minions.Infos;
+using System.Text.RegularExpressions;
+using J.H_D.Data.Extensions;
+using System.Data;
 
 namespace J.H_D.Modules
 {
@@ -74,6 +77,12 @@ namespace J.H_D.Modules
                 default:
                     throw new NotSupportedException();
             }
+        }
+
+        [Command("Say")]
+        public async Task ReSay([Remainder]string Phrase)
+        {
+            await ReplyAsync(Phrase);
         }
 
         [Command("Define")]
@@ -152,6 +161,73 @@ namespace J.H_D.Modules
             };
 
             await ReplyAsync("", false, BuildHelp.Build());
+        }
+
+        [Command("Set prefix")]
+        public async Task UpdatePrefixForServer([Remainder]string prefix)
+        {
+            await JHConfig.Db.UpdateGuildPrefixAsync(Context.Guild, prefix);
+            await ReplyAsync("Prefix updated for this guild, the new prefix is " + JHConfig.Db.Prefixs[Context.Guild.Id]);
+        }
+
+        [Command("Transform")]
+        public async Task ChangeRoll([Remainder] string Expression)
+        {
+            Console.WriteLine("Entering Transform");
+            Regex reg = new Regex("([0-9]+)?d([0-9]+)");
+            string result = Regex.Replace(Expression, "([0-9]+)?d([0-9]+)", (int.Parse("$1") * JHConfig.Rand.Next(int.Parse("$2"))).ToString());
+
+            await ReplyAsync(result);
+        }
+
+        [Command("Roll")]
+        [Help("Communication", "Roll a dice!")]
+        public async Task RollTheDiceAsync([Remainder]string ToRoll)
+        {
+            Regex reg = new Regex("([0-9]+)d([0-9]+|\\[([0-9]+-[0-9]+)\\])");
+            string ResultString = null;
+
+            foreach (Match roll in reg.Matches(ToRoll))
+            {
+                int Rollnb = 1;
+                int RollValue = 1;
+                int MinRoll = 1;
+                int Result = 0;
+
+                if (!roll.Success) {
+                    await ReplyAsync("You've made an invalid request! Check again");
+                    return;
+                }
+
+                if (roll.Groups[2].Value.Contains("[", "]")) {
+                    string[] Parts = roll.Groups[3].Value.Split("-");
+                    MinRoll = int.Parse(Parts[0]);
+                    RollValue = int.Parse(Parts[1]);
+                    Rollnb = int.Parse(roll.Groups[1].Value);
+                } else {
+                    Rollnb = int.Parse(roll.Groups[1].Value);
+                    RollValue = int.Parse(roll.Groups[2].Value);
+                }
+
+                for (int i = 0; i < Rollnb; i++) {
+                    Result += JHConfig.Rand.Next(MinRoll, RollValue);
+                }
+                ToRoll = ToRoll.Replace(roll.Groups[0].Value, Result.ToString());
+            }
+
+            DataTable Table = new DataTable();
+            try
+            {
+                ResultString = Table.Compute(ToRoll, "").ToString();
+                double result = double.Parse(ResultString);
+                ResultString = Convert.ToInt32(result).ToString();
+
+                await ReplyAsync($"You rolled {ResultString}");
+            }
+            catch (Exception e) when (e is EvaluateException || e is SyntaxErrorException)
+            {
+                await ReplyAsync("Can't evaluate this roll");
+            }
         }
 
         [Command("Command Info")]

@@ -10,8 +10,8 @@ namespace J.H_D.Data.Abstracts
 {
     public abstract class AGame : IDisposable
     {
-        private string GameName;
-        private string Argument;
+        private readonly string GameName;
+        private readonly string Argument;
         private GameState State;
         private readonly ulong GuildId;
         private readonly IMessageChannel Channel;

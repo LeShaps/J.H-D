@@ -219,6 +219,51 @@ namespace J.H_D.Data
             Street
         }
 
+        public struct OSTAlbum : IEquatable<OSTAlbum>
+        {
+            public string Name { private set; get; }
+            public string Id { private set; get; }
+            public string Arrangers { private set; get; }
+            public string Category { private set; get; }
+            public string Composers { private set; get; }
+            public string Lyricists { private set; get; }
+            public string Organisation { private set; get; }
+            public string Performers { private set; get; }
+            public string CoverUrl { private set; get; }
+            public string ReleaseDate { private set; get; }
+            public string ReleasePrice { private set; get; }
+            public string BuyStore { private set; get; }
+            public IEnumerable<OSTDisk> Disks { private set; get; }
+
+            bool IEquatable<OSTAlbum>.Equals(OSTAlbum other)
+                => other.Id == Id;
+        }
+
+        public struct OSTDisk : IEquatable<OSTDisk>
+        {
+            public string Name { private set; get; }
+            public string Length { private set; get; }
+            public IEnumerable<OSTTrack> Tracks { private set; get; }
+
+            bool IEquatable<OSTDisk>.Equals(OSTDisk other)
+            {
+                return other.Name == Name
+                    && other.Length == Length;
+            }
+        }
+
+        public struct OSTTrack : IEquatable<OSTTrack>
+        {
+            public string Name { private set; get; }
+            public string Length { private set; get; }
+
+            bool IEquatable<OSTTrack>.Equals(OSTTrack other)
+            {
+                return other.Name == Name
+                    && other.Length == Length;
+            }
+        }
+
         public struct MusicArtist : IEquatable<MusicArtist>
         {
             [Embedable("Artist Name")]

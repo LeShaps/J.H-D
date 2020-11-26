@@ -2,7 +2,7 @@
 
 namespace J.H_D.Data.Exceptions
 {
-    class InvalidGameAnwserException : Exception
+    public class InvalidGameAnwserException : Exception
     {
         public readonly bool Sneaky;
         public readonly bool ContinueGame;

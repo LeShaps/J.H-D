@@ -86,6 +86,7 @@ namespace J.H_D
             await commands.AddModuleAsync<MusicModule>(null);
             await commands.AddModuleAsync<GameModule>(null);
             await commands.AddModuleAsync<AnimeMangaModule>(null);
+            await commands.AddModuleAsync<SCPModule>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += DisconnectedAsync;

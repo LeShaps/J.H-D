@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace J.H_D.Data
 {
@@ -65,6 +66,18 @@ namespace J.H_D.Data
         public class Complete 
         {
             public string Content { get; set; }
+        }
+
+        public class SCPReport
+        {
+            public string ImageLink;
+            public string ImageCaption;
+            public bool HasImage = false;
+            public string Class;
+            public string Description;
+            public string Confinement;
+            public string Name;
+            public int Number;
         }
     }
 }

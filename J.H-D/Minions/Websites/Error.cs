@@ -22,5 +22,13 @@
             Connection,
             None
         }
+
+        public enum SCPError
+        {
+            Help,
+            Reach,
+            NonTranslated,
+            None
+        }
     }
 }

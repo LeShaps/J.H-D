@@ -28,6 +28,8 @@ namespace J.H_D.Db
             Prefixs = new Dictionary<ulong, string>();
             Availlability = new Dictionary<ulong, string>();
             Anonymize = new Dictionary<ulong, bool>();
+
+            conn = R1.Connection().Connect();
         }
 
         public async Task InitAsync()
@@ -36,7 +38,7 @@ namespace J.H_D.Db
         public async Task InitAsync(string dbName)
         {
             DbName = dbName;
-            conn = await R1.Connection().ConnectAsync();
+            // conn = await R1.Connection().ConnectAsync();
             if (!await R1.DbList().Contains(DbName).RunAsync<bool>(conn))
                 R1.DbCreate(DbName).Run(conn);
             if (!await R1.Db(dbName).TableList().Contains(GuildTableName).RunAsync<bool>(conn))
@@ -60,6 +62,16 @@ namespace J.H_D.Db
             string availability = (string)json.Availability;
             if (availability == null)
                 Availlability.Add(guild.Id, defaultAvailability);
+        }
+
+        public async Task UpdateGuildPrefixAsync(IGuild guild, string prefix)
+        {
+            string guildIdStr = guild.Id.ToString();
+
+            await R1.Db(DbName).Table(GuildTableName).Update(R1.HashMap("id", guildIdStr)
+                .With("Prefix", prefix)
+                ).RunAsync(conn);
+            Prefixs[guild.Id] = prefix;
         }
     }
 }

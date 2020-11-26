@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace J.H_D.Data
 {
@@ -41,9 +42,12 @@ namespace J.H_D.Data
         public static ISetup[] Preloads { get; set; }
         public static GameContainer GameRunner { get; set; }
 
+        public static Db.Db Db = new Db.Db();
+
         public static void InitConfig()
         {
-            Tools.Utilities.CheckDir("Loggers/");
+            Utilities.CheckDir("Loggers/");
+            Task.Run(async () => await Db.InitAsync());
 
             if (!File.Exists("Loggers/Credentials.json"))
                 throw new FileNotFoundException($"You must have a \"Credential.json\" file located in {AppDomain.CurrentDomain.BaseDirectory}Loggers");

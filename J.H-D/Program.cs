@@ -1,17 +1,18 @@
-using System;
-using System.IO;
-using System.Diagnostics;
-using System.Globalization;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Globalization;
 
-using J.H_D.Data;
 using J.H_D.Modules;
+using J.H_D.Data;
+using Newtonsoft.Json.Linq;
 
 namespace J.H_D
 {
@@ -46,10 +47,11 @@ namespace J.H_D
                 
                 throw;
             }
-            catch(Exception)
+            catch(Exception e)
             {
                 if (Debugger.IsAttached)
                     throw;
+                Console.WriteLine(e.ToString());
             }
         }
 
@@ -67,9 +69,6 @@ namespace J.H_D
 
             await LogAsync(new LogMessage(LogSeverity.Info, "Initialization...", "Waking up J.H-D")).ConfigureAwait(false);
 
-            db = new Db.Db();
-            await db.InitAsync();
-
             Tools.Utilities.CheckDir("Saves");
             Tools.Utilities.CheckDir("Saves/Download");
             Tools.Utilities.CheckDir("Saves/Profiles");
@@ -85,9 +84,10 @@ namespace J.H_D
             await commands.AddModuleAsync<FChanModule>(null);
             await commands.AddModuleAsync<BooruModule>(null);
             await commands.AddModuleAsync<MusicModule>(null);
-            await commands.AddModuleAsync<AnimeMangaModule>(null);
             await commands.AddModuleAsync<GameModule>(null);
-
+            await commands.AddModuleAsync<AnimeMangaModule>(null);
+            await commands.AddModuleAsync<SCPModule>(null);
+                
             client.MessageReceived += HandleCommandAsync;
             client.Disconnected += DisconnectedAsync;
             client.GuildAvailable += GuildJoinAsync;
@@ -193,24 +193,11 @@ namespace J.H_D
 
             await CheckSeriesAsync(Message, Channel, Reaction).ConfigureAwait(false);
             await CheckGeneratedTextAsync(Message, Channel, Reaction).ConfigureAwait(false);
-
-            if (Reaction.Emote.Name == "🌀")
-                await CheckSourceEmoteAsync(Message);
-        }
-
-        private async Task CheckSourceEmoteAsync(Cacheable<IUserMessage, ulong> Message)
-        {
-            IUserMessage Mess = await Message.DownloadAsync();
-
-            if (Mess.Embeds.Count < 1)
-                return;
-
-            // TODO : Make source check if the emote is added
         }
 
         private async Task GuildJoinAsync(SocketGuild arg)
         {
-            await db.InitGuildAsync(arg);
+            await JHConfig.Db.InitGuildAsync(arg);
         }
 
         public static async Task DoActionAsync(IUser u, ulong serverId, Module m)
@@ -239,17 +226,9 @@ namespace J.H_D
             string prefix;
 
             int pos = 0;
-            if (!msg.Content.StartsWith("//") && !msg.Content.StartsWith("#"))
-            {
-                var game = JHConfig.Games.Find(x => x.IsMyGame(msg.Channel.Id));
-                if (game != null)
-                {
-                    game.AddAnwser(msg);
-                }
-            }
             if (!DM)
             {
-                prefix = db.Prefixs[(arg.Channel as ITextChannel).GuildId];
+                prefix = JHConfig.Db.Prefixs[(arg.Channel as ITextChannel).GuildId];
                 if (msg.HasMentionPrefix(client.CurrentUser, ref pos) || (prefix != "" && msg.HasStringPrefix(prefix, ref pos)))
                 {
                     var context = new SocketCommandContext(client, msg);
@@ -275,7 +254,7 @@ namespace J.H_D
                     throw new NotSupportedException();
                 if (JHConfig.SendStats)
                 {
-                    await UpdateElementAsync(new[] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
+                    await UpdateElementAsync(new [] { new Tuple<string, string>("nbMsgs", "1") }).ConfigureAwait(false);
                     await AddErrorAsync("Ok").ConfigureAwait(false);
                     await AddCommandServsAsync(context.Guild.Id).ConfigureAwait(false);
                     if (JHConfig.DebugMode)

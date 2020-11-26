@@ -96,6 +96,21 @@ namespace J.H_D.Modules
             }
         }
 
+        [Command("Tell me")]
+        public async Task TellMe([Remainder] string Question)
+        {
+            ITextChannel chan = (ITextChannel)Context.Channel;
+
+            var Result = await FChanMinion.GetRandomThreadFromAsync(null, new FChanMinion.RequestOptions
+            {
+                MandatoryWord = null,
+                AllowNsfw = chan.IsNsfw,
+                RequestType = FChanMinion.RequestType.Image
+            });
+
+            await ReplyAsync("", false, ThreadImageBuild((Response.FThread)Result.Answer));
+        }
+
         [Command("Random 4thread"), Alias("Random 4chan thread"), Priority(-1)]
         [Help("4chan", "Return a random thread from 4chan", Warnings.Spoilers | Warnings.NSFW)]
         [Parameter("Board", "The board from which the thread is from, NSFW boards are only availables in NSFW channels", ParameterType.Optional)]

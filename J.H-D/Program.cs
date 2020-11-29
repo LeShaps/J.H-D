@@ -215,7 +215,7 @@ namespace J.H_D
 
         private  async Task HandleCommandAsync(SocketMessage arg)
         {
-            if (arg.Author.Id == client.CurrentUser.Id || arg.Author.IsBot) {
+            if (arg.Author.Id == client.CurrentUser.Id || arg.Author.IsBot && !JHConfig.AllowedBots.Contains(arg.Author.Id)) {
                 return;
             }
             var msg = arg as SocketUserMessage;

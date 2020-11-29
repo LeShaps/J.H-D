@@ -23,10 +23,10 @@ namespace J.H_D.Modules
     {
         private readonly int MaxIterationNumber = 10;
 
-        [Command("Hey !")]
+        [Command("Hey!")]
         public async Task ReplytoAsync()
         {
-            await ReplyAsync("Hi !");
+            await ReplyAsync("Hi!");
         }
 
         [Command("Rotate")]
@@ -79,11 +79,13 @@ namespace J.H_D.Modules
             }
         }
 
+#if DEBUG
         [Command("Say")]
         public async Task ReSay([Remainder]string Phrase)
         {
             await ReplyAsync(Phrase);
         }
+#endif
 
         [Command("Define")]
         [Help("Communication", "Define a word (definition from Urban Dictionnary)", Warnings.NSFW | Warnings.Spoilers)]

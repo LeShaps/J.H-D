@@ -4,6 +4,7 @@ using J.H_D.Data.Interfaces;
 using J.H_D.Data.Interfaces.Impl;
 using J.H_D.Tools;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,6 +45,8 @@ namespace J.H_D.Data
 
         public static Db.Db Db { private set; get; } = new Db.Db();
 
+        public static List<ulong> AllowedBots { private set; get; }
+
         public static void InitConfig()
         {
             Utilities.CheckDir("Loggers/");
@@ -51,31 +54,38 @@ namespace J.H_D.Data
 
             if (!File.Exists("Loggers/Credentials.json"))
                 throw new FileNotFoundException($"You must have a \"Credential.json\" file located in {AppDomain.CurrentDomain.BaseDirectory}Loggers");
-            dynamic ConfigurationJson = JsonConvert.DeserializeObject(File.ReadAllText("Loggers/Credentials.json"));
-            if (ConfigurationJson.botToken == null || ConfigurationJson.ownerId == null || ConfigurationJson.ownerStr == null)
+            JObject ConfigurationJson = JsonConvert.DeserializeObject<JObject>(File.ReadAllText("Loggers/Credentials.json"));
+            if (ConfigurationJson["botToken"] == null || ConfigurationJson["ownerId"] == null || ConfigurationJson["ownerStr"] == null)
                 throw new FileNotFoundException("Missing critical informations in Credential.json, please complete mandatory informations before continue");
-            DebugMode = ConfigurationJson.developpmentToken != null;
-            BotToken = DebugMode ? ConfigurationJson.developpmentToken : ConfigurationJson.botToken;
 
-            WebsiteStats = new Uri((string)ConfigurationJson.WebsiteStats);
-            WebsiteStatsToken = ConfigurationJson.WebsiteStatsToken;
+#if DEBUG
+            DebugMode = true;
+            BotToken = ConfigurationJson.Value<string>("developpmentToken") ?? ConfigurationJson.Value<string>("botToken");
+#else
+            DebugMode = false;
+            BotToken = ConfigurationJson.Value<string>("botToken");
+#endif
 
-            KitsuAuth = (ConfigurationJson.kitsuCredentials.kitsuMail != null && ConfigurationJson.kitsuCredentials.kitsuPass != null) ?
+            WebsiteStats = new Uri(ConfigurationJson.Value<string>("WebsiteStats"));
+            WebsiteStatsToken = ConfigurationJson.Value<string>("WebsiteStatsToken");
+
+            KitsuAuth = (ConfigurationJson["kitsuCredentials"]["kitsuMail"] != null && ConfigurationJson["kitsuCredentials"]["kitsuPass"] != null) ?
                     new Dictionary<string, string>
                     {
                         {"grant_type", "password" },
-                        {"username", ConfigurationJson.kitsuCredentials.KitsuMail as string},
-                        {"password", ConfigurationJson.kitsuCredentails.KitsuKey as string}
+                        {"username", ConfigurationJson["kitsuCredentials"].Value<string>("kitsuMail")},
+                        {"password", ConfigurationJson["kitsuCredentials"].Value<string>("kitsuPass")}
                     } : null;
 
             StartingTime = DateTime.Now;
+            var bots = ConfigurationJson["AllowedBots"].ToObject<List<ulong>>();
 
             APIKey = new Dictionary<string, string>
             {
-                {"Tmdb", (string)ConfigurationJson.MvKey },
-                {"RapidAPI", (string)ConfigurationJson.RapidAPIKey },
-                {"LastFM", (string)ConfigurationJson.LastFMAPIKey },
-                {"Genius", (string)ConfigurationJson.GeniusApiKey }
+                {"Tmdb", ConfigurationJson.Value<string>("MvKey") },
+                {"RapidAPI", ConfigurationJson.Value<string>("RapidAPIKey") },
+                {"LastFM", ConfigurationJson.Value<string>("LastFMAPIKey") },
+                {"Genius", ConfigurationJson.Value<string>("GeniusApiKey") }
             };
 
             Rand = new Random();

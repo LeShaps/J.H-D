@@ -399,6 +399,7 @@ namespace J.H_D.Modules
                 if (!Fields.Any(x => x.Name == CurrentHelper.Category))
                     Fields.Add(new EmbedFieldBuilder
                     {
+                        Name = CurrentHelper.Category,
                         Value = $"{CommandName} {GetAliases(info)} {Environment.NewLine}",
                         IsInline = false
                     });

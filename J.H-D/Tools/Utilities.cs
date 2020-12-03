@@ -296,5 +296,22 @@ namespace J.H_D.Tools
 
             await Module.DisplayCommandInfosAsync(CommandName);
         }
+
+        public static T GetCommandlineParam<T>(string FullLine, string LookValue)
+        {
+            string[] LineSplit = FullLine.Split(' ');
+
+            if (LineSplit.Contains(LookValue))
+            {
+                if (typeof(T) == typeof(bool))
+                    return (T)Convert.ChangeType(true, typeof(T));
+
+                int Index = Array.IndexOf(LineSplit, LookValue);
+                if (LineSplit[Index + 1] != null)
+                    return (T)Convert.ChangeType(LineSplit[Index + 1], typeof(T));
+            }
+
+            return default;
+        }
     }
 }

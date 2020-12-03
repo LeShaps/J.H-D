@@ -63,6 +63,57 @@ namespace J.H_D.Data
             }
         }
 
+        public struct WallPaper : IEquatable<WallPaper>
+        {
+            private readonly int id;
+            private readonly int width;
+            private readonly int height;
+            private readonly string file_type;
+            private readonly int file_size;
+            private readonly string url_image;
+            private readonly string url_thumb;
+            private readonly string url_page;
+
+            private readonly string category;
+            private readonly int category_id;
+            private readonly string sub_category;
+            private readonly int sub_category_id;
+            private readonly string user_name;
+            private readonly int user_id;
+
+            private readonly string collection;
+            private readonly int collection_id;
+            private readonly string group;
+            private readonly int group_id;
+
+            public int Id { get => id; }
+            public int Width { get => width; }
+            public int Height { get => height; }
+            public string FileType { get => file_type; }
+            public int FileSize { get => file_size; }
+            public string Image { get => url_image; }
+            public string Tumbnail { get => url_thumb; }
+            public string Page { get => url_page; }
+
+            public string Category { get => category; }
+            public int CategoryId { get => category_id; }
+            public string SubCategory { get => sub_category; }
+            public int SubCategoryId { get => sub_category_id; }
+            public string Creator { get => user_name; }
+            public int CreatorId { get => user_id; }
+
+            public string Collection { get => collection; }
+            public int CollectionId { get => collection_id; }
+            public string Group { get => group; }
+            public int GroupId { get => group_id; }
+
+            bool IEquatable<WallPaper>.Equals(WallPaper other)
+            {
+                return other.id == Id
+                    && other.file_size == file_size;
+            }
+        }
+
         public class Complete 
         {
             public string Content { get; set; }

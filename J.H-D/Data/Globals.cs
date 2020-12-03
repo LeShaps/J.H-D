@@ -45,7 +45,7 @@ namespace J.H_D.Data
 
         public static Db.Db Db { private set; get; } = new Db.Db();
 
-        public static List<ulong> AllowedBots { private set; get; }
+        public static List<ulong> AllowedBots { private set; get; } = new List<ulong>();
 
         public static void InitConfig()
         {
@@ -85,7 +85,8 @@ namespace J.H_D.Data
                 {"Tmdb", ConfigurationJson.Value<string>("MvKey") },
                 {"RapidAPI", ConfigurationJson.Value<string>("RapidAPIKey") },
                 {"LastFM", ConfigurationJson.Value<string>("LastFMAPIKey") },
-                {"Genius", ConfigurationJson.Value<string>("GeniusApiKey") }
+                {"Genius", ConfigurationJson.Value<string>("GeniusApiKey") },
+                {"AlphaCoders", ConfigurationJson.Value<string>("AlphaCodersApiKey") }
             };
 
             Rand = new Random();

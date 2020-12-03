@@ -30,5 +30,13 @@
             NonTranslated,
             None
         }
+
+        public enum AbyssError
+        {
+            Auth,
+            DbFail,
+            Help,
+            None
+        }
     }
 }
